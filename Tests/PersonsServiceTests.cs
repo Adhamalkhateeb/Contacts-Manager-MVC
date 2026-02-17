@@ -343,6 +343,120 @@ public class PersonsServiceTests
 
     #endregion
 
+    #region  UpdatePerson
+
+    [Fact]
+    public void Update_NullRequest_ThrowsArgumentNullException()
+    {
+        Assert.Throws<ArgumentNullException>(() => _sut.Update(null));
+    }
+
+    [Fact]
+    public void Update_InvalidId_ThrowsArgumentException()
+    {
+        var request = new PersonUpdateRequest
+        {
+            Id = Guid.Empty
+        };
+
+        Assert.Throws<ArgumentException>(() => _sut.Update(request));
+    }
+
+
+    [Fact]
+    public void Update_PersonNotFound_ThrowsArgumentException()
+    {
+        var request = new PersonUpdateRequest
+        {
+            Id = Guid.NewGuid(),
+            Name = "Test"
+        };
+
+        Assert.Throws<ArgumentException>(() => _sut.Update(request));
+    }
+
+    [Fact]
+    public void Update_ValidRequest_UpdatesPersonSuccessfully()
+    {
+
+        var persons = SeedPersons();
+        var existing = persons.First();
+
+        var updateRequest = new PersonUpdateRequest
+        {
+            Id = existing.Id,
+            Name = "Updated Name",
+            Email = "updated@email.com",
+            Address = "New Address",
+            Gender = Gender.Male,
+            DateOfBirth = new DateTime(2000, 1, 1),
+            CountryId = existing.CountryId!.Value,
+            ReceiveNewsLetter = false
+        };
+
+
+        var updated = _sut.Update(updateRequest);
+        var personAfterUpdated = _sut.GetById(updateRequest.Id);
+        var allPersons = _sut.GetAll();
+
+
+        Assert.Equal(updateRequest.Id, updated.Id);
+        Assert.Equal(updateRequest.Name, updated.Name);
+        Assert.Equal(updateRequest.Email, updated.Email);
+        Assert.Equal(updateRequest.Address, updated.Address);
+        Assert.Equal(updateRequest.Gender.ToString(), updated.Gender);
+        Assert.Equal(updateRequest.DateOfBirth, updated.DateOfBirth);
+        Assert.False(updated.ReceiveNewsLetter);
+
+
+        Assert.Equal(persons.Count, allPersons.Count);
+        Assert.Equal(updated, personAfterUpdated);
+        Assert.Contains(allPersons, p => p.Id == updated.Id && p.Name == updateRequest.Name);
+
+    }
+
+
+    #endregion
+
+    #region DeletePerson
+
+    [Fact]
+    public void Delete_NullPersonId_ThrowsArgumentNullException()
+    {
+        Assert.Throws<ArgumentNullException>(() => _sut.Delete(null));
+    }
+
+    [Fact]
+    public void Delete_EmptyId_ThrowsArgumentException()
+    {
+        Assert.Throws<ArgumentException>(() => _sut.Delete(Guid.Empty));
+    }
+
+    [Fact]
+    public void Delete_PersonNotFound_ThrowArgumentException()
+    {
+        SeedPersons();
+
+        var result = _sut.Delete(Guid.NewGuid());
+
+        Assert.False(result);
+    }
+
+    [Fact]
+    public void Delete_ValidPersonId_ReturnTrue()
+    {
+        var persons = SeedPersons();
+        var personToDelete = persons.First();
+
+        var result = _sut.Delete(personToDelete.Id);
+        var allPersonsAfterDelete = _sut.GetAll();
+
+        Assert.True(result);
+        Assert.Equal(persons.Count - 1, allPersonsAfterDelete.Count);
+    }
+
+    #endregion
+
 }
 
 

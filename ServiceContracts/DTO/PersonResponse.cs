@@ -64,6 +64,22 @@ public class PersonResponse : IEquatable<PersonResponse>
 
         """;
     }
+
+    public PersonUpdateRequest ToPersonUpdateRequest()
+    {
+        return new PersonUpdateRequest
+        {
+            Id = Id,
+            Name = Name,
+            Gender = Enum.Parse<Gender>(Gender!, true),
+            DateOfBirth = DateOfBirth,
+            Email = Email,
+            Address = Address,
+            ReceiveNewsLetter = ReceiveNewsLetter,
+            CountryId = CountryId!.Value
+
+        };
+    }
 }
 
 public static class PersonExtensions

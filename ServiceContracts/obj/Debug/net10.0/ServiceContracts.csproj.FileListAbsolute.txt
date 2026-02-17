@@ -13,3 +13,4 @@ C:\Adham Web\MVC_Projects\Contacts Manager\ServiceContracts\obj\Debug\net10.0\Se
 C:\Adham Web\MVC_Projects\Contacts Manager\ServiceContracts\obj\Debug\net10.0\refint\ServiceContracts.dll
 C:\Adham Web\MVC_Projects\Contacts Manager\ServiceContracts\obj\Debug\net10.0\ServiceContracts.pdb
 C:\Adham Web\MVC_Projects\Contacts Manager\ServiceContracts\obj\Debug\net10.0\ref\ServiceContracts.dll
+c:\Adham Web\MVC_Projects\Contacts Manager\ServiceContracts\obj\Debug\net10.0\ServiceContracts.sourcelink.json

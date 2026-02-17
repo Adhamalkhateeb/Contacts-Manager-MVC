@@ -31,6 +31,22 @@ public class PersonsService : IPersonsService
         return ConvertPersonToPersonResponse(person);
     }
 
+    public bool Delete(Guid? personId)
+    {
+        if (personId is null)
+            throw new ArgumentNullException(nameof(personId));
+
+        if (personId == Guid.Empty)
+            throw new ArgumentException("Id can't be empty");
+
+        var person = _persons.FirstOrDefault(p => p.Id == personId);
+
+        if (person is null)
+            return false;
+
+        return _persons.RemoveAll(p => p.Id == personId) > 0;
+    }
+
     public List<PersonResponse> GetAll()
     {
         return _persons.Select(ConvertPersonToPersonResponse).ToList();
@@ -112,6 +128,28 @@ public class PersonsService : IPersonsService
             : persons.OrderBy(GetKey);
 
         return sorted.ToList();
+    }
+
+    public PersonResponse Update(PersonUpdateRequest? request)
+    {
+        ArgumentNullException.ThrowIfNull(request);
+
+        ValidationHelper.ValidateModel(request);
+
+        var personToUpdate = _persons.FirstOrDefault(p => p.Id == request.Id);
+
+        if (personToUpdate is null)
+            throw new ArgumentException($"Person with Id {request.Id} doesn't exist");
+
+        personToUpdate.Name = request.Name;
+        personToUpdate.Email = request.Email;
+        personToUpdate.Address = request.Address;
+        personToUpdate.DateOfBirth = request.DateOfBirth;
+        personToUpdate.Gender = request.Gender.ToString();
+        personToUpdate.CountryId = request.CountryId;
+        personToUpdate.ReceiveNewsLetter = request.ReceiveNewsLetter;
+
+        return personToUpdate.ToPersonResponse();
     }
 
     private PersonResponse ConvertPersonToPersonResponse(Person person)

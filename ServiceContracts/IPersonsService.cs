@@ -12,9 +12,9 @@ public interface IPersonsService
     /// <summary>
     /// Insert new Person into persons list 
     /// </summary>
-    /// <param name="personAddRequest">DTO containing person data for inserting</param>
+    /// <param name="request">DTO containing person data for inserting</param>
     /// <returns>PersonResponse contain Added person details with Generated Id</returns>
-    PersonResponse Add(PersonAddRequest? personAddRequest);
+    PersonResponse Add(PersonAddRequest? request);
 
     /// <summary>
     /// Retrieve All Person list 
@@ -45,4 +45,18 @@ public interface IPersonsService
     /// <param name="sortOrder">Ascending or Descending</param>
     /// <returns>list of PersonResponse after sorting it</returns>
     List<PersonResponse> GetSorted(List<PersonResponse> persons, string orderBy, SortOrder sortOrder);
+
+    /// <summary>
+    /// Update Person details based on given person Id
+    /// </summary>
+    /// <param name="request">person details to update, including person Id</param>
+    /// <returns>PersonResponse Object after making update</returns>
+    PersonResponse Update(PersonUpdateRequest? request);
+
+    /// <summary>
+    /// Delete a Person based on given Person Id
+    /// </summary>
+    /// <param name="personId">Id for person that will be deleted</param>
+    /// <returns>true if deleted successfully otherwise false</returns>
+    bool Delete(Guid? personId);
 }

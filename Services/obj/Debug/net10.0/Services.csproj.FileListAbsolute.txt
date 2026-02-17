@@ -15,3 +15,4 @@ C:\Adham Web\MVC_Projects\Contacts Manager\Services\obj\Debug\net10.0\Services.d
 C:\Adham Web\MVC_Projects\Contacts Manager\Services\obj\Debug\net10.0\refint\Services.dll
 C:\Adham Web\MVC_Projects\Contacts Manager\Services\obj\Debug\net10.0\Services.pdb
 C:\Adham Web\MVC_Projects\Contacts Manager\Services\obj\Debug\net10.0\ref\Services.dll
+c:\Adham Web\MVC_Projects\Contacts Manager\Services\obj\Debug\net10.0\Services.sourcelink.json
