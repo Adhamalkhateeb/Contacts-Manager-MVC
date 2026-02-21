@@ -14,6 +14,6 @@ public class Person
     public string? Address { get; set; }
     public string? Email { get; set; }
     public Guid CountryId { get; set; }
-    public bool ReceiveNewsLetter { get; set; }
+    public bool ReceiveNewsLetters { get; set; }
 
 }

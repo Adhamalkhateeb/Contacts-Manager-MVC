@@ -1,0 +1,105 @@
+﻿@model IEnumerable<PersonResponse>
+@{
+    ViewBag.Title = "Persons";
+}
+@{
+    string BuildOrderLink(string orderBy)
+    {
+        return
+@$"/persons/index?searchBy={ViewBag.CurrentSearchBy}&searchValue={ViewBag.CurrentSearchValue}&orderBy={orderBy}&sortOrder={(ViewBag.CurrentSortOrder
+== "ASC" ? "DESC" : "ASC")}";
+    }
+
+    string SelectSortArrow(string columnName)
+    {
+        if (ViewBag.CurrentOrderBy == columnName)
+        {
+            if (ViewBag.CurrentSortOrder == "ASC")
+                return " <i class='fa-solid fa-sort-down'></i>";
+            else
+                return " <i class='fa-solid fa-sort-up '></i>";
+        }
+
+        return "";
+    }
+}
+
+<form action="~/persons/index" method="get">
+    <h1>Persons</h1>
+    <a href="~/persons/create">Create Person</a>
+
+    <div class="box flex">
+        <div class="flex-1">
+            <select class="form-input" name="searchBy">
+                @foreach (var field in ViewBag.SearchFields)
+                {
+                    <option selected="@(ViewBag.CurrentSearchBy == field.Key)" value="@field.Key">@field.Value</option>
+                }
+            </select>
+        </div>
+        <div class="flex-1">
+            <input type="search" id="search" class="form-input" placeholder="Search" name="searchValue"
+                   value="@ViewBag.CurrentSearchValue">
+        </div>
+        <div class="flex-1">
+            <button class="button button-blue-back">Search</button>
+            <a href="~/persons/index" class="link-hover">Clear All</a>
+        </div>
+
+    </div>
+
+    <table class="table w-100 mt">
+        <thead>
+            <tr>
+                <th>
+                    <a href="@BuildOrderLink(nameof(PersonResponse.Name))"> Name</a>
+                    @Html.Raw(SelectSortArrow(nameof(PersonResponse.Name)))
+                </th>
+                <th>
+                    <a href="@BuildOrderLink(nameof(PersonResponse.Email))"> Email</a>
+                    @Html.Raw(SelectSortArrow(nameof(PersonResponse.Email)))
+                </th>
+                <th>
+                    <a href="@BuildOrderLink(nameof(PersonResponse.DateOfBirth))"> Date Of Birth </a>
+                    @Html.Raw(SelectSortArrow(nameof(PersonResponse.DateOfBirth)))
+                </th>
+                <th>
+                    <a href="@BuildOrderLink(nameof(PersonResponse.Age))"> Age </a>
+                    @Html.Raw(SelectSortArrow(nameof(PersonResponse.Age)))
+                </th>
+                <th>
+                    <a href="@BuildOrderLink(nameof(PersonResponse.Gender))"> Gender </a>
+                    @Html.Raw(SelectSortArrow(nameof(PersonResponse.Gender)))
+                </th>
+                <th>
+                    <a href="@BuildOrderLink(nameof(PersonResponse.Country))"> Country </a>
+                    @Html.Raw(SelectSortArrow(nameof(PersonResponse.Country)))
+                </th>
+                <th>
+                    <a href="@BuildOrderLink(nameof(PersonResponse.Address))"> Address </a>
+                    @Html.Raw(SelectSortArrow(nameof(PersonResponse.Address)))
+                </th>
+                <th>
+                    <a href="@BuildOrderLink(nameof(PersonResponse.ReceiveNewsLetters))"> Receives News Letter </a>
+                    @Html.Raw(SelectSortArrow(nameof(PersonResponse.ReceiveNewsLetters)))
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td style="width: 10%;">@person.Name</td>
+                    <td style="width: 20%;">@person.Email</td>
+                    <td style="width: 10%;">@person.DateOfBirth.GetValueOrDefault().ToString("dd MMM yyyy")</td>
+                    <td style="width: 10%;">@person.Age</td>
+                    <td style="width: 10%;">@person.Gender</td>
+                    <td style="width: 10%;">@person.Country</td>
+                    <td style="width: 15%;">@person.Address</td>
+                    <td style="width: 15%;">@person.ReceiveNewsLetters</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</form>

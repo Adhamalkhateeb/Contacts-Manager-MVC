@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\Entities.csproj",
+      "projectUniqueName": "c:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\Entities.csproj",
       "projectName": "Entities",
-      "projectPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\Entities.csproj",
+      "projectPath": "c:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\Entities.csproj",
       "packagesPath": "C:\\Users\\adham\\.nuget\\packages\\",
-      "outputPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\obj\\",
+      "outputPath": "c:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
