@@ -1,11 +1,68 @@
 {
   "version": 3,
   "targets": {
-    "net10.0": {}
+    "net10.0": {
+      "Entities/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "compile": {
+          "bin/placeholder/Entities.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Entities.dll": {}
+        }
+      },
+      "ServiceContracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/ServiceContracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/ServiceContracts.dll": {}
+        }
+      },
+      "Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "ServiceContracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Services.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "Entities/1.0.0": {
+      "type": "project",
+      "path": "../Entities/Entities.csproj",
+      "msbuildProject": "../Entities/Entities.csproj"
+    },
+    "ServiceContracts/1.0.0": {
+      "type": "project",
+      "path": "../ServiceContracts/ServiceContracts.csproj",
+      "msbuildProject": "../ServiceContracts/ServiceContracts.csproj"
+    },
+    "Services/1.0.0": {
+      "type": "project",
+      "path": "../Services/Services.csproj",
+      "msbuildProject": "../Services/Services.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net10.0": []
+    "net10.0": [
+      "Entities >= 1.0.0",
+      "ServiceContracts >= 1.0.0",
+      "Services >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\adham\\.nuget\\packages\\": {},
@@ -40,7 +97,17 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\Entities.csproj": {
+              "projectPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\Entities.csproj"
+            },
+            "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\ServiceContracts\\ServiceContracts.csproj": {
+              "projectPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\ServiceContracts\\ServiceContracts.csproj"
+            },
+            "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Services\\Services.csproj": {
+              "projectPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Services\\Services.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

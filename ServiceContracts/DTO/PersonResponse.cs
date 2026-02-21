@@ -17,7 +17,7 @@ public class PersonResponse : IEquatable<PersonResponse>
     public double? Age { get; set; }
     public string? Email { get; set; }
     public string? Address { get; set; }
-    public bool ReceiveNewsLetter { get; set; }
+    public bool ReceiveNewsLetters { get; set; }
     public Guid? CountryId { get; set; }
     public string? Country { get; set; }
 
@@ -38,7 +38,7 @@ public class PersonResponse : IEquatable<PersonResponse>
                 DateOfBirth == other.DateOfBirth &&
                 Email == other.Email &&
                 Address == other.Address &&
-                ReceiveNewsLetter == other.ReceiveNewsLetter &&
+                ReceiveNewsLetters == other.ReceiveNewsLetters &&
                 CountryId == other.CountryId;
     }
 
@@ -46,7 +46,7 @@ public class PersonResponse : IEquatable<PersonResponse>
     {
         return HashCode.Combine(
             Id, Name, Gender, Email, Address,
-            DateOfBirth, ReceiveNewsLetter, CountryId
+            DateOfBirth, ReceiveNewsLetters, CountryId
             );
     }
 
@@ -75,7 +75,7 @@ public class PersonResponse : IEquatable<PersonResponse>
             DateOfBirth = DateOfBirth,
             Email = Email,
             Address = Address,
-            ReceiveNewsLetter = ReceiveNewsLetter,
+            ReceiveNewsLetters = ReceiveNewsLetters,
             CountryId = CountryId!.Value
 
         };
@@ -100,7 +100,7 @@ public static class PersonExtensions
             DateOfBirth = person.DateOfBirth,
             Email = person.Email,
             Address = person.Address,
-            ReceiveNewsLetter = person.ReceiveNewsLetter,
+            ReceiveNewsLetters = person.ReceiveNewsLetters,
             CountryId = person.CountryId,
             Age = (person.DateOfBirth is not null) ?
             Math.Round((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25) : null

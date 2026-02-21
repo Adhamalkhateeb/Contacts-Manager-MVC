@@ -17,8 +17,8 @@ public class PersonsServiceTests
 
     public PersonsServiceTests(ITestOutputHelper testOutputHelper)
     {
-        _countriesService = new CountriesService();
-        _sut = new PersonsService(_countriesService);
+        _countriesService = new CountriesService(false);
+        _sut = new PersonsService(_countriesService, false);
         _testOutputHelper = testOutputHelper;
     }
 
@@ -39,7 +39,7 @@ public class PersonsServiceTests
                 Email = "adham@gmail.com",
                 DateOfBirth = new DateTime(2006, 4, 15),
                 Address = "Street 1",
-                ReceiveNewsLetter = true,
+                ReceiveNewsLetters = true,
                 Gender = Gender.Male,
                 CountryId = country.Id,
             },
@@ -49,7 +49,7 @@ public class PersonsServiceTests
                 Email = "menna@gmail.com",
                 DateOfBirth = new DateTime(2003, 3, 1),
                 Address = "Street 2",
-                ReceiveNewsLetter = true,
+                ReceiveNewsLetters = true,
                 Gender = Gender.Female,
                 CountryId = country.Id
             },
@@ -59,7 +59,7 @@ public class PersonsServiceTests
                 Email = "merna@gmail.com",
                 DateOfBirth = new DateTime(2003, 3, 1),
                 Address = "Street 3",
-                ReceiveNewsLetter = true,
+                ReceiveNewsLetters = true,
                 Gender = Gender.Female,
                 CountryId = country.Id
             },
@@ -69,7 +69,7 @@ public class PersonsServiceTests
                 Email = "fawzy@gmail.com",
                 DateOfBirth = new DateTime(1974, 10, 15),
                 Address = "Street 4",
-                ReceiveNewsLetter = false,
+                ReceiveNewsLetters = false,
                 Gender = Gender.Male,
                 CountryId = country.Id
             }
@@ -286,7 +286,7 @@ public class PersonsServiceTests
     {
         var persons = new List<PersonResponse>();
 
-        var result = _sut.GetSorted(persons, nameof(PersonResponse.Name), SortOrder.Ascending);
+        var result = _sut.GetSorted(persons, nameof(PersonResponse.Name), SortOrder.ASC);
 
         Assert.Empty(result);
     }
@@ -296,7 +296,7 @@ public class PersonsServiceTests
     {
         var persons = SeedPersons();
 
-        var result = _sut.GetSorted(persons, "invalid", SortOrder.Ascending);
+        var result = _sut.GetSorted(persons, "invalid", SortOrder.ASC);
 
         Assert.Equal(persons.Count, result.Count);
         for (int i = 0; i < persons.Count; i++)
@@ -311,7 +311,7 @@ public class PersonsServiceTests
     [InlineData(nameof(PersonResponse.Gender))]
     [InlineData(nameof(PersonResponse.Country))]
     [InlineData(nameof(PersonResponse.Age))]
-    [InlineData(nameof(PersonResponse.ReceiveNewsLetter))]
+    [InlineData(nameof(PersonResponse.ReceiveNewsLetters))]
     [InlineData(nameof(PersonResponse.Address))]
     public void GetSorted_Dynamic_AllFieldsAscendingAndDescending(string orderBy)
     {
@@ -326,14 +326,14 @@ public class PersonsServiceTests
             return value;
         }
 
-        var ascResult = _sut.GetSorted(persons, orderBy, SortOrder.Ascending);
+        var ascResult = _sut.GetSorted(persons, orderBy, SortOrder.ASC);
         var expectedAsc = persons.OrderBy(GetPropValue).ToList();
 
         Assert.Equal(expectedAsc.Count, ascResult.Count);
         for (int i = 0; i < expectedAsc.Count; i++)
             Assert.Equal(expectedAsc[i].Id, ascResult[i].Id);
 
-        var descResult = _sut.GetSorted(persons, orderBy, SortOrder.Descending);
+        var descResult = _sut.GetSorted(persons, orderBy, SortOrder.DESC);
         var expectedDesc = persons.OrderByDescending(GetPropValue).ToList();
 
         Assert.Equal(expectedDesc.Count, descResult.Count);
@@ -391,7 +391,7 @@ public class PersonsServiceTests
             Gender = Gender.Male,
             DateOfBirth = new DateTime(2000, 1, 1),
             CountryId = existing.CountryId!.Value,
-            ReceiveNewsLetter = false
+            ReceiveNewsLetters = false
         };
 
 
@@ -406,7 +406,7 @@ public class PersonsServiceTests
         Assert.Equal(updateRequest.Address, updated.Address);
         Assert.Equal(updateRequest.Gender.ToString(), updated.Gender);
         Assert.Equal(updateRequest.DateOfBirth, updated.DateOfBirth);
-        Assert.False(updated.ReceiveNewsLetter);
+        Assert.False(updated.ReceiveNewsLetters);
 
 
         Assert.Equal(persons.Count, allPersons.Count);

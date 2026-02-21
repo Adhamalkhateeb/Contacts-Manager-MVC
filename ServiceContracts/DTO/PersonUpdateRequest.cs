@@ -24,7 +24,7 @@ public class PersonUpdateRequest
     [EmailAddress(ErrorMessage = "Email should be in valid format")]
     public string? Email { get; set; }
     public string? Address { get; set; }
-    public bool ReceiveNewsLetter { get; set; }
+    public bool ReceiveNewsLetters { get; set; }
     public Guid CountryId { get; set; }
 
     /// <summary>
@@ -41,7 +41,7 @@ public class PersonUpdateRequest
             DateOfBirth = DateOfBirth,
             Email = Email,
             Address = Address,
-            ReceiveNewsLetter = ReceiveNewsLetter,
+            ReceiveNewsLetters = ReceiveNewsLetters,
             CountryId = CountryId
         };
     }
