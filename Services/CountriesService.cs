@@ -1,4 +1,8 @@
 ﻿using Entities;
+using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
+using OfficeOpenXml;
 using ServiceContracts;
 using ServiceContracts.DTO;
 
@@ -6,49 +10,19 @@ namespace Services;
 
 public class CountriesService : ICountriesService
 {
-    private readonly List<Country> _countries;
+    private readonly ContactsManagerDbContext _context;
 
-    public CountriesService(bool initialize = true)
+    public CountriesService(ContactsManagerDbContext context)
     {
-        _countries = [];
-        if (initialize)
-        {
-            _countries.AddRange(new List<Country>{
-                new Country
-                {
-                    Id = Guid.Parse("2f18a149-4122-4b65-8987-69f04bd2b758"),
-                    Name = "Egypt"
-                },
-                new Country
-                {
-                    Id = Guid.Parse("dbbbcca0-f997-4720-b8fb-37ec2dc71f2e"),
-                    Name = "USA"
-                },
-                new Country
-                {
-                    Id = Guid.Parse("efd85b43-e69b-4c39-92e9-6843f692fe3a"),
-                    Name = "Canada"
-                },
-                new Country
-                {
-                    Id = Guid.Parse("59fb67c6-36ef-49e1-963c-bb07606e8b8b"),
-                    Name = "UK"
-                },
-                new Country
-                {
-                    Id = Guid.Parse("eeafd16e-a9b5-4aab-9036-eb80ca1e2146"),
-                    Name = "India"
-                }
-            });
-        }
+        _context = context;
     }
-    public CountryResponse Add(CountryAddRequest? countryAddRequest)
+    public async Task<CountryResponse> AddAsync(CountryAddRequest? countryAddRequest)
     {
         ArgumentNullException.ThrowIfNull(countryAddRequest);
         ArgumentException.ThrowIfNullOrWhiteSpace(countryAddRequest.Name);
 
 
-        if (_countries.Any(c =>
+        if (await _context.Countries.AnyAsync(c =>
             c.Name!.Equals(countryAddRequest.Name, StringComparison.OrdinalIgnoreCase)))
         {
             throw new ArgumentException("Country already exists");
@@ -57,22 +31,83 @@ public class CountriesService : ICountriesService
         var country = countryAddRequest.ToCountry();
         country.Id = Guid.NewGuid();
 
-        _countries.Add(country);
+        await _context.Countries.AddAsync(country);
+        await _context.SaveChangesAsync();
 
         return country.ToCountryResponse();
 
     }
 
-    public List<CountryResponse> GetAll()
+    public async Task<List<CountryResponse>> GetAllAsync()
     {
-        return _countries.Select(c => c.ToCountryResponse()).ToList();
+        var countries = await _context.Countries
+        .AsNoTracking()
+        .ToListAsync();
+
+        return countries.Select(c => c.ToCountryResponse()).ToList();
     }
 
-    public CountryResponse? GetById(Guid? id)
+    public async Task<CountryResponse?> GetByIdAsync(Guid? id)
     {
         if (id is null)
             return null;
 
-        return _countries.FirstOrDefault(c => c.Id == id)?.ToCountryResponse();
+        var country = await _context.Countries.FindAsync(id);
+        return country?.ToCountryResponse();
+    }
+
+    public async Task<int> UploadFromExcelFileAsync(IFormFile file)
+    {
+        if (file == null || file.Length == 0)
+            throw new ArgumentException("Invalid file.");
+
+        var memoryStream = new MemoryStream();
+        await file.CopyToAsync(memoryStream);
+        memoryStream.Position = 0;
+
+        using var excel = new ExcelPackage(memoryStream);
+        var worksheet = excel.Workbook.Worksheets["Countries"];
+
+        if (worksheet == null)
+            throw new InvalidOperationException("Worksheet 'Countries' not found.");
+
+        if (worksheet.Dimension == null)
+            return 0;
+
+        int rowsCount = worksheet.Dimension.Rows;
+
+        var countryNamesFromFile = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        for (int row = 2; row <= rowsCount; row++)
+        {
+            var countryName = worksheet.Cells[row, 1].Value?.ToString()?.Trim();
+
+            if (!string.IsNullOrWhiteSpace(countryName))
+                countryNamesFromFile.Add(countryName);
+        }
+
+        if (!countryNamesFromFile.Any())
+            return 0;
+
+        var existingCountries = await _context.Countries
+            .Where(c => c.Name != null && countryNamesFromFile.Contains(c.Name))
+            .Select(c => c.Name!)
+            .ToListAsync();
+
+        var newCountries = countryNamesFromFile
+            .Except(existingCountries, StringComparer.OrdinalIgnoreCase)
+            .Select(name => new Country { Id = Guid.NewGuid(), Name = name })
+            .ToList();
+
+        await _context.Countries.AddRangeAsync(newCountries);
+
+        try
+        {
+            return await _context.SaveChangesAsync();
+        }
+        catch (DbUpdateException)
+        {
+            throw new InvalidOperationException("Database update failed. Possible duplicate data.");
+        }
     }
 }

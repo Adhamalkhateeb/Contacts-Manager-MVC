@@ -14,28 +14,29 @@ public interface IPersonsService
     /// </summary>
     /// <param name="request">DTO containing person data for inserting</param>
     /// <returns>PersonResponse contain Added person details with Generated Id</returns>
-    PersonResponse Add(PersonAddRequest? request);
+    Task<PersonResponse> AddAsync(PersonAddRequest? request);
 
     /// <summary>
     /// Retrieve All Person list 
     /// </summary>
     /// <returns>List of PersonResponse</returns>
-    List<PersonResponse> GetAll();
+    Task<List<PersonResponse>> GetAllAsync();
 
     /// <summary>
     /// Retrieve person based on Id (Guid)
     /// </summary>
     /// <param name="id">Guid Id to search with it</param>
     /// <returns>PersonResponse object contains person Details or null if not found</returns>
-    PersonResponse? GetById(Guid? id);
+    Task<PersonResponse?> GetByIdAsync(Guid? id);
 
     /// <summary>
     /// Get List of PersonResponse object based on search field and  search value 
     /// </summary>
+    /// <param name="persons">list of PersonResponse To Filter</param>
     /// <param name="searchBy">name of field to search</param>
     /// <param name="searchValue">value to search based on field selected</param>
     /// <returns>all matching persons with the giving criteria</returns>
-    List<PersonResponse> GetFiltered(string searchBy, string? searchValue);
+    List<PersonResponse> GetFiltered(List<PersonResponse> persons, string searchBy, string? searchValue);
 
     /// <summary>
     /// Sort list of PersonResponse based on specified key (ascending, descending)
@@ -51,12 +52,25 @@ public interface IPersonsService
     /// </summary>
     /// <param name="request">person details to update, including person Id</param>
     /// <returns>PersonResponse Object after making update</returns>
-    PersonResponse Update(PersonUpdateRequest? request);
+    Task<PersonResponse> UpdateAsync(PersonUpdateRequest? request);
 
     /// <summary>
     /// Delete a Person based on given Person Id
     /// </summary>
     /// <param name="personId">Id for person that will be deleted</param>
     /// <returns>true if deleted successfully otherwise false</returns>
-    bool Delete(Guid? personId);
+    Task<bool> DeleteAsync(Guid? personId);
+
+
+    /// <summary>
+    /// Return Persons as CSV
+    /// </summary>
+    /// <returns>Returns byte stream with csv data of persons</returns>
+    Task<byte[]> GetPersonsCsvAsync();
+
+    /// <summary>
+    /// Returns Persons as Excel
+    /// </summary>
+    /// <returns>Returns byte stream with excel data of persons</returns>
+    Task<byte[]> GetPersonsExcelAsync();
 }

@@ -7,7 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+  <None Update="countries.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+  <None Update="persons.json">
+    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+  </None>
+  
+</ItemGroup>
+  <ItemGroup>
     <Folder Include="Controllers\" />
+    <Folder Include="Models\" />
     <Folder Include="wwwroot\webfonts\" />
   </ItemGroup>
 
@@ -15,6 +25,20 @@
     <ProjectReference Include="..\Entities\Entities.csproj" />
     <ProjectReference Include="..\ServiceContracts\ServiceContracts.csproj" />
     <ProjectReference Include="..\Services\Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CsvHelper" Version="33.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.3">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.4.0" />
   </ItemGroup>
 
 </Project>

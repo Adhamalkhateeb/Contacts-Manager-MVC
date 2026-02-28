@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 using Entities;
+using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
 using ServiceContracts.DTO;
 using ServiceContracts.Enums;
@@ -17,16 +18,22 @@ public class PersonsServiceTests
 
     public PersonsServiceTests(ITestOutputHelper testOutputHelper)
     {
-        _countriesService = new CountriesService(false);
-        _sut = new PersonsService(_countriesService, false);
+        _countriesService = new CountriesService(
+            new ContactsManagerDbContext(
+                new DbContextOptionsBuilder<ContactsManagerDbContext>().Options
+            ));
+        _sut = new PersonsService(new ContactsManagerDbContext(
+                new DbContextOptionsBuilder<ContactsManagerDbContext>().Options
+            ), _countriesService);
+
         _testOutputHelper = testOutputHelper;
     }
 
     #region Helpers
 
-    private List<PersonResponse> SeedPersons()
+    private async Task<List<PersonResponse>> SeedPersons()
     {
-        var country = _countriesService.Add(new CountryAddRequest
+        var country = await _countriesService.AddAsync(new CountryAddRequest
         {
             Name = "EGYPT"
         });
@@ -75,7 +82,12 @@ public class PersonsServiceTests
             }
         };
 
-        return requests.Select(r => _sut.Add(r)).ToList();
+        var results = new List<PersonResponse>();
+        foreach (var request in requests)
+        {
+            results.Add(await _sut.AddAsync(request));
+        }
+        return results;
     }
 
     #endregion
@@ -83,23 +95,37 @@ public class PersonsServiceTests
     #region  Add
 
     [Fact]
-    public void Add_NullRequest_ThrowsArgumentNullException()
+    public async Task AddAsync_NullRequest_ThrowsArgumentNullException()
     {
-        Assert.Throws<ArgumentNullException>(() => _sut.Add(null));
+        await Assert.ThrowsAsync<ArgumentNullException>(async () => await _sut.AddAsync(null));
     }
 
     [Fact]
-    public void Add_NullName_ThrowsArgumentException()
+    public async Task AddAsync_NullName_ThrowsArgumentException()
     {
         var request = new PersonAddRequest { Name = null };
 
-        Assert.Throws<ArgumentException>(() => _sut.Add(request));
+        await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.AddAsync(request));
     }
 
     [Fact]
-    public void Add_ValidRequest_ReturnsPersonResponse()
+    public async Task AddAsync_InvalidCountry_ThrowsArgumentException()
     {
-        var country = _countriesService.Add(new CountryAddRequest { Name = "EGYPT" });
+        var request = new PersonAddRequest
+        {
+            Name = "Adham",
+            Email = "adham@gmail.com",
+            Gender = Gender.Male,
+            CountryId = Guid.Empty
+        };
+
+        await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.AddAsync(request));
+    }
+
+    [Fact]
+    public async Task AddAsync_ValidRequest_ReturnsPersonResponse()
+    {
+        var country = await _countriesService.AddAsync(new CountryAddRequest { Name = "EGYPT" });
 
         var request = new PersonAddRequest
         {
@@ -109,7 +135,7 @@ public class PersonsServiceTests
             CountryId = country.Id
         };
 
-        var response = _sut.Add(request);
+        var response = await _sut.AddAsync(request);
 
         Assert.NotEqual(Guid.Empty, response.Id);
         Assert.Equal("Adham", response.Name);
@@ -120,30 +146,30 @@ public class PersonsServiceTests
     #region  GetPersonById
 
     [Fact]
-    public void GetById_NullId_ReturnsNull()
+    public async Task GetByIdAsync_NullId_ReturnsNull()
     {
-        var result = _sut.GetById(null);
+        var result = await _sut.GetByIdAsync(null);
 
         Assert.Null(result);
     }
 
 
     [Fact]
-    public void GetById_NotFound_ReturnsNull()
+    public async Task GetByIdAsync_NotFound_ReturnsNull()
     {
-        var result = _sut.GetById(Guid.NewGuid());
+        var result = await _sut.GetByIdAsync(Guid.NewGuid());
 
         Assert.Null(result);
     }
 
 
     [Fact]
-    public void GetById_ValidId_ReturnsPerson()
+    public async Task GetByIdAsync_ValidId_ReturnsPerson()
     {
-        var persons = SeedPersons();
+        var persons = await SeedPersons();
         var expected = persons.First();
 
-        var result = _sut.GetById(expected.Id);
+        var result = await _sut.GetByIdAsync(expected.Id);
 
         Assert.Equal(expected, result);
     }
@@ -153,19 +179,19 @@ public class PersonsServiceTests
     #region  GetAllPersons
 
     [Fact]
-    public void GetAll_Empty_ReturnsEmptyList()
+    public async Task GetAllAsync_Empty_ReturnsEmptyList()
     {
-        var result = _sut.GetAll();
+        var result = await _sut.GetAllAsync();
 
         Assert.Empty(result);
     }
 
     [Fact]
-    public void GetAll_AfterSeeding_ReturnsAllPersons()
+    public async Task GetAllAsync_AfterSeeding_ReturnsAllPersons()
     {
-        var expected = SeedPersons();
+        var expected = await SeedPersons();
 
-        var result = _sut.GetAll();
+        var result = await _sut.GetAllAsync();
 
         Assert.Equal(expected.Count, result.Count);
 
@@ -182,11 +208,11 @@ public class PersonsServiceTests
     [Theory]
     [InlineData(null)]
     [InlineData("")]
-    public void GetFiltered_SearchValueNullOrEmpty_ReturnsAll(string? searchValue)
+    public async Task GetFiltered_SearchValueNullOrEmpty_ReturnsAll(string? searchValue)
     {
-        var expected = SeedPersons();
+        var expected = await SeedPersons();
 
-        var result = _sut.GetFiltered(nameof(PersonResponse.Name), searchValue);
+        var result = _sut.GetFiltered(expected, nameof(PersonResponse.Name), searchValue);
 
         Assert.Equal(expected.Count, result.Count);
     }
@@ -200,10 +226,10 @@ public class PersonsServiceTests
     [InlineData(nameof(PersonResponse.DateOfBirth), "15 Apr 2006")]
     [InlineData(nameof(PersonResponse.Gender), "Male")]
     [InlineData(nameof(PersonResponse.Country), "EGYPT")]
-    public void GetFiltered_ValidFields_ReturnsExpected(string field, string searchValue)
+    public async Task GetFiltered_ValidFields_ReturnsExpected(string field, string searchValue)
     {
         // Arrange
-        var persons = SeedPersons();
+        var persons = await SeedPersons();
 
         List<PersonResponse> expected = field switch
         {
@@ -232,7 +258,7 @@ public class PersonsServiceTests
         };
 
         // Act
-        var result = _sut.GetFiltered(field, searchValue);
+        var result = _sut.GetFiltered(persons, field, searchValue);
 
         // Assert
         Assert.Equal(expected.Count, result.Count);
@@ -242,36 +268,36 @@ public class PersonsServiceTests
 
 
     [Fact]
-    public void GetFiltered_NoMatch_ReturnsEmpty()
+    public async Task GetFiltered_NoMatch_ReturnsEmpty()
     {
-        SeedPersons();
+        var persons = await SeedPersons();
 
-        var result = _sut.GetFiltered(nameof(PersonResponse.Name), "NotExist");
+        var result = _sut.GetFiltered(persons, nameof(PersonResponse.Name), "NotExist");
 
         Assert.Empty(result);
     }
 
     [Fact]
-    public void GetFiltered_InvalidSearchBy_ReturnsAll()
+    public async Task GetFiltered_InvalidSearchBy_ReturnsAll()
     {
-        var expected = SeedPersons();
+        var expected = await SeedPersons();
 
-        var result = _sut.GetFiltered("InvalidField", "Adham");
+        var result = _sut.GetFiltered(expected, "InvalidField", "Adham");
 
         Assert.Equal(expected.Count, result.Count);
     }
 
 
     [Fact]
-    public void GetFiltered_IsCaseInsensitive()
+    public async Task GetFiltered_IsCaseInsensitive()
     {
-        var persons = SeedPersons();
+        var persons = await SeedPersons();
 
         var expected = persons
             .Where(p => p.Name!.Equals("Adham", StringComparison.OrdinalIgnoreCase))
             .ToList();
 
-        var result = _sut.GetFiltered(nameof(PersonResponse.Name), "adham");
+        var result = _sut.GetFiltered(persons, nameof(PersonResponse.Name), "adham");
 
         Assert.Equal(expected.Count, result.Count);
         Assert.Contains(expected.First(), result);
@@ -292,9 +318,9 @@ public class PersonsServiceTests
     }
 
     [Fact]
-    public void GetSorted_InvalidOrderBy_ReturnsOriginalList()
+    public async Task GetSorted_InvalidOrderBy_ReturnsOriginalList()
     {
-        var persons = SeedPersons();
+        var persons = await SeedPersons();
 
         var result = _sut.GetSorted(persons, "invalid", SortOrder.ASC);
 
@@ -313,9 +339,9 @@ public class PersonsServiceTests
     [InlineData(nameof(PersonResponse.Age))]
     [InlineData(nameof(PersonResponse.ReceiveNewsLetters))]
     [InlineData(nameof(PersonResponse.Address))]
-    public void GetSorted_Dynamic_AllFieldsAscendingAndDescending(string orderBy)
+    public async Task GetSorted_Dynamic_AllFieldsAscendingAndDescending(string orderBy)
     {
-        var persons = SeedPersons();
+        var persons = await SeedPersons();
 
         object? GetPropValue(PersonResponse p)
         {
@@ -346,25 +372,25 @@ public class PersonsServiceTests
     #region  UpdatePerson
 
     [Fact]
-    public void Update_NullRequest_ThrowsArgumentNullException()
+    public async Task UpdateAsync_NullRequest_ThrowsArgumentNullException()
     {
-        Assert.Throws<ArgumentNullException>(() => _sut.Update(null));
+        await Assert.ThrowsAsync<ArgumentNullException>(async () => await _sut.UpdateAsync(null));
     }
 
     [Fact]
-    public void Update_InvalidId_ThrowsArgumentException()
+    public async Task UpdateAsync_InvalidId_ThrowsArgumentException()
     {
         var request = new PersonUpdateRequest
         {
             Id = Guid.Empty
         };
 
-        Assert.Throws<ArgumentException>(() => _sut.Update(request));
+        await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.UpdateAsync(request));
     }
 
 
     [Fact]
-    public void Update_PersonNotFound_ThrowsArgumentException()
+    public async Task UpdateAsync_PersonNotFound_ThrowsArgumentException()
     {
         var request = new PersonUpdateRequest
         {
@@ -372,14 +398,35 @@ public class PersonsServiceTests
             Name = "Test"
         };
 
-        Assert.Throws<ArgumentException>(() => _sut.Update(request));
+        await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.UpdateAsync(request));
     }
 
     [Fact]
-    public void Update_ValidRequest_UpdatesPersonSuccessfully()
+    public async Task UpdateAsync_InvalidCountry_ThrowsArgumentException()
+    {
+        var persons = await SeedPersons();
+        var existing = persons.First();
+
+        var updateRequest = new PersonUpdateRequest
+        {
+            Id = existing.Id,
+            Name = "Updated Name",
+            Email = "updated@email.com",
+            Address = "New Address",
+            Gender = Gender.Male,
+            DateOfBirth = new DateTime(2000, 1, 1),
+            CountryId = Guid.Empty,
+            ReceiveNewsLetters = false
+        };
+
+        await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.UpdateAsync(updateRequest));
+    }
+
+    [Fact]
+    public async Task UpdateAsync_ValidRequest_UpdatesPersonSuccessfully()
     {
 
-        var persons = SeedPersons();
+        var persons = await SeedPersons();
         var existing = persons.First();
 
         var updateRequest = new PersonUpdateRequest
@@ -395,9 +442,9 @@ public class PersonsServiceTests
         };
 
 
-        var updated = _sut.Update(updateRequest);
-        var personAfterUpdated = _sut.GetById(updateRequest.Id);
-        var allPersons = _sut.GetAll();
+        var updated = await _sut.UpdateAsync(updateRequest);
+        var personAfterUpdated = await _sut.GetByIdAsync(updateRequest.Id);
+        var allPersons = await _sut.GetAllAsync();
 
 
         Assert.Equal(updateRequest.Id, updated.Id);
@@ -420,36 +467,31 @@ public class PersonsServiceTests
 
     #region DeletePerson
 
+
     [Fact]
-    public void Delete_NullPersonId_ThrowsArgumentNullException()
+    public async Task DeleteAsync_InvalidId_ThrowsArgumentException()
     {
-        Assert.Throws<ArgumentNullException>(() => _sut.Delete(null));
+        await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.DeleteAsync(Guid.Empty));
     }
 
     [Fact]
-    public void Delete_EmptyId_ThrowsArgumentException()
+    public async Task DeleteAsync_PersonNotFound_ThrowArgumentException()
     {
-        Assert.Throws<ArgumentException>(() => _sut.Delete(Guid.Empty));
-    }
+        await SeedPersons();
 
-    [Fact]
-    public void Delete_PersonNotFound_ThrowArgumentException()
-    {
-        SeedPersons();
-
-        var result = _sut.Delete(Guid.NewGuid());
+        var result = await _sut.DeleteAsync(Guid.NewGuid());
 
         Assert.False(result);
     }
 
     [Fact]
-    public void Delete_ValidPersonId_ReturnTrue()
+    public async Task DeleteAsync_ValidPersonId_ReturnTrue()
     {
-        var persons = SeedPersons();
+        var persons = await SeedPersons();
         var personToDelete = persons.First();
 
-        var result = _sut.Delete(personToDelete.Id);
-        var allPersonsAfterDelete = _sut.GetAll();
+        var result = await _sut.DeleteAsync(personToDelete.Id);
+        var allPersonsAfterDelete = await _sut.GetAllAsync();
 
         Assert.True(result);
         Assert.Equal(persons.Count - 1, allPersonsAfterDelete.Count);

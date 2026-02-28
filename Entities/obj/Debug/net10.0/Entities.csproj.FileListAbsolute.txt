@@ -10,3 +10,6 @@ C:\Adham Web\MVC_Projects\Contacts Manager\Entities\obj\Debug\net10.0\refint\Ent
 C:\Adham Web\MVC_Projects\Contacts Manager\Entities\obj\Debug\net10.0\Entities.pdb
 C:\Adham Web\MVC_Projects\Contacts Manager\Entities\obj\Debug\net10.0\ref\Entities.dll
 c:\Adham Web\MVC_Projects\Contacts Manager\Entities\obj\Debug\net10.0\Entities.sourcelink.json
+C:\Adham Web\MVC_Projects\Contacts Manager\Entities\bin\Debug\net10.0\Entities.runtimeconfig.json
+C:\Adham Web\MVC_Projects\Contacts Manager\Entities\obj\Debug\net10.0\Entities.csproj.AssemblyReference.cache
+C:\Adham Web\MVC_Projects\Contacts Manager\Entities\obj\Debug\net10.0\Entities.genruntimeconfig.cache

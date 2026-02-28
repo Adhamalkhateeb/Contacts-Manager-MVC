@@ -15,18 +15,24 @@
                 <div class="container">
                     <div class="navbar">
                         <div class="navbar-brand">
-                            Contacts Manager
+                            <img src="~/logo.png" width="30px" alt="logo" asp-append-version="true">
+                            </div>
+                            <ul>
+                                <li>
+                                    <a asp-action="Index" asp-controller="Persons">Persons</a>
+                                </li>
+                                <li>
+                                    <a asp-action="UploadFromExcel" asp-controller="Countries">Upload Countries</a>
+                                </li>
+                            </ul>
                         </div>
-                        <ul>
-                            <li>
-                                <a href="~/persons/index">Persons</a>
-                            </li>
-                        </ul>
+                        <div class="page-content">
+                            @RenderBody()
+                        </div>
                     </div>
-                    <div class="page-content">
-                        @RenderBody()
-                    </div>
-                </div>
-            </body>
+                    @RenderSection("scripts",false)
+                </body>
 
-        </html>
+
+
+            </html>

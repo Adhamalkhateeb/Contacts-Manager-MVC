@@ -102,7 +102,8 @@ public static class PersonExtensions
             Address = person.Address,
             ReceiveNewsLetters = person.ReceiveNewsLetters,
             CountryId = person.CountryId,
-            Age = (person.DateOfBirth is not null) ?
+            Country = person.Country?.Name,
+            Age = (person.DateOfBirth != null) ?
             Math.Round((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25) : null
         };
     }

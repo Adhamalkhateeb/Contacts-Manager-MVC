@@ -1,4 +1,5 @@
-﻿using ServiceContracts.DTO;
+﻿using Microsoft.AspNetCore.Http;
+using ServiceContracts.DTO;
 
 namespace ServiceContracts;
 /// <summary>
@@ -11,18 +12,25 @@ public interface ICountriesService
     /// </summary>
     /// <param name="countryAddRequest">Country object to add</param>
     /// <returns>Returns the country object after adding it (including new generated id)</returns>
-    CountryResponse Add(CountryAddRequest? countryAddRequest);
+    Task<CountryResponse> AddAsync(CountryAddRequest? countryAddRequest);
 
     /// <summary>
     /// Retrieve all countries 
     /// </summary>
     /// <returns>All Countries as List Of CountryResponse</returns>
-    List<CountryResponse> GetAll();
+    Task<List<CountryResponse>> GetAllAsync();
 
     /// <summary>
     /// Retrieve Country  object based on Id 
     /// </summary>
     /// <param name="Id">Guid Identifier to search</param>
     /// <returns>CountryResponse object</returns>
-    CountryResponse? GetById(Guid? Id);
+    Task<CountryResponse?> GetByIdAsync(Guid? Id);
+
+    /// <summary>
+    /// Upload Countries from Excel file into database
+    /// </summary>
+    /// <param name="file"></param>
+    /// <returns>Return Number of countries Added</returns>
+    Task<int> UploadFromExcelFileAsync(IFormFile file);
 }
