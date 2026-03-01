@@ -9,6 +9,7 @@ using Entities;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using RepositoriesContract;
 using ServiceContracts;
 using ServiceContracts.DTO;
 using ServiceContracts.Enums;
@@ -18,11 +19,12 @@ namespace Services;
 
 public class PersonsService : IPersonsService
 {
-    private AppDbContext _context;
+    private IPersonsRepository _personsRepository;
     private ICountriesService _countriesService;
-    public PersonsService(AppDbContext context, ICountriesService countriesService)
+
+    public PersonsService(IPersonsRepository personsRepository, ICountriesService countriesService)
     {
-        _context = context;
+        _personsRepository = personsRepository;
         _countriesService = countriesService;
     }
 
@@ -39,39 +41,29 @@ public class PersonsService : IPersonsService
         var person = personAddRequest.ToPerson();
         person.Id = Guid.NewGuid();
 
-        await _context.Persons.AddAsync(person);
-        await _context.SaveChangesAsync();
+        person = await _personsRepository.AddAsync(person);
 
         return person.ToPersonResponse();
     }
-
-
 
     public async Task<PersonResponse> UpdateAsync(PersonUpdateRequest? request)
     {
         ArgumentNullException.ThrowIfNull(request);
         ValidationHelper.ValidateModel(request);
 
-        var personToUpdate = await _context.Persons.FindAsync(request.Id);
+        var existingPerson = await _personsRepository.GetById(request.Id);
 
-        if (personToUpdate is null)
+        if (existingPerson is null)
             throw new ArgumentException($"Person with Id {request.Id} doesn't exist");
 
         var country = await _countriesService.GetByIdAsync(request.CountryId);
         if (country is null)
             throw new ArgumentException("Invalid CountryId");
 
-        personToUpdate.Name = request.Name;
-        personToUpdate.Email = request.Email;
-        personToUpdate.Address = request.Address;
-        personToUpdate.DateOfBirth = request.DateOfBirth;
-        personToUpdate.Gender = request.Gender.ToString();
-        personToUpdate.CountryId = request.CountryId;
-        personToUpdate.ReceiveNewsLetters = request.ReceiveNewsLetters;
 
-        await _context.SaveChangesAsync();
+        var updatedPerson = await _personsRepository.UpdateAsync(request.ToPerson());
 
-        return personToUpdate.ToPersonResponse();
+        return updatedPerson!.ToPersonResponse();
     }
 
     public async Task<bool> DeleteAsync(Guid? personId)
@@ -79,38 +71,27 @@ public class PersonsService : IPersonsService
         if (!personId.HasValue || personId == Guid.Empty)
             throw new ArgumentException("Invalid person Id");
 
-        var person = await _context.Persons.FindAsync(personId);
+        var person = await _personsRepository.GetById(personId.Value);
 
         if (person is null)
             return false;
 
-        _context.Persons.Remove(person);
-        await _context.SaveChangesAsync();
-
-        return true;
-
+        return await _personsRepository.DeleteAsync(personId.Value) > 0;
     }
 
     public async Task<List<PersonResponse>> GetAllAsync()
     {
-        var persons = await _context.Persons
-            .AsNoTracking()
-            .Include(p => p.Country)
-            .ToListAsync();
-
-        var responses = persons.Select(p => p.ToPersonResponse()).ToList();
-
-        return responses;
+        return (await _personsRepository.GetAllAsync())
+                    .Select(p => p.ToPersonResponse())
+                    .ToList();
     }
 
-    public async Task<PersonResponse?> GetByIdAsync(Guid? id)
+    public async Task<PersonResponse?> GetByIdAsync(Guid? personId)
     {
-        if (!id.HasValue)
+        if (!personId.HasValue)
             return null;
 
-        var person = await _context.Persons
-            .Include(p => p.Country)
-            .FirstOrDefaultAsync(p => p.Id == id.Value);
+        var person = await _personsRepository.GetById(personId.Value);
 
         if (person is null)
             return null;
@@ -118,53 +99,58 @@ public class PersonsService : IPersonsService
         return person.ToPersonResponse();
     }
 
-    public List<PersonResponse> GetFiltered(List<PersonResponse> persons, string searchBy, string? searchValue)
+    public async Task<List<PersonResponse>> GetFiltered(string searchBy, string? searchValue)
     {
-        if (persons is null)
-            return new List<PersonResponse>();
 
-        var personsQuery = persons.AsEnumerable();
-
-        if (!string.IsNullOrWhiteSpace(searchValue))
+        if (string.IsNullOrWhiteSpace(searchValue))
         {
-            personsQuery = searchBy switch
-            {
-                nameof(PersonResponse.Name) =>
-                    personsQuery.Where(p =>
-                        !string.IsNullOrEmpty(p.Name) &&
-                        p.Name.Contains(searchValue, StringComparison.OrdinalIgnoreCase)),
-
-                nameof(PersonResponse.Email) =>
-                    personsQuery.Where(p =>
-                        !string.IsNullOrEmpty(p.Email) &&
-                        p.Email.Contains(searchValue, StringComparison.OrdinalIgnoreCase)),
-
-                nameof(PersonResponse.DateOfBirth) =>
-                    personsQuery.Where(p =>
-                        p.DateOfBirth.HasValue &&
-                        p.DateOfBirth.Value.ToString("dd MMMM yyyy")
-                            .Contains(searchValue, StringComparison.OrdinalIgnoreCase)),
-
-                nameof(PersonResponse.Gender) =>
-                    personsQuery.Where(p =>
-                        !string.IsNullOrEmpty(p.Gender) &&
-                        p.Gender.Equals(searchValue, StringComparison.OrdinalIgnoreCase)),
-
-                nameof(PersonResponse.Country) =>
-                    personsQuery.Where(p =>
-                        !string.IsNullOrEmpty(p.Country) &&
-                        p.Country.Contains(searchValue, StringComparison.OrdinalIgnoreCase)),
-
-                nameof(PersonResponse.ReceiveNewsLetters) =>
-                    personsQuery.Where(p =>
-                        p.ReceiveNewsLetters.ToString()
-                            .Equals(searchValue, StringComparison.OrdinalIgnoreCase)),
-
-                _ => personsQuery
-            };
+            var allPersons = await _personsRepository.GetAllAsync();
+            return allPersons.Select(p => p.ToPersonResponse()).ToList();
         }
 
-        return personsQuery.ToList();
+        searchValue = searchValue.Trim();
+
+
+        var persons = searchBy switch
+        {
+            nameof(PersonResponse.Name) =>
+                await _personsRepository.GetFilteredAsync(p =>
+                    p.Name != null &&
+                    EF.Functions.Like(p.Name, $"%{searchValue}%")),
+
+            nameof(PersonResponse.Email) =>
+                await _personsRepository.GetFilteredAsync(p =>
+                    p.Email != null &&
+                    EF.Functions.Like(p.Email, $"%{searchValue}%")),
+
+            nameof(PersonResponse.Gender) =>
+                await _personsRepository.GetFilteredAsync(p =>
+                    p.Gender != null &&
+                    (p.Gender == searchValue)),
+
+            nameof(PersonResponse.Address) =>
+                await _personsRepository.GetFilteredAsync(p =>
+                    p.Address != null &&
+                    EF.Functions.Like(p.Address, $"%{searchValue}%")),
+
+            nameof(PersonResponse.CountryId) =>
+                await _personsRepository.GetFilteredAsync(p =>
+                    p.Country != null &&
+                    p.Country.Name != null &&
+                    EF.Functions.Like(p.Country.Name, $"%{searchValue}%")),
+
+            nameof(PersonResponse.DateOfBirth) =>
+                await _personsRepository.GetFilteredAsync(p =>
+                    p.DateOfBirth.HasValue &&
+                    p.DateOfBirth.Value
+                        .ToString()
+                        .Contains(searchValue)),
+
+            _ => await _personsRepository.GetAllAsync()
+        };
+
+
+        return persons.Select(p => p.ToPersonResponse()).ToList();
     }
 
     public List<PersonResponse> GetSorted(List<PersonResponse> persons, string orderBy, SortOrder sortOrder)
@@ -221,19 +207,7 @@ public class PersonsService : IPersonsService
 
     public async Task<byte[]> GetPersonsExcelAsync()
     {
-        var persons = await _context.Persons
-        .AsNoTracking()
-        .Select(p => new
-        {
-            p.Name,
-            p.Email,
-            p.DateOfBirth,
-            p.Gender,
-            Country = p.Country.Name,
-            p.Address,
-            p.ReceiveNewsLetters
-        })
-        .ToListAsync();
+        var persons = await GetAllAsync();
 
         using var excel = new ExcelPackage();
         var worksheet = excel.Workbook.Worksheets.Add("Persons");

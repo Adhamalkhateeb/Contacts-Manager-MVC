@@ -10,6 +10,8 @@
         "dependencies": {
           "CsvHelper": "33.1.0",
           "EPPlus": "8.4.2",
+          "Repositories": "1.0.0",
+          "RepositoryContracts": "1.0.0",
           "ServiceContracts": "1.0.0"
         },
         "runtime": {
@@ -688,6 +690,28 @@
           }
         }
       },
+      "Repositories/1.0.0": {
+        "dependencies": {
+          "RepositoryContracts": "1.0.0"
+        },
+        "runtime": {
+          "Repositories.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
+      "RepositoryContracts/1.0.0": {
+        "dependencies": {
+          "Entities": "1.0.0"
+        },
+        "runtime": {
+          "RepositoryContracts.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "ServiceContracts/1.0.0": {
         "dependencies": {
           "Entities": "1.0.0",
@@ -1073,6 +1097,16 @@
       "hashPath": "system.security.cryptography.xml.10.0.0.nupkg.sha512"
     },
     "Entities/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Repositories/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "RepositoryContracts/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

@@ -16,3 +16,7 @@ C:\Adham Web\MVC_Projects\Contacts Manager\Services\obj\Debug\net10.0\refint\Ser
 C:\Adham Web\MVC_Projects\Contacts Manager\Services\obj\Debug\net10.0\Services.pdb
 C:\Adham Web\MVC_Projects\Contacts Manager\Services\obj\Debug\net10.0\ref\Services.dll
 c:\Adham Web\MVC_Projects\Contacts Manager\Services\obj\Debug\net10.0\Services.sourcelink.json
+C:\Adham Web\MVC_Projects\Contacts Manager\Services\bin\Debug\net10.0\Repositories.dll
+C:\Adham Web\MVC_Projects\Contacts Manager\Services\bin\Debug\net10.0\RepositoryContracts.dll
+C:\Adham Web\MVC_Projects\Contacts Manager\Services\bin\Debug\net10.0\RepositoryContracts.pdb
+C:\Adham Web\MVC_Projects\Contacts Manager\Services\bin\Debug\net10.0\Repositories.pdb

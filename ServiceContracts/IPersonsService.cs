@@ -32,11 +32,10 @@ public interface IPersonsService
     /// <summary>
     /// Get List of PersonResponse object based on search field and  search value 
     /// </summary>
-    /// <param name="persons">list of PersonResponse To Filter</param>
     /// <param name="searchBy">name of field to search</param>
     /// <param name="searchValue">value to search based on field selected</param>
     /// <returns>all matching persons with the giving criteria</returns>
-    List<PersonResponse> GetFiltered(List<PersonResponse> persons, string searchBy, string? searchValue);
+    Task<List<PersonResponse>> GetFiltered(string searchBy, string? searchValue);
 
     /// <summary>
     /// Sort list of PersonResponse based on specified key (ascending, descending)

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using OfficeOpenXml;
+using RepositoriesContract;
 using ServiceContracts;
 using ServiceContracts.DTO;
 
@@ -10,11 +11,12 @@ namespace Services;
 
 public class CountriesService : ICountriesService
 {
-    private readonly AppDbContext _context;
 
-    public CountriesService(AppDbContext context)
+    private readonly ICountriesRepository _countriesRepository;
+
+    public CountriesService(ICountriesRepository countriesRepository)
     {
-        _context = context;
+        _countriesRepository = countriesRepository;
     }
     public async Task<CountryResponse> AddAsync(CountryAddRequest? countryAddRequest)
     {
@@ -22,37 +24,34 @@ public class CountriesService : ICountriesService
         ArgumentException.ThrowIfNullOrWhiteSpace(countryAddRequest.Name);
 
 
-        if (await _context.Countries.AnyAsync(c =>
-            c.Name!.Equals(countryAddRequest.Name, StringComparison.OrdinalIgnoreCase)))
-        {
-            throw new ArgumentException("Country already exists");
-        }
+        var existingCountry = await _countriesRepository
+            .GetByName(countryAddRequest.Name);
+
+        if (existingCountry != null)
+            throw new ArgumentException("Country already exists.");
 
         var country = countryAddRequest.ToCountry();
         country.Id = Guid.NewGuid();
 
-        await _context.Countries.AddAsync(country);
-        await _context.SaveChangesAsync();
-
+        country = await _countriesRepository.AddAsync(country);
         return country.ToCountryResponse();
 
     }
 
     public async Task<List<CountryResponse>> GetAllAsync()
     {
-        var countries = await _context.Countries
-        .AsNoTracking()
-        .ToListAsync();
-
-        return countries.Select(c => c.ToCountryResponse()).ToList();
+        return (await _countriesRepository.GetAllAsync())
+            .Select(c => c.ToCountryResponse())
+            .ToList();
     }
 
     public async Task<CountryResponse?> GetByIdAsync(Guid? id)
     {
-        if (id is null)
+        if (id == null)
             return null;
 
-        var country = await _context.Countries.FindAsync(id);
+        var country = await _countriesRepository.GetByIdAsync(id.Value);
+
         return country?.ToCountryResponse();
     }
 
@@ -61,7 +60,7 @@ public class CountriesService : ICountriesService
         if (file == null || file.Length == 0)
             throw new ArgumentException("Invalid file.");
 
-        var memoryStream = new MemoryStream();
+        using var memoryStream = new MemoryStream();
         await file.CopyToAsync(memoryStream);
         memoryStream.Position = 0;
 
@@ -89,25 +88,33 @@ public class CountriesService : ICountriesService
         if (!countryNamesFromFile.Any())
             return 0;
 
-        var existingCountries = await _context.Countries
-            .Where(c => c.Name != null && countryNamesFromFile.Contains(c.Name))
-            .Select(c => c.Name!)
-            .ToListAsync();
+        var existingCountries = await _countriesRepository.GetAllAsync();
+
+        var existingNames = existingCountries
+            .Where(c => c.Name != null)
+            .Select(c => c.Name)
+            .ToHashSet(StringComparer.OrdinalIgnoreCase);
 
         var newCountries = countryNamesFromFile
-            .Except(existingCountries, StringComparer.OrdinalIgnoreCase)
-            .Select(name => new Country { Id = Guid.NewGuid(), Name = name })
+            .Except(existingNames, StringComparer.OrdinalIgnoreCase)
+            .Select(name => new Country
+            {
+                Id = Guid.NewGuid(),
+                Name = name
+            })
             .ToList();
 
-        await _context.Countries.AddRangeAsync(newCountries);
+        if (!newCountries.Any())
+            return 0;
 
-        try
+        int insertedCount = 0;
+
+        foreach (var country in newCountries)
         {
-            return await _context.SaveChangesAsync();
+            await _countriesRepository.AddAsync(country);
+            insertedCount++;
         }
-        catch (DbUpdateException)
-        {
-            throw new InvalidOperationException("Database update failed. Possible duplicate data.");
-        }
+
+        return insertedCount;
     }
 }
