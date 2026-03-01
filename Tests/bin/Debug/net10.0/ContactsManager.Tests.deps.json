@@ -8,14 +8,28 @@
     ".NETCoreApp,Version=v10.0": {
       "ContactsManager.Tests/1.0.0": {
         "dependencies": {
+          "AutoFixture": "4.18.1",
           "Entities": "1.0.0",
+          "EntityFrameworkCoreMock.Moq": "4.0.0",
           "Microsoft.NET.Test.Sdk": "17.14.1",
+          "Moq": "4.20.72",
           "ServiceContracts": "1.0.0",
           "Services": "1.0.0",
           "xunit": "2.9.3"
         },
         "runtime": {
           "ContactsManager.Tests.dll": {}
+        }
+      },
+      "AutoFixture/4.18.1": {
+        "dependencies": {
+          "Fare": "2.1.1"
+        },
+        "runtime": {
+          "lib/netstandard2.0/AutoFixture.dll": {
+            "assemblyVersion": "4.18.0.0",
+            "fileVersion": "4.18.1.694"
+          }
         }
       },
       "Azure.Core/1.47.1": {
@@ -44,11 +58,45 @@
           }
         }
       },
+      "Castle.Core/5.1.1": {
+        "dependencies": {
+          "System.Diagnostics.EventLog": "9.0.4"
+        },
+        "runtime": {
+          "lib/net6.0/Castle.Core.dll": {
+            "assemblyVersion": "5.0.0.0",
+            "fileVersion": "5.1.1.0"
+          }
+        }
+      },
       "CsvHelper/33.1.0": {
         "runtime": {
           "lib/net9.0/CsvHelper.dll": {
             "assemblyVersion": "33.0.0.0",
             "fileVersion": "33.1.0.26"
+          }
+        }
+      },
+      "EntityFrameworkCoreMock.Moq/4.0.0": {
+        "dependencies": {
+          "EntityFrameworkCoreMock.Shared": "4.0.0",
+          "Moq": "4.20.72"
+        },
+        "runtime": {
+          "lib/net10.0/EntityFrameworkCoreMock.Moq.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "EntityFrameworkCoreMock.Shared/4.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "10.0.3"
+        },
+        "runtime": {
+          "lib/net10.0/EntityFrameworkCoreMock.Shared.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
           }
         }
       },
@@ -72,6 +120,14 @@
           "lib/net10.0/EPPlus.Interfaces.dll": {
             "assemblyVersion": "8.4.0.0",
             "fileVersion": "8.4.0.0"
+          }
+        }
+      },
+      "Fare/2.1.1": {
+        "runtime": {
+          "lib/netstandard1.1/Fare.dll": {
+            "assemblyVersion": "2.1.0.0",
+            "fileVersion": "2.1.1.0"
           }
         }
       },
@@ -835,6 +891,17 @@
           }
         }
       },
+      "Moq/4.20.72": {
+        "dependencies": {
+          "Castle.Core": "5.1.1"
+        },
+        "runtime": {
+          "lib/net6.0/Moq.dll": {
+            "assemblyVersion": "4.20.72.0",
+            "fileVersion": "4.20.72.0"
+          }
+        }
+      },
       "Newtonsoft.Json/13.0.3": {
         "runtime": {
           "lib/net6.0/Newtonsoft.Json.dll": {
@@ -1038,6 +1105,13 @@
       "serviceable": false,
       "sha512": ""
     },
+    "AutoFixture/4.18.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-BmWZDY4fkrYOyd5/CTBOeXbzsNwV8kI4kDi/Ty1Y5F+WDHBVKxzfWlBE4RSicvZ+EOi2XDaN5uwdrHsItLW6Kw==",
+      "path": "autofixture/4.18.1",
+      "hashPath": "autofixture.4.18.1.nupkg.sha512"
+    },
     "Azure.Core/1.47.1": {
       "type": "package",
       "serviceable": true,
@@ -1052,12 +1126,33 @@
       "path": "azure.identity/1.14.2",
       "hashPath": "azure.identity.1.14.2.nupkg.sha512"
     },
+    "Castle.Core/5.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-rpYtIczkzGpf+EkZgDr9CClTdemhsrwA/W5hMoPjLkRFnXzH44zDLoovXeKtmxb1ykXK9aJVODSpiJml8CTw2g==",
+      "path": "castle.core/5.1.1",
+      "hashPath": "castle.core.5.1.1.nupkg.sha512"
+    },
     "CsvHelper/33.1.0": {
       "type": "package",
       "serviceable": true,
       "sha512": "sha512-kqfTOZGrn7NarNeXgjh86JcpTHUoeQDMB8t9NVa/ZtlSYiV1rxfRnQ49WaJsob4AiGrbK0XDzpyKkBwai4F8eg==",
       "path": "csvhelper/33.1.0",
       "hashPath": "csvhelper.33.1.0.nupkg.sha512"
+    },
+    "EntityFrameworkCoreMock.Moq/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-RlA/QjwRgpEuufe7g+krvU+7w3cyL+G0Gec+CiH2x/CEhf+KBwGU7AuSbze4qi5rjyXeqOQBiFy4DUh9Nk8ktA==",
+      "path": "entityframeworkcoremock.moq/4.0.0",
+      "hashPath": "entityframeworkcoremock.moq.4.0.0.nupkg.sha512"
+    },
+    "EntityFrameworkCoreMock.Shared/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Y300bRDI5Kq2GfgZoXpTj8uXLc3i9J66RYyVqxeFHWrhmoGaFynCIf6g+s03Lj3dEW+Ao4oqxTrg3T5kl5xbNA==",
+      "path": "entityframeworkcoremock.shared/4.0.0",
+      "hashPath": "entityframeworkcoremock.shared.4.0.0.nupkg.sha512"
     },
     "EPPlus/8.4.2": {
       "type": "package",
@@ -1072,6 +1167,13 @@
       "sha512": "sha512-QaEzDFG2vcQMPqUmoWv0vBTObtH8hffQmyDr2WkqRYF/nFSn2pkdBB4vudcd/EIv0N8M3P1fzzkPQgEWsFnUmA==",
       "path": "epplus.interfaces/8.4.0",
       "hashPath": "epplus.interfaces.8.4.0.nupkg.sha512"
+    },
+    "Fare/2.1.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HaI8puqA66YU7/9cK4Sgbs1taUTP1Ssa4QT2PIzqJ7GvAbN1QgkjbRsjH+FSbMh1MJdvS0CIwQNLtFT+KF6KpA==",
+      "path": "fare/2.1.1",
+      "hashPath": "fare.2.1.1.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Http/2.3.9": {
       "type": "package",
@@ -1373,6 +1475,13 @@
       "sha512": "sha512-d78LPzGKkJwsJXAQwsbJJ7LE7D1wB+rAyhHHAaODF+RDSQ0NgMjDFkSA1Djw18VrxO76GlKAjRUhl+H8NL8Z+Q==",
       "path": "microsoft.testplatform.testhost/17.14.1",
       "hashPath": "microsoft.testplatform.testhost.17.14.1.nupkg.sha512"
+    },
+    "Moq/4.20.72": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-EA55cjyNn8eTNWrgrdZJH5QLFp2L43oxl1tlkoYUKIE9pRwL784OWiTXeCV5ApS+AMYEAlt7Fo03A2XfouvHmQ==",
+      "path": "moq/4.20.72",
+      "hashPath": "moq.4.20.72.nupkg.sha512"
     },
     "Newtonsoft.Json/13.0.3": {
       "type": "package",

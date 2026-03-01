@@ -1,7 +1,11 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using AutoFixture;
 using Entities;
+using EntityFrameworkCoreMock;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
+using OfficeOpenXml.Drawing.Chart;
 using ServiceContracts;
 using ServiceContracts.DTO;
 using ServiceContracts.Enums;
@@ -14,17 +18,24 @@ public class PersonsServiceTests
 {
     private readonly IPersonsService _sut;
     private readonly ICountriesService _countriesService;
+    private readonly IFixture _fixture;
     private readonly ITestOutputHelper _testOutputHelper;
 
     public PersonsServiceTests(ITestOutputHelper testOutputHelper)
     {
-        _countriesService = new CountriesService(
-            new ContactsManagerDbContext(
-                new DbContextOptionsBuilder<ContactsManagerDbContext>().Options
-            ));
-        _sut = new PersonsService(new ContactsManagerDbContext(
-                new DbContextOptionsBuilder<ContactsManagerDbContext>().Options
-            ), _countriesService);
+        _fixture = new Fixture();
+
+        var contextOptions = new DbContextOptionsBuilder<AppDbContext>().Options;
+        var contextMock = new DbContextMock<AppDbContext>(contextOptions);
+
+        var countriesInitialData = new List<Country>();
+        var personsInitialData = new List<Person>();
+
+        contextMock.CreateDbSetMock(x => x.Countries, countriesInitialData);
+        contextMock.CreateDbSetMock(x => x.Persons, personsInitialData);
+
+        _countriesService = new CountriesService(contextMock.Object);
+        _sut = new PersonsService(contextMock.Object, _countriesService);
 
         _testOutputHelper = testOutputHelper;
     }
@@ -33,53 +44,35 @@ public class PersonsServiceTests
 
     private async Task<List<PersonResponse>> SeedPersons()
     {
-        var country = await _countriesService.AddAsync(new CountryAddRequest
-        {
-            Name = "EGYPT"
-        });
+        var country1 = await _countriesService.AddAsync(_fixture.Create<CountryAddRequest>());
+        var country2 = await _countriesService.AddAsync(_fixture.Create<CountryAddRequest>());
 
         var requests = new List<PersonAddRequest>
         {
-            new()
-            {
-                Name = "Adham",
-                Email = "adham@gmail.com",
-                DateOfBirth = new DateTime(2006, 4, 15),
-                Address = "Street 1",
-                ReceiveNewsLetters = true,
-                Gender = Gender.Male,
-                CountryId = country.Id,
-            },
-            new()
-            {
-                Name = "Menna",
-                Email = "menna@gmail.com",
-                DateOfBirth = new DateTime(2003, 3, 1),
-                Address = "Street 2",
-                ReceiveNewsLetters = true,
-                Gender = Gender.Female,
-                CountryId = country.Id
-            },
-            new()
-            {
-                Name = "Merna",
-                Email = "merna@gmail.com",
-                DateOfBirth = new DateTime(2003, 3, 1),
-                Address = "Street 3",
-                ReceiveNewsLetters = true,
-                Gender = Gender.Female,
-                CountryId = country.Id
-            },
-            new()
-            {
-                Name = "Fawzy",
-                Email = "fawzy@gmail.com",
-                DateOfBirth = new DateTime(1974, 10, 15),
-                Address = "Street 4",
-                ReceiveNewsLetters = false,
-                Gender = Gender.Male,
-                CountryId = country.Id
-            }
+            _fixture.Build<PersonAddRequest>()
+                .With(p => p.Email, "adham@gmail.com")
+                .With(p => p.Name, "Adham")
+                .With(p => p.CountryId, country1.Id)
+                .Create(),
+
+            _fixture.Build<PersonAddRequest>()
+                .With(p => p.Email, "ziad@gmail.com")
+                .With(p => p.Name, "Ziad")
+                .With(p => p.CountryId, country1.Id)
+                .Create(),
+
+            _fixture.Build<PersonAddRequest>()
+                .With(p => p.Email, "ramdan@gmail.com")
+                .With(p => p.Name, "Ramdan")
+                .With(p => p.CountryId, country2.Id)
+                .Create(),
+
+            _fixture.Build<PersonAddRequest>()
+                .With(p => p.Email, "ahmed@gmail.com")
+                .With(p => p.Name, "Ahmed")
+                .With(p => p.CountryId, country2.Id)
+                .Create()
+
         };
 
         var results = new List<PersonResponse>();
@@ -103,7 +96,9 @@ public class PersonsServiceTests
     [Fact]
     public async Task AddAsync_NullName_ThrowsArgumentException()
     {
-        var request = new PersonAddRequest { Name = null };
+        var request = _fixture.Build<PersonAddRequest>()
+                    .With(p => p.Name, null as string)
+                    .Create();
 
         await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.AddAsync(request));
     }
@@ -111,13 +106,10 @@ public class PersonsServiceTests
     [Fact]
     public async Task AddAsync_InvalidCountry_ThrowsArgumentException()
     {
-        var request = new PersonAddRequest
-        {
-            Name = "Adham",
-            Email = "adham@gmail.com",
-            Gender = Gender.Male,
-            CountryId = Guid.Empty
-        };
+
+        var request = _fixture.Build<PersonAddRequest>()
+                     .With(p => p.CountryId, Guid.Empty)
+                     .Create();
 
         await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.AddAsync(request));
     }
@@ -125,20 +117,22 @@ public class PersonsServiceTests
     [Fact]
     public async Task AddAsync_ValidRequest_ReturnsPersonResponse()
     {
-        var country = await _countriesService.AddAsync(new CountryAddRequest { Name = "EGYPT" });
 
-        var request = new PersonAddRequest
-        {
-            Name = "Adham",
-            Email = "adham@gmail.com",
-            Gender = Gender.Male,
-            CountryId = country.Id
-        };
+        var country = await _countriesService.AddAsync(_fixture.Create<CountryAddRequest>());
+
+        var request = _fixture.Build<PersonAddRequest>()
+            .With(p => p.Name, "Adham")
+            .With(p => p.Email, "adham@gmail.com")
+            .With(p => p.CountryId, country.Id)
+            .Create();
+
 
         var response = await _sut.AddAsync(request);
+        var allPersons = await _sut.GetAllAsync();
 
         Assert.NotEqual(Guid.Empty, response.Id);
         Assert.Equal("Adham", response.Name);
+        Assert.Contains(response, allPersons);
     }
 
     #endregion
@@ -148,27 +142,27 @@ public class PersonsServiceTests
     [Fact]
     public async Task GetByIdAsync_NullId_ReturnsNull()
     {
-        var result = await _sut.GetByIdAsync(null);
-
-        Assert.Null(result);
+        Assert.Null(await _sut.GetByIdAsync(null));
     }
 
 
     [Fact]
     public async Task GetByIdAsync_NotFound_ReturnsNull()
     {
-        var result = await _sut.GetByIdAsync(Guid.NewGuid());
-
-        Assert.Null(result);
+        Assert.Null(await _sut.GetByIdAsync(Guid.NewGuid()));
     }
 
 
     [Fact]
     public async Task GetByIdAsync_ValidId_ReturnsPerson()
     {
-        var persons = await SeedPersons();
-        var expected = persons.First();
+        var country = await _countriesService.AddAsync(_fixture.Create<CountryAddRequest>());
+        var request = _fixture.Build<PersonAddRequest>()
+            .With(p => p.Email, "adham@gmail.com")
+            .With(p => p.CountryId, country.Id)
+            .Create();
 
+        var expected = await _sut.AddAsync(request);
         var result = await _sut.GetByIdAsync(expected.Id);
 
         Assert.Equal(expected, result);
@@ -181,23 +175,20 @@ public class PersonsServiceTests
     [Fact]
     public async Task GetAllAsync_Empty_ReturnsEmptyList()
     {
-        var result = await _sut.GetAllAsync();
-
-        Assert.Empty(result);
+        Assert.Empty(await _sut.GetAllAsync());
     }
 
     [Fact]
     public async Task GetAllAsync_AfterSeeding_ReturnsAllPersons()
     {
-        var expected = await SeedPersons();
-
+        var persons = await SeedPersons();
         var result = await _sut.GetAllAsync();
 
-        Assert.Equal(expected.Count, result.Count);
+        Assert.Equal(persons.Count, result.Count);
 
-        foreach (var person in expected)
+        foreach (var person in result)
         {
-            Assert.Contains(person, result);
+            Assert.Contains(person, persons);
         }
     }
 
@@ -380,10 +371,9 @@ public class PersonsServiceTests
     [Fact]
     public async Task UpdateAsync_InvalidId_ThrowsArgumentException()
     {
-        var request = new PersonUpdateRequest
-        {
-            Id = Guid.Empty
-        };
+        var request = _fixture.Build<PersonUpdateRequest>()
+            .With(p => p.Id, Guid.Empty)
+            .Create();
 
         await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.UpdateAsync(request));
     }
@@ -392,11 +382,7 @@ public class PersonsServiceTests
     [Fact]
     public async Task UpdateAsync_PersonNotFound_ThrowsArgumentException()
     {
-        var request = new PersonUpdateRequest
-        {
-            Id = Guid.NewGuid(),
-            Name = "Test"
-        };
+        var request = _fixture.Create<PersonUpdateRequest>();
 
         await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.UpdateAsync(request));
     }
@@ -407,17 +393,10 @@ public class PersonsServiceTests
         var persons = await SeedPersons();
         var existing = persons.First();
 
-        var updateRequest = new PersonUpdateRequest
-        {
-            Id = existing.Id,
-            Name = "Updated Name",
-            Email = "updated@email.com",
-            Address = "New Address",
-            Gender = Gender.Male,
-            DateOfBirth = new DateTime(2000, 1, 1),
-            CountryId = Guid.Empty,
-            ReceiveNewsLetters = false
-        };
+        var updateRequest = _fixture.Build<PersonUpdateRequest>()
+                .With(p => p.Id, existing.Id)
+                .With(p => p.Email, "updated@email.com")
+                .Create();
 
         await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.UpdateAsync(updateRequest));
     }
@@ -429,17 +408,13 @@ public class PersonsServiceTests
         var persons = await SeedPersons();
         var existing = persons.First();
 
-        var updateRequest = new PersonUpdateRequest
-        {
-            Id = existing.Id,
-            Name = "Updated Name",
-            Email = "updated@email.com",
-            Address = "New Address",
-            Gender = Gender.Male,
-            DateOfBirth = new DateTime(2000, 1, 1),
-            CountryId = existing.CountryId!.Value,
-            ReceiveNewsLetters = false
-        };
+        var updateRequest = _fixture.Build<PersonUpdateRequest>()
+               .With(p => p.Id, existing.Id)
+               .With(p => p.CountryId, existing?.CountryId!.Value)
+               .With(p => p.Email, "updated@email.com")
+               .With(p => p.ReceiveNewsLetters, false)
+               .Create();
+
 
 
         var updated = await _sut.UpdateAsync(updateRequest);

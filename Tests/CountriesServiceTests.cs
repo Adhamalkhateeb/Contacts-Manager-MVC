@@ -1,6 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
 using System.Security.AccessControl;
+using AutoFixture;
 using Entities;
+using EntityFrameworkCoreMock;
 using Microsoft.EntityFrameworkCore;
 using ServiceContracts;
 using ServiceContracts.DTO;
@@ -12,10 +14,20 @@ namespace Tests;
 public class CountriesServiceTests
 {
     private readonly ICountriesService _countriesService;
+    private readonly IFixture _fixture;
 
     public CountriesServiceTests()
     {
-        _countriesService = new CountriesService(new ContactsManagerDbContext(new DbContextOptionsBuilder<ContactsManagerDbContext>().Options));
+        _fixture = new Fixture();
+
+        var contextOptions = new DbContextOptionsBuilder<AppDbContext>().Options;
+        var contextMock = new DbContextMock<AppDbContext>(contextOptions);
+
+        var countriesInitialData = new List<Country>();
+
+        contextMock.CreateDbSetMock(x => x.Countries, countriesInitialData);
+
+        _countriesService = new CountriesService(contextMock.Object);
     }
 
     #region  AddCountry
@@ -23,12 +35,8 @@ public class CountriesServiceTests
     [Fact]
     public async Task AddAsync_CountryIsNull_ArgumentNullException()
     {
-        //Arrange
-        CountryAddRequest request = null!;
-
-        //Assert
         await Assert.ThrowsAsync<ArgumentNullException>(
-            async () => await _countriesService.AddAsync(request)
+            async () => await _countriesService.AddAsync(null)
         );
 
     }
@@ -36,10 +44,13 @@ public class CountriesServiceTests
     [Fact]
     public async Task AddAsync_NameIsNull_ArgumentNullException()
     {
-        var request = new CountryAddRequest { Name = null };
+        var request = _fixture.Build<CountryAddRequest>()
+            .With(p => p.Name, null as string)
+            .Create();
 
-        await Assert.ThrowsAsync<ArgumentNullException>(async () =>
-            await _countriesService.AddAsync(request));
+        await Assert.ThrowsAsync<ArgumentNullException>(
+            async () => await _countriesService.AddAsync(request)
+        );
     }
 
     [Theory]
@@ -47,7 +58,9 @@ public class CountriesServiceTests
     [InlineData("   ")]
     public async Task AddAsync_NameIsEmptyOrWhitespace_ArgumentException(string name)
     {
-        var request = new CountryAddRequest { Name = name };
+        var request = _fixture.Build<CountryAddRequest>()
+             .With(p => p.Name, name)
+             .Create();
 
         await Assert.ThrowsAsync<ArgumentException>(async () =>
             await _countriesService.AddAsync(request));
@@ -56,8 +69,13 @@ public class CountriesServiceTests
     [Fact]
     public async Task AddAsync_CountryNameIsDuplicate_ArgumentException()
     {
-        CountryAddRequest request1 = new CountryAddRequest { Name = "USA" };
-        CountryAddRequest request2 = new CountryAddRequest { Name = "USA" };
+        CountryAddRequest request1 = _fixture.Build<CountryAddRequest>()
+                                        .With(p => p.Name, "Egypt")
+                                        .Create();
+
+        CountryAddRequest request2 = _fixture.Build<CountryAddRequest>()
+                                        .With(p => p.Name, "Egypt")
+                                        .Create();
 
 
         await _countriesService.AddAsync(request1);
@@ -71,7 +89,9 @@ public class CountriesServiceTests
     [Fact]
     public async Task AddAsync_ProperCountryDetails_NewCountryObject()
     {
-        CountryAddRequest request = new CountryAddRequest { Name = "EGYPT" };
+        CountryAddRequest request = _fixture.Build<CountryAddRequest>()
+                                        .With(p => p.Name, "EGYPT")
+                                        .Create();
 
         var response = await _countriesService.AddAsync(request);
         var countries = await _countriesService.GetAllAsync();
@@ -88,9 +108,7 @@ public class CountriesServiceTests
     [Fact]
     public async Task GetAllAsync_NoCountriesExist_EmptyList()
     {
-        var actualResponse = await _countriesService.GetAllAsync();
-
-        Assert.Empty(actualResponse);
+        Assert.Empty(await _countriesService.GetAllAsync());
     }
 
     [Fact]
@@ -98,8 +116,13 @@ public class CountriesServiceTests
     {
         var countryRequestList = new List<CountryAddRequest>
         {
-            new CountryAddRequest {Name = "USA"},
-            new CountryAddRequest {Name = "EGYPT"}
+            _fixture.Build<CountryAddRequest>()
+                        .With(p => p.Name, "Egypt")
+                        .Create(),
+
+            _fixture.Build<CountryAddRequest>()
+                        .With(p => p.Name, "USA")
+                        .Create()
         };
 
         var countriesResponseList = new List<CountryResponse>();
@@ -122,17 +145,13 @@ public class CountriesServiceTests
     [Fact]
     public async Task GetByIdAsync_IdIsNull_Null()
     {
-        Guid? id = null;
-
-        CountryResponse? response = await _countriesService.GetByIdAsync(id);
-
-        Assert.Null(response);
+        Assert.Null(await _countriesService.GetByIdAsync(null));
     }
 
     [Fact]
     public async Task GetById_ProperId_CountryResponse()
     {
-        var addRequest = new CountryAddRequest() { Name = "EGYPT" };
+        var addRequest = _fixture.Create<CountryAddRequest>();
         var countryResponseFromAdd = await _countriesService.AddAsync(addRequest);
 
         var countryResponseFromGetById =
