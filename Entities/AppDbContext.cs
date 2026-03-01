@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Entities;
 
-public sealed class ContactsManagerDbContext : DbContext
+public class AppDbContext : DbContext
 {
-    public DbSet<Person> Persons => Set<Person>();
-    public DbSet<Country> Countries => Set<Country>();
+    public virtual DbSet<Person> Persons { get; set; }
+    public virtual DbSet<Country> Countries { get; set; }
 
-    public ContactsManagerDbContext(DbContextOptions<ContactsManagerDbContext> options) : base(options) { }
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

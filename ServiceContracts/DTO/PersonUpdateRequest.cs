@@ -17,6 +17,8 @@ public class PersonUpdateRequest
 
     [Required(ErrorMessage = "Person Name can't be Blank")]
     public string? Name { get; set; }
+
+    [Required(ErrorMessage = "You must specify your gender")]
     public Gender? Gender { get; set; }
     public DateTime? DateOfBirth { get; set; }
 
@@ -25,6 +27,8 @@ public class PersonUpdateRequest
     public string? Email { get; set; }
     public string? Address { get; set; }
     public bool ReceiveNewsLetters { get; set; }
+
+    [Required(ErrorMessage = "Please Select a country")]
     public Guid CountryId { get; set; }
 
     /// <summary>

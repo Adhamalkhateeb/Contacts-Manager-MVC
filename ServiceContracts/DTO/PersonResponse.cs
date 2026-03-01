@@ -42,6 +42,14 @@ public class PersonResponse : IEquatable<PersonResponse>
                 CountryId == other.CountryId;
     }
 
+    public override bool Equals(object? obj)
+    {
+        if (obj is not PersonResponse other)
+            return false;
+
+        return Equals(other);
+    }
+
     public override int GetHashCode()
     {
         return HashCode.Combine(

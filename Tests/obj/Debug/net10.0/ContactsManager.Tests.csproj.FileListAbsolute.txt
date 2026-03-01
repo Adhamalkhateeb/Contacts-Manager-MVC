@@ -181,3 +181,4 @@ C:\Adham Web\MVC_Projects\Contacts Manager\Tests\bin\Debug\net10.0\EntityFramewo
 C:\Adham Web\MVC_Projects\Contacts Manager\Tests\bin\Debug\net10.0\Moq.dll
 C:\Adham Web\MVC_Projects\Contacts Manager\Tests\bin\Debug\net10.0\AutoFixture.dll
 C:\Adham Web\MVC_Projects\Contacts Manager\Tests\bin\Debug\net10.0\Fare.dll
+C:\Adham Web\MVC_Projects\Contacts Manager\Tests\bin\Debug\net10.0\FluentAssertions.dll

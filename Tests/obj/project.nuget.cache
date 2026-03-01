@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "4Gmm3/ULwSY=",
+  "dgSpecHash": "UkwX7kHfjRE=",
   "success": true,
   "projectFilePath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Tests\\ContactsManager.Tests.csproj",
   "expectedPackageFiles": [
@@ -15,6 +15,7 @@
     "C:\\Users\\adham\\.nuget\\packages\\epplus\\8.4.2\\epplus.8.4.2.nupkg.sha512",
     "C:\\Users\\adham\\.nuget\\packages\\epplus.interfaces\\8.4.0\\epplus.interfaces.8.4.0.nupkg.sha512",
     "C:\\Users\\adham\\.nuget\\packages\\fare\\2.1.1\\fare.2.1.1.nupkg.sha512",
+    "C:\\Users\\adham\\.nuget\\packages\\fluentassertions\\8.8.0\\fluentassertions.8.8.0.nupkg.sha512",
     "C:\\Users\\adham\\.nuget\\packages\\microsoft.aspnetcore.http\\2.3.9\\microsoft.aspnetcore.http.2.3.9.nupkg.sha512",
     "C:\\Users\\adham\\.nuget\\packages\\microsoft.aspnetcore.http.abstractions\\2.3.0\\microsoft.aspnetcore.http.abstractions.2.3.0.nupkg.sha512",
     "C:\\Users\\adham\\.nuget\\packages\\microsoft.aspnetcore.http.features\\2.3.0\\microsoft.aspnetcore.http.features.2.3.0.nupkg.sha512",

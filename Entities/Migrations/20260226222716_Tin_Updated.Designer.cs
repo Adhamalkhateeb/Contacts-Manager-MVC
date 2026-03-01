@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Entities.Migrations
 {
-    [DbContext(typeof(ContactsManagerDbContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20260226222716_Tin_Updated")]
     partial class Tin_Updated
     {

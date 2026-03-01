@@ -1,8 +1,10 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Net.NetworkInformation;
 using AutoFixture;
 using Entities;
 using EntityFrameworkCoreMock;
+using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
 using OfficeOpenXml.Drawing.Chart;
@@ -90,7 +92,9 @@ public class PersonsServiceTests
     [Fact]
     public async Task AddAsync_NullRequest_ThrowsArgumentNullException()
     {
-        await Assert.ThrowsAsync<ArgumentNullException>(async () => await _sut.AddAsync(null));
+        Func<Task> act = async () => await _sut.AddAsync(null);
+
+        await act.Should().ThrowAsync<ArgumentNullException>();
     }
 
     [Fact]
@@ -100,7 +104,9 @@ public class PersonsServiceTests
                     .With(p => p.Name, null as string)
                     .Create();
 
-        await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.AddAsync(request));
+        Func<Task> act = async () => await _sut.AddAsync(request);
+
+        await act.Should().ThrowAsync<ArgumentException>();
     }
 
     [Fact]
@@ -111,17 +117,18 @@ public class PersonsServiceTests
                      .With(p => p.CountryId, Guid.Empty)
                      .Create();
 
-        await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.AddAsync(request));
+        Func<Task> act = async () => await _sut.AddAsync(request);
+
+        await act.Should().ThrowAsync<ArgumentException>();
     }
 
     [Fact]
-    public async Task AddAsync_ValidRequest_ReturnsPersonResponse()
+    public async Task AddAsync_ValidRequest_ShouldAddPerson()
     {
 
         var country = await _countriesService.AddAsync(_fixture.Create<CountryAddRequest>());
 
         var request = _fixture.Build<PersonAddRequest>()
-            .With(p => p.Name, "Adham")
             .With(p => p.Email, "adham@gmail.com")
             .With(p => p.CountryId, country.Id)
             .Create();
@@ -130,9 +137,10 @@ public class PersonsServiceTests
         var response = await _sut.AddAsync(request);
         var allPersons = await _sut.GetAllAsync();
 
-        Assert.NotEqual(Guid.Empty, response.Id);
-        Assert.Equal("Adham", response.Name);
-        Assert.Contains(response, allPersons);
+
+        response.Should().NotBeNull();
+        response.Id.Should().NotBe(Guid.Empty);
+        allPersons.Should().ContainSingle(p => p.Id == response.Id);
     }
 
     #endregion
@@ -142,30 +150,30 @@ public class PersonsServiceTests
     [Fact]
     public async Task GetByIdAsync_NullId_ReturnsNull()
     {
-        Assert.Null(await _sut.GetByIdAsync(null));
+        var result = await _sut.GetByIdAsync(null);
+
+        result.Should().BeNull();
     }
 
 
     [Fact]
     public async Task GetByIdAsync_NotFound_ReturnsNull()
     {
-        Assert.Null(await _sut.GetByIdAsync(Guid.NewGuid()));
+        var result = await _sut.GetByIdAsync(Guid.NewGuid());
+
+        result.Should().BeNull();
     }
 
 
     [Fact]
-    public async Task GetByIdAsync_ValidId_ReturnsPerson()
+    public async Task GetByIdAsync_ValidId_ShouldReturnPerson()
     {
-        var country = await _countriesService.AddAsync(_fixture.Create<CountryAddRequest>());
-        var request = _fixture.Build<PersonAddRequest>()
-            .With(p => p.Email, "adham@gmail.com")
-            .With(p => p.CountryId, country.Id)
-            .Create();
+        var persons = await SeedPersons();
+        var expected = persons.First();
 
-        var expected = await _sut.AddAsync(request);
         var result = await _sut.GetByIdAsync(expected.Id);
 
-        Assert.Equal(expected, result);
+        result.Should().BeEquivalentTo(expected);
     }
 
     #endregion
@@ -173,9 +181,11 @@ public class PersonsServiceTests
     #region  GetAllPersons
 
     [Fact]
-    public async Task GetAllAsync_Empty_ReturnsEmptyList()
+    public async Task GetAllAsync_Empty_ShouldReturnEmpty()
     {
-        Assert.Empty(await _sut.GetAllAsync());
+        var result = await _sut.GetAllAsync();
+
+        result.Should().BeEmpty();
     }
 
     [Fact]
@@ -184,12 +194,7 @@ public class PersonsServiceTests
         var persons = await SeedPersons();
         var result = await _sut.GetAllAsync();
 
-        Assert.Equal(persons.Count, result.Count);
-
-        foreach (var person in result)
-        {
-            Assert.Contains(person, persons);
-        }
+        result.Should().BeEquivalentTo(persons, o => o.WithStrictOrdering());
     }
 
     #endregion
@@ -205,7 +210,7 @@ public class PersonsServiceTests
 
         var result = _sut.GetFiltered(expected, nameof(PersonResponse.Name), searchValue);
 
-        Assert.Equal(expected.Count, result.Count);
+        result.Should().BeEquivalentTo(expected, o => o.WithStrictOrdering());
     }
 
 
@@ -252,9 +257,7 @@ public class PersonsServiceTests
         var result = _sut.GetFiltered(persons, field, searchValue);
 
         // Assert
-        Assert.Equal(expected.Count, result.Count);
-        foreach (var person in expected)
-            Assert.Contains(person, result);
+        result.Should().BeEquivalentTo(expected);
     }
 
 
@@ -265,7 +268,7 @@ public class PersonsServiceTests
 
         var result = _sut.GetFiltered(persons, nameof(PersonResponse.Name), "NotExist");
 
-        Assert.Empty(result);
+        result.Should().BeEmpty();
     }
 
     [Fact]
@@ -275,7 +278,7 @@ public class PersonsServiceTests
 
         var result = _sut.GetFiltered(expected, "InvalidField", "Adham");
 
-        Assert.Equal(expected.Count, result.Count);
+        result.Should().BeEquivalentTo(expected);
     }
 
 
@@ -290,8 +293,7 @@ public class PersonsServiceTests
 
         var result = _sut.GetFiltered(persons, nameof(PersonResponse.Name), "adham");
 
-        Assert.Equal(expected.Count, result.Count);
-        Assert.Contains(expected.First(), result);
+        result.Should().OnlyContain(p => p.Name!.Contains("Adham", StringComparison.OrdinalIgnoreCase));
     }
 
     #endregion
@@ -305,7 +307,7 @@ public class PersonsServiceTests
 
         var result = _sut.GetSorted(persons, nameof(PersonResponse.Name), SortOrder.ASC);
 
-        Assert.Empty(result);
+        result.Should().BeEmpty();
     }
 
     [Fact]
@@ -315,9 +317,7 @@ public class PersonsServiceTests
 
         var result = _sut.GetSorted(persons, "invalid", SortOrder.ASC);
 
-        Assert.Equal(persons.Count, result.Count);
-        for (int i = 0; i < persons.Count; i++)
-            Assert.Equal(persons[i].Id, result[i].Id);
+        result.Should().BeEquivalentTo(persons, o => o.WithStrictOrdering());
     }
 
 
@@ -346,16 +346,12 @@ public class PersonsServiceTests
         var ascResult = _sut.GetSorted(persons, orderBy, SortOrder.ASC);
         var expectedAsc = persons.OrderBy(GetPropValue).ToList();
 
-        Assert.Equal(expectedAsc.Count, ascResult.Count);
-        for (int i = 0; i < expectedAsc.Count; i++)
-            Assert.Equal(expectedAsc[i].Id, ascResult[i].Id);
+        ascResult.Should().BeEquivalentTo(expectedAsc, o => o.WithStrictOrdering());
 
         var descResult = _sut.GetSorted(persons, orderBy, SortOrder.DESC);
         var expectedDesc = persons.OrderByDescending(GetPropValue).ToList();
 
-        Assert.Equal(expectedDesc.Count, descResult.Count);
-        for (int i = 0; i < expectedDesc.Count; i++)
-            Assert.Equal(expectedDesc[i].Id, descResult[i].Id);
+        descResult.Should().BeEquivalentTo(expectedDesc, o => o.WithStrictOrdering());
     }
 
     #endregion
@@ -365,7 +361,9 @@ public class PersonsServiceTests
     [Fact]
     public async Task UpdateAsync_NullRequest_ThrowsArgumentNullException()
     {
-        await Assert.ThrowsAsync<ArgumentNullException>(async () => await _sut.UpdateAsync(null));
+        Func<Task> act = async () => await _sut.UpdateAsync(null);
+
+        await act.Should().ThrowAsync<ArgumentNullException>();
     }
 
     [Fact]
@@ -375,7 +373,9 @@ public class PersonsServiceTests
             .With(p => p.Id, Guid.Empty)
             .Create();
 
-        await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.UpdateAsync(request));
+        Func<Task> act = async () => await _sut.UpdateAsync(request);
+
+        await act.Should().ThrowAsync<ArgumentException>();
     }
 
 
@@ -384,7 +384,9 @@ public class PersonsServiceTests
     {
         var request = _fixture.Create<PersonUpdateRequest>();
 
-        await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.UpdateAsync(request));
+        Func<Task> act = async () => await _sut.UpdateAsync(request);
+
+        await act.Should().ThrowAsync<ArgumentException>();
     }
 
     [Fact]
@@ -398,7 +400,9 @@ public class PersonsServiceTests
                 .With(p => p.Email, "updated@email.com")
                 .Create();
 
-        await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.UpdateAsync(updateRequest));
+        Func<Task> act = async () => await _sut.UpdateAsync(updateRequest);
+
+        await act.Should().ThrowAsync<ArgumentException>();
     }
 
     [Fact]
@@ -416,25 +420,12 @@ public class PersonsServiceTests
                .Create();
 
 
-
         var updated = await _sut.UpdateAsync(updateRequest);
-        var personAfterUpdated = await _sut.GetByIdAsync(updateRequest.Id);
-        var allPersons = await _sut.GetAllAsync();
+        var afterUpdate = await _sut.GetByIdAsync(updateRequest.Id);
 
-
-        Assert.Equal(updateRequest.Id, updated.Id);
-        Assert.Equal(updateRequest.Name, updated.Name);
-        Assert.Equal(updateRequest.Email, updated.Email);
-        Assert.Equal(updateRequest.Address, updated.Address);
-        Assert.Equal(updateRequest.Gender.ToString(), updated.Gender);
-        Assert.Equal(updateRequest.DateOfBirth, updated.DateOfBirth);
-        Assert.False(updated.ReceiveNewsLetters);
-
-
-        Assert.Equal(persons.Count, allPersons.Count);
-        Assert.Equal(updated, personAfterUpdated);
-        Assert.Contains(allPersons, p => p.Id == updated.Id && p.Name == updateRequest.Name);
-
+        updated.Should().BeEquivalentTo(afterUpdate);
+        updated.Email.Should().Be("updated@email.com");
+        updated.ReceiveNewsLetters.Should().BeFalse();
     }
 
 
@@ -446,30 +437,34 @@ public class PersonsServiceTests
     [Fact]
     public async Task DeleteAsync_InvalidId_ThrowsArgumentException()
     {
-        await Assert.ThrowsAsync<ArgumentException>(async () => await _sut.DeleteAsync(Guid.Empty));
+        var act = async () => await _sut.DeleteAsync(Guid.Empty);
+
+        await act.Should().ThrowAsync<ArgumentException>();
     }
 
     [Fact]
-    public async Task DeleteAsync_PersonNotFound_ThrowArgumentException()
+    public async Task DeleteAsync_PersonNotFound_ReturnFalse()
     {
         await SeedPersons();
 
         var result = await _sut.DeleteAsync(Guid.NewGuid());
 
-        Assert.False(result);
+        result.Should().BeFalse();
     }
 
     [Fact]
     public async Task DeleteAsync_ValidPersonId_ReturnTrue()
     {
         var persons = await SeedPersons();
-        var personToDelete = persons.First();
+        var toDelete = persons.First();
 
-        var result = await _sut.DeleteAsync(personToDelete.Id);
-        var allPersonsAfterDelete = await _sut.GetAllAsync();
+        var result = await _sut.DeleteAsync(toDelete.Id);
+        var all = await _sut.GetAllAsync();
 
-        Assert.True(result);
-        Assert.Equal(persons.Count - 1, allPersonsAfterDelete.Count);
+        result.Should().BeTrue();
+        all.Should()
+            .NotContain(p => p.Id == toDelete.Id)
+            .And.HaveCount(persons.Count - 1);
     }
 
     #endregion

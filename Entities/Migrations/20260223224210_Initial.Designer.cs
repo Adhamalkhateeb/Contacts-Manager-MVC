@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Entities.Migrations
 {
-    [DbContext(typeof(ContactsManagerDbContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20260223224210_Initial")]
     partial class Initial
     {

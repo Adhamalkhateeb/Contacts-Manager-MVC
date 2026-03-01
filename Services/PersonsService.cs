@@ -18,9 +18,9 @@ namespace Services;
 
 public class PersonsService : IPersonsService
 {
-    private ContactsManagerDbContext _context;
+    private AppDbContext _context;
     private ICountriesService _countriesService;
-    public PersonsService(ContactsManagerDbContext context, ICountriesService countriesService)
+    public PersonsService(AppDbContext context, ICountriesService countriesService)
     {
         _context = context;
         _countriesService = countriesService;
@@ -57,7 +57,7 @@ public class PersonsService : IPersonsService
         if (personToUpdate is null)
             throw new ArgumentException($"Person with Id {request.Id} doesn't exist");
 
-        var country = _countriesService.GetByIdAsync(request.CountryId);
+        var country = await _countriesService.GetByIdAsync(request.CountryId);
         if (country is null)
             throw new ArgumentException("Invalid CountryId");
 
