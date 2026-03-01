@@ -32,9 +32,8 @@ namespace ContactsManager.Controllers
             string orderBy = nameof(PersonResponse.Name),
             SortOrder sortOrder = SortOrder.ASC)
         {
-            var persons = await _personsService.GetAllAsync();
 
-            var filtered = _personsService.GetFiltered(persons, searchBy, searchValue);
+            var filtered = await _personsService.GetFiltered(searchBy, searchValue);
             var sorted = _personsService.GetSorted(filtered, orderBy, sortOrder);
 
             var viewModel = new PersonsListViewModel
@@ -207,9 +206,8 @@ namespace ContactsManager.Controllers
                 { nameof(PersonResponse.Email), "Email" },
                 { nameof(PersonResponse.DateOfBirth), "Date of Birth" },
                 { nameof(PersonResponse.Gender), "Gender" },
-                { nameof(PersonResponse.Country), "Country" },
+                { nameof(PersonResponse.CountryId), "Country" },
                 { nameof(PersonResponse.Address), "Address" },
-                { nameof(PersonResponse.ReceiveNewsLetters), "Receive Newsletter" }
             };
         }
     }

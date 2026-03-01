@@ -1121,6 +1121,32 @@
           "bin/placeholder/Entities.dll": {}
         }
       },
+      "Repositories/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "RepositoryContracts": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Repositories.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Repositories.dll": {}
+        }
+      },
+      "RepositoryContracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "Entities": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/RepositoryContracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/RepositoryContracts.dll": {}
+        }
+      },
       "ServiceContracts/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -1140,6 +1166,8 @@
         "dependencies": {
           "CsvHelper": "33.1.0",
           "EPPlus": "8.4.2",
+          "Repositories": "1.0.0",
+          "RepositoryContracts": "1.0.0",
           "ServiceContracts": "1.0.0"
         },
         "compile": {
@@ -3402,6 +3430,16 @@
       "path": "../Entities/Entities.csproj",
       "msbuildProject": "../Entities/Entities.csproj"
     },
+    "Repositories/1.0.0": {
+      "type": "project",
+      "path": "../Repositories/Repositories.csproj",
+      "msbuildProject": "../Repositories/Repositories.csproj"
+    },
+    "RepositoryContracts/1.0.0": {
+      "type": "project",
+      "path": "../RepositoriesContract/RepositoryContracts.csproj",
+      "msbuildProject": "../RepositoriesContract/RepositoryContracts.csproj"
+    },
     "ServiceContracts/1.0.0": {
       "type": "project",
       "path": "../ServiceContracts/ServiceContracts.csproj",
@@ -3420,6 +3458,8 @@
       "Microsoft.EntityFrameworkCore.Design >= 10.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 10.0.3",
       "Microsoft.EntityFrameworkCore.Tools >= 10.0.3",
+      "Repositories >= 1.0.0",
+      "RepositoryContracts >= 1.0.0",
       "Rotativa.AspNetCore >= 1.4.0",
       "ServiceContracts >= 1.0.0",
       "Services >= 1.0.0"
@@ -3461,6 +3501,12 @@
           "projectReferences": {
             "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\Entities.csproj": {
               "projectPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\Entities.csproj"
+            },
+            "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\RepositoriesContract\\RepositoryContracts.csproj": {
+              "projectPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\RepositoriesContract\\RepositoryContracts.csproj"
+            },
+            "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Repositories\\Repositories.csproj": {
+              "projectPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Repositories\\Repositories.csproj"
             },
             "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\ServiceContracts\\ServiceContracts.csproj": {
               "projectPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\ServiceContracts\\ServiceContracts.csproj"
