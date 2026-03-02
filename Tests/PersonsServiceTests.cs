@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.Linq.Expressions;
 using System.Net.NetworkInformation;
 using AutoFixture;
 using Entities;
@@ -7,7 +8,9 @@ using EntityFrameworkCoreMock;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using Moq;
 using OfficeOpenXml.Drawing.Chart;
+using RepositoriesContract;
 using ServiceContracts;
 using ServiceContracts.DTO;
 using ServiceContracts.Enums;
@@ -19,7 +22,8 @@ namespace ContactsManager.Tests;
 public class PersonsServiceTests
 {
     private readonly IPersonsService _sut;
-    private readonly ICountriesService _countriesService;
+    private readonly Mock<ICountriesService> _countriesServiceMock;
+    private readonly Mock<IPersonsRepository> _personsRepositoryMock;
     private readonly IFixture _fixture;
     private readonly ITestOutputHelper _testOutputHelper;
 
@@ -27,67 +31,72 @@ public class PersonsServiceTests
     {
         _fixture = new Fixture();
 
-        var contextOptions = new DbContextOptionsBuilder<AppDbContext>().Options;
-        var contextMock = new DbContextMock<AppDbContext>(contextOptions);
+        _personsRepositoryMock = new Mock<IPersonsRepository>();
+        _countriesServiceMock = new Mock<ICountriesService>();
 
-        var countriesInitialData = new List<Country>();
-        var personsInitialData = new List<Person>();
-
-        contextMock.CreateDbSetMock(x => x.Countries, countriesInitialData);
-        contextMock.CreateDbSetMock(x => x.Persons, personsInitialData);
-
-        _countriesService = new CountriesService(contextMock.Object);
-        _sut = new PersonsService(contextMock.Object, _countriesService);
+        _sut = new PersonsService(
+                _personsRepositoryMock.Object,
+                _countriesServiceMock.Object
+            );
 
         _testOutputHelper = testOutputHelper;
     }
 
     #region Helpers
 
-    private async Task<List<PersonResponse>> SeedPersons()
+    private List<Person> SeedPersons()
     {
-        var country1 = await _countriesService.AddAsync(_fixture.Create<CountryAddRequest>());
-        var country2 = await _countriesService.AddAsync(_fixture.Create<CountryAddRequest>());
 
-        var requests = new List<PersonAddRequest>
+        var egypt = _fixture.Build<Country>()
+            .With(c => c.Name, "Egypt")
+            .Without(c => c.Persons)
+            .Create();
+
+        var usa = _fixture.Build<Country>()
+            .With(c => c.Name, "USA")
+            .Without(c => c.Persons)
+            .Create();
+
+        var persons = new List<Person>
         {
-            _fixture.Build<PersonAddRequest>()
+            _fixture.Build<Person>()
                 .With(p => p.Email, "adham@gmail.com")
                 .With(p => p.Name, "Adham")
-                .With(p => p.CountryId, country1.Id)
+                .With(p => p.Country,egypt)
+                .With(p => p.CountryId,egypt.Id)
                 .Create(),
 
-            _fixture.Build<PersonAddRequest>()
+            _fixture.Build<Person>()
                 .With(p => p.Email, "ziad@gmail.com")
                 .With(p => p.Name, "Ziad")
-                .With(p => p.CountryId, country1.Id)
+                .With(p => p.Country,egypt)
+                .With(p => p.CountryId,egypt.Id)
                 .Create(),
 
-            _fixture.Build<PersonAddRequest>()
+            _fixture.Build<Person>()
                 .With(p => p.Email, "ramdan@gmail.com")
                 .With(p => p.Name, "Ramdan")
-                .With(p => p.CountryId, country2.Id)
+                .With(p => p.Country,egypt)
+                .With(p => p.CountryId,egypt.Id)
                 .Create(),
 
-            _fixture.Build<PersonAddRequest>()
+            _fixture.Build<Person>()
                 .With(p => p.Email, "ahmed@gmail.com")
                 .With(p => p.Name, "Ahmed")
-                .With(p => p.CountryId, country2.Id)
+                .With(p => p.Country,usa)
+                .With(p => p.CountryId,usa.Id)
                 .Create()
+
+
 
         };
 
-        var results = new List<PersonResponse>();
-        foreach (var request in requests)
-        {
-            results.Add(await _sut.AddAsync(request));
-        }
-        return results;
+        return persons;
     }
 
     #endregion
 
-    #region  Add
+    #region  AddPerson
 
     [Fact]
     public async Task AddAsync_NullRequest_ThrowsArgumentNullException()
@@ -114,19 +123,25 @@ public class PersonsServiceTests
     {
 
         var request = _fixture.Build<PersonAddRequest>()
-                     .With(p => p.CountryId, Guid.Empty)
-                     .Create();
+                        .With(p => p.CountryId, Guid.Empty)
+                        .With(p => p.Email, "adham@gmail.com")
+                        .Create();
+
+        _countriesServiceMock
+            .Setup(x => x.GetByIdAsync(request.CountryId))
+            .ReturnsAsync((CountryResponse?)null);
 
         Func<Task> act = async () => await _sut.AddAsync(request);
 
-        await act.Should().ThrowAsync<ArgumentException>();
+        await act.Should().ThrowAsync<ArgumentException>()
+                .WithMessage("Invalid CountryId");
     }
 
     [Fact]
     public async Task AddAsync_ValidRequest_ShouldAddPerson()
     {
 
-        var country = await _countriesService.AddAsync(_fixture.Create<CountryAddRequest>());
+        var country = _fixture.Create<CountryResponse>();
 
         var request = _fixture.Build<PersonAddRequest>()
             .With(p => p.Email, "adham@gmail.com")
@@ -134,13 +149,26 @@ public class PersonsServiceTests
             .Create();
 
 
-        var response = await _sut.AddAsync(request);
-        var allPersons = await _sut.GetAllAsync();
+        _countriesServiceMock
+            .Setup(x => x.GetByIdAsync(request.CountryId))
+            .ReturnsAsync(country);
 
+        Person? capturedPerson = null;
+
+        _personsRepositoryMock
+            .Setup(x => x.AddAsync(It.IsAny<Person>()))
+            .Callback<Person>(p => capturedPerson = p)
+            .ReturnsAsync((Person p) => p);
+
+        var response = await _sut.AddAsync(request);
 
         response.Should().NotBeNull();
         response.Id.Should().NotBe(Guid.Empty);
-        allPersons.Should().ContainSingle(p => p.Id == response.Id);
+
+        capturedPerson.Should().NotBeNull();
+        capturedPerson!.Name.Should().Be(request.Name);
+        capturedPerson.Email.Should().Be(request.Email);
+        capturedPerson.CountryId.Should().Be(request.CountryId);
     }
 
     #endregion
@@ -159,6 +187,11 @@ public class PersonsServiceTests
     [Fact]
     public async Task GetByIdAsync_NotFound_ReturnsNull()
     {
+
+        _personsRepositoryMock
+            .Setup(x => x.GetById(It.IsAny<Guid>()))
+            .ReturnsAsync((Person?)null);
+
         var result = await _sut.GetByIdAsync(Guid.NewGuid());
 
         result.Should().BeNull();
@@ -168,10 +201,19 @@ public class PersonsServiceTests
     [Fact]
     public async Task GetByIdAsync_ValidId_ShouldReturnPerson()
     {
-        var persons = await SeedPersons();
-        var expected = persons.First();
 
-        var result = await _sut.GetByIdAsync(expected.Id);
+        var person = _fixture.Build<Person>()
+                        .With(p => p.Email, "adham@gmail.com")
+                        .With(p => p.Country, null as Country)
+                        .Create();
+
+        var expected = person.ToPersonResponse();
+
+        _personsRepositoryMock
+            .Setup(x => x.GetById(person.Id))
+            .ReturnsAsync(person);
+
+        var result = await _sut.GetByIdAsync(person.Id);
 
         result.Should().BeEquivalentTo(expected);
     }
@@ -183,18 +225,34 @@ public class PersonsServiceTests
     [Fact]
     public async Task GetAllAsync_Empty_ShouldReturnEmpty()
     {
+
+        var persons = Enumerable.Empty<Person>();
+
+        _personsRepositoryMock.
+                Setup(x => x.GetAllAsync())
+                .ReturnsAsync(persons);
+
         var result = await _sut.GetAllAsync();
 
         result.Should().BeEmpty();
     }
 
     [Fact]
-    public async Task GetAllAsync_AfterSeeding_ReturnsAllPersons()
+    public async Task GetAllAsync_WhenRepositoryHasData_ReturnsAllPersons()
     {
-        var persons = await SeedPersons();
+        var persons = SeedPersons();
+
+        var expected = persons
+                    .Select(p => p.ToPersonResponse())
+                    .ToList();
+
+        _personsRepositoryMock
+                .Setup(x => x.GetAllAsync())
+                .ReturnsAsync(persons);
+
         var result = await _sut.GetAllAsync();
 
-        result.Should().BeEquivalentTo(persons, o => o.WithStrictOrdering());
+        result.Should().BeEquivalentTo(expected);
     }
 
     #endregion
@@ -204,15 +262,90 @@ public class PersonsServiceTests
     [Theory]
     [InlineData(null)]
     [InlineData("")]
-    public async Task GetFiltered_SearchValueNullOrEmpty_ReturnsAll(string? searchValue)
+    [InlineData("  ")]
+    public async Task GetFiltered_SearchValueNullOrWhiteSpace_ReturnsAll(string? searchValue)
     {
-        var expected = await SeedPersons();
+        var persons = SeedPersons();
 
-        var result = _sut.GetFiltered(expected, nameof(PersonResponse.Name), searchValue);
+        _personsRepositoryMock
+                .Setup(x => x.GetAllAsync())
+                .ReturnsAsync(persons);
 
-        result.Should().BeEquivalentTo(expected, o => o.WithStrictOrdering());
+        var result = await _sut.GetFilteredAsync(nameof(PersonResponse.Name), searchValue);
+
+        result.Should().BeEquivalentTo(
+            persons.Select(p => p.ToPersonResponse()));
+
+        _personsRepositoryMock.Verify(x => x.GetAllAsync(), Times.Once);
+        _personsRepositoryMock.Verify(
+        x => x.GetFilteredAsync(It.IsAny<Expression<Func<Person, bool>>>()),
+        Times.Never);
     }
 
+    [Fact]
+    public async Task GetFiltered_NoMatch_ReturnsEmpty()
+    {
+        _personsRepositoryMock
+                .Setup(x => x.GetFilteredAsync(It.IsAny<Expression<Func<Person, bool>>>()))
+                .ReturnsAsync(new List<Person>());
+
+        var result = await _sut.GetFilteredAsync(nameof(PersonResponse.Name), "NotExist");
+
+        result.Should().BeEmpty();
+
+        _personsRepositoryMock.Verify(
+            x => x.GetFilteredAsync(It.IsAny<Expression<Func<Person, bool>>>()),
+            Times.Once);
+    }
+
+    [Fact]
+    public async Task GetFiltered_InvalidSearchBy_ReturnsAll()
+    {
+        var persons = SeedPersons();
+        var expected = persons.Select(p => p.ToPersonResponse());
+
+        _personsRepositoryMock
+                .Setup(x => x.GetFilteredAsync(It.IsAny<Expression<Func<Person, bool>>>()))
+                .ReturnsAsync(persons);
+
+        var result = await _sut.GetFilteredAsync("InvalidField", "Adham");
+
+        result.Should().BeEquivalentTo(expected);
+
+        _personsRepositoryMock.Verify(
+            x => x.GetFilteredAsync(It.IsAny<Expression<Func<Person, bool>>>()),
+            Times.Once);
+    }
+
+
+    [Fact]
+    public async Task GetFiltered_IsCaseInsensitive()
+    {
+        var persons = SeedPersons();
+
+        _personsRepositoryMock
+            .Setup(x => x.GetFilteredAsync(It.IsAny<Expression<Func<Person, bool>>>()))
+            .ReturnsAsync((Expression<Func<Person, bool>> predicate) =>
+            {
+                var compiled = predicate.Compile();
+                return persons.Where(compiled).ToList();
+            });
+
+        var expected = persons
+            .Select(p => p.ToPersonResponse())
+            .Where(p => p.Name!.Equals("Adham", StringComparison.OrdinalIgnoreCase))
+            .ToList();
+
+        var result = await _sut.GetFilteredAsync(nameof(PersonResponse.Name), "adham");
+
+        result.Should()
+            .OnlyContain(p => p.Name!.Contains("Adham", StringComparison.OrdinalIgnoreCase));
+        result.Should().BeEquivalentTo(expected);
+
+        _personsRepositoryMock.Verify(
+            x => x.GetFilteredAsync(It.IsAny<Expression<Func<Person, bool>>>()),
+            Times.Once);
+    }
 
 
 
@@ -221,80 +354,61 @@ public class PersonsServiceTests
     [InlineData(nameof(PersonResponse.Email), "gmail")]
     [InlineData(nameof(PersonResponse.DateOfBirth), "15 Apr 2006")]
     [InlineData(nameof(PersonResponse.Gender), "Male")]
-    [InlineData(nameof(PersonResponse.Country), "EGYPT")]
+    [InlineData(nameof(PersonResponse.CountryId), "EGYPT")]
     public async Task GetFiltered_ValidFields_ReturnsExpected(string field, string searchValue)
     {
         // Arrange
-        var persons = await SeedPersons();
+        var persons = SeedPersons();
 
-        List<PersonResponse> expected = field switch
-        {
-            nameof(PersonResponse.Name) =>
-                persons.Where(p => p.Name!.Contains(searchValue, StringComparison.OrdinalIgnoreCase)).ToList(),
+        var responses = persons
+                    .Select(p => p.ToPersonResponse())
+                    .ToList();
 
-            nameof(PersonResponse.Email) =>
-                persons.Where(p => p.Email!.Contains(searchValue, StringComparison.OrdinalIgnoreCase)).ToList(),
-
-            nameof(PersonResponse.DateOfBirth) =>
-                persons.Where(p => p.DateOfBirth.HasValue &&
-                                    p.DateOfBirth.Value.ToString("dd MMMM yyyy").Contains(searchValue, StringComparison.OrdinalIgnoreCase))
-                                    .ToList(),
-
-            nameof(PersonResponse.Gender) =>
-                persons.Where(p => !string.IsNullOrEmpty(p.Gender) &&
-                                    p.Gender.Equals(searchValue, StringComparison.OrdinalIgnoreCase))
-                                    .ToList(),
-
-            nameof(PersonResponse.Country) =>
-                persons.Where(p => !string.IsNullOrEmpty(p.Country) &&
-                                    p.Country.Contains(searchValue, StringComparison.OrdinalIgnoreCase))
-                                    .ToList(),
-
-            _ => new List<PersonResponse>()
-        };
+        _personsRepositoryMock
+            .Setup(p => p.GetFilteredAsync(It.IsAny<Expression<Func<Person, bool>>>()))
+            .ReturnsAsync((Expression<Func<Person, bool>> predicate) =>
+            {
+                var compiled = predicate.Compile();
+                return persons.Where(compiled).ToList();
+            });
 
         // Act
-        var result = _sut.GetFiltered(persons, field, searchValue);
+
+        var result = await _sut.GetFilteredAsync(field, searchValue);
+
+        var expected = field switch
+        {
+            nameof(PersonResponse.Name) =>
+                responses.Where(p => p.Name!.Contains(searchValue, StringComparison.OrdinalIgnoreCase)),
+
+            nameof(PersonResponse.Email) =>
+                responses.Where(p => p.Email!.Contains(searchValue, StringComparison.OrdinalIgnoreCase)),
+
+            nameof(PersonResponse.DateOfBirth) =>
+                responses.Where(p => p.DateOfBirth.HasValue &&
+                        p.DateOfBirth.Value.ToString("dd MMMM yyyy").Contains(searchValue, StringComparison.OrdinalIgnoreCase)),
+
+            nameof(PersonResponse.Gender) =>
+                responses.Where(p => !string.IsNullOrEmpty(p.Gender) &&
+                        p.Gender.Equals(searchValue, StringComparison.OrdinalIgnoreCase)),
+
+            nameof(PersonResponse.CountryId) =>
+                responses.Where(p => !string.IsNullOrEmpty(p.Country) &&
+                        p.Country.Contains(searchValue, StringComparison.OrdinalIgnoreCase)),
+
+            _ => Enumerable.Empty<PersonResponse>()
+        };
 
         // Assert
+
+        expected = expected.ToList();
         result.Should().BeEquivalentTo(expected);
+
+        _personsRepositoryMock.Verify(
+            x => x.GetFilteredAsync(It.IsAny<Expression<Func<Person, bool>>>()),
+            Times.Once);
     }
 
-
-    [Fact]
-    public async Task GetFiltered_NoMatch_ReturnsEmpty()
-    {
-        var persons = await SeedPersons();
-
-        var result = _sut.GetFiltered(persons, nameof(PersonResponse.Name), "NotExist");
-
-        result.Should().BeEmpty();
-    }
-
-    [Fact]
-    public async Task GetFiltered_InvalidSearchBy_ReturnsAll()
-    {
-        var expected = await SeedPersons();
-
-        var result = _sut.GetFiltered(expected, "InvalidField", "Adham");
-
-        result.Should().BeEquivalentTo(expected);
-    }
-
-
-    [Fact]
-    public async Task GetFiltered_IsCaseInsensitive()
-    {
-        var persons = await SeedPersons();
-
-        var expected = persons
-            .Where(p => p.Name!.Equals("Adham", StringComparison.OrdinalIgnoreCase))
-            .ToList();
-
-        var result = _sut.GetFiltered(persons, nameof(PersonResponse.Name), "adham");
-
-        result.Should().OnlyContain(p => p.Name!.Contains("Adham", StringComparison.OrdinalIgnoreCase));
-    }
 
     #endregion
 
@@ -311,9 +425,12 @@ public class PersonsServiceTests
     }
 
     [Fact]
-    public async Task GetSorted_InvalidOrderBy_ReturnsOriginalList()
+    public void GetSorted_InvalidOrderBy_ReturnsOriginalList()
     {
-        var persons = await SeedPersons();
+        var persons = SeedPersons()
+            .Select(p => p.ToPersonResponse())
+            .ToList();
+
 
         var result = _sut.GetSorted(persons, "invalid", SortOrder.ASC);
 
@@ -332,7 +449,9 @@ public class PersonsServiceTests
     [InlineData(nameof(PersonResponse.Address))]
     public async Task GetSorted_Dynamic_AllFieldsAscendingAndDescending(string orderBy)
     {
-        var persons = await SeedPersons();
+        var persons = SeedPersons()
+           .Select(p => p.ToPersonResponse())
+           .ToList();
 
         object? GetPropValue(PersonResponse p)
         {
@@ -384,6 +503,10 @@ public class PersonsServiceTests
     {
         var request = _fixture.Create<PersonUpdateRequest>();
 
+        _personsRepositoryMock
+                .Setup(x => x.GetById(request.Id))
+                .ReturnsAsync((Person?)null);
+
         Func<Task> act = async () => await _sut.UpdateAsync(request);
 
         await act.Should().ThrowAsync<ArgumentException>();
@@ -392,8 +515,16 @@ public class PersonsServiceTests
     [Fact]
     public async Task UpdateAsync_InvalidCountry_ThrowsArgumentException()
     {
-        var persons = await SeedPersons();
+        var persons = SeedPersons();
         var existing = persons.First();
+
+        _personsRepositoryMock
+                .Setup(x => x.GetById(existing.Id))
+                .ReturnsAsync(existing);
+
+        _countriesServiceMock
+                .Setup(x => x.GetByIdAsync(It.IsAny<Guid>()))
+                .ReturnsAsync((CountryResponse?)null);
 
         var updateRequest = _fixture.Build<PersonUpdateRequest>()
                 .With(p => p.Id, existing.Id)
@@ -409,23 +540,40 @@ public class PersonsServiceTests
     public async Task UpdateAsync_ValidRequest_UpdatesPersonSuccessfully()
     {
 
-        var persons = await SeedPersons();
-        var existing = persons.First();
+        var persons = SeedPersons();
+        var existingPerson = persons.First();
+        var country = _fixture.Create<CountryResponse>();
+
+        _personsRepositoryMock
+            .Setup(x => x.GetById(existingPerson.Id))
+            .ReturnsAsync(existingPerson);
+
+        _countriesServiceMock
+            .Setup(x => x.GetByIdAsync(It.IsAny<Guid>()))
+            .ReturnsAsync(country);
 
         var updateRequest = _fixture.Build<PersonUpdateRequest>()
-               .With(p => p.Id, existing.Id)
-               .With(p => p.CountryId, existing?.CountryId!.Value)
-               .With(p => p.Email, "updated@email.com")
-               .With(p => p.ReceiveNewsLetters, false)
-               .Create();
+            .With(p => p.Id, existingPerson.Id)
+            .With(p => p.CountryId, existingPerson?.CountryId)
+            .With(p => p.Email, "updated@email.com")
+            .With(p => p.ReceiveNewsLetters, false)
+            .Create();
 
+        var personAfterUpdate = updateRequest.ToPerson();
+        var expected = personAfterUpdate.ToPersonResponse();
+        _personsRepositoryMock
+                .Setup(x => x.UpdateAsync(It.IsAny<Person>()))
+                .ReturnsAsync(personAfterUpdate);
 
-        var updated = await _sut.UpdateAsync(updateRequest);
-        var afterUpdate = await _sut.GetByIdAsync(updateRequest.Id);
+        var personResponseAfterUpdate = await _sut.UpdateAsync(updateRequest);
 
-        updated.Should().BeEquivalentTo(afterUpdate);
-        updated.Email.Should().Be("updated@email.com");
-        updated.ReceiveNewsLetters.Should().BeFalse();
+        personResponseAfterUpdate.Should().BeEquivalentTo(expected);
+        personResponseAfterUpdate.Email.Should().Be("updated@email.com");
+        personResponseAfterUpdate.ReceiveNewsLetters.Should().BeFalse();
+
+        _personsRepositoryMock.Verify(x => x.GetById(existingPerson!.Id), Times.Once);
+        _personsRepositoryMock.Verify(x => x.UpdateAsync(It.IsAny<Person>()), Times.Once);
+        _countriesServiceMock.Verify(x => x.GetByIdAsync(updateRequest.CountryId), Times.Once);
     }
 
 
@@ -445,26 +593,65 @@ public class PersonsServiceTests
     [Fact]
     public async Task DeleteAsync_PersonNotFound_ReturnFalse()
     {
-        await SeedPersons();
+        var id = Guid.NewGuid();
 
-        var result = await _sut.DeleteAsync(Guid.NewGuid());
+        _personsRepositoryMock
+            .Setup(x => x.GetById(id))
+            .ReturnsAsync((Person?)null);
+
+        var result = await _sut.DeleteAsync(id);
 
         result.Should().BeFalse();
+
+        _personsRepositoryMock.Verify(x => x.GetById(id), Times.Once);
+        _personsRepositoryMock.Verify(x => x.DeleteAsync(It.IsAny<Guid>()), Times.Never);
+    }
+
+    [Fact]
+    public async Task DeleteAsync_RepositoryReturnsZero_ReturnsFalse()
+    {
+        // Arrange
+        var persons = SeedPersons();
+        var toDelete = persons.First();
+
+        _personsRepositoryMock
+            .Setup(x => x.GetById(toDelete.Id))
+            .ReturnsAsync(toDelete);
+
+        _personsRepositoryMock
+            .Setup(x => x.DeleteAsync(toDelete.Id))
+            .ReturnsAsync(0);
+
+        // Act
+        var result = await _sut.DeleteAsync(toDelete.Id);
+
+        // Assert
+        result.Should().BeFalse();
+
+        _personsRepositoryMock.Verify(x => x.GetById(toDelete.Id), Times.Once);
+        _personsRepositoryMock.Verify(x => x.DeleteAsync(toDelete.Id), Times.Once);
     }
 
     [Fact]
     public async Task DeleteAsync_ValidPersonId_ReturnTrue()
     {
-        var persons = await SeedPersons();
+        var persons = SeedPersons();
         var toDelete = persons.First();
 
+        _personsRepositoryMock
+            .Setup(x => x.GetById(toDelete.Id))
+            .ReturnsAsync(toDelete);
+
+        _personsRepositoryMock
+            .Setup(x => x.DeleteAsync(toDelete.Id))
+            .ReturnsAsync(1);
+
         var result = await _sut.DeleteAsync(toDelete.Id);
-        var all = await _sut.GetAllAsync();
 
         result.Should().BeTrue();
-        all.Should()
-            .NotContain(p => p.Id == toDelete.Id)
-            .And.HaveCount(persons.Count - 1);
+
+        _personsRepositoryMock.Verify(x => x.GetById(toDelete.Id), Times.Once);
+        _personsRepositoryMock.Verify(x => x.DeleteAsync(toDelete.Id), Times.Once);
     }
 
     #endregion

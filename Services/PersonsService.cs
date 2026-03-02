@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq.Expressions;
 using System.Text;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -99,58 +100,21 @@ public class PersonsService : IPersonsService
         return person.ToPersonResponse();
     }
 
-    public async Task<List<PersonResponse>> GetFiltered(string searchBy, string? searchValue)
+    public async Task<List<PersonResponse>> GetFilteredAsync(string searchBy, string? searchValue)
     {
 
         if (string.IsNullOrWhiteSpace(searchValue))
         {
-            var allPersons = await _personsRepository.GetAllAsync();
-            return allPersons.Select(p => p.ToPersonResponse()).ToList();
+            var all = await _personsRepository.GetAllAsync();
+            return all.Select(p => p.ToPersonResponse()).ToList();
         }
 
         searchValue = searchValue.Trim();
 
+        var predicate = BuildExpressionFilter(searchBy, searchValue);
+        var filteredPersons = await _personsRepository.GetFilteredAsync(predicate);
 
-        var persons = searchBy switch
-        {
-            nameof(PersonResponse.Name) =>
-                await _personsRepository.GetFilteredAsync(p =>
-                    p.Name != null &&
-                    EF.Functions.Like(p.Name, $"%{searchValue}%")),
-
-            nameof(PersonResponse.Email) =>
-                await _personsRepository.GetFilteredAsync(p =>
-                    p.Email != null &&
-                    EF.Functions.Like(p.Email, $"%{searchValue}%")),
-
-            nameof(PersonResponse.Gender) =>
-                await _personsRepository.GetFilteredAsync(p =>
-                    p.Gender != null &&
-                    (p.Gender == searchValue)),
-
-            nameof(PersonResponse.Address) =>
-                await _personsRepository.GetFilteredAsync(p =>
-                    p.Address != null &&
-                    EF.Functions.Like(p.Address, $"%{searchValue}%")),
-
-            nameof(PersonResponse.CountryId) =>
-                await _personsRepository.GetFilteredAsync(p =>
-                    p.Country != null &&
-                    p.Country.Name != null &&
-                    EF.Functions.Like(p.Country.Name, $"%{searchValue}%")),
-
-            nameof(PersonResponse.DateOfBirth) =>
-                await _personsRepository.GetFilteredAsync(p =>
-                    p.DateOfBirth.HasValue &&
-                    p.DateOfBirth.Value
-                        .ToString()
-                        .Contains(searchValue)),
-
-            _ => await _personsRepository.GetAllAsync()
-        };
-
-
-        return persons.Select(p => p.ToPersonResponse()).ToList();
+        return filteredPersons.Select(p => p.ToPersonResponse()).ToList();
     }
 
     public List<PersonResponse> GetSorted(List<PersonResponse> persons, string orderBy, SortOrder sortOrder)
@@ -252,6 +216,41 @@ public class PersonsService : IPersonsService
         worksheet.Cells[$"A1:H{row - 1}"].AutoFitColumns();
 
         return await excel.GetAsByteArrayAsync();
+    }
+
+
+    private static Expression<Func<Person, bool>> BuildExpressionFilter(string searchBy, string searchValue)
+    {
+        searchValue = searchValue.ToLower();
+        return searchBy switch
+        {
+            nameof(PersonResponse.Name) => p =>
+                !string.IsNullOrEmpty(p.Name) &&
+                p.Name.ToLower().Contains(searchValue),
+
+            nameof(PersonResponse.Email) => p =>
+                !string.IsNullOrEmpty(p.Email) &&
+                p.Email.ToLower().Contains(searchValue),
+
+            nameof(PersonResponse.Gender) => p =>
+                !string.IsNullOrEmpty(p.Gender) &&
+                p.Gender.ToLower().Equals(searchValue),
+
+            nameof(PersonResponse.Address) => p =>
+                !string.IsNullOrEmpty(p.Address) &&
+                p.Address.ToLower().Contains(searchValue),
+
+            nameof(PersonResponse.CountryId) => p =>
+                p.Country != null &&
+                !string.IsNullOrEmpty(p.Country.Name) &&
+                p.Country.Name.ToLower().Contains(searchValue),
+
+            nameof(PersonResponse.DateOfBirth) => p =>
+                p.DateOfBirth.HasValue &&
+                p.DateOfBirth.Value.ToString("dd MMM yyyy").Contains(searchValue),
+
+            _ => p => true
+        };
     }
 }
 

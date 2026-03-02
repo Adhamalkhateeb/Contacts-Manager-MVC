@@ -33,7 +33,7 @@ namespace ContactsManager.Controllers
             SortOrder sortOrder = SortOrder.ASC)
         {
 
-            var filtered = await _personsService.GetFiltered(searchBy, searchValue);
+            var filtered = await _personsService.GetFilteredAsync(searchBy, searchValue);
             var sorted = _personsService.GetSorted(filtered, orderBy, sortOrder);
 
             var viewModel = new PersonsListViewModel

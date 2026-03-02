@@ -33,7 +33,7 @@ public class CountriesRepository : ICountriesRepository
         return await _context.Countries.FindAsync(countryId);
     }
 
-    public async Task<Country?> GetByName(string countryName)
+    public async Task<Country?> GetByNameAsync(string countryName)
     {
         return await _context.Countries
         .FirstOrDefaultAsync(c =>

@@ -25,7 +25,7 @@ public class CountriesService : ICountriesService
 
 
         var existingCountry = await _countriesRepository
-            .GetByName(countryAddRequest.Name);
+            .GetByNameAsync(countryAddRequest.Name);
 
         if (existingCountry != null)
             throw new ArgumentException("Country already exists.");

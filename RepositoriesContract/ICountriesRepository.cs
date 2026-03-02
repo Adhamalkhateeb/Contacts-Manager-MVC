@@ -35,6 +35,6 @@ public interface ICountriesRepository
     /// </summary>
     /// <param name="countryName">country name to search</param>
     /// <returns>Matching Country if found or null</returns>
-    Task<Country?> GetByName(string countryName);
+    Task<Country?> GetByNameAsync(string countryName);
 
 }
