@@ -84,7 +84,6 @@ namespace ContactsManager.Controllers
             if (person is null)
                 return RedirectToAction(nameof(Index));
 
-
             ViewBag.Countries = await GetCountriesSelectListAsync();
 
             return View(person.ToPersonUpdateRequest());
@@ -115,8 +114,8 @@ namespace ContactsManager.Controllers
 
 
         [HttpGet]
-        [Route("[action]/{id:guid?}")]
-        public async Task<IActionResult> Delete(Guid? id)
+        [Route("[action]/{id:guid}")]
+        public async Task<IActionResult> Delete(Guid id)
         {
             var person = await _personsService.GetByIdAsync(id);
 

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ContactsManager.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+42a57f7954e95da7d76e7fa070280b964d18d1f8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbc463bb644d600802c503ad344eb4c75415a998")]
 [assembly: System.Reflection.AssemblyProductAttribute("ContactsManager.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ContactsManager.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
