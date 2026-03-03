@@ -11,16 +11,10 @@ using ServiceContracts.Enums;
 namespace ContactsManager.Controllers
 {
     [Route("[controller]")]
-    public class PersonsController : Controller
+    public class PersonsController(IPersonsService personsService, ICountriesService countriesService) : Controller
     {
-        private readonly IPersonsService _personsService;
-        private readonly ICountriesService _countriesService;
-
-        public PersonsController(IPersonsService personsService, ICountriesService countriesService)
-        {
-            _personsService = personsService;
-            _countriesService = countriesService;
-        }
+        private readonly IPersonsService _personsService = personsService;
+        private readonly ICountriesService _countriesService = countriesService;
 
         [Route("[action]")]
         [Route("/")]

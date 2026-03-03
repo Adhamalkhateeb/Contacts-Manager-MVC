@@ -2,6 +2,7 @@ using System;
 using System.Text.Json;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace Entities;
 
@@ -29,9 +30,9 @@ public class AppDbContext : DbContext
                 .HasMaxLength(100)
                 .IsRequired();
 
-            var countries = GetJsonFileData<Country>("countries.json");
+            // var countries = GetJsonFileData<Country>("countries.json");
 
-            c.HasData(countries);
+            // c.HasData(countries);
         });
 
         modelBuilder.Entity<Person>(p =>
@@ -83,9 +84,8 @@ public class AppDbContext : DbContext
                 t.HasCheckConstraint("CHK_TIN", "len([TaxIdentificationNumber]) = 8");
             });
 
-            var persons = GetJsonFileData<Person>("persons.json");
-
-            p.HasData(persons);
+            // var persons = GetJsonFileData<Person>("persons.json");
+            // p.HasData(persons);
         });
     }
 
@@ -120,6 +120,4 @@ public class AppDbContext : DbContext
         var data = JsonSerializer.Deserialize<List<T>>(json);
         return data ?? new List<T>();
     }
-
-
 }

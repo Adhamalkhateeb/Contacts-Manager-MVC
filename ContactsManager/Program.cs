@@ -15,17 +15,24 @@ builder.Services.AddScoped<IPersonsRepository, PersonsRepository>();
 builder.Services.AddScoped<ICountriesService, CountriesService>();
 builder.Services.AddScoped<IPersonsService, PersonsService>();
 
-builder.Services.AddDbContext<AppDbContext>(options =>
+if (!builder.Environment.IsEnvironment("Test"))
 {
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")
-    );
-});
+    builder.Services.AddDbContext<AppDbContext>(options =>
+    {
+        var constr = builder.Configuration.GetConnectionString("DefaultConnection");
+        if (string.IsNullOrEmpty(constr))
+        {
+            throw new InvalidOperationException();
+        }
+
+        options.UseSqlServer(constr);
+    });
+
+    RotativaConfiguration.Setup("wwwroot", "Rotativa");
+}
 
 
 ExcelPackage.License.SetNonCommercialPersonal("Adham Fawzy");
-
-
 
 var app = builder.Build();
 
@@ -34,9 +41,11 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 }
 
-RotativaConfiguration.Setup("wwwroot", "Rotativa");
+
 app.UseStaticFiles();
 app.UseRouting();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }
