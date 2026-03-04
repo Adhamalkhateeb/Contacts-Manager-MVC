@@ -1,33 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\ServiceContracts\\ServiceContracts.csproj": {}
+    "/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ServiceContracts/ServiceContracts.csproj": {}
   },
   "projects": {
-    "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\Entities.csproj": {
+    "/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/Entities/Entities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\Entities.csproj",
+        "projectUniqueName": "/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/Entities/Entities.csproj",
         "projectName": "Entities",
-        "projectPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\Entities.csproj",
-        "packagesPath": "C:\\Users\\adham\\.nuget\\packages\\",
-        "outputPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\obj\\",
+        "projectPath": "/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/Entities/Entities.csproj",
+        "packagesPath": "/home/adhamalkhateeb/.nuget/packages/",
+        "outputPath": "/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/Entities/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\adham\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/adhamalkhateeb/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/lib64/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -79,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
@@ -357,38 +350,31 @@
         }
       }
     },
-    "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\ServiceContracts\\ServiceContracts.csproj": {
+    "/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ServiceContracts/ServiceContracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\ServiceContracts\\ServiceContracts.csproj",
+        "projectUniqueName": "/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ServiceContracts/ServiceContracts.csproj",
         "projectName": "ServiceContracts",
-        "projectPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\ServiceContracts\\ServiceContracts.csproj",
-        "packagesPath": "C:\\Users\\adham\\.nuget\\packages\\",
-        "outputPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\ServiceContracts\\obj\\",
+        "projectPath": "/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ServiceContracts/ServiceContracts.csproj",
+        "packagesPath": "/home/adhamalkhateeb/.nuget/packages/",
+        "outputPath": "/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ServiceContracts/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\adham\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.1.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/home/adhamalkhateeb/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\DevExpress 20.1\\Components\\System\\Components\\Packages": {},
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/lib64/dotnet/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\Entities.csproj": {
-                "projectPath": "C:\\Adham Web\\MVC_Projects\\Contacts Manager\\Entities\\Entities.csproj"
+              "/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/Entities/Entities.csproj": {
+                "projectPath": "/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/Entities/Entities.csproj"
               }
             }
           }
@@ -430,7 +416,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "/usr/lib64/dotnet/sdk/10.0.103/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
