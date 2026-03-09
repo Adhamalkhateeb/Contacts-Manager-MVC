@@ -1,0 +1,47 @@
+2026-03-09 16:48:49.349 +02:00 [INF] User profile is available. Using '/home/adhamalkhateeb/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-09 16:48:49.503 +02:00 [INF] Now listening on: http://localhost:5015
+2026-03-09 16:48:49.505 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 16:48:49.506 +02:00 [INF] Hosting environment: Development
+2026-03-09 16:48:49.506 +02:00 [INF] Content root path: /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager
+2026-03-09 16:49:05.606 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/ - null null
+2026-03-09 16:49:05.641 +02:00 [INF] Executing endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 16:49:05.682 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ServiceContracts.Enums.SortOrder) on controller ContactsManager.Controllers.PersonsController (ContactsManager).
+2026-03-09 16:49:05.838 +02:00 [INF] PersonsListActionFilter.OnActionExecuting method
+2026-03-09 16:49:05.841 +02:00 [INF] Filtering persons by null with value null
+2026-03-09 16:49:06.986 +02:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[Name], [p].[ReceiveNewsLetters], [p].[TaxIdentificationNumber], [c].[Id], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+2026-03-09 16:49:07.018 +02:00 [INF] Time for filter persons from database  completed in 1175.3 ms
+2026-03-09 16:49:07.021 +02:00 [INF] Sorting persons by Name with order "ASC"
+2026-03-09 16:49:07.025 +02:00 [INF] PersonsListActionFilter.OnActionExecuted method
+2026-03-09 16:49:07.044 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-09 16:49:07.242 +02:00 [INF] Executed ViewResult - view Index executed in 206.0305ms.
+2026-03-09 16:49:07.244 +02:00 [INF] Executed action ContactsManager.Controllers.PersonsController.Index (ContactsManager) in 1561.4697ms
+2026-03-09 16:49:07.245 +02:00 [INF] Executed endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 16:49:07.248 +02:00 [INF] HTTP GET / responded 200 in 1626.2435 ms
+2026-03-09 16:49:07.260 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/ - 200 null text/html; charset=utf-8 1657.1118ms
+2026-03-09 16:49:07.307 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/favicon.ico - null null
+2026-03-09 16:49:07.312 +02:00 [INF] HTTP GET /favicon.ico responded 404 in 3.3029 ms
+2026-03-09 16:49:07.313 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/favicon.ico - 404 0 null 6.867ms
+2026-03-09 16:49:07.315 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5015/favicon.ico, Response status code: 404
+2026-03-09 16:50:13.731 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/persons/index?searchBy=&searchValue=&orderBy=Email&sortOrder=DESC - null null
+2026-03-09 16:50:13.735 +02:00 [INF] Executing endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 16:50:13.758 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ServiceContracts.Enums.SortOrder) on controller ContactsManager.Controllers.PersonsController (ContactsManager).
+2026-03-09 16:50:13.778 +02:00 [INF] PersonsListActionFilter.OnActionExecuting method
+2026-03-09 16:50:13.779 +02:00 [INF] searchBy actual value is 
+2026-03-09 16:50:13.779 +02:00 [INF] searchBy Updated value is Name
+2026-03-09 16:50:13.780 +02:00 [INF] Filtering persons by Name with value null
+2026-03-09 16:50:13.823 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[Name], [p].[ReceiveNewsLetters], [p].[TaxIdentificationNumber], [c].[Id], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+2026-03-09 16:50:13.824 +02:00 [INF] Time for filter persons from database  completed in 44.3 ms
+2026-03-09 16:50:13.825 +02:00 [INF] Sorting persons by Email with order "DESC"
+2026-03-09 16:50:13.826 +02:00 [INF] PersonsListActionFilter.OnActionExecuted method
+2026-03-09 16:50:13.827 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-09 16:50:13.838 +02:00 [INF] Executed ViewResult - view Index executed in 12.1122ms.
+2026-03-09 16:50:13.839 +02:00 [INF] Executed action ContactsManager.Controllers.PersonsController.Index (ContactsManager) in 80.8269ms
+2026-03-09 16:50:13.839 +02:00 [INF] Executed endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 16:50:13.840 +02:00 [INF] HTTP GET /persons/index responded 200 in 105.9807 ms
+2026-03-09 16:50:13.841 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/persons/index?searchBy=&searchValue=&orderBy=Email&sortOrder=DESC - 200 null text/html; charset=utf-8 109.5438ms

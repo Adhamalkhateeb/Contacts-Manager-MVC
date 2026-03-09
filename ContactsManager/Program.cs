@@ -18,7 +18,11 @@ builder.Host.UseSerilog(
     }
 );
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(options =>
+{
+    // options.Filters.Add<ResponseHeaderActionFilter>();
+});
+
 builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
 builder.Services.AddScoped<IPersonsRepository, PersonsRepository>();
 builder.Services.AddScoped<ICountriesService, CountriesService>();

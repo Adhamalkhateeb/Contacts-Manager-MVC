@@ -23,8 +23,6 @@ namespace ContactsManager.Controllers
 
         [Route("[action]")]
         [Route("/")]
-        [Route("")]
-        [HttpGet]
         public async Task<IActionResult> Index(
             string searchBy,
             string? searchValue,
@@ -56,14 +54,9 @@ namespace ContactsManager.Controllers
         }
 
         [HttpPost("[action]")]
+        [TypeFilter<PersonsPostActionFilter>]
         public async Task<IActionResult> Create(PersonAddRequest request)
         {
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Countries = await GetCountriesSelectListAsync();
-                PopulateErrors();
-                return View(request);
-            }
             await _personsService.AddAsync(request);
             return RedirectToAction(nameof(Index));
         }
@@ -84,21 +77,15 @@ namespace ContactsManager.Controllers
 
         [HttpPost]
         [Route("[action]/{id}")]
-        public async Task<IActionResult> Edit(PersonUpdateRequest personUpdateRequest)
+        [TypeFilter<PersonsPostActionFilter>]
+        public async Task<IActionResult> Edit(PersonUpdateRequest request)
         {
-            if (!ModelState.IsValid)
-            {
-                ViewBag.Countries = await GetCountriesSelectListAsync();
-                PopulateErrors();
-                return View(personUpdateRequest);
-            }
-
-            var personResponse = await _personsService.GetByIdAsync(personUpdateRequest.Id);
+            var personResponse = await _personsService.GetByIdAsync(request.Id);
 
             if (personResponse is null)
                 return RedirectToAction(nameof(Index));
 
-            await _personsService.UpdateAsync(personUpdateRequest);
+            await _personsService.UpdateAsync(request);
 
             return RedirectToAction(nameof(Index));
         }
@@ -178,14 +165,6 @@ namespace ContactsManager.Controllers
 
             return countries
                 .Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString() })
-                .ToList();
-        }
-
-        private void PopulateErrors()
-        {
-            ViewBag.Errors = ModelState
-                .Values.SelectMany(v => v.Errors)
-                .Select(e => e.ErrorMessage)
                 .ToList();
         }
 

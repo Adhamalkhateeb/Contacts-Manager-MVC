@@ -1,0 +1,171 @@
+2026-03-09 17:26:56.075 +02:00 [INF] Application is shutting down...
+2026-03-09 17:27:15.526 +02:00 [INF] User profile is available. Using '/home/adhamalkhateeb/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-09 17:27:15.695 +02:00 [INF] Now listening on: http://localhost:5015
+2026-03-09 17:27:15.697 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 17:27:15.698 +02:00 [INF] Hosting environment: Development
+2026-03-09 17:27:15.698 +02:00 [INF] Content root path: /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager
+2026-03-09 17:27:30.140 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/ - null null
+2026-03-09 17:27:30.175 +02:00 [INF] Executing endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 17:27:30.214 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ServiceContracts.Enums.SortOrder) on controller ContactsManager.Controllers.PersonsController (ContactsManager).
+2026-03-09 17:27:30.341 +02:00 [INF] Executed action ContactsManager.Controllers.PersonsController.Index (ContactsManager) in 123.2962ms
+2026-03-09 17:27:30.342 +02:00 [INF] Executed endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 17:27:30.345 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentNullException: Value cannot be null. (Parameter 'logger')
+   at System.ArgumentNullException.Throw(String paramName)
+   at System.ArgumentNullException.ThrowIfNull(Object argument, String paramName)
+   at Microsoft.Extensions.Logging.LoggerExtensions.Log(ILogger logger, LogLevel logLevel, EventId eventId, Exception exception, String message, Object[] args)
+   at Microsoft.Extensions.Logging.LoggerExtensions.LogInformation(ILogger logger, String message, Object[] args)
+   at ResponseHeaderActionFilter.OnActionExecuting(ActionExecutingContext context) in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/Filters/ActionFilters/ResponseHeaderActionFilter.cs:line 34
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeNextActionFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-03-09 17:27:30.382 +02:00 [ERR] HTTP GET / responded 500 in 227.9919 ms
+2026-03-09 17:27:30.387 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/ - 500 null text/html; charset=utf-8 248.6805ms
+2026-03-09 17:30:20.829 +02:00 [INF] Application is shutting down...
+2026-03-09 17:30:35.489 +02:00 [INF] User profile is available. Using '/home/adhamalkhateeb/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-09 17:30:35.612 +02:00 [INF] Now listening on: http://localhost:5015
+2026-03-09 17:30:35.615 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 17:30:35.615 +02:00 [INF] Hosting environment: Development
+2026-03-09 17:30:35.615 +02:00 [INF] Content root path: /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager
+2026-03-09 17:30:53.738 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/persons/index?searchBy=&searchValue=&orderBy=Email&sortOrder=DESC - null null
+2026-03-09 17:30:53.787 +02:00 [INF] Executing endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 17:30:53.807 +02:00 [INF] Executed endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 17:30:53.811 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'System.String' while attempting to activate 'ResponseHeaderActionFilter'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method1(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.TypeFilterAttribute.CreateInstance(IServiceProvider serviceProvider)
+   at Microsoft.AspNetCore.Mvc.Filters.DefaultFilterProvider.ProvideFilter(FilterProviderContext context, FilterItem filterItem)
+   at Microsoft.AspNetCore.Mvc.Filters.DefaultFilterProvider.OnProvidersExecuting(FilterProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Filters.FilterFactory.CreateUncachedFiltersCore(IFilterProvider[] filterProviders, ActionContext actionContext, List`1 filterItems)
+   at Microsoft.AspNetCore.Mvc.Filters.FilterFactory.GetAllFilters(IFilterProvider[] filterProviders, ActionContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-03-09 17:30:53.855 +02:00 [ERR] HTTP GET /persons/index responded 500 in 97.6605 ms
+2026-03-09 17:30:53.859 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/persons/index?searchBy=&searchValue=&orderBy=Email&sortOrder=DESC - 500 null text/html; charset=utf-8 123.8122ms
+2026-03-09 17:32:37.677 +02:00 [INF] Application is shutting down...
+2026-03-09 17:32:44.377 +02:00 [INF] User profile is available. Using '/home/adhamalkhateeb/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-09 17:32:44.510 +02:00 [INF] Now listening on: http://localhost:5015
+2026-03-09 17:32:44.513 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 17:32:44.513 +02:00 [INF] Hosting environment: Development
+2026-03-09 17:32:44.513 +02:00 [INF] Content root path: /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager
+2026-03-09 17:32:54.507 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/ - null null
+2026-03-09 17:32:54.549 +02:00 [INF] Executing endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 17:32:54.566 +02:00 [INF] Executed endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 17:32:54.570 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'System.String' while attempting to activate 'ResponseHeaderActionFilter'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method1(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.TypeFilterAttribute.CreateInstance(IServiceProvider serviceProvider)
+   at Microsoft.AspNetCore.Mvc.Filters.DefaultFilterProvider.ProvideFilter(FilterProviderContext context, FilterItem filterItem)
+   at Microsoft.AspNetCore.Mvc.Filters.DefaultFilterProvider.OnProvidersExecuting(FilterProviderContext context)
+   at Microsoft.AspNetCore.Mvc.Filters.FilterFactory.CreateUncachedFiltersCore(IFilterProvider[] filterProviders, ActionContext actionContext, List`1 filterItems)
+   at Microsoft.AspNetCore.Mvc.Filters.FilterFactory.GetAllFilters(IFilterProvider[] filterProviders, ActionContext actionContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvokerCache.GetCachedResult(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Routing.ControllerRequestDelegateFactory.<>c__DisplayClass12_0.<CreateRequestDelegate>b__0(HttpContext context)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.StaticFiles.StaticFileMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-03-09 17:32:54.610 +02:00 [ERR] HTTP GET / responded 500 in 84.6304 ms
+2026-03-09 17:32:54.613 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/ - 500 null text/html; charset=utf-8 109.6125ms
+2026-03-09 17:33:23.504 +02:00 [INF] Application is shutting down...
+2026-03-09 17:33:31.201 +02:00 [INF] User profile is available. Using '/home/adhamalkhateeb/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-09 17:33:31.315 +02:00 [INF] Now listening on: http://localhost:5015
+2026-03-09 17:33:31.317 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-09 17:33:31.323 +02:00 [INF] Hosting environment: Development
+2026-03-09 17:33:31.323 +02:00 [INF] Content root path: /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager
+2026-03-09 17:33:39.129 +02:00 [INF] Application is shutting down...
+2026-03-09 17:33:47.967 +02:00 [INF] User profile is available. Using '/home/adhamalkhateeb/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-09 17:33:48.089 +02:00 [INF] Now listening on: http://localhost:5015
+2026-03-09 17:33:54.679 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/ - null null
+2026-03-09 17:33:54.729 +02:00 [INF] Executing endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 17:33:54.775 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ServiceContracts.Enums.SortOrder) on controller ContactsManager.Controllers.PersonsController (ContactsManager).
+2026-03-09 17:33:54.909 +02:00 [INF] ResponseHeaderActionFilter.OnActionExecuting method
+2026-03-09 17:33:54.910 +02:00 [INF] ResponseHeaderActionFilter.OnActionExecuting method
+2026-03-09 17:33:54.911 +02:00 [INF] PersonsListActionFilter.OnActionExecuting method
+2026-03-09 17:33:54.911 +02:00 [INF] ResponseHeaderActionFilter.OnActionExecuting method
+2026-03-09 17:33:54.914 +02:00 [INF] Filtering persons by null with value null
+2026-03-09 17:33:56.181 +02:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[Name], [p].[ReceiveNewsLetters], [p].[TaxIdentificationNumber], [c].[Id], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+2026-03-09 17:33:56.220 +02:00 [INF] Time for filter persons from database  completed in 1304.7 ms
+2026-03-09 17:33:56.224 +02:00 [INF] Sorting persons by Name with order "ASC"
+2026-03-09 17:33:56.228 +02:00 [INF] ResponseHeaderActionFilter.OnActionExecuted method
+2026-03-09 17:33:56.229 +02:00 [INF] PersonsListActionFilter.OnActionExecuted method
+2026-03-09 17:33:56.229 +02:00 [INF] ResponseHeaderActionFilter.OnActionExecuted method
+2026-03-09 17:33:56.229 +02:00 [INF] ResponseHeaderActionFilter.OnActionExecuted method
+2026-03-09 17:33:56.247 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-09 17:33:56.417 +02:00 [INF] Executed ViewResult - view Index executed in 171.7789ms.
+2026-03-09 17:33:56.419 +02:00 [INF] Executed action ContactsManager.Controllers.PersonsController.Index (ContactsManager) in 1642.8784ms
+2026-03-09 17:33:56.420 +02:00 [INF] Executed endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 17:33:56.423 +02:00 [INF] HTTP GET / responded 200 in 1727.5284 ms
+2026-03-09 17:33:56.437 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/ - 200 null text/html; charset=utf-8 1760.6759ms
+2026-03-09 17:34:02.690 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-09 17:34:02.704 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 10.1793 ms
+2026-03-09 17:34:02.708 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 19.1574ms
+2026-03-09 17:34:02.711 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-09 17:34:11.717 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/ - null null
+2026-03-09 17:34:11.720 +02:00 [INF] Executing endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 17:34:11.721 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ServiceContracts.Enums.SortOrder) on controller ContactsManager.Controllers.PersonsController (ContactsManager).
+2026-03-09 17:34:11.726 +02:00 [INF] ResponseHeaderActionFilter.OnActionExecuting method
+2026-03-09 17:34:11.726 +02:00 [INF] ResponseHeaderActionFilter.OnActionExecuting method
+2026-03-09 17:34:11.727 +02:00 [INF] PersonsListActionFilter.OnActionExecuting method
+2026-03-09 17:34:11.727 +02:00 [INF] ResponseHeaderActionFilter.OnActionExecuting method
+2026-03-09 17:34:11.727 +02:00 [INF] Filtering persons by null with value null
+2026-03-09 17:34:11.808 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[Name], [p].[ReceiveNewsLetters], [p].[TaxIdentificationNumber], [c].[Id], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+2026-03-09 17:34:11.811 +02:00 [INF] Time for filter persons from database  completed in 83.4 ms
+2026-03-09 17:34:11.812 +02:00 [INF] Sorting persons by Name with order "ASC"
+2026-03-09 17:34:11.813 +02:00 [INF] ResponseHeaderActionFilter.OnActionExecuted method
+2026-03-09 17:34:11.814 +02:00 [INF] PersonsListActionFilter.OnActionExecuted method
+2026-03-09 17:34:11.814 +02:00 [INF] ResponseHeaderActionFilter.OnActionExecuted method
+2026-03-09 17:34:11.815 +02:00 [INF] ResponseHeaderActionFilter.OnActionExecuted method
+2026-03-09 17:34:11.816 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-09 17:34:11.839 +02:00 [INF] Executed ViewResult - view Index executed in 23.2747ms.
+2026-03-09 17:34:11.840 +02:00 [INF] Executed action ContactsManager.Controllers.PersonsController.Index (ContactsManager) in 118.7128ms
+2026-03-09 17:34:11.841 +02:00 [INF] Executed endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-09 17:34:11.842 +02:00 [INF] HTTP GET / responded 200 in 121.5236 ms
+2026-03-09 17:34:11.843 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/ - 200 null text/html; charset=utf-8 126.4499ms
+2026-03-09 17:34:11.897 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/normalize.css - null null
+2026-03-09 17:34:11.902 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/style.css - null null
+2026-03-09 17:34:11.906 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/all.min.css - null null
+2026-03-09 17:34:11.907 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/logo.png?v=NSHIs37pTZCExamq4QzyjYrp617zM88y4tZkcLkHPt0 - null null
+2026-03-09 17:34:11.930 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-09 17:34:11.934 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 2.5513 ms
+2026-03-09 17:34:11.935 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 4.6114ms
+2026-03-09 17:34:11.935 +02:00 [INF] Sending file. Request path: '/css/normalize.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/normalize.css'
+2026-03-09 17:34:11.935 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/all.min.css'
+2026-03-09 17:34:11.935 +02:00 [INF] Sending file. Request path: '/logo.png'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/logo.png'
+2026-03-09 17:34:11.935 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/style.css'
+2026-03-09 17:34:11.937 +02:00 [INF] HTTP GET /logo.png responded 200 in 28.1737 ms
+2026-03-09 17:34:11.936 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-09 17:34:11.936 +02:00 [INF] HTTP GET /css/normalize.css responded 200 in 37.9749 ms
+2026-03-09 17:34:11.936 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 28.8336 ms
+2026-03-09 17:34:11.938 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/normalize.css - 200 6493 text/css 41.5699ms
+2026-03-09 17:34:11.937 +02:00 [INF] HTTP GET /css/style.css responded 200 in 34.3186 ms
+2026-03-09 17:34:11.937 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/logo.png?v=NSHIs37pTZCExamq4QzyjYrp617zM88y4tZkcLkHPt0 - 200 59605 image/png 30.7462ms
+2026-03-09 17:34:11.940 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/style.css - 200 6210 text/css 37.7812ms
+2026-03-09 17:34:11.938 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/all.min.css - 200 74320 text/css 32.149ms
+2026-03-09 17:34:11.955 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/webfonts/fa-solid-900.woff2 - null null
+2026-03-09 17:34:11.959 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/webfonts/fa-solid-900.woff2'
+2026-03-09 17:34:11.959 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 3.4680 ms
+2026-03-09 17:34:11.960 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 4.5625ms
