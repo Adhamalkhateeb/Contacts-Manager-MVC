@@ -2,138 +2,147 @@
 
 @{
     ViewBag.Title = "Create Person";
+    ViewBag.CurrentUrl = "~/Persons/Create";
 }
 
-<a asp-controller="Persons" asp-action="Index" class="link-hover">Back to Persons List</a>
-<h2>Create Person</h2>
-
-<div class="center-box">
-    <form asp-controller="Persons" asp-action="Create" method="post">
-
-        @*Name*@
-        <div class="form-field flex">
-            <div class="w-25">
-                <label asp-for="Name" class="form-label pt">Person Name</label>
-            </div>
-            <div class="flex-1">
-                <input asp-for="Name" class="form-input" />
-                <span asp-validation-for="Name" class="text-red"></span>
-            </div>
-        </div>
-
-
-        @*Email*@
-        <div class="form-field flex">
-            <div class="w-25">
-                <label asp-for="Email" class="form-label pt">Email</label>
-            </div>
-            <div class="flex-1">
-                <input asp-for="Email" class="form-input" />
-                <span asp-validation-for="Email" class="text-red"></span>
-            </div>
-        </div>
-
-        @*DateOfBirth*@
-        <div class="form-field flex">
-            <div class="w-25">
-                <label asp-for="DateOfBirth" class="form-label pt">Date of Birth</label>
-            </div>
-            <div class="flex-1">
-                <input asp-for="DateOfBirth" class="form-input" />
-                <span asp-validation-for="DateOfBirth" class="text-red"></span>
-            </div>
-        </div>
-
-        @*Gender*@
-        <div class="form-field flex">
-            <div class="w-25">
-                <label class="form-label">Gender</label>
-            </div>
-            <div class="flex-1">
-                @{
-                    var genders = Enum.GetNames<Gender>();
-                }
-                @foreach (string gender in genders)
-                {
-                    <input type="radio" asp-for="Gender" id="@gender" value="@gender" checked />
-                    <label for="@gender">@gender</label>
-                }
-                <span asp-validation-for="Gender" class="text-red"></span>
-            </div>
-        </div>
-
-        @*Country*@
-        <div class="form-field flex">
-            <div class="w-25">
-                <label class="form-label" asp-for="CountryId">Country</label>
-            </div>
-            <div class="flex-1">
-                <select asp-for="CountryId" class="form-input" asp-items="@ViewBag.Countries">
-                    <option value="">Please Select</option>
-                </select>
-                <span asp-validation-for="CountryId" class="text-red"></span>
-            </div>
-        </div>
-
-
-        @*Address*@
-        <div class="form-field flex">
-            <div class="w-25">
-                <label asp-for="Address" class="form-label pt">Address</label>
-            </div>
-            <div class="flex-1">
-                <textarea asp-for="Address" class="form-input"></textarea>
-                <span asp-validation-for="Address" class="text-red"></span>
-            </div>
-        </div>
-
-        @*ReceiveNewsLetters*@
-        <div class="form-field flex">
-            <div class="w-25">
-            </div>
-            <div class="flex-1">
-                <input asp-for="ReceiveNewsLetters" value="true" />
-                <label asp-for="ReceiveNewsLetters" class="form-label">Receive News Letters</label>
-                <span asp-validation-for="ReceiveNewsLetters" class="text-red"></span>
-            </div>
-        </div>
-
-        @*Submit*@
-        <div class="form-field flex">
-            <div class="w-25">
-            </div>
-            <div class="flex-1">
-                <button class="button button-green-back">Create</button>
-
-                <div asp-validation-summary="All" class="text-red"></div>
-
-                @if (ViewBag.Errors != null)
-                {
-                    <div class="text-red ml">
-                        <ul>
-                            @foreach (string error in ViewBag.Errors)
-                            {
-                                <li class="ml">@error</li>
-                            }
-                        </ul>
-                    </div>
-                }
-            </div>
-        </div>
-
-    </form>
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Add Person</h1>
+        <p class="page-meta">Fill in the details below to create a new contact.</p>
+    </div>
+    <div class="page-actions">
+        <a asp-controller="Persons" asp-action="Index" class="btn btn-outline">
+            <i class="fa-solid fa-arrow-left"></i> Back
+        </a>
+    </div>
 </div>
 
+<form asp-controller="Persons" asp-action="Create" method="post" id="createForm">
+
+    <!-- Basic Information -->
+    <div class="form-section">
+        <p class="section-heading">Basic Information</p>
+
+        <div class="form-grid-2">
+            <div class="form-group col-span-2">
+                <label asp-for="Name" class="form-label">
+                    Full Name <span class="required">*</span>
+                </label>
+                <input asp-for="Name" class="input" placeholder="e.g. Jane Smith" autofocus />
+                <span asp-validation-for="Name" class="validation-error"></span>
+            </div>
+
+            <div class="form-group col-span-2">
+                <label asp-for="Email" class="form-label">
+                    Email Address <span class="required">*</span>
+                </label>
+                <input asp-for="Email" class="input" type="email" placeholder="jane@example.com" />
+                <span asp-validation-for="Email" class="validation-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="form-label">Date of Birth</label>
+                @* Must render value as yyyy-MM-dd for <input type="date">.
+                    asp-for alone may use the model's default ToString() which varies by culture.
+                    We set value explicitly and keep asp-for only for the name/id binding. *@
+                <input asp-for="DateOfBirth"
+                       class="input"
+                       type="date"
+                       value="@(Model?.DateOfBirth.HasValue == true ? Model.DateOfBirth.Value.ToString("yyyy-MM-dd") : "")" />
+                <span asp-validation-for="DateOfBirth" class="validation-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Gender <span class="required">*</span></label>
+                <div class="gender-group">
+                    @{
+                        var genders = Enum.GetNames<Gender>();
+                    }
+                    @foreach (string gender in genders)
+                    {
+                        <label class="gender-card">
+                            <input type="radio" asp-for="Gender" value="@gender" />
+                            <span class="gender-label">
+                                <i class="fa-solid @(gender == "Male" ? "fa-mars" : gender == "Female" ? "fa-venus" : "fa-genderless")"></i>
+                                @gender
+                            </span>
+                        </label>
+                    }
+                </div>
+                <span asp-validation-for="Gender" class="validation-error"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location -->
+    <div class="form-section">
+        <p class="section-heading">Location</p>
+
+        <div class="form-grid-2">
+            <div class="form-group">
+                <label asp-for="CountryId" class="form-label">
+                    Country <span class="required">*</span>
+                </label>
+                <select asp-for="CountryId" class="input" asp-items="@ViewBag.Countries">
+                    <option value="">Select country…</option>
+                </select>
+                <span asp-validation-for="CountryId" class="validation-error"></span>
+            </div>
+
+            <div class="form-group col-span-2">
+                <label asp-for="Address" class="form-label">Address</label>
+                <textarea asp-for="Address" class="input"
+                          placeholder="Street, city, postal code…"></textarea>
+                <span asp-validation-for="Address" class="validation-error"></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Preferences -->
+    <div class="form-section">
+        <p class="section-heading">Preferences</p>
+
+        <div class="toggle-row">
+            <label class="toggle-wrap">
+                <input asp-for="ReceiveNewsLetters" type="checkbox" />
+                <span class="toggle-track"></span>
+            </label>
+            <span class="toggle-text">Receive newsletter updates</span>
+        </div>
+        <span asp-validation-for="ReceiveNewsLetters" class="validation-error mt-2"></span>
+    </div>
+
+    @if (ViewBag.Errors != null)
+    {
+        <div class="alert alert-danger">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <div>
+                <strong>Please fix the following:</strong>
+                <ul style="margin:.5rem 0 0 1rem">
+                    @foreach (string error in ViewBag.Errors)
+                    {
+                        <li>@error</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+
+    @* <div asp-validation-summary="All" class="validation-summary"></div> *@
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-floppy-disk"></i> Save Person
+        </button>
+        <a asp-controller="Persons" asp-action="Index" class="btn btn-outline">Cancel</a>
+    </div>
+</form>
+
 @section scripts
-{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" asp-fallback-test="window.jQuery"
-            asp-fallback-src="~/jquery.min.js"></script>
+ {
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" asp-fallback-test="window.jQuery" asp-fallback-src="~/jquery.min.js"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js"
-            asp-fallback-test="window.jQuery.validator" asp-fallback-src="~/jquery.validate.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js" asp-fallback-test="window.jQuery.validator" asp-fallback-src="~/jquery.validate.min.js"></script>
 
-    <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"
-    asp-fallback-test="window.jQuery.validator.unobstrusive"
-    asp-fallback-src="~/jquery.validate.unobtrusive.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" asp-fallback-test="window.jQuery.validator.unobstrusive" asp-fallback-src="~/jquery.validate.unobtrusive.min.js"></script>
 }

@@ -1,0 +1,187 @@
+2026-03-12 16:04:34.875 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5015/Countries/uploadFromExcel - multipart/form-data; boundary=----WebKitFormBoundaryD6G7bAVAwZezq0Fi 7461
+2026-03-12 16:04:34.881 +02:00 [INF] Executing endpoint 'CountriesController.UploadFromExcel (ContactsManager)'
+2026-03-12 16:04:34.906 +02:00 [INF] Route matched with {action = "UploadFromExcel", controller = "Countries"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFromExcel(Microsoft.AspNetCore.Http.IFormFile) on controller CountriesController (ContactsManager).
+2026-03-12 16:04:35.184 +02:00 [INF] Executing ViewResult, running view UploadFromExcel.
+2026-03-12 16:04:35.189 +02:00 [INF] Executed ViewResult - view UploadFromExcel executed in 4.7322ms.
+2026-03-12 16:04:35.189 +02:00 [INF] Executed action CountriesController.UploadFromExcel (ContactsManager) in 282.2463ms
+2026-03-12 16:04:35.189 +02:00 [INF] Executed endpoint 'CountriesController.UploadFromExcel (ContactsManager)'
+2026-03-12 16:04:35.189 +02:00 [INF] HTTP POST /Countries/uploadFromExcel responded 200 in 308.7451 ms
+2026-03-12 16:04:35.190 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5015/Countries/uploadFromExcel - 200 null text/html; charset=utf-8 314.8063ms
+2026-03-12 16:04:35.228 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-12 16:04:35.229 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1980 ms
+2026-03-12 16:04:35.230 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 1.1608ms
+2026-03-12 16:04:35.230 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-12 16:04:35.233 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/style.css - null null
+2026-03-12 16:04:35.234 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/style.css'
+2026-03-12 16:04:35.235 +02:00 [INF] HTTP GET /css/style.css responded 200 in 0.7082 ms
+2026-03-12 16:04:35.235 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/all.min.css - null null
+2026-03-12 16:04:35.235 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/style.css - 200 29008 text/css 1.4345ms
+2026-03-12 16:04:35.236 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/all.min.css'
+2026-03-12 16:04:35.236 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 0.8397 ms
+2026-03-12 16:04:35.236 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/all.min.css - 200 74320 text/css 1.5499ms
+2026-03-12 16:04:35.238 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/js/site.js - null null
+2026-03-12 16:04:35.239 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/js/site.js'
+2026-03-12 16:04:35.239 +02:00 [INF] HTTP GET /js/site.js responded 200 in 0.6879 ms
+2026-03-12 16:04:35.240 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/js/site.js - 200 1444 text/javascript 1.418ms
+2026-03-12 16:04:35.268 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/webfonts/fa-solid-900.woff2 - null null
+2026-03-12 16:04:35.269 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/webfonts/fa-solid-900.woff2'
+2026-03-12 16:04:35.269 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 1.1058 ms
+2026-03-12 16:04:35.270 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 1.8351ms
+2026-03-12 16:05:38.072 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5015/Countries/uploadFromExcel - multipart/form-data; boundary=----WebKitFormBoundaryVyzA1C0ZGREf2BfH 7461
+2026-03-12 16:05:38.073 +02:00 [INF] Executing endpoint 'CountriesController.UploadFromExcel (ContactsManager)'
+2026-03-12 16:05:38.073 +02:00 [INF] Route matched with {action = "UploadFromExcel", controller = "Countries"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFromExcel(Microsoft.AspNetCore.Http.IFormFile) on controller CountriesController (ContactsManager).
+2026-03-12 16:05:38.125 +02:00 [INF] Executing ViewResult, running view UploadFromExcel.
+2026-03-12 16:05:38.127 +02:00 [INF] Executed ViewResult - view UploadFromExcel executed in 2.452ms.
+2026-03-12 16:05:38.128 +02:00 [INF] Executed action CountriesController.UploadFromExcel (ContactsManager) in 54.0657ms
+2026-03-12 16:05:38.128 +02:00 [INF] Executed endpoint 'CountriesController.UploadFromExcel (ContactsManager)'
+2026-03-12 16:05:38.128 +02:00 [INF] HTTP POST /Countries/uploadFromExcel responded 200 in 55.2678 ms
+2026-03-12 16:05:38.128 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5015/Countries/uploadFromExcel - 200 null text/html; charset=utf-8 56.2432ms
+2026-03-12 16:05:38.157 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-12 16:05:38.158 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.2333 ms
+2026-03-12 16:05:38.158 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 1.2433ms
+2026-03-12 16:05:38.158 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-12 16:05:38.162 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/style.css - null null
+2026-03-12 16:05:38.163 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/style.css'
+2026-03-12 16:05:38.164 +02:00 [INF] HTTP GET /css/style.css responded 200 in 1.0410 ms
+2026-03-12 16:05:38.164 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/style.css - 200 29008 text/css 2.1408ms
+2026-03-12 16:05:38.169 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/all.min.css - null null
+2026-03-12 16:05:38.169 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/js/site.js - null null
+2026-03-12 16:05:38.171 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/js/site.js'
+2026-03-12 16:05:38.171 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/all.min.css'
+2026-03-12 16:05:38.171 +02:00 [INF] HTTP GET /js/site.js responded 200 in 1.1847 ms
+2026-03-12 16:05:38.172 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 1.7246 ms
+2026-03-12 16:05:38.172 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/js/site.js - 200 1444 text/javascript 2.8997ms
+2026-03-12 16:05:38.173 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/all.min.css - 200 74320 text/css 3.5376ms
+2026-03-12 16:05:38.210 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/webfonts/fa-solid-900.woff2 - null null
+2026-03-12 16:05:38.212 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/webfonts/fa-solid-900.woff2'
+2026-03-12 16:05:38.213 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 2.0365 ms
+2026-03-12 16:05:38.214 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 3.4349ms
+2026-03-12 16:05:52.010 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5015/Countries/uploadFromExcel - multipart/form-data; boundary=----WebKitFormBoundarywX8VsEY27jvFenFe 7459
+2026-03-12 16:05:52.010 +02:00 [INF] Executing endpoint 'CountriesController.UploadFromExcel (ContactsManager)'
+2026-03-12 16:05:52.011 +02:00 [INF] Route matched with {action = "UploadFromExcel", controller = "Countries"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFromExcel(Microsoft.AspNetCore.Http.IFormFile) on controller CountriesController (ContactsManager).
+2026-03-12 16:05:52.105 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-12 16:05:52.206 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 100)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Countries] ([Id], [Name])
+VALUES (@p0, @p1);
+2026-03-12 16:05:52.231 +02:00 [INF] Executing ViewResult, running view UploadFromExcel.
+2026-03-12 16:05:52.232 +02:00 [INF] Executed ViewResult - view UploadFromExcel executed in 1.4186ms.
+2026-03-12 16:05:52.232 +02:00 [INF] Executed action CountriesController.UploadFromExcel (ContactsManager) in 221.2394ms
+2026-03-12 16:05:52.232 +02:00 [INF] Executed endpoint 'CountriesController.UploadFromExcel (ContactsManager)'
+2026-03-12 16:05:52.232 +02:00 [INF] HTTP POST /Countries/uploadFromExcel responded 200 in 222.0255 ms
+2026-03-12 16:05:52.233 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5015/Countries/uploadFromExcel - 200 null text/html; charset=utf-8 222.6923ms
+2026-03-12 16:05:52.258 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-12 16:05:52.259 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1542 ms
+2026-03-12 16:05:52.259 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 0.9491ms
+2026-03-12 16:05:52.260 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-12 16:05:52.262 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/style.css - null null
+2026-03-12 16:05:52.263 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/all.min.css - null null
+2026-03-12 16:05:52.263 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/js/site.js - null null
+2026-03-12 16:05:52.264 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/js/site.js'
+2026-03-12 16:05:52.264 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/style.css'
+2026-03-12 16:05:52.264 +02:00 [INF] HTTP GET /css/style.css responded 200 in 1.6024 ms
+2026-03-12 16:05:52.264 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/all.min.css'
+2026-03-12 16:05:52.264 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/style.css - 200 29008 text/css 2.1325ms
+2026-03-12 16:05:52.264 +02:00 [INF] HTTP GET /js/site.js responded 200 in 0.8943 ms
+2026-03-12 16:05:52.265 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 1.5732 ms
+2026-03-12 16:05:52.265 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/js/site.js - 200 1444 text/javascript 2.1247ms
+2026-03-12 16:05:52.265 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/all.min.css - 200 74320 text/css 2.6584ms
+2026-03-12 16:05:52.277 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/webfonts/fa-solid-900.woff2 - null null
+2026-03-12 16:05:52.278 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/webfonts/fa-solid-900.woff2'
+2026-03-12 16:05:52.278 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 0.7182 ms
+2026-03-12 16:05:52.279 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 1.3241ms
+2026-03-12 16:05:59.163 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5015/Countries/uploadFromExcel - multipart/form-data; boundary=----WebKitFormBoundaryBqLIYsZaJQioUNJH 7459
+2026-03-12 16:05:59.163 +02:00 [INF] Executing endpoint 'CountriesController.UploadFromExcel (ContactsManager)'
+2026-03-12 16:05:59.164 +02:00 [INF] Route matched with {action = "UploadFromExcel", controller = "Countries"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFromExcel(Microsoft.AspNetCore.Http.IFormFile) on controller CountriesController (ContactsManager).
+2026-03-12 16:05:59.179 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-12 16:05:59.201 +02:00 [INF] Executing ViewResult, running view UploadFromExcel.
+2026-03-12 16:05:59.203 +02:00 [INF] Executed ViewResult - view UploadFromExcel executed in 1.7474ms.
+2026-03-12 16:05:59.203 +02:00 [INF] Executed action CountriesController.UploadFromExcel (ContactsManager) in 38.982ms
+2026-03-12 16:05:59.203 +02:00 [INF] Executed endpoint 'CountriesController.UploadFromExcel (ContactsManager)'
+2026-03-12 16:05:59.203 +02:00 [INF] HTTP POST /Countries/uploadFromExcel responded 200 in 39.9388 ms
+2026-03-12 16:05:59.204 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5015/Countries/uploadFromExcel - 200 null text/html; charset=utf-8 40.901ms
+2026-03-12 16:05:59.240 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/style.css - null null
+2026-03-12 16:05:59.240 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-12 16:05:59.241 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1580 ms
+2026-03-12 16:05:59.241 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/style.css'
+2026-03-12 16:05:59.242 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 1.5145ms
+2026-03-12 16:05:59.242 +02:00 [INF] HTTP GET /css/style.css responded 200 in 1.0401 ms
+2026-03-12 16:05:59.243 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/style.css - 200 29008 text/css 2.5397ms
+2026-03-12 16:05:59.242 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-12 16:05:59.248 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/all.min.css - null null
+2026-03-12 16:05:59.249 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/js/site.js - null null
+2026-03-12 16:05:59.250 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/all.min.css'
+2026-03-12 16:05:59.250 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/js/site.js'
+2026-03-12 16:05:59.250 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 1.1558 ms
+2026-03-12 16:05:59.250 +02:00 [INF] HTTP GET /js/site.js responded 200 in 0.9780 ms
+2026-03-12 16:05:59.250 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/all.min.css - 200 74320 text/css 2.1779ms
+2026-03-12 16:05:59.251 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/js/site.js - 200 1444 text/javascript 1.8073ms
+2026-03-12 16:05:59.280 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/webfonts/fa-solid-900.woff2 - null null
+2026-03-12 16:05:59.281 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/webfonts/fa-solid-900.woff2'
+2026-03-12 16:05:59.282 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 1.5880 ms
+2026-03-12 16:05:59.282 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 2.7218ms
+2026-03-12 16:06:03.716 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/Persons/Index - null null
+2026-03-12 16:06:03.716 +02:00 [INF] Executing endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-12 16:06:03.716 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ServiceContracts.Enums.SortOrder) on controller ContactsManager.Controllers.PersonsController (ContactsManager).
+2026-03-12 16:06:03.717 +02:00 [INF] Filtering persons by null with value null
+2026-03-12 16:06:03.719 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[Name], [p].[ReceiveNewsLetters], [p].[TaxIdentificationNumber], [c].[Id], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+2026-03-12 16:06:03.719 +02:00 [INF] Time for filter persons from database  completed in 2.3 ms
+2026-03-12 16:06:03.720 +02:00 [INF] Sorting persons by Name with order "ASC"
+2026-03-12 16:06:03.720 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-12 16:06:03.723 +02:00 [INF] Executed ViewResult - view Index executed in 2.744ms.
+2026-03-12 16:06:03.723 +02:00 [INF] Executed action ContactsManager.Controllers.PersonsController.Index (ContactsManager) in 6.4774ms
+2026-03-12 16:06:03.723 +02:00 [INF] Executed endpoint 'ContactsManager.Controllers.PersonsController.Index (ContactsManager)'
+2026-03-12 16:06:03.723 +02:00 [INF] HTTP GET /Persons/Index responded 200 in 7.0986 ms
+2026-03-12 16:06:03.724 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/Persons/Index - 200 null text/html; charset=utf-8 8.0907ms
+2026-03-12 16:06:03.748 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-12 16:06:03.748 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1553 ms
+2026-03-12 16:06:03.748 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 0.5961ms
+2026-03-12 16:06:03.748 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-12 16:06:03.751 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/style.css - null null
+2026-03-12 16:06:03.751 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/all.min.css - null null
+2026-03-12 16:06:03.751 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/js/site.js - null null
+2026-03-12 16:06:03.751 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/style.css'
+2026-03-12 16:06:03.751 +02:00 [INF] HTTP GET /css/style.css responded 200 in 0.5139 ms
+2026-03-12 16:06:03.752 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/style.css - 200 29008 text/css 0.8747ms
+2026-03-12 16:06:03.752 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/all.min.css'
+2026-03-12 16:06:03.752 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/js/site.js'
+2026-03-12 16:06:03.752 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 0.7647 ms
+2026-03-12 16:06:03.752 +02:00 [INF] HTTP GET /js/site.js responded 200 in 0.5515 ms
+2026-03-12 16:06:03.752 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/all.min.css - 200 74320 text/css 1.2766ms
+2026-03-12 16:06:03.752 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/js/site.js - 200 1444 text/javascript 1.2803ms
+2026-03-12 16:06:03.765 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/webfonts/fa-solid-900.woff2 - null null
+2026-03-12 16:06:03.766 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/webfonts/fa-solid-900.woff2'
+2026-03-12 16:06:03.766 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 0.5042 ms
+2026-03-12 16:06:03.766 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 0.8799ms
+2026-03-12 16:06:10.615 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/Persons/PersonsPdf - null null
+2026-03-12 16:06:10.615 +02:00 [INF] Executing endpoint 'ContactsManager.Controllers.PersonsController.PersonsPDF (ContactsManager)'
+2026-03-12 16:06:10.627 +02:00 [INF] Route matched with {action = "PersonsPDF", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] PersonsPDF() on controller ContactsManager.Controllers.PersonsController (ContactsManager).
+2026-03-12 16:06:10.629 +02:00 [INF] Retrieving all persons
+2026-03-12 16:06:10.631 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[Name], [p].[ReceiveNewsLetters], [p].[TaxIdentificationNumber], [c].[Id], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+2026-03-12 16:06:10.764 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/style.css - null null
+2026-03-12 16:06:10.765 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/style.css'
+2026-03-12 16:06:10.765 +02:00 [INF] HTTP GET /css/style.css responded 200 in 0.3486 ms
+2026-03-12 16:06:10.765 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/style.css - 200 29008 text/css 0.7172ms
+2026-03-12 16:06:10.765 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/css/all.min.css - null null
+2026-03-12 16:06:10.766 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager/wwwroot/css/all.min.css'
+2026-03-12 16:06:10.766 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 0.4021 ms
+2026-03-12 16:06:10.766 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/css/all.min.css - 200 74320 text/css 0.7195ms
+2026-03-12 16:06:12.484 +02:00 [INF] Executed action ContactsManager.Controllers.PersonsController.PersonsPDF (ContactsManager) in 1856.1869ms
+2026-03-12 16:06:12.484 +02:00 [INF] Executed endpoint 'ContactsManager.Controllers.PersonsController.PersonsPDF (ContactsManager)'
+2026-03-12 16:06:12.484 +02:00 [INF] HTTP GET /Persons/PersonsPdf responded 200 in 1869.0825 ms
+2026-03-12 16:06:12.484 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/Persons/PersonsPdf - 200 null application/pdf 1869.6968ms
+2026-03-12 16:06:12.506 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-12 16:06:12.506 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.0963 ms
+2026-03-12 16:06:12.506 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 0.509ms
+2026-03-12 16:06:12.506 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5015/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404

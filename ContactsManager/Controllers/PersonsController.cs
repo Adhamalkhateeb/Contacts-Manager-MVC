@@ -11,6 +11,7 @@ using ServiceContracts.Enums;
 namespace ContactsManager.Controllers
 {
     [Route("[controller]")]
+    [HandleExceptionFilterFactory]
     public class PersonsController(
         IPersonsService personsService,
         ICountriesService countriesService,
@@ -54,7 +55,7 @@ namespace ContactsManager.Controllers
         }
 
         [HttpPost("[action]")]
-        [TypeFilter<PersonsPostActionFilter>]
+        [PersonPostFilterFactory]
         public async Task<IActionResult> Create(PersonAddRequest request)
         {
             await _personsService.AddAsync(request);
@@ -77,7 +78,7 @@ namespace ContactsManager.Controllers
 
         [HttpPost]
         [Route("[action]/{id}")]
-        [TypeFilter<PersonsPostActionFilter>]
+        [PersonPostFilterFactory]
         public async Task<IActionResult> Edit(PersonUpdateRequest request)
         {
             var personResponse = await _personsService.GetByIdAsync(request.Id);

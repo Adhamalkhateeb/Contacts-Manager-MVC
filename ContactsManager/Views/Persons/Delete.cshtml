@@ -2,47 +2,81 @@
 
 @{
     ViewBag.Title = "Delete Person";
+    ViewBag.CurrentUrl = "~/Persons/Delete";
 }
 
-<a asp-controller="Persons" asp-action="Index" class="link-hover mb">Back to Persons List</a>
-<h2>Delete Person</h2>
-<h3>Are you sure you want to delete that person?</h3>
-
-<div class="center-box">
-    <form asp-controller="Persons" asp-action="Delete" method="post">
-
-        @* Id *@
-        <input type="hidden" asp-for="Id">
-            @*Name*@
-            <div class="form-field flex">
-                <div class="w-25">
-                    <label asp-for="Name" class="form-label pt">Name</label>
-                </div>
-                <div class="flex-1">
-                    <input asp-for="Name" class="form-input" disabled />
-                    <span asp-validation-for="Name" class="text-red"></span>
-                </div>
-            </div>
-
-            <div class="form-field flex">
-                <div class="w-25">
-                    <label asp-for="Email" class="form-label pt">Email</label>
-                </div>
-                <div class="flex-1">
-                    <input asp-for="Email" class="form-input" disabled="disabled" />
-                    <span asp-validation-for="Email" class="text-red"></span>
-                </div>
-            </div>
-
-
-            @*Submit*@
-            <div class="form-field flex">
-                <div class="w-25">
-                </div>
-                <div class="flex-1">
-                    <button class="button button-red-back">Delete</button>
-                </div>
-            </div>
-
-        </form>
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Delete Person</h1>
     </div>
+    <div class="page-actions">
+        <a asp-controller="Persons" asp-action="Index" class="btn btn-outline">
+            <i class="fa-solid fa-arrow-left"></i> Back
+        </a>
+    </div>
+</div>
+
+<div class="delete-card">
+    <div class="delete-header">
+        <div class="delete-icon-wrap">
+            <i class="fa-solid fa-trash"></i>
+        </div>
+        <h2>Delete this contact?</h2>
+        <p>This action is permanent and cannot be undone.</p>
+    </div>
+
+
+
+    <div class="person-info-card">
+        <div class="avatar" style="width:44px;height:44px;font-size:1rem">
+            <i class="fa-solid fa-user"></i>
+        </div>
+        <div>
+            <p class="person-info-name">@Model.Name</p>
+            <p class="person-info-email">@Model.Email</p>
+            <div class="person-info-meta">
+                <span class="badge badge-neutral">@Model.Age yrs</span>
+                @{
+                    var gClass = Model.Gender switch { "Male" => "badge-blue", "Female" => "badge-pink", _ => "badge-teal" };
+                }
+                <span class="badge @gClass">@Model.Gender</span>
+                <span class="badge badge-neutral">
+                    <i class="fa-solid fa-location-dot" style="font-size:.65rem"></i>
+                    @Model.Country
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="warning-box">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        <span>All data associated with this person will be permanently removed from the system.</span>
+    </div>
+
+    <form asp-controller="Persons" asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <label class="confirm-check">
+            <input type="checkbox" id="confirmCheck" required>
+            I understand this cannot be undone
+        </label>
+
+        <div class="delete-actions">
+            <button type="submit" class="btn btn-danger disabled" id="deleteBtn" disabled>
+                <i class="fa-solid fa-trash"></i> Delete
+            </button>
+            <a asp-controller="Persons" asp-action="Index" class="btn btn-outline">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('confirmCheck').addEventListener('change', function() {
+        let deleteBtn = document.getElementById('deleteBtn');
+        deleteBtn.disabled = !this.checked;
+        deleteBtn.classList.toggle("disabled")
+        
+    });
+</script>

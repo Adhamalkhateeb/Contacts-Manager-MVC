@@ -301,7 +301,11 @@ public class PersonsService : IPersonsService
         string searchValue
     )
     {
-        searchValue = searchValue.ToLower();
+        if (!string.IsNullOrEmpty(searchValue))
+            searchValue = searchValue.ToLower();
+
+        var dateParseSuccess = DateTime.TryParse(searchValue, out var parsedDate);
+
         return searchBy switch
         {
             nameof(PersonResponse.Name) => p =>
@@ -311,7 +315,7 @@ public class PersonsService : IPersonsService
                 !string.IsNullOrEmpty(p.Email) && p.Email.ToLower().Contains(searchValue),
 
             nameof(PersonResponse.Gender) => p =>
-                !string.IsNullOrEmpty(p.Gender) && p.Gender.ToLower().Equals(searchValue),
+                !string.IsNullOrEmpty(p.Gender) && p.Gender.ToLower() == searchValue,
 
             nameof(PersonResponse.Address) => p =>
                 !string.IsNullOrEmpty(p.Address) && p.Address.ToLower().Contains(searchValue),
@@ -322,8 +326,9 @@ public class PersonsService : IPersonsService
                 && p.Country.Name.ToLower().Contains(searchValue),
 
             nameof(PersonResponse.DateOfBirth) => p =>
-                p.DateOfBirth.HasValue
-                && p.DateOfBirth.Value.ToString("dd MMM yyyy").Contains(searchValue),
+                dateParseSuccess
+                && p.DateOfBirth.HasValue
+                && p.DateOfBirth.Value.Date == parsedDate.Date,
 
             _ => p => true,
         };

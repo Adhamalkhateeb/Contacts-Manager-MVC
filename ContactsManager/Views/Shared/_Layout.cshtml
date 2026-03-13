@@ -3,36 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title</title>
-    <link rel="stylesheet" href="~/css/normalize.css">
-        <link rel="stylesheet" href="~/css/style.css">
-            <link rel="stylesheet" href="~/css/all.min.css">
+    <title>@ViewBag.Title - Contact Manager</title>
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="icon" type="image/png" href="~/favicon.png">
+</head>
+<body>
+    <div class="shell">
+        <header class="site-header">
+            <a href="/" class="site-brand">
+                <i class="fa-solid fa-address-book"></i>
+                Contact Manager
+            </a>
 
+            @* Desktop nav (hidden on mobile via CSS) *@
+            <nav class="site-nav">
+                <a asp-action="Index" asp-controller="Persons"
+                   class="nav-link @(ViewBag.CurrentUrl == "~/Persons/Index" ? "active" : "")">
+                    <i class="fa-solid fa-users"></i>
+                    Persons
+                </a>
+                <a asp-action="UploadFromExcel" asp-controller="Countries"
+                   class="nav-link @(ViewBag.CurrentUrl == "~/Countries/UploadFromExcel" ? "active" : "")">
+                    <i class="fa-solid fa-file-excel"></i>
+                    Upload Countries
+                </a>
+            </nav>
 
-            </head>
+            <div class="header-right">
+                <a asp-action="Register" asp-controller="Account" class="btn btn-outline">Register</a>
+                <a asp-action="Login"    asp-controller="Account" class="btn btn-primary">Login</a>
+            </div>
 
-            <body>
-                <div class="container">
-                    <div class="navbar">
-                        <div class="navbar-brand">
-                            <img src="~/logo.png" width="30px" alt="logo" asp-append-version="true">
-                            </div>
-                            <ul>
-                                <li>
-                                    <a asp-action="Index" asp-controller="Persons">Persons</a>
-                                </li>
-                                <li>
-                                    <a asp-action="UploadFromExcel" asp-controller="Countries">Upload Countries</a>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="page-content">
-                            @RenderBody()
-                        </div>
-                    </div>
-                    @RenderSection("scripts",false)
-                </body>
+            @* Hamburger — visible on mobile only *@
+            <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+                <i class="fa-solid fa-bars" id="navToggleIcon"></i>
+            </button>
 
+            @* Mobile nav dropdown *@
+            <div class="mobile-nav" id="mobileNav" role="navigation" aria-label="Mobile navigation">
+                <a asp-action="Index" asp-controller="Persons"
+                   class="nav-link @(ViewBag.CurrentUrl == "~/Persons/Index" ? "active" : "")">
+                    <i class="fa-solid fa-users"></i>
+                    Persons
+                </a>
+                <a asp-action="UploadFromExcel" asp-controller="Countries"
+                   class="nav-link @(ViewBag.CurrentUrl == "~/Countries/UploadFromExcel" ? "active" : "")">
+                    <i class="fa-solid fa-file-excel"></i>
+                    Upload Countries
+                </a>
+                <div class="mobile-nav-sep"></div>
+                <div class="mobile-nav-auth">
+                    <a asp-action="Register" asp-controller="Account" class="btn btn-outline">Register</a>
+                    <a asp-action="Login"    asp-controller="Account" class="btn btn-primary">Login</a>
+                </div>
+            </div>
+        </header>
 
+        <main>
+            @RenderBody()
+        </main>
 
-            </html>
+        <footer class="site-footer">
+            <span class="footer-brand">Contact Manager</span>
+            <span>Built By Adham</span>
+        </footer>
+    </div>
+
+    <script src="~/js/site.js"></script>
+    <script>
+    // Hamburger toggle
+    (function () {
+        var btn  = document.getElementById('navToggle');
+        var nav  = document.getElementById('mobileNav');
+        var icon = document.getElementById('navToggleIcon');
+        if (!btn) return;
+
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+            var open = nav.classList.toggle('is-open');
+            btn.setAttribute('aria-expanded', open);
+            icon.className = open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+        });
+
+        // Close when tapping outside
+        document.addEventListener('click', function () {
+            nav.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+            icon.className = 'fa-solid fa-bars';
+        });
+    })();
+    </script>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

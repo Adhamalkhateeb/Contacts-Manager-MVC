@@ -1,13 +1,6 @@
-using Entities;
-using Microsoft.AspNetCore.HttpLogging;
-using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
-using Repositories;
-using RepositoriesContract;
 using Rotativa.AspNetCore;
 using Serilog;
-using ServiceContracts;
-using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,29 +11,12 @@ builder.Host.UseSerilog(
     }
 );
 
-builder.Services.AddControllersWithViews(options =>
-{
-    // options.Filters.Add<ResponseHeaderActionFilter>();
-});
-
-builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
-builder.Services.AddScoped<IPersonsRepository, PersonsRepository>();
-builder.Services.AddScoped<ICountriesService, CountriesService>();
-builder.Services.AddScoped<IPersonsService, PersonsService>();
+builder.Services.AddControllersWithViews();
+builder.Services.AddServices();
 
 if (!builder.Environment.IsEnvironment("Test"))
 {
-    builder.Services.AddDbContext<AppDbContext>(options =>
-    {
-        var constr = builder.Configuration.GetConnectionString("DefaultConnection");
-        if (string.IsNullOrEmpty(constr))
-        {
-            throw new InvalidOperationException();
-        }
-
-        options.UseSqlServer(constr);
-    });
-
+    builder.Services.AddDatabase(builder.Configuration);
     RotativaConfiguration.Setup("wwwroot", "Rotativa");
 }
 
