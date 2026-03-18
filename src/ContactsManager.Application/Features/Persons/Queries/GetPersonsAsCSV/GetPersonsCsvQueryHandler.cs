@@ -1,10 +1,7 @@
-using System.Globalization;
-using System.Text;
 using ContactsManager.Application.Common.Interfaces;
-using ContactsManager.Application.Features.Persons.DTOs;
+using ContactsManager.Application.Features.Common.Interfaces;
+using ContactsManager.Application.Features.Persons.Mappers;
 using ContactsManager.Domain.Common.Results;
-using CsvHelper;
-using CsvHelper.Configuration;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -13,11 +10,13 @@ namespace ContactsManager.Application.Features.Persons.GetPersonsCSV;
 
 public sealed class GetPersonsCsvQueryHandler(
     ILogger<GetPersonsCsvQueryHandler> logger,
-    IAppDbContext context
+    IAppDbContext context,
+    IPersonExportService personExportService
 ) : IRequestHandler<GetPersonsCsvQuery, Result<byte[]>>
 {
     private readonly ILogger<GetPersonsCsvQueryHandler> _logger = logger;
     private readonly IAppDbContext _context = context;
+    private readonly IPersonExportService _personExportService = personExportService;
 
     public async Task<Result<byte[]>> Handle(
         GetPersonsCsvQuery request,
@@ -25,22 +24,27 @@ public sealed class GetPersonsCsvQueryHandler(
     )
     {
         _logger.LogInformation("Generating CSV export for persons");
+        var persons = await _context
+            .Persons.Include(p => p.Country)
+            .AsNoTracking()
+            .ToListAsync(cancellationToken);
 
-        var memoryStream = new MemoryStream();
-        CsvConfiguration configuration = new CsvConfiguration(CultureInfo.InvariantCulture);
-
-        using (var writer = new StreamWriter(memoryStream, new UTF8Encoding(true), leaveOpen: true))
-        using (var csv = new CsvWriter(writer, configuration))
+        if (persons is null)
         {
-            csv.WriteHeader<PersonDto>();
-            await csv.NextRecordAsync();
-
-            var persons = await _context.Persons.AsNoTracking().ToListAsync();
-            await csv.WriteRecordsAsync(persons);
-
-            await writer.FlushAsync();
+            _logger.LogWarning("No persons found for CSV export");
+            return Error.NotFound("No persons found for CSV export");
         }
 
-        return memoryStream.ToArray();
+        var csvBytes = await _personExportService.GenerateCsvAsync(
+            persons.ToDtos(),
+            cancellationToken
+        );
+
+        if (csvBytes == null || !csvBytes.Any())
+        {
+            _logger.LogWarning("Failed to generate CSV export for persons");
+            return Error.Failure("Failed to generate CSV export for persons");
+        }
+        return csvBytes;
     }
 }
