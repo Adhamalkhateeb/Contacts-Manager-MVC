@@ -11,8 +11,10 @@ public static class ConfigureServicesExtension
     {
         services.AddScoped<ICountriesRepository, CountriesRepository>();
         services.AddScoped<IPersonsRepository, PersonsRepository>();
-        services.AddScoped<ICountriesService, CountriesService>();
-        services.AddScoped<IPersonsService, PersonsService>();
+        services.AddScoped<ICountryCommandService, CountryCommandService>();
+        services.AddScoped<ICountryQueryService, CountryQueryService>();
+        services.AddScoped<IPersonCommandService, PersonCommandService>();
+        services.AddScoped<IPersonQueryService, PersonQueryService>();
         services.AddTransient<PersonsPostActionFilter>();
         services.AddTransient<HandleExceptionFilter>();
 

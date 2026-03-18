@@ -1,0 +1,83 @@
+@{
+
+    Layout = null;
+
+    var statusCode = Context.Response.StatusCode;
+
+    string errorCode, errorTitle, errorMessage, iconClass, variantClass;
+
+    switch (statusCode)
+    {
+        case 404:
+            errorCode    = "404 — Not Found";
+            errorTitle   = "Page not found";
+            errorMessage = "We couldn't find the page you were looking for. It may have been moved, deleted, or the URL might be incorrect.";
+            iconClass    = "fa-solid fa-magnifying-glass";
+            variantClass = "not-found";
+            break;
+        case 403:
+            errorCode    = "403 — Forbidden";
+            errorTitle   = "Access denied";
+            errorMessage = "You don't have permission to view this page. If you think this is a mistake, please contact your administrator.";
+            iconClass    = "fa-solid fa-lock";
+            variantClass = "forbidden";
+            break;
+        default:
+            errorCode    = "500 — Internal Server Error";
+            errorTitle   = "Something went wrong";
+            errorMessage = "An unexpected error occurred while processing your request. Please try again — if the problem persists, contact support.";
+            iconClass    = "fa-solid fa-triangle-exclamation";
+            variantClass = "";
+            break;
+    }
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+     <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="~/css/all.min.css">
+    <link rel="icon" type="image/png" href="~/favicon.png">
+</head>
+<body>
+    <div class="error-page">
+
+    <div class="error-icon-wrap @variantClass">
+        <i class="@iconClass"></i>
+    </div>
+
+    <span class="error-code @variantClass">@errorCode</span>
+
+    <h1 class="error-title">@errorTitle</h1>
+    <p class="error-message">@errorMessage</p>
+
+    <div class="error-actions">
+        @if (statusCode == 404 || statusCode == 403)
+        {
+            <a href="/" class="btn btn-primary">
+                <i class="fa-solid fa-house"></i> Go Home
+            </a>
+            <a href="javascript:history.back()" class="btn btn-outline">
+                <i class="fa-solid fa-arrow-left"></i> Go Back
+            </a>
+        }
+        else
+        {
+            <a href="javascript:history.back()" class="btn btn-primary">
+                <i class="fa-solid fa-arrow-left"></i> Go Back
+            </a>
+            <a href="/" class="btn btn-outline">
+                <i class="fa-solid fa-house"></i> Home
+            </a>
+        }
+    </div>
+
+</div>
+
+</body>
+</html>
+
+
+

@@ -1,3 +1,4 @@
+using ContactsManager;
 using OfficeOpenXml;
 using Rotativa.AspNetCore;
 using Serilog;
@@ -29,6 +30,11 @@ app.UseSerilogRequestLogging();
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/Error");
+    app.UseExceptionHandlingMiddleware();
 }
 
 app.UseStaticFiles();

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Rotativa.AspNetCore;
 using Rotativa.AspNetCore.Options;
+using Serilog;
 using ServiceContracts;
 using ServiceContracts.DTO;
 using ServiceContracts.Enums;
@@ -11,16 +12,26 @@ using ServiceContracts.Enums;
 namespace ContactsManager.Controllers
 {
     [Route("[controller]")]
-    [HandleExceptionFilterFactory]
-    public class PersonsController(
-        IPersonsService personsService,
-        ICountriesService countriesService,
-        ILogger<PersonsController> logger
-    ) : Controller
+    // [HandleExceptionFilterFactory]
+    public class PersonsController : Controller
     {
-        private readonly IPersonsService _personsService = personsService;
-        private readonly ICountriesService _countriesService = countriesService;
-        private readonly ILogger<PersonsController> _logger = logger;
+        private readonly IPersonQueryService _personQueryService;
+        private readonly IPersonCommandService _personCommandService;
+        private readonly ICountryQueryService _countryQueryService;
+        private readonly ILogger<PersonsController> _logger;
+
+        public PersonsController(
+            IPersonQueryService personQueryService,
+            IPersonCommandService personCommandService,
+            ICountryQueryService countryQueryService,
+            ILogger<PersonsController> logger
+        )
+        {
+            _personQueryService = personQueryService;
+            _personCommandService = personCommandService;
+            _countryQueryService = countryQueryService;
+            _logger = logger;
+        }
 
         [Route("[action]")]
         [Route("/")]
@@ -31,8 +42,8 @@ namespace ContactsManager.Controllers
             SortOrder sortOrder = SortOrder.ASC
         )
         {
-            var filtered = await _personsService.GetFilteredAsync(searchBy, searchValue);
-            var sorted = _personsService.GetSorted(filtered, orderBy, sortOrder);
+            var filtered = await _personQueryService.GetFilteredAsync(searchBy, searchValue);
+            var sorted = _personQueryService.GetSorted(filtered, orderBy, sortOrder);
 
             var viewModel = new PersonsListViewModel
             {
@@ -58,7 +69,7 @@ namespace ContactsManager.Controllers
         [PersonPostFilterFactory]
         public async Task<IActionResult> Create(PersonAddRequest request)
         {
-            await _personsService.AddAsync(request);
+            await _personCommandService.AddAsync(request);
             return RedirectToAction(nameof(Index));
         }
 
@@ -66,7 +77,7 @@ namespace ContactsManager.Controllers
         [Route("[action]/{id:guid}")]
         public async Task<IActionResult> Edit(Guid id)
         {
-            var person = await _personsService.GetByIdAsync(id);
+            var person = await _personQueryService.GetByIdAsync(id);
 
             if (person is null)
                 return RedirectToAction(nameof(Index));
@@ -81,12 +92,12 @@ namespace ContactsManager.Controllers
         [PersonPostFilterFactory]
         public async Task<IActionResult> Edit(PersonUpdateRequest request)
         {
-            var personResponse = await _personsService.GetByIdAsync(request.Id);
+            var personResponse = await _personQueryService.GetByIdAsync(request.Id);
 
             if (personResponse is null)
                 return RedirectToAction(nameof(Index));
 
-            await _personsService.UpdateAsync(request);
+            await _personCommandService.UpdateAsync(request);
 
             return RedirectToAction(nameof(Index));
         }
@@ -95,7 +106,7 @@ namespace ContactsManager.Controllers
         [Route("[action]/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var person = await _personsService.GetByIdAsync(id);
+            var person = await _personQueryService.GetByIdAsync(id);
 
             if (person is null)
                 return RedirectToAction(nameof(Index));
@@ -112,12 +123,12 @@ namespace ContactsManager.Controllers
                 return View(person);
             }
 
-            var personResponse = await _personsService.GetByIdAsync(person.Id);
+            var personResponse = await _personQueryService.GetByIdAsync(person.Id);
 
             if (personResponse is null)
                 return RedirectToAction(nameof(Index));
 
-            await _personsService.DeleteAsync(personResponse.Id);
+            await _personCommandService.DeleteAsync(personResponse.Id);
 
             return RedirectToAction(nameof(Index));
         }
@@ -125,7 +136,7 @@ namespace ContactsManager.Controllers
         [Route("PersonsPdf")]
         public async Task<IActionResult> PersonsPDF()
         {
-            var persons = await _personsService.GetAllAsync();
+            var persons = await _personQueryService.GetAllAsync();
             return new ViewAsPdf("PersonsPDF", persons, ViewData)
             {
                 PageMargins = new Margins()
@@ -142,14 +153,14 @@ namespace ContactsManager.Controllers
         [Route("PersonsCSV")]
         public async Task<IActionResult> DownloadPersonsCsv()
         {
-            var csvBytes = await _personsService.GetPersonsCsvAsync();
+            var csvBytes = await _personQueryService.GetPersonsCsvAsync();
             return File(csvBytes, "text/csv", "persons.csv");
         }
 
         [Route("PersonsExcel")]
         public async Task<IActionResult> DownloadPersonsExcel()
         {
-            var fileBytes = await _personsService.GetPersonsExcelAsync();
+            var fileBytes = await _personQueryService.GetPersonsExcelAsync();
 
             var fileName = $"Persons_{DateTime.Now:yyyyMMddHHmmss}.xlsx";
 
@@ -162,7 +173,7 @@ namespace ContactsManager.Controllers
 
         private async Task<List<SelectListItem>> GetCountriesSelectListAsync()
         {
-            var countries = await _countriesService.GetAllAsync();
+            var countries = await _countryQueryService.GetAllAsync();
 
             return countries
                 .Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString() })

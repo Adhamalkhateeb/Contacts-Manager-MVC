@@ -17,7 +17,7 @@ public class PersonPostFilterFactoryAttribute : Attribute, IFilterFactory
 }
 
 public class PersonsPostActionFilter(
-    ICountriesService countriesService,
+    ICountryQueryService countriesService,
     ILogger<PersonsPostActionFilter> logger
 ) : IAsyncActionFilter, IOrderedFilter
 {

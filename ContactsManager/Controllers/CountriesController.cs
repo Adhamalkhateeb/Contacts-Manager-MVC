@@ -5,11 +5,11 @@ using ServiceContracts;
 [Route("[controller]")]
 public class CountriesController : Controller
 {
-    private readonly ICountriesService _countriesService;
+    private readonly ICountryCommandService _countryCommandService;
 
-    public CountriesController(ICountriesService countriesService)
+    public CountriesController(ICountryCommandService countryCommandService)
     {
-        _countriesService = countriesService;
+        _countryCommandService = countryCommandService;
     }
 
     [Route("uploadFromExcel")]
@@ -37,7 +37,7 @@ public class CountriesController : Controller
 
         try
         {
-            var count = await _countriesService.UploadFromExcelFileAsync(excelFile);
+            var count = await _countryCommandService.UploadFromExcelFileAsync(excelFile);
             ViewBag.Message = $"{count} countries added successfully";
             return View();
         }
