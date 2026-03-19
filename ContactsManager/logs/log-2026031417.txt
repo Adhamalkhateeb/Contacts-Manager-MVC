@@ -1,6 +1,0 @@
-2026-03-14 17:34:18.339 +02:00 [INF] User profile is available. Using '/home/adhamalkhateeb/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
-2026-03-14 17:34:18.475 +02:00 [INF] Now listening on: http://localhost:5015
-2026-03-14 17:34:18.478 +02:00 [INF] Application started. Press Ctrl+C to shut down.
-2026-03-14 17:34:18.479 +02:00 [INF] Hosting environment: Production
-2026-03-14 17:34:18.479 +02:00 [INF] Content root path: /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/ContactsManager
-2026-03-14 17:34:34.037 +02:00 [INF] Application is shutting down...

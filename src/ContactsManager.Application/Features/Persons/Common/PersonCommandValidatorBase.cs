@@ -28,7 +28,7 @@ public abstract class PersonCommandValidatorBase<TCommand> : AbstractValidator<T
 
         RuleFor(x => x.DateOfBirth)
             .LessThan(DateTime.UtcNow)
-            .WithMessage("")
+            .WithMessage("Date of birth must be in the past.")
             .When(x => x.DateOfBirth.HasValue);
 
         RuleFor(x => x.CountryId).NotEmpty().WithMessage("CountryId is required");

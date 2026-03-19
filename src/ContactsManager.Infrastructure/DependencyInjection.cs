@@ -34,6 +34,7 @@ public static class DependencyInjection
 
         services.AddScoped<IAppDbContext>(provider => provider.GetRequiredService<AppDbContext>());
         services.AddScoped<IPersonExportService, PersonExportService>();
+        services.AddScoped<ICountryImportService, CountryImportService>();
 
         return services;
     }

@@ -1,47 +1,59 @@
 using ContactsManager.Application.Common.Interfaces;
+using ContactsManager.Application.Features.Common.Interfaces;
 using ContactsManager.Domain.Common.Results;
 using ContactsManager.Domain.Countries;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using OfficeOpenXml;
 
 namespace ContactsManager.Application.Features.Countries.Commands.UploadCountryFromExcel;
 
 public class UploadCountriesFromExcelCommandHandler(
     IAppDbContext context,
-    ILogger<UploadCountriesFromExcelCommandHandler> logger
+    ILogger<UploadCountriesFromExcelCommandHandler> logger,
+    ICountryImportService countryImportService
 ) : IRequestHandler<UploadCountriesFromExcelCommand, Result<int>>
 {
     private readonly IAppDbContext _context = context;
     private readonly ILogger<UploadCountriesFromExcelCommandHandler> _logger = logger;
+    private readonly ICountryImportService _countryImportService = countryImportService;
 
     public async Task<Result<int>> Handle(
         UploadCountriesFromExcelCommand request,
         CancellationToken cancellationToken
     )
     {
-        using var memoryStream = new MemoryStream();
-        await request.file.CopyToAsync(memoryStream, cancellationToken);
-        memoryStream.Position = 0;
+        _logger.LogInformation(
+            "Starting countries Excel upload. FileName: {FileName}, Size: {FileSize}",
+            request.file.FileName,
+            request.file.Length
+        );
 
-        using var excel = new ExcelPackage(memoryStream);
-        var worksheet =
-            excel.Workbook.Worksheets["Countries"] ?? excel.Workbook.Worksheets.FirstOrDefault();
+        await using var fileStream = request.file.OpenReadStream();
+        var namesFromExcelResult = await _countryImportService.GetCountryNamesFromExcelAsync(
+            fileStream,
+            cancellationToken
+        );
 
-        if (worksheet?.Dimension is null)
-            return 0;
-
-        var namesFromExcel = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-        for (var row = 2; row <= worksheet.Dimension.Rows; row++)
+        if (namesFromExcelResult.IsError)
         {
-            var name = worksheet.Cells[row, 1].GetValue<string>()?.Trim();
-            if (!string.IsNullOrWhiteSpace(name))
-                namesFromExcel.Add(name);
+            _logger.LogWarning(
+                "Country upload failed during Excel parsing. Errors: {Errors}",
+                namesFromExcelResult.Errors.Select(e => e.Description).ToArray()
+            );
+            return namesFromExcelResult.TopError;
         }
 
+        var namesFromExcel = namesFromExcelResult.Value;
+
         if (namesFromExcel.Count == 0)
+        {
+            _logger.LogInformation(
+                "Country upload completed with no rows to process. FileName: {FileName}",
+                request.file.FileName
+            );
             return 0;
+        }
 
         var existingNames = await _context
             .Countries.AsNoTracking()
@@ -67,14 +79,35 @@ public class UploadCountriesFromExcelCommandHandler(
             }
 
             _context.Countries.Add(createCountryResult.Value);
+            existingLookup.Add(name);
             insertedCount++;
         }
 
-        if (insertedCount > 0)
+        if (insertedCount == 0)
+        {
+            _logger.LogInformation(
+                "Country upload completed with no new countries to insert. ParsedRows: {ParsedRows}",
+                namesFromExcel.Count
+            );
+            return 0;
+        }
+
+        try
+        {
             await _context.SaveChangesAsync(cancellationToken);
+        }
+        catch (DbUpdateException ex)
+        {
+            _logger.LogError(ex, "Country upload failed while saving changes");
+            return Error.Failure(
+                "Application_UploadCountriesFromExcel_SaveFailed",
+                "Failed to save uploaded countries"
+            );
+        }
 
         _logger.LogInformation(
-            "Uploaded countries from Excel. Inserted: {InsertedCount}",
+            "Countries upload from Excel completed successfully. ParsedRows: {ParsedRows}, Inserted: {InsertedCount}",
+            namesFromExcel.Count,
             insertedCount
         );
 
