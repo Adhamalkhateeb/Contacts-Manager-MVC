@@ -1,0 +1,121 @@
+@{
+    ViewBag.Title = "Upload Countries";
+    ViewBag.CurrentUrl = "~/Countries/UploadFromExcel";
+}
+
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Upload Countries</h1>
+        <p class="page-meta">Import country data from an Excel file.</p>
+    </div>
+    <div class="page-actions">
+        <a asp-controller="Persons" asp-action="Index" class="btn btn-outline">
+            <i class="fa-solid fa-arrow-left"></i> Back
+        </a>
+    </div>
+</div>
+
+<div class="upload-card">
+    <h2>Select Excel File</h2>
+    <p>Upload an .xlsx file with country data to import into the system.</p>
+
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger" data-auto-dismiss>
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span>@ViewBag.ErrorMessage</span>
+        </div>
+    }
+
+    @* Controller sets ViewBag.Message on success *@
+    @if (ViewBag.Message != null)
+    {
+        <div class="alert alert-success" data-auto-dismiss>
+            <i class="fa-solid fa-circle-check"></i>
+            <span>@ViewBag.Message</span>
+        </div>
+    }
+
+    <form asp-controller="Countries" asp-action="UploadFromExcel"
+          method="post" enctype="multipart/form-data" id="uploadForm">
+
+        <label class="file-drop" id="dropZone" for="excelFile">
+            <input type="file" id="excelFile" name="excelFile" accept=".xlsx,.xls" required />
+            <i class="fa-solid fa-file-arrow-up"></i>
+            <span class="drop-text">Click to choose file, or drag and drop</span>
+            <span class="drop-hint">.xlsx or .xls — max 10 MB</span>
+        </label>
+
+        <div class="file-chosen" id="fileChosen">
+            <i class="fa-solid fa-circle-check"></i>
+            <span id="fileName"></span>
+        </div>
+
+        <div class="upload-requirements">
+            <div class="req-item">
+                <i class="fa-solid fa-check"></i>
+                First row must be headers
+            </div>
+            <div class="req-item">
+                <i class="fa-solid fa-check"></i>
+                Column: CountryName
+            </div>
+            <div class="req-item">
+                <i class="fa-solid fa-check"></i>
+                Worksheet must be Countries
+            </div>
+            <div class="req-item">
+                <i class="fa-solid fa-check"></i>
+                Max 10 MB file size
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="uploadBtn" disabled
+                style="width:100%;justify-content:center;margin-top:4px">
+            <i class="fa-solid fa-upload"></i> Upload File
+        </button>
+    </form>
+</div>
+
+<script>
+(function () {
+    'use strict';
+
+    var input    = document.getElementById('excelFile');
+    var dropZone = document.getElementById('dropZone');
+    var chosen   = document.getElementById('fileChosen');
+    var fileName = document.getElementById('fileName');
+    var btn      = document.getElementById('uploadBtn');
+
+    function handleFile(file) {
+        if (!file) return;
+        // Basic client-side extension check
+        var ext = file.name.split('.').pop().toLowerCase();
+        if (ext !== 'xlsx' && ext !== 'xls') {
+            alert('Please select an .xlsx or .xls file.');
+            input.value = '';
+            return;
+        }
+        fileName.textContent = file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
+        chosen.classList.add('show');
+        btn.disabled = false;
+    }
+
+    input.addEventListener('change', function () { handleFile(input.files[0]); });
+
+    dropZone.addEventListener('dragover',  function (e) { e.preventDefault(); dropZone.classList.add('drag-over'); });
+    dropZone.addEventListener('dragleave', function ()  { dropZone.classList.remove('drag-over'); });
+    dropZone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        dropZone.classList.remove('drag-over');
+        var file = e.dataTransfer.files[0];
+        if (file) {
+            // Assign to the file input via DataTransfer
+            var dt = new DataTransfer();
+            dt.items.add(file);
+            input.files = dt.files;
+            handleFile(file);
+        }
+    });
+})();
+</script>

@@ -1,0 +1,830 @@
+2026-03-19 11:12:05.065 +02:00 [INF] Executed DbCommand (154ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+CREATE DATABASE [ContactsManagerDb];
+2026-03-19 11:12:05.185 +02:00 [INF] Executed DbCommand (80ms) [Parameters=[], CommandType='"Text"', CommandTimeout='60']
+IF SERVERPROPERTY('EngineEdition') <> 5
+BEGIN
+    ALTER DATABASE [ContactsManagerDb] SET READ_COMMITTED_SNAPSHOT ON;
+END;
+2026-03-19 11:12:05.205 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-03-19 11:12:05.207 +02:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2026-03-19 11:12:05.222 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2026-03-19 11:12:05.266 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2026-03-19 11:12:05.274 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2026-03-19 11:12:05.275 +02:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2026-03-19 11:12:05.283 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2026-03-19 11:12:05.292 +02:00 [INF] Applying migration '20260319091111_initial'.
+2026-03-19 11:12:05.308 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Countries] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(100) NOT NULL,
+    [CreatedAtUtc] datetimeoffset NOT NULL,
+    [CreatedBy] nvarchar(max) NULL,
+    [LastModifiedUtc] datetimeoffset NOT NULL,
+    [LastModifiedBy] nvarchar(max) NULL,
+    CONSTRAINT [PK_Countries] PRIMARY KEY ([Id])
+);
+2026-03-19 11:12:05.311 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Persons] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(40) NOT NULL,
+    [Gender] int NOT NULL,
+    [DateOfBirth] datetime2 NULL,
+    [Address] nvarchar(255) NULL,
+    [Email] nvarchar(200) NOT NULL,
+    [CountryId] uniqueidentifier NOT NULL,
+    [ReceiveNewsLetters] bit NOT NULL,
+    [CreatedAtUtc] datetimeoffset NOT NULL,
+    [CreatedBy] nvarchar(max) NULL,
+    [LastModifiedUtc] datetimeoffset NOT NULL,
+    [LastModifiedBy] nvarchar(max) NULL,
+    CONSTRAINT [PK_Persons] PRIMARY KEY ([Id]),
+    CONSTRAINT [FK_Persons_Countries_CountryId] FOREIGN KEY ([CountryId]) REFERENCES [Countries] ([Id]) ON DELETE CASCADE
+);
+2026-03-19 11:12:05.312 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_Countries_Name] ON [Countries] ([Name]);
+2026-03-19 11:12:05.313 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Persons_CountryId] ON [Persons] ([CountryId]);
+2026-03-19 11:12:05.314 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX [IX_Persons_Email] ON [Persons] ([Email]);
+2026-03-19 11:12:05.319 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20260319091111_initial', N'10.0.5');
+2026-03-19 11:12:05.323 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2026-03-19 11:12:11.647 +02:00 [INF] User profile is available. Using '/home/adhamalkhateeb/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-19 11:12:11.719 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-19 11:12:11.720 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-19 11:12:11.721 +02:00 [INF] Hosting environment: Development
+2026-03-19 11:12:11.721 +02:00 [INF] Content root path: /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web
+2026-03-19 11:12:24.939 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-19 11:12:24.957 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:12:24.980 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:12:24.984 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-19 11:12:25.051 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-19 11:12:25.136 +02:00 [INF] Executed ViewResult - view Index executed in 85.8407ms.
+2026-03-19 11:12:25.137 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 156.4065ms
+2026-03-19 11:12:25.137 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:12:25.139 +02:00 [INF] HTTP GET / responded 200 in 192.0888 ms
+2026-03-19 11:12:25.141 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 202.4416ms
+2026-03-19 11:12:26.851 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Create - null null
+2026-03-19 11:12:26.853 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:12:26.858 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:12:27.533 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-19 11:12:27.550 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:12:27.604 +02:00 [INF] Executed ViewResult - view Create executed in 55.5363ms.
+2026-03-19 11:12:27.605 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 746.5172ms
+2026-03-19 11:12:27.606 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:12:27.607 +02:00 [INF] HTTP GET /Persons/Create responded 200 in 754.6534 ms
+2026-03-19 11:12:27.612 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 760.8686ms
+2026-03-19 11:12:27.636 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:12:27.639 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 1.8316 ms
+2026-03-19 11:12:27.640 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 3.4589ms
+2026-03-19 11:12:27.640 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:15:38.781 +02:00 [INF] Application is shutting down...
+2026-03-19 11:15:41.371 +02:00 [INF] User profile is available. Using '/home/adhamalkhateeb/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-19 11:15:41.451 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-19 11:15:41.452 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-19 11:15:41.453 +02:00 [INF] Hosting environment: Development
+2026-03-19 11:15:41.453 +02:00 [INF] Content root path: /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web
+2026-03-19 11:16:19.549 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-19 11:16:19.567 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:16:19.591 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:16:19.595 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-19 11:16:19.664 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-19 11:16:19.746 +02:00 [INF] Executed ViewResult - view Index executed in 83.1813ms.
+2026-03-19 11:16:19.747 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 155.9739ms
+2026-03-19 11:16:19.747 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:16:19.749 +02:00 [INF] HTTP GET / responded 200 in 192.2812 ms
+2026-03-19 11:16:19.751 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 202.9177ms
+2026-03-19 11:16:22.673 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index?searchBy=Name&searchValue= - null null
+2026-03-19 11:16:22.675 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:16:22.681 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:16:23.421 +02:00 [INF] Executed DbCommand (15ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+2026-03-19 11:16:23.441 +02:00 [INF] Sorting 0 persons by Name in "ASC" order
+2026-03-19 11:16:23.443 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-19 11:16:23.447 +02:00 [INF] Executed ViewResult - view Index executed in 3.8588ms.
+2026-03-19 11:16:23.447 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 766.3552ms
+2026-03-19 11:16:23.448 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:16:23.448 +02:00 [INF] HTTP GET /Persons/Index responded 200 in 774.2448 ms
+2026-03-19 11:16:23.454 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index?searchBy=Name&searchValue= - 200 null text/html; charset=utf-8 781.4687ms
+2026-03-19 11:16:29.359 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index?searchBy=Name&searchValue=ahmed - null null
+2026-03-19 11:16:29.361 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:16:29.361 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:16:29.425 +02:00 [INF] Executed DbCommand (9ms) [Parameters=[@searchValue_contains='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+WHERE [p].[Name] NOT LIKE N'' AND LOWER([p].[Name]) LIKE @searchValue_contains ESCAPE N'\'
+2026-03-19 11:16:29.426 +02:00 [INF] Filtered persons query executed. SearchBy: Name, Count: 0
+2026-03-19 11:16:29.427 +02:00 [INF] Sorting 0 persons by Name in "ASC" order
+2026-03-19 11:16:29.428 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-19 11:16:29.429 +02:00 [INF] Executed ViewResult - view Index executed in 1.4096ms.
+2026-03-19 11:16:29.429 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 67.4129ms
+2026-03-19 11:16:29.429 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:16:29.429 +02:00 [INF] HTTP GET /Persons/Index responded 200 in 69.0627 ms
+2026-03-19 11:16:29.429 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index?searchBy=Name&searchValue=ahmed - 200 null text/html; charset=utf-8 70.4262ms
+2026-03-19 11:16:30.558 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index?searchBy=Name&searchValue=ahmed - null null
+2026-03-19 11:16:30.559 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:16:30.559 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:16:30.630 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@searchValue_contains='?' (Size = 40)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+WHERE [p].[Name] NOT LIKE N'' AND LOWER([p].[Name]) LIKE @searchValue_contains ESCAPE N'\'
+2026-03-19 11:16:30.630 +02:00 [INF] Filtered persons query executed. SearchBy: Name, Count: 0
+2026-03-19 11:16:30.632 +02:00 [INF] Sorting 0 persons by Name in "ASC" order
+2026-03-19 11:16:30.632 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-19 11:16:30.633 +02:00 [INF] Executed ViewResult - view Index executed in 0.8537ms.
+2026-03-19 11:16:30.633 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 74.4354ms
+2026-03-19 11:16:30.633 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:16:30.633 +02:00 [INF] HTTP GET /Persons/Index responded 200 in 74.8003 ms
+2026-03-19 11:16:30.634 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index?searchBy=Name&searchValue=ahmed - 200 null text/html; charset=utf-8 75.2768ms
+2026-03-19 11:16:33.134 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-03-19 11:16:33.134 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:16:33.135 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:16:33.135 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-19 11:16:33.136 +02:00 [INF] Executed ViewResult - view Index executed in 0.7993ms.
+2026-03-19 11:16:33.136 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 1.4298ms
+2026-03-19 11:16:33.136 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:16:33.136 +02:00 [INF] HTTP GET /Persons/Index responded 200 in 1.8919 ms
+2026-03-19 11:16:33.136 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 2.2698ms
+2026-03-19 11:16:35.423 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-03-19 11:16:35.423 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:16:35.423 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:16:35.423 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-19 11:16:35.424 +02:00 [INF] Executed ViewResult - view Index executed in 0.7872ms.
+2026-03-19 11:16:35.424 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 1.2004ms
+2026-03-19 11:16:35.424 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:16:35.424 +02:00 [INF] HTTP GET /Persons/Index responded 200 in 1.5240 ms
+2026-03-19 11:16:35.424 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 1.898ms
+2026-03-19 11:16:36.280 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Create - null null
+2026-03-19 11:16:36.280 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:16:36.286 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:16:36.294 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-19 11:16:36.302 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:16:36.350 +02:00 [INF] Executed ViewResult - view Create executed in 48.7861ms.
+2026-03-19 11:16:36.350 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 64.0175ms
+2026-03-19 11:16:36.350 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:16:36.350 +02:00 [INF] HTTP GET /Persons/Create responded 200 in 69.9179 ms
+2026-03-19 11:16:36.350 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 70.3589ms
+2026-03-19 11:16:36.382 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:16:36.383 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 1.0781 ms
+2026-03-19 11:16:36.383 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 1.5488ms
+2026-03-19 11:16:36.384 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:16:47.874 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 759
+2026-03-19 11:16:47.875 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:16:47.881 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:16:47.899 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 17.2086ms
+2026-03-19 11:16:47.899 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:16:47.899 +02:00 [ERR] HTTP POST /Persons/Create responded 500 in 24.2505 ms
+System.ArgumentException: The value cannot be an empty string (Parameter 'errorMessage')
+   at FluentValidation.Internal.ExtensionsInternal.ThrowIfNullOrEmpty(String argument, String paramName) in /_/src/FluentValidation/Internal/ExtensionsInternal.cs:line 35
+   at FluentValidation.DefaultValidatorOptions.WithMessage[T,TProperty](IRuleBuilderOptions`2 rule, String errorMessage) in /_/src/FluentValidation/DefaultValidatorOptions.cs:line 120
+   at ContactsManager.Application.Features.Persons.Helpers.PersonCommandValidatorBase`1.AddCommonRules() in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Application/Features/Persons/Common/PersonCommandValidatorBase.cs:line 29
+   at ContactsManager.Application.Features.Persons.Commands.CreatePerson.CreatePersonCommandValidator..ctor() in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Application/Features/Persons/Commands/CreatePerson/CreatePersonCommandValidator.cs:line 10
+   at System.RuntimeMethodHandle.InvokeMethod(ObjectHandleOnStack target, Void** arguments, ObjectHandleOnStack sig, BOOL isConstructor, ObjectHandleOnStack result)
+   at System.RuntimeMethodHandle.InvokeMethod(ObjectHandleOnStack target, Void** arguments, ObjectHandleOnStack sig, BOOL isConstructor, ObjectHandleOnStack result)
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitIEnumerable(IEnumerableCallSite enumerableCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitIEnumerable(IEnumerableCallSite enumerableCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(IRequest`1 request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at MediatR.Mediator.Send[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at ContactsManager.Web.Controllers.PersonsController.Create(CreatePersonRequest request, CancellationToken cancellationToken) in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/Controllers/PersonsController.cs:line 110
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-03-19 11:16:47.908 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentException: The value cannot be an empty string (Parameter 'errorMessage')
+   at FluentValidation.Internal.ExtensionsInternal.ThrowIfNullOrEmpty(String argument, String paramName) in /_/src/FluentValidation/Internal/ExtensionsInternal.cs:line 35
+   at FluentValidation.DefaultValidatorOptions.WithMessage[T,TProperty](IRuleBuilderOptions`2 rule, String errorMessage) in /_/src/FluentValidation/DefaultValidatorOptions.cs:line 120
+   at ContactsManager.Application.Features.Persons.Helpers.PersonCommandValidatorBase`1.AddCommonRules() in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Application/Features/Persons/Common/PersonCommandValidatorBase.cs:line 29
+   at ContactsManager.Application.Features.Persons.Commands.CreatePerson.CreatePersonCommandValidator..ctor() in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Application/Features/Persons/Commands/CreatePerson/CreatePersonCommandValidator.cs:line 10
+   at System.RuntimeMethodHandle.InvokeMethod(ObjectHandleOnStack target, Void** arguments, ObjectHandleOnStack sig, BOOL isConstructor, ObjectHandleOnStack result)
+   at System.RuntimeMethodHandle.InvokeMethod(ObjectHandleOnStack target, Void** arguments, ObjectHandleOnStack sig, BOOL isConstructor, ObjectHandleOnStack result)
+   at System.Reflection.MethodBaseInvoker.InterpretedInvoke_Constructor(Object obj, IntPtr* args)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitIEnumerable(IEnumerableCallSite enumerableCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitIEnumerable(IEnumerableCallSite enumerableCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(IRequest`1 request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at MediatR.Mediator.Send[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at ContactsManager.Web.Controllers.PersonsController.Create(CreatePersonRequest request, CancellationToken cancellationToken) in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/Controllers/PersonsController.cs:line 110
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-03-19 11:16:47.918 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 500 null text/html; charset=utf-8 44.0415ms
+2026-03-19 11:31:17.505 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 759
+2026-03-19 11:31:17.506 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:31:17.506 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:31:17.508 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 2.2144ms
+2026-03-19 11:31:17.509 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:31:17.509 +02:00 [ERR] HTTP POST /Persons/Create responded 500 in 2.9668 ms
+System.ArgumentException: The value cannot be an empty string (Parameter 'errorMessage')
+   at FluentValidation.Internal.ExtensionsInternal.ThrowIfNullOrEmpty(String argument, String paramName) in /_/src/FluentValidation/Internal/ExtensionsInternal.cs:line 35
+   at FluentValidation.DefaultValidatorOptions.WithMessage[T,TProperty](IRuleBuilderOptions`2 rule, String errorMessage) in /_/src/FluentValidation/DefaultValidatorOptions.cs:line 120
+   at ContactsManager.Application.Features.Persons.Helpers.PersonCommandValidatorBase`1.AddCommonRules() in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Application/Features/Persons/Common/PersonCommandValidatorBase.cs:line 29
+   at ContactsManager.Application.Features.Persons.Commands.CreatePerson.CreatePersonCommandValidator..ctor() in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Application/Features/Persons/Commands/CreatePerson/CreatePersonCommandValidator.cs:line 10
+   at InvokeStub_CreatePersonCommandValidator..ctor(Object, Object, IntPtr*)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitIEnumerable(IEnumerableCallSite enumerableCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitIEnumerable(IEnumerableCallSite enumerableCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(IRequest`1 request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at MediatR.Mediator.Send[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at ContactsManager.Web.Controllers.PersonsController.Create(CreatePersonRequest request, CancellationToken cancellationToken) in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/Controllers/PersonsController.cs:line 110
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-03-19 11:31:17.510 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentException: The value cannot be an empty string (Parameter 'errorMessage')
+   at FluentValidation.Internal.ExtensionsInternal.ThrowIfNullOrEmpty(String argument, String paramName) in /_/src/FluentValidation/Internal/ExtensionsInternal.cs:line 35
+   at FluentValidation.DefaultValidatorOptions.WithMessage[T,TProperty](IRuleBuilderOptions`2 rule, String errorMessage) in /_/src/FluentValidation/DefaultValidatorOptions.cs:line 120
+   at ContactsManager.Application.Features.Persons.Helpers.PersonCommandValidatorBase`1.AddCommonRules() in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Application/Features/Persons/Common/PersonCommandValidatorBase.cs:line 29
+   at ContactsManager.Application.Features.Persons.Commands.CreatePerson.CreatePersonCommandValidator..ctor() in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Application/Features/Persons/Commands/CreatePerson/CreatePersonCommandValidator.cs:line 10
+   at InvokeStub_CreatePersonCommandValidator..ctor(Object, Object, IntPtr*)
+   at System.Reflection.RuntimeConstructorInfo.Invoke(BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitIEnumerable(IEnumerableCallSite enumerableCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSite(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteVisitor`2.VisitCallSiteMain(ServiceCallSite callSite, TArgument argument)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitDisposeCache(ServiceCallSite transientCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.CallSiteRuntimeResolver.VisitIEnumerable(IEnumerableCallSite enumerableCallSite, RuntimeResolverContext context)
+   at Microsoft.Extensions.DependencyInjection.ServiceLookup.DynamicServiceProviderEngine.<>c__DisplayClass2_0.<RealizeService>b__0(ServiceProviderEngineScope scope)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.Handle(IRequest`1 request, IServiceProvider serviceProvider, CancellationToken cancellationToken)
+   at MediatR.Mediator.Send[TResponse](IRequest`1 request, CancellationToken cancellationToken)
+   at ContactsManager.Web.Controllers.PersonsController.Create(CreatePersonRequest request, CancellationToken cancellationToken) in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/Controllers/PersonsController.cs:line 110
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-03-19 11:31:17.515 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 500 null text/html; charset=utf-8 9.0135ms
+2026-03-19 11:31:29.115 +02:00 [INF] Application is shutting down...
+2026-03-19 11:31:36.105 +02:00 [INF] User profile is available. Using '/home/adhamalkhateeb/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-19 11:31:36.276 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-19 11:31:36.279 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-19 11:31:36.280 +02:00 [INF] Hosting environment: Development
+2026-03-19 11:31:36.280 +02:00 [INF] Content root path: /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web
+2026-03-19 11:31:44.809 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-19 11:31:44.839 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:31:44.877 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:31:44.883 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-19 11:31:44.995 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-19 11:31:45.134 +02:00 [INF] Executed ViewResult - view Index executed in 140.0835ms.
+2026-03-19 11:31:45.136 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 258.0775ms
+2026-03-19 11:31:45.136 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:31:45.139 +02:00 [INF] HTTP GET / responded 200 in 317.5147 ms
+2026-03-19 11:31:45.142 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 335.3656ms
+2026-03-19 11:31:46.671 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Create - null null
+2026-03-19 11:31:46.675 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:31:46.684 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:31:47.792 +02:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-19 11:31:47.827 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:31:47.911 +02:00 [INF] Executed ViewResult - view Create executed in 84.6669ms.
+2026-03-19 11:31:47.912 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 1227.663ms
+2026-03-19 11:31:47.913 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:31:47.913 +02:00 [INF] HTTP GET /Persons/Create responded 200 in 1240.1514 ms
+2026-03-19 11:31:47.921 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 1250.224ms
+2026-03-19 11:31:47.954 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:31:47.959 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 2.4441 ms
+2026-03-19 11:31:47.959 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 5.6287ms
+2026-03-19 11:31:47.960 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:32:08.704 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 712
+2026-03-19 11:32:08.707 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:32:08.724 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:32:08.743 +02:00 [WRN] Invalid Person POST request. Errors: ["Please select gender of the person"]
+2026-03-19 11:32:08.767 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-19 11:32:08.772 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:32:08.780 +02:00 [INF] Executed ViewResult - view Create executed in 7.8306ms.
+2026-03-19 11:32:08.780 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 55.6454ms
+2026-03-19 11:32:08.780 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:32:08.780 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 75.3424 ms
+2026-03-19 11:32:08.781 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 76.456ms
+2026-03-19 11:32:08.800 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:32:08.801 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.2742 ms
+2026-03-19 11:32:08.801 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 0.9614ms
+2026-03-19 11:32:08.801 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:32:12.537 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 712
+2026-03-19 11:32:12.537 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:32:12.538 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:32:12.539 +02:00 [WRN] Invalid Person POST request. Errors: ["Please select gender of the person"]
+2026-03-19 11:32:12.646 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-19 11:32:12.647 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:32:12.650 +02:00 [INF] Executed ViewResult - view Create executed in 3.0294ms.
+2026-03-19 11:32:12.650 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 112.0571ms
+2026-03-19 11:32:12.650 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:32:12.650 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 112.9285 ms
+2026-03-19 11:32:12.650 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 113.5682ms
+2026-03-19 11:32:12.667 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:32:12.668 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.1297 ms
+2026-03-19 11:32:12.668 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 0.7135ms
+2026-03-19 11:32:12.668 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:32:28.714 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 722
+2026-03-19 11:32:28.715 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:32:28.715 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:32:28.716 +02:00 [WRN] Invalid Person POST request. Errors: ["Please select gender of the person"]
+2026-03-19 11:32:28.718 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-19 11:32:28.719 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:32:28.722 +02:00 [INF] Executed ViewResult - view Create executed in 2.9613ms.
+2026-03-19 11:32:28.722 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 6.9635ms
+2026-03-19 11:32:28.722 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:32:28.722 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 7.6262 ms
+2026-03-19 11:32:28.722 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 8.2139ms
+2026-03-19 11:32:28.748 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:32:28.748 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.1183 ms
+2026-03-19 11:32:28.748 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 0.7003ms
+2026-03-19 11:32:28.749 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:32:32.177 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 734
+2026-03-19 11:32:32.177 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:32:32.177 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:32:32.211 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:32:32.214 +02:00 [INF] Executed ViewResult - view Create executed in 2.9873ms.
+2026-03-19 11:32:32.214 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 36.9169ms
+2026-03-19 11:32:32.214 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:32:32.214 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 37.4959 ms
+2026-03-19 11:32:32.215 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 38.0223ms
+2026-03-19 11:32:32.232 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:32:32.233 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.6159 ms
+2026-03-19 11:32:32.234 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 1.3331ms
+2026-03-19 11:32:32.234 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:45:26.570 +02:00 [INF] User profile is available. Using '/home/adhamalkhateeb/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-19 11:45:26.760 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-19 11:45:26.762 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-19 11:45:26.762 +02:00 [INF] Hosting environment: Development
+2026-03-19 11:45:26.763 +02:00 [INF] Content root path: /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web
+2026-03-19 11:45:27.695 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-19 11:45:27.767 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:45:27.831 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:45:27.839 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-19 11:45:27.967 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-19 11:45:28.139 +02:00 [INF] Executed ViewResult - view Index executed in 173.1511ms.
+2026-03-19 11:45:28.141 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 309.3135ms
+2026-03-19 11:45:28.141 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:45:28.143 +02:00 [INF] HTTP GET / responded 200 in 425.4548 ms
+2026-03-19 11:45:28.149 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 457.9824ms
+2026-03-19 11:45:28.158 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-19 11:45:28.160 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 3.1168ms
+2026-03-19 11:45:30.150 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Create - null null
+2026-03-19 11:45:30.157 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:45:30.188 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:46:45.904 +02:00 [INF] Executed DbCommand (45ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-19 11:48:03.440 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:48:03.601 +02:00 [INF] Executed ViewResult - view Create executed in 246.9905ms.
+2026-03-19 11:48:03.602 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 153414.0794ms
+2026-03-19 11:48:03.603 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:48:03.603 +02:00 [INF] HTTP GET /Persons/Create responded 200 in 153451.8471 ms
+2026-03-19 11:48:03.613 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 153463.1334ms
+2026-03-19 11:48:03.643 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-19 11:48:03.674 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 0.5539ms
+2026-03-19 11:48:03.675 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:48:03.704 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 5.1987 ms
+2026-03-19 11:48:03.705 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 29.6941ms
+2026-03-19 11:48:03.705 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:48:27.922 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 719
+2026-03-19 11:48:27.936 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:48:27.969 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:48:28.008 +02:00 [WRN] Invalid Person POST request. Errors: ["Please select gender of the person"]
+2026-03-19 11:48:28.042 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-19 11:48:28.049 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:48:28.061 +02:00 [INF] Executed ViewResult - view Create executed in 12.0957ms.
+2026-03-19 11:48:28.061 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 91.8859ms
+2026-03-19 11:48:28.061 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:48:28.061 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 138.4270 ms
+2026-03-19 11:48:28.062 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 140.0931ms
+2026-03-19 11:48:28.081 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-19 11:48:28.081 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:48:28.081 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 0.4626ms
+2026-03-19 11:48:28.082 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.3477 ms
+2026-03-19 11:48:28.082 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 1.1471ms
+2026-03-19 11:48:28.083 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:48:33.448 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 731
+2026-03-19 11:48:33.448 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:48:33.449 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:48:33.514 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:48:33.519 +02:00 [INF] Executed ViewResult - view Create executed in 5.8265ms.
+2026-03-19 11:48:33.520 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 70.7239ms
+2026-03-19 11:48:33.520 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:48:33.520 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 71.6419 ms
+2026-03-19 11:48:33.520 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 72.4478ms
+2026-03-19 11:48:33.542 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-19 11:48:33.543 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 0.4567ms
+2026-03-19 11:48:33.551 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:48:33.551 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.1827 ms
+2026-03-19 11:48:33.551 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 0.7677ms
+2026-03-19 11:48:33.551 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:49:10.049 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Create - null null
+2026-03-19 11:49:10.050 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:49:10.050 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:49:16.996 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-19 11:49:17.023 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 27.2445ms
+2026-03-19 11:49:17.024 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Create - null null
+2026-03-19 11:49:17.024 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:49:17.024 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:49:19.262 +02:00 [INF] Executed DbCommand (40ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-19 11:49:23.076 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:49:23.760 +02:00 [INF] Executed ViewResult - view Create executed in 683.8135ms.
+2026-03-19 11:49:23.760 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 6735.6006ms
+2026-03-19 11:49:23.760 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:49:23.760 +02:00 [INF] HTTP GET /Persons/Create responded 200 in 6736.2220 ms
+2026-03-19 11:49:23.761 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 6736.8093ms
+2026-03-19 11:49:23.804 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-19 11:49:23.804 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 0.536ms
+2026-03-19 11:49:23.575 +02:00 [ERR] Request: Unhandled Exception for Request GetCountriesQuery {"$type":"GetCountriesQuery"}
+System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ContactsManager.Application.Features.Countries.Queries.GetCountries.GetCountriesQueryHandler.Handle(GetCountriesQuery request, CancellationToken cancellationToken) in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Application/Features/Countries/Queries/GetCountries/GetCountriesQueryHandler.cs:line 21
+   at ContactsManager.Application.Common.Behaviors.UnhandledExceptionBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken ct) in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Application/Common/Behaviors/UnhandledExceptionBehavior.cs:line 22
+2026-03-19 11:49:41.181 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 719
+2026-03-19 11:49:41.271 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:49:41.272 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:49:44.836 +02:00 [WRN] Invalid Person POST request. Errors: ["Please select gender of the person"]
+2026-03-19 11:49:44.843 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-19 11:49:44.845 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 34794.9402ms
+2026-03-19 11:49:44.849 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:49:44.852 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:49:44.852 +02:00 [ERR] HTTP GET /Persons/Create responded 500 in 34802.4391 ms
+System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ContactsManager.Application.Features.Countries.Queries.GetCountries.GetCountriesQueryHandler.Handle(GetCountriesQuery request, CancellationToken cancellationToken) in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Application/Features/Countries/Queries/GetCountries/GetCountriesQueryHandler.cs:line 21
+   at ContactsManager.Application.Common.Behaviors.UnhandledExceptionBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken ct) in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Application/Common/Behaviors/UnhandledExceptionBehavior.cs:line 22
+   at ContactsManager.Application.Common.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Application/Common/Behaviors/ValidationBehavior.cs:line 20
+   at ContactsManager.Web.Controllers.PersonsController.GetCountriesSelectListAsync(CancellationToken cancellationToken) in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/Controllers/PersonsController.cs:line 242
+   at ContactsManager.Web.Controllers.PersonsController.Create(CancellationToken cancellationToken) in /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/Controllers/PersonsController.cs:line 98
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-03-19 11:49:44.856 +02:00 [INF] Executed ViewResult - view Create executed in 3.8863ms.
+2026-03-19 11:49:44.857 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 3584.3901ms
+2026-03-19 11:49:44.857 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:49:44.857 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 3585.8250 ms
+2026-03-19 11:49:44.857 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 3676.425ms
+2026-03-19 11:49:59.350 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-19 11:49:59.350 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:49:59.350 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 0.4638ms
+2026-03-19 11:49:59.351 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.8255 ms
+2026-03-19 11:49:59.353 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 2.6736ms
+2026-03-19 11:49:59.353 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:49:59.353 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Create - 499 null null 49303.7749ms
+2026-03-19 11:50:16.141 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 731
+2026-03-19 11:50:16.142 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:50:16.142 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:50:16.146 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:50:16.151 +02:00 [INF] Executed ViewResult - view Create executed in 5.125ms.
+2026-03-19 11:50:16.151 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 8.843ms
+2026-03-19 11:50:16.151 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:50:16.151 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 9.4865 ms
+2026-03-19 11:50:16.152 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 10.2964ms
+2026-03-19 11:50:16.184 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-19 11:50:16.185 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 0.4101ms
+2026-03-19 11:50:16.190 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:50:16.191 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.1790 ms
+2026-03-19 11:50:16.191 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 0.6692ms
+2026-03-19 11:50:16.191 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:50:25.725 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-19 11:50:25.725 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1986 ms
+2026-03-19 11:50:25.725 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 0.6056ms
+2026-03-19 11:50:25.726 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-19 11:50:33.398 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 731
+2026-03-19 11:50:33.398 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:50:56.362 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:50:56.370 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:50:56.374 +02:00 [INF] Executed ViewResult - view Create executed in 3.8614ms.
+2026-03-19 11:50:56.375 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 12.6156ms
+2026-03-19 11:50:56.375 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:50:56.375 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 22976.6696 ms
+2026-03-19 11:50:56.375 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 22977.17ms
+2026-03-19 11:50:56.424 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-19 11:50:56.428 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-19 11:50:56.430 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-19 11:50:56.431 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-19 11:50:56.444 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 13.7399ms
+2026-03-19 11:50:56.459 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-19 11:50:56.460 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.2617 ms
+2026-03-19 11:50:56.460 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 1.2116ms
+2026-03-19 11:50:56.460 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-19 11:50:56.508 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/js/site.js'
+2026-03-19 11:50:56.508 +02:00 [INF] HTTP GET /js/site.js responded 200 in 77.8928 ms
+2026-03-19 11:50:56.508 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1444 text/javascript 78.4903ms
+2026-03-19 11:50:56.512 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/css/all.min.css'
+2026-03-19 11:50:56.512 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/css/style.css'
+2026-03-19 11:50:56.512 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 84.3898 ms
+2026-03-19 11:50:56.513 +02:00 [INF] HTTP GET /css/style.css responded 200 in 88.1456 ms
+2026-03-19 11:50:56.513 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74320 text/css 85.1731ms
+2026-03-19 11:50:56.513 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 33022 text/css 88.9239ms
+2026-03-19 11:50:56.561 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-19 11:50:56.568 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/webfonts/fa-solid-900.woff2'
+2026-03-19 11:50:56.568 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 6.4945 ms
+2026-03-19 11:50:56.568 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 7.2373ms
+2026-03-19 11:50:56.703 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:50:56.703 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.1270 ms
+2026-03-19 11:50:56.704 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 0.4914ms
+2026-03-19 11:50:56.704 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:50:56.783 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.png - null null
+2026-03-19 11:50:56.783 +02:00 [INF] Sending file. Request path: '/favicon.png'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/favicon.png'
+2026-03-19 11:50:56.783 +02:00 [INF] HTTP GET /favicon.png responded 200 in 0.5687 ms
+2026-03-19 11:50:56.784 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.png - 200 480 image/png 1.0258ms
+2026-03-19 11:51:12.515 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 719
+2026-03-19 11:51:12.515 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:51:12.516 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:51:12.517 +02:00 [WRN] Invalid Person POST request. Errors: ["Please select gender of the person"]
+2026-03-19 11:51:12.521 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-19 11:51:12.521 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:51:12.525 +02:00 [INF] Executed ViewResult - view Create executed in 3.1059ms.
+2026-03-19 11:51:12.525 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 8.9112ms
+2026-03-19 11:51:12.525 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:51:12.525 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 9.5572 ms
+2026-03-19 11:51:12.525 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 10.2804ms
+2026-03-19 11:51:12.561 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-19 11:51:12.563 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/css/style.css'
+2026-03-19 11:51:12.563 +02:00 [INF] HTTP GET /css/style.css responded 200 in 1.3368 ms
+2026-03-19 11:51:12.563 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 33022 text/css 2.1523ms
+2026-03-19 11:51:12.568 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-19 11:51:12.570 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/css/all.min.css'
+2026-03-19 11:51:12.570 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 1.4660 ms
+2026-03-19 11:51:12.570 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74320 text/css 2.059ms
+2026-03-19 11:51:12.572 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-19 11:51:12.573 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/js/site.js'
+2026-03-19 11:51:12.573 +02:00 [INF] HTTP GET /js/site.js responded 200 in 0.8528 ms
+2026-03-19 11:51:12.573 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1444 text/javascript 1.3601ms
+2026-03-19 11:51:12.574 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-19 11:51:12.574 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 0.4376ms
+2026-03-19 11:51:12.583 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-19 11:51:12.584 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.2421 ms
+2026-03-19 11:51:12.584 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 0.9777ms
+2026-03-19 11:51:12.584 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-19 11:51:12.646 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-19 11:51:12.648 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/webfonts/fa-solid-900.woff2'
+2026-03-19 11:51:12.648 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 1.1973 ms
+2026-03-19 11:51:12.648 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 1.6921ms
+2026-03-19 11:51:13.398 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:51:13.399 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.2166 ms
+2026-03-19 11:51:13.399 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 0.6177ms
+2026-03-19 11:51:13.399 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:51:24.288 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 755
+2026-03-19 11:51:24.289 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:51:24.289 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:51:24.291 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:51:24.295 +02:00 [INF] Executed ViewResult - view Create executed in 3.3449ms.
+2026-03-19 11:51:24.295 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 5.8849ms
+2026-03-19 11:51:24.295 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:51:24.295 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 6.6464 ms
+2026-03-19 11:51:24.295 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 7.2907ms
+2026-03-19 11:51:24.351 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-19 11:51:24.352 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/css/style.css'
+2026-03-19 11:51:24.353 +02:00 [INF] HTTP GET /css/style.css responded 200 in 1.4290 ms
+2026-03-19 11:51:24.353 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 33022 text/css 2.1523ms
+2026-03-19 11:51:24.362 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-19 11:51:24.363 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-19 11:51:24.364 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/js/site.js'
+2026-03-19 11:51:24.364 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/css/all.min.css'
+2026-03-19 11:51:24.364 +02:00 [INF] HTTP GET /js/site.js responded 200 in 0.7908 ms
+2026-03-19 11:51:24.364 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 1.1985 ms
+2026-03-19 11:51:24.364 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1444 text/javascript 1.4381ms
+2026-03-19 11:51:24.364 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74320 text/css 1.8502ms
+2026-03-19 11:51:24.380 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-19 11:51:24.380 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-19 11:51:24.380 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.2747 ms
+2026-03-19 11:51:24.381 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 0.9844ms
+2026-03-19 11:51:24.381 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 1.0228ms
+2026-03-19 11:51:24.381 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-19 11:51:24.421 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-19 11:51:24.422 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/webfonts/fa-solid-900.woff2'
+2026-03-19 11:51:24.423 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 0.9638 ms
+2026-03-19 11:51:24.423 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 1.4141ms
+2026-03-19 11:51:24.553 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:51:24.553 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.1533 ms
+2026-03-19 11:51:24.553 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 0.5938ms
+2026-03-19 11:51:24.553 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:52:35.707 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 719
+2026-03-19 11:52:35.708 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:52:35.708 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:52:51.960 +02:00 [WRN] Invalid Person POST request. Errors: ["Please select gender of the person"]
+2026-03-19 11:53:05.676 +02:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-19 11:53:06.150 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:53:06.154 +02:00 [INF] Executed ViewResult - view Create executed in 3.3153ms.
+2026-03-19 11:53:06.154 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 30445.5675ms
+2026-03-19 11:53:06.154 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:53:06.154 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 30446.3027 ms
+2026-03-19 11:53:06.154 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 30447.2672ms
+2026-03-19 11:53:06.201 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-19 11:53:06.203 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/css/style.css'
+2026-03-19 11:53:06.203 +02:00 [INF] HTTP GET /css/style.css responded 200 in 1.6905 ms
+2026-03-19 11:53:06.203 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 33022 text/css 2.3372ms
+2026-03-19 11:53:06.208 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-19 11:53:06.213 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-19 11:53:06.214 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/js/site.js'
+2026-03-19 11:53:06.214 +02:00 [INF] HTTP GET /js/site.js responded 200 in 0.8547 ms
+2026-03-19 11:53:06.229 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1444 text/javascript 1.3084ms
+2026-03-19 11:53:06.245 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-19 11:53:06.245 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-19 11:53:06.245 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 0.5189ms
+2026-03-19 11:53:06.246 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.2777 ms
+2026-03-19 11:53:06.246 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 0.9923ms
+2026-03-19 11:53:06.246 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-19 11:53:06.269 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/css/all.min.css'
+2026-03-19 11:53:06.269 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 60.5867 ms
+2026-03-19 11:53:06.269 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74320 text/css 61.4784ms
+2026-03-19 11:53:06.334 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-19 11:53:06.336 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: '/home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web/wwwroot/webfonts/fa-solid-900.woff2'
+2026-03-19 11:53:06.337 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 1.8610 ms
+2026-03-19 11:53:06.337 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 2.5304ms
+2026-03-19 11:53:06.754 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:53:06.754 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.1471 ms
+2026-03-19 11:53:06.755 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 0.6171ms
+2026-03-19 11:53:06.755 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:53:36.486 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:53:36.499 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.4937 ms
+2026-03-19 11:53:36.499 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 null null 13.2573ms
+2026-03-19 11:53:36.500 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:53:58.370 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 755
+2026-03-19 11:53:58.371 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:53:58.371 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:58:42.200 +02:00 [INF] User profile is available. Using '/home/adhamalkhateeb/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2026-03-19 11:58:42.320 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-19 11:58:42.322 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-19 11:58:42.322 +02:00 [INF] Hosting environment: Development
+2026-03-19 11:58:42.322 +02:00 [INF] Content root path: /home/adhamalkhateeb/Adham/Adham Web/MVC_Projects/Contacts Manager/src/ContactsManager.Web
+2026-03-19 11:58:54.987 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-19 11:58:55.020 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:58:55.059 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:58:55.066 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-19 11:58:55.179 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-19 11:58:55.320 +02:00 [INF] Executed ViewResult - view Index executed in 142.3977ms.
+2026-03-19 11:58:55.322 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 261.4617ms
+2026-03-19 11:58:55.322 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-19 11:58:55.325 +02:00 [INF] HTTP GET / responded 200 in 323.7641 ms
+2026-03-19 11:58:55.328 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 344.2196ms
+2026-03-19 11:58:57.663 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Create - null null
+2026-03-19 11:58:57.666 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:58:57.677 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:58:58.798 +02:00 [INF] Executed DbCommand (19ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-19 11:58:58.845 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:58:58.938 +02:00 [INF] Executed ViewResult - view Create executed in 94.45ms.
+2026-03-19 11:58:58.939 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 1262.1985ms
+2026-03-19 11:58:58.940 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:58:58.941 +02:00 [INF] HTTP GET /Persons/Create responded 200 in 1276.5975 ms
+2026-03-19 11:58:58.949 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 1286.9459ms
+2026-03-19 11:58:58.986 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:58:58.992 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 2.8200 ms
+2026-03-19 11:58:58.993 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 6.5314ms
+2026-03-19 11:58:58.994 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404
+2026-03-19 11:59:32.074 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 759
+2026-03-19 11:59:32.077 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:59:32.113 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-19 11:59:32.176 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-19 11:59:32.182 +02:00 [INF] Executed ViewResult - view Create executed in 6.5198ms.
+2026-03-19 11:59:32.183 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 68.7474ms
+2026-03-19 11:59:32.183 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-19 11:59:32.183 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 107.6003 ms
+2026-03-19 11:59:32.183 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 109.0212ms
+2026-03-19 11:59:32.227 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - null null
+2026-03-19 11:59:32.229 +02:00 [INF] HTTP GET /jquery.validate.unobtrusive.min.js responded 404 in 0.7468 ms
+2026-03-19 11:59:32.229 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/jquery.validate.unobtrusive.min.js - 404 0 null 2.7146ms
+2026-03-19 11:59:32.230 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/jquery.validate.unobtrusive.min.js, Response status code: 404

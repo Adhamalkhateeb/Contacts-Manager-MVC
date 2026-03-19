@@ -1,0 +1,70 @@
+using ContactsManager.Application.Features.Countries.Queries.GetCountries;
+using ContactsManager.Web.Controllers;
+using MediatR;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Rendering;
+
+namespace ContactsManager.Web.Filters.ActionFilters;
+
+public class PersonPostFilterFactory : Attribute, IFilterFactory
+{
+    public bool IsReusable => false;
+
+    public IFilterMetadata CreateInstance(IServiceProvider serviceProvider)
+    {
+        var mediator = serviceProvider.GetRequiredService<IMediator>();
+        var logger = serviceProvider.GetRequiredService<ILogger<PersonsPostActionFilter>>();
+
+        return serviceProvider.GetRequiredService<PersonsPostActionFilter>();
+    }
+}
+
+public class PersonsPostActionFilter(IMediator mediator, ILogger<PersonsPostActionFilter> logger)
+    : IAsyncActionFilter,
+        IOrderedFilter
+{
+    public int Order { get; }
+
+    public async Task OnActionExecutionAsync(
+        ActionExecutingContext context,
+        ActionExecutionDelegate next
+    )
+    {
+        var controller = context.Controller as PersonsController;
+        if (controller != null)
+        {
+            if (!controller.ModelState.IsValid)
+            {
+                var errors = controller
+                    .ModelState.Values.SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage)
+                    .ToList();
+
+                logger.LogWarning("Invalid Person POST request. Errors: {@Errors}", errors);
+
+                var countriesResult = await mediator.Send(new GetCountriesQuery());
+
+                controller.ViewBag.Countries = countriesResult.Match(
+                    countries =>
+                        countries
+                            .Select(c => new SelectListItem
+                            {
+                                Text = c.Name,
+                                Value = c.Id.ToString(),
+                            })
+                            .ToList(),
+                    _ => new List<SelectListItem>()
+                );
+
+                controller.ViewBag.Errors = errors;
+
+                if (context.ActionArguments.TryGetValue("request", out var personRequest))
+                    context.Result = controller.View(personRequest);
+
+                return;
+            }
+        }
+
+        await next();
+    }
+}

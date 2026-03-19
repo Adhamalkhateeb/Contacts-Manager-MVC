@@ -6,4 +6,20 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../ContactsManager.Application/ContactsManager.Application.csproj" />
+    <ProjectReference Include="../ContactsManager.Contracts/ContactsManager.Contracts.csproj" />
+    <ProjectReference Include="../ContactsManager.Infrastructure/ContactsManager.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="10.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.5">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.4.0" />
+    <PackageReference Include="Serilog.Sinks.MSSqlServer" Version="9.0.3" />
+  </ItemGroup>
+
 </Project>
