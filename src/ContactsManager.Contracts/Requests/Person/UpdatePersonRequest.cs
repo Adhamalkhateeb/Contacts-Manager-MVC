@@ -18,6 +18,10 @@ public class UpdatePersonRequest
     public Gender? Gender { get; set; }
 
     [DataType(DataType.Date)]
+    [CustomValidation(
+        typeof(DateOfBirthValidator),
+        nameof(DateOfBirthValidator.ValidateDateOfBirth)
+    )]
     public DateTime? DateOfBirth { get; set; }
 
     [Required(ErrorMessage = "Email is required")]
