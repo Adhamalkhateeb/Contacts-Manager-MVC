@@ -17,26 +17,4 @@ public class CountryDto : IEquatable<CountryDto>
         return Id.Equals(other.Id) && Name == other.Name;
     }
 
-    public override bool Equals(object? obj)
-    {
-        if (obj is not CountryDto other)
-            return false;
-
-        return Equals(other);
-    }
-
-    public override int GetHashCode()
-    {
-        return HashCode.Combine(Id, Name);
-    }
-
-    public override string ToString()
-    {
-        return $"""
-
-                Country Id  : {Id}
-                Country Name: {Name}
-
-            """;
-    }
 }

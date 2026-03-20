@@ -1,4 +1,4 @@
-using ContactsManager.Application.Features.Common.Interfaces;
+using ContactsManager.Application.Common.Interfaces;
 using ContactsManager.Domain.Common.Results;
 using Microsoft.Extensions.Logging;
 using OfficeOpenXml;
@@ -36,10 +36,7 @@ public sealed class CountryImportService(ILogger<CountryImportService> logger)
         }
 
         if (fileStream.CanSeek && fileStream.Position != 0)
-        {
-            _logger.LogInformation("Resetting file stream position to 0 before parsing Excel");
             fileStream.Seek(0, SeekOrigin.Begin);
-        }
 
         try
         {

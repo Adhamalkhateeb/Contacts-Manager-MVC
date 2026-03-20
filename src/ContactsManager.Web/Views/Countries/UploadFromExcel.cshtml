@@ -25,6 +25,22 @@
             <i class="fa-solid fa-circle-exclamation"></i>
             <span>@ViewBag.ErrorMessage</span>
         </div>
+
+        @if (ViewBag.ErrorDetails != null)
+        {
+            <div class="alert alert-danger" style="opacity:.9; margin-top:8px;">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>@ViewBag.ErrorDetails</span>
+            </div>
+        }
+    }
+
+    @if (ViewBag.WarningMessage != null)
+    {
+        <div class="alert alert-warning" data-auto-dismiss>
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>@ViewBag.WarningMessage</span>
+        </div>
     }
 
     @* Controller sets ViewBag.Message on success *@
@@ -40,10 +56,10 @@
           method="post" enctype="multipart/form-data" id="uploadForm">
 
         <label class="file-drop" id="dropZone" for="excelFile">
-            <input type="file" id="excelFile" name="excelFile" accept=".xlsx,.xls" required />
+            <input type="file" id="excelFile" name="excelFile" accept=".xlsx" required />
             <i class="fa-solid fa-file-arrow-up"></i>
             <span class="drop-text">Click to choose file, or drag and drop</span>
-            <span class="drop-hint">.xlsx or .xls — max 10 MB</span>
+            <span class="drop-hint">.xlsx — max 10 MB</span>
         </label>
 
         <div class="file-chosen" id="fileChosen">
@@ -91,8 +107,8 @@
         if (!file) return;
         // Basic client-side extension check
         var ext = file.name.split('.').pop().toLowerCase();
-        if (ext !== 'xlsx' && ext !== 'xls') {
-            alert('Please select an .xlsx or .xls file.');
+        if (ext !== 'xlsx') {
+            alert('Please select an .xlsx file.');
             input.value = '';
             return;
         }

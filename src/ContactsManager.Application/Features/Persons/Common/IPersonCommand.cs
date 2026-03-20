@@ -1,4 +1,4 @@
-namespace ContactsManager.Application.Features.Persons.Helpers;
+namespace ContactsManager.Application.Features.Persons.Common;
 
 public interface IPersonCommand
 {

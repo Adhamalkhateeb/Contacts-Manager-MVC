@@ -1,10 +1,13 @@
 using System;
-using System.Security.Cryptography.Pkcs;
 using MediatR;
 using Microsoft.Extensions.Logging;
 
 namespace ContactsManager.Application.Common.Behaviors;
 
+/// <summary>
+/// Logs unhandled exceptions but allows them to propagate
+/// Note: Handlers should use Result pattern to return errors instead of throwing exceptions
+/// </summary>
 public class UnhandledExceptionBehavior<TRequest, TResponse>(ILogger<TRequest> logger)
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull
@@ -21,17 +24,14 @@ public class UnhandledExceptionBehavior<TRequest, TResponse>(ILogger<TRequest> l
         {
             return await next(ct);
         }
+        catch (OperationCanceledException)
+        {
+            _logger.LogWarning("Request {Name} was cancelled", typeof(TRequest).Name);
+            throw;
+        }
         catch (Exception ex)
         {
-            var requestName = typeof(TRequest).Name;
-
-            _logger.LogError(
-                ex,
-                "Request: Unhandled Exception for Request {Name} {@Request}",
-                requestName,
-                request
-            );
-
+            _logger.LogError(ex, "Unhandled Exception for Request {Name}", typeof(TRequest).Name);
             throw;
         }
     }

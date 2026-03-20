@@ -1,19 +1,44 @@
+using ContactsManager.Web.Models;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MyApp.Namespace
+namespace ContactsManager.Web.Controllers;
+
+public class HomeController : Controller
 {
-    public class HomeController : Controller
+    [Route("Error")]
+    public ActionResult Error(int? statusCode = null)
     {
-        [Route("Error")]
-        public ActionResult Error()
+        var effectiveStatusCode = statusCode ?? StatusCodes.Status500InternalServerError;
+        Response.StatusCode = effectiveStatusCode;
+
+        var model = ErrorViewModel.CreateDefault(effectiveStatusCode) with
         {
-            var exceptionHandler = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-            if (exceptionHandler != null && exceptionHandler.Error != null)
-            {
-                ViewBag.ErrorMessage = exceptionHandler.Error.Message;
-            }
-            return View();
+            TraceId = HttpContext.TraceIdentifier,
+            Details = TempData["ResultErrorDetails"]?.ToString(),
+        };
+
+        if (TempData["ResultErrorCode"] is string resultErrorCode)
+        {
+            model = model with { ErrorCode = resultErrorCode };
         }
+
+        if (TempData["ResultErrorMessage"] is string resultErrorMessage)
+        {
+            model = model with { Message = resultErrorMessage };
+        }
+
+        var exceptionHandler = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
+        if (exceptionHandler != null && exceptionHandler.Error != null)
+        {
+            model = model with
+            {
+                Details = string.IsNullOrWhiteSpace(model.Details)
+                    ? exceptionHandler.Error.Message
+                    : $"{model.Details} | {exceptionHandler.Error.Message}",
+            };
+        }
+
+        return View("~/Views/Shared/Error.cshtml", model);
     }
 }

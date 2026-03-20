@@ -1,21 +1,23 @@
 using ContactsManager.Application;
 using ContactsManager.Infrastructure;
-using ContactsManager.Web.Middlewares;
 using ContactsManager.Web.StartupExtensions;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Host.UseSerilog(
-    (context, services, loggingConfig) =>
-    {
-        loggingConfig.ReadFrom.Configuration(context.Configuration).ReadFrom.Services(services);
-    }
-);
+if (!builder.Environment.IsEnvironment("Test"))
+{
+    builder.Host.UseSerilog(
+        (context, services, loggingConfig) =>
+        {
+            loggingConfig.ReadFrom.Configuration(context.Configuration).ReadFrom.Services(services);
+        }
+    );
+}
 
 builder
     .Services.AddApplication()
-    .AddInfrastructure(builder.Configuration)
+    .AddInfrastructure(builder.Configuration, builder.Environment)
     .AddWebPresentationLayer();
 
 builder.Services.AddControllersWithViews();
@@ -28,11 +30,17 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
+    app.UseHsts();
     app.UseExceptionHandler("/Error");
-    app.UseExceptionHandlingMiddleware();
 }
 
-app.UseSerilogRequestLogging();
+app.UseHttpsRedirection();
+
+if (!app.Environment.IsEnvironment("Test"))
+{
+    app.UseSerilogRequestLogging();
+}
+
 app.UseStaticFiles();
 app.UseRouting();
 
@@ -41,4 +49,4 @@ app.MapControllers();
 
 app.Run();
 
-partial class Program { }
+public partial class Program { }

@@ -7,12 +7,12 @@ public class UploadCountriesFromExcelCommandValidator
 {
     public UploadCountriesFromExcelCommandValidator()
     {
-        RuleFor(x => x.file)
+        RuleFor(x => x.File)
             .NotNull()
             .WithMessage("File is required")
             .Must(f => f.Length > 0)
             .WithMessage("File cannot be empty")
-            .Must(f => f.FileName.EndsWith(".xlsx"))
+            .Must(f => f.FileName.EndsWith(".xlsx", StringComparison.OrdinalIgnoreCase))
             .WithMessage("Only Excel files are allowed");
     }
 }

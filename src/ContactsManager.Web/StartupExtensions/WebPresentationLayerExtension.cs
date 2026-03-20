@@ -13,8 +13,14 @@ public static class WebPresentationLayerExtension
     public static IServiceCollection AddWebPresentationLayer(this IServiceCollection services)
     {
         services.AddTransient<PersonsPostActionFilter>();
-        services.AddTransient<HandleExceptionFilter>();
-        RotativaConfiguration.Setup("wwwroot", "Rotativa");
+        try
+        {
+            RotativaConfiguration.Setup("wwwroot", "Rotativa");
+        }
+        catch
+        {
+            // wkhtmltopdf may be unavailable in test environments; PDF endpoints will be unavailable.
+        }
         ExcelPackage.License.SetNonCommercialPersonal("Adham Fawzy");
 
         return services;

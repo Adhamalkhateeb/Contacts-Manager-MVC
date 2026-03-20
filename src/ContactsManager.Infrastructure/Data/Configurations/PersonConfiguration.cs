@@ -1,7 +1,6 @@
 using System;
 using ContactsManager.Domain.Persons;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace ContactsManager.Infrastructure.Data.Configurations;
 
@@ -16,15 +15,15 @@ public class PersonConfiguration : IEntityTypeConfiguration<Person>
         p.HasKey(p => p.Id);
         p.Property(p => p.Id).ValueGeneratedNever();
 
-        p.Property(p => p.Name).HasMaxLength(40).IsRequired();
+        p.Property(p => p.Name).HasMaxLength(100).IsRequired();
 
-        p.Property(p => p.Email).HasMaxLength(200).IsRequired();
+        p.Property(p => p.Email).HasMaxLength(255).IsRequired();
 
         p.HasIndex(p => p.Email).IsUnique();
 
-        p.Property(p => p.Address).HasMaxLength(255).IsRequired(false);
+        p.Property(p => p.Address).HasMaxLength(500).IsRequired(false);
 
-        p.Property(p => p.Gender).HasMaxLength(10).IsRequired();
+        p.Property(p => p.Gender).IsRequired();
 
         p.Property(p => p.ReceiveNewsLetters).IsRequired();
 

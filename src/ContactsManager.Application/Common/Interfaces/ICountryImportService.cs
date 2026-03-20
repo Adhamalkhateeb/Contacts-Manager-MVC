@@ -1,6 +1,6 @@
 using ContactsManager.Domain.Common.Results;
 
-namespace ContactsManager.Application.Features.Common.Interfaces;
+namespace ContactsManager.Application.Common.Interfaces;
 
 public interface ICountryImportService
 {

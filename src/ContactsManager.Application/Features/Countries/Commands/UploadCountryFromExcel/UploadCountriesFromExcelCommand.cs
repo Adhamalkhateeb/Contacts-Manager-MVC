@@ -5,4 +5,5 @@ using Microsoft.AspNetCore.Http;
 
 namespace ContactsManager.Application.Features.Countries.Commands.UploadCountryFromExcel;
 
-public record UploadCountriesFromExcelCommand(IFormFile file) : IRequest<Result<int>> { }
+public record UploadCountriesFromExcelCommand(IFormFile File)
+    : IRequest<Result<UploadCountriesFromExcelResult>> { }

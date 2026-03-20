@@ -1,5 +1,4 @@
 using ContactsManager.Application.Common.Interfaces;
-using ContactsManager.Application.Features.Common.Interfaces;
 using ContactsManager.Domain.Common.Results;
 using ContactsManager.Domain.Countries;
 using MediatR;
@@ -12,24 +11,24 @@ public class UploadCountriesFromExcelCommandHandler(
     IAppDbContext context,
     ILogger<UploadCountriesFromExcelCommandHandler> logger,
     ICountryImportService countryImportService
-) : IRequestHandler<UploadCountriesFromExcelCommand, Result<int>>
+) : IRequestHandler<UploadCountriesFromExcelCommand, Result<UploadCountriesFromExcelResult>>
 {
     private readonly IAppDbContext _context = context;
     private readonly ILogger<UploadCountriesFromExcelCommandHandler> _logger = logger;
     private readonly ICountryImportService _countryImportService = countryImportService;
 
-    public async Task<Result<int>> Handle(
+    public async Task<Result<UploadCountriesFromExcelResult>> Handle(
         UploadCountriesFromExcelCommand request,
         CancellationToken cancellationToken
     )
     {
         _logger.LogInformation(
             "Starting countries Excel upload. FileName: {FileName}, Size: {FileSize}",
-            request.file.FileName,
-            request.file.Length
+            request.File.FileName,
+            request.File.Length
         );
 
-        await using var fileStream = request.file.OpenReadStream();
+        await using var fileStream = request.File.OpenReadStream();
         var namesFromExcelResult = await _countryImportService.GetCountryNamesFromExcelAsync(
             fileStream,
             cancellationToken
@@ -45,14 +44,15 @@ public class UploadCountriesFromExcelCommandHandler(
         }
 
         var namesFromExcel = namesFromExcelResult.Value;
+        var parsedCount = namesFromExcel.Count;
 
-        if (namesFromExcel.Count == 0)
+        if (parsedCount == 0)
         {
             _logger.LogInformation(
                 "Country upload completed with no rows to process. FileName: {FileName}",
-                request.file.FileName
+                request.File.FileName
             );
-            return 0;
+            return new UploadCountriesFromExcelResult(0, 0, 0, 0);
         }
 
         var existingNames = await _context
@@ -62,15 +62,21 @@ public class UploadCountriesFromExcelCommandHandler(
 
         var existingLookup = existingNames.ToHashSet(StringComparer.OrdinalIgnoreCase);
         var insertedCount = 0;
+        var duplicateCount = 0;
+        var invalidCount = 0;
 
         foreach (var name in namesFromExcel)
         {
             if (existingLookup.Contains(name))
+            {
+                duplicateCount++;
                 continue;
+            }
 
             var createCountryResult = Country.Create(Guid.NewGuid(), name);
             if (createCountryResult.IsError)
             {
+                invalidCount++;
                 _logger.LogWarning(
                     "Skipping invalid country name during upload: {CountryName}",
                     name
@@ -83,34 +89,35 @@ public class UploadCountriesFromExcelCommandHandler(
             insertedCount++;
         }
 
-        if (insertedCount == 0)
+        if (insertedCount > 0)
         {
-            _logger.LogInformation(
-                "Country upload completed with no new countries to insert. ParsedRows: {ParsedRows}",
-                namesFromExcel.Count
-            );
-            return 0;
-        }
-
-        try
-        {
-            await _context.SaveChangesAsync(cancellationToken);
-        }
-        catch (DbUpdateException ex)
-        {
-            _logger.LogError(ex, "Country upload failed while saving changes");
-            return Error.Failure(
-                "Application_UploadCountriesFromExcel_SaveFailed",
-                "Failed to save uploaded countries"
-            );
+            try
+            {
+                await _context.SaveChangesAsync(cancellationToken);
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, "Country upload failed while saving changes");
+                return Error.Failure(
+                    "Application_UploadCountriesFromExcel_SaveFailed",
+                    "Failed to save uploaded countries"
+                );
+            }
         }
 
         _logger.LogInformation(
-            "Countries upload from Excel completed successfully. ParsedRows: {ParsedRows}, Inserted: {InsertedCount}",
-            namesFromExcel.Count,
-            insertedCount
+            "Countries upload completed. ParsedRows: {ParsedRows}, Inserted: {InsertedCount}, Duplicates: {DuplicateCount}, Invalid: {InvalidCount}",
+            parsedCount,
+            insertedCount,
+            duplicateCount,
+            invalidCount
         );
 
-        return insertedCount;
+        return new UploadCountriesFromExcelResult(
+            parsedCount,
+            insertedCount,
+            duplicateCount,
+            invalidCount
+        );
     }
 }

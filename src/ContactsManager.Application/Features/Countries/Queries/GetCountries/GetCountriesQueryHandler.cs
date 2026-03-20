@@ -2,6 +2,7 @@ using ContactsManager.Application.Common.Interfaces;
 using ContactsManager.Application.Features.Countries.DTOs;
 using ContactsManager.Application.Features.Countries.Mappers;
 using ContactsManager.Domain.Common.Results;
+using ContactsManager.Domain.Countries;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -19,6 +20,13 @@ public class GetCountriesQueryHandler(IAppDbContext context)
     )
     {
         var countries = await _context.Countries.AsNoTracking().ToListAsync(cancellationToken);
+
+        if (!countries.Any())
+            return Error.NotFound(
+                "Application_Countries_NotFound",
+                "No countries found. Please add some countries first."
+            );
+
         return countries.ToDtos();
     }
 }

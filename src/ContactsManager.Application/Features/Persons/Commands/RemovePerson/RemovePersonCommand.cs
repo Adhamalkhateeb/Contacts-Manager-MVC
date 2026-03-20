@@ -1,6 +1,6 @@
 using ContactsManager.Domain.Common.Results;
 using MediatR;
 
-namespace ContactsManager.Application.Features.Persons.Commands.DeletePerson;
+namespace ContactsManager.Application.Features.Persons.Commands.RemovePerson;
 
-public sealed record class RemovePersonCommand(Guid personId) : IRequest<Result<Deleted>> { }
+public sealed record class RemovePersonCommand(Guid PersonId) : IRequest<Result<Deleted>> { }

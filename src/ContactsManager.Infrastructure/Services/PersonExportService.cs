@@ -1,6 +1,6 @@
 using System.Globalization;
 using System.Text;
-using ContactsManager.Application.Features.Common.Interfaces;
+using ContactsManager.Application.Common.Interfaces;
 using ContactsManager.Application.Features.Persons.DTOs;
 using CsvHelper;
 using CsvHelper.Configuration;
@@ -64,7 +64,7 @@ public sealed class PersonExportService : IPersonExportService
         foreach (var person in persons)
         {
             var age = person.DateOfBirth.HasValue
-                ? Math.Round((DateTime.Now - person.DateOfBirth.Value).TotalDays / 365.25)
+                ? Math.Round((DateTime.UtcNow - person.DateOfBirth.Value).TotalDays / 365.25)
                     .ToString()
                 : string.Empty;
 

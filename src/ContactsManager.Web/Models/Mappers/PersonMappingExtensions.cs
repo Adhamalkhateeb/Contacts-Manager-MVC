@@ -1,6 +1,6 @@
 using ContactsManager.Application.Features.Persons.Commands.CreatePerson;
+using ContactsManager.Application.Features.Persons.Commands.UpdatePerson;
 using ContactsManager.Application.Features.Persons.DTOs;
-using ContactsManager.Application.Features.Persons.Queries.UpdatePerson;
 using ContactsManager.Contracts.Requests.Person;
 using ContactsManager.Contracts.Responses;
 using ContactsManager.Domain.Persons.Enums;
@@ -52,7 +52,7 @@ public static class PersonMappingExtensions
             request.Email!,
             request.Address,
             request.ReceiveNewsLetters,
-            request.CountryID!.Value
+            request.CountryId!.Value
         );
     }
 

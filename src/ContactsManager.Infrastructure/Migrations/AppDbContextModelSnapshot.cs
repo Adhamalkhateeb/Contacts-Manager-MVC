@@ -58,8 +58,8 @@ namespace ContactsManager.Infrastructure.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Address")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<Guid>("CountryId")
                         .HasColumnType("uniqueidentifier");
@@ -75,11 +75,10 @@ namespace ContactsManager.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<int>("Gender")
-                        .HasMaxLength(10)
                         .HasColumnType("int");
 
                     b.Property<string>("LastModifiedBy")
@@ -90,8 +89,8 @@ namespace ContactsManager.Infrastructure.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(40)
-                        .HasColumnType("nvarchar(40)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<bool>("ReceiveNewsLetters")
                         .HasColumnType("bit");

@@ -13,14 +13,12 @@ public class GetPersonByIdQueryHandler(
     ILogger<GetPersonByIdQueryHandler> logger
 ) : IRequestHandler<GetPersonByIdQuery, Result<PersonDto>>
 {
-    private readonly IAppDbContext _context = context;
-
     public async Task<Result<PersonDto>> Handle(
         GetPersonByIdQuery query,
         CancellationToken cancellationToken
     )
     {
-        var person = await _context.Persons.FindAsync([query.personId], cancellationToken);
+        var person = await context.Persons.FindAsync([query.personId], cancellationToken);
         if (person is null)
         {
             logger.LogWarning("Person with id {Id} not found", query.personId);

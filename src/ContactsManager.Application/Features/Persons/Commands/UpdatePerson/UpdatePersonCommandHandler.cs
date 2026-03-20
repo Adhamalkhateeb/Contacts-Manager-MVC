@@ -6,7 +6,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace ContactsManager.Application.Features.Persons.Queries.UpdatePerson;
+namespace ContactsManager.Application.Features.Persons.Commands.UpdatePerson;
 
 public class UpdatePersonCommandHandler(
     IAppDbContext context,
@@ -21,27 +21,24 @@ public class UpdatePersonCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        var person = await _context.Persons.FindAsync(
-            new object[] { request.personId },
-            cancellationToken
-        );
+        var person = await _context.Persons.FindAsync([request.PersonId], cancellationToken);
 
         if (person == null)
         {
-            _logger.LogWarning("Person with id {PersonId} was not found", request.personId);
+            _logger.LogWarning("Person with id {PersonId} was not found", request.PersonId);
 
             return Error.NotFound(
                 code: "Application_UpdatePerson_PersonNotFound",
-                description: $"Person with id '{request.personId}' was not found"
+                description: $"Person with id '{request.PersonId}' was not found"
             );
         }
 
-        var exists = await _context.Persons.AnyAsync(
-            p => p.Email == request.Email && p.Id != request.personId,
+        var emailExists = await _context.Persons.AnyAsync(
+            p => p.Email == request.Email && p.Id != request.PersonId,
             cancellationToken
         );
 
-        if (exists)
+        if (emailExists)
         {
             _logger.LogWarning("Person update aborted. Email already exists.");
             return Error.Conflict(
@@ -50,12 +47,12 @@ public class UpdatePersonCommandHandler(
             );
         }
 
-        var country = await _context.Countries.FirstOrDefaultAsync(
+        var countryExists = await _context.Countries.AnyAsync(
             c => c.Id == request.CountryId,
             cancellationToken
         );
 
-        if (country == null)
+        if (!countryExists)
         {
             _logger.LogWarning("Country with id {CountryId} was not found", request.CountryId);
             return Error.NotFound(

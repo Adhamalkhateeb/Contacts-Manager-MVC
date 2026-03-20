@@ -1,5 +1,5 @@
+using ContactsManager.Application.Features.Persons.Common;
 using ContactsManager.Application.Features.Persons.DTOs;
-using ContactsManager.Application.Features.Persons.Helpers;
 using ContactsManager.Domain.Common.Results;
 using ContactsManager.Domain.Persons.Enums;
 using MediatR;
@@ -14,4 +14,4 @@ public sealed record CreatePersonCommand(
     string? Address,
     bool ReceiveNewsLetters,
     Guid CountryId
-) : IRequest<Result<PersonDto>>, IPersonCommand;
+) : IRequest<Result<Created>>, IPersonCommand;

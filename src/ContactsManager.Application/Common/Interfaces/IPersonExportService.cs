@@ -1,6 +1,6 @@
 using ContactsManager.Application.Features.Persons.DTOs;
 
-namespace ContactsManager.Application.Features.Common.Interfaces;
+namespace ContactsManager.Application.Common.Interfaces;
 
 public interface IPersonExportService
 {

@@ -1,4 +1,3 @@
-using ContactsManager.Application.Common.Errors;
 using ContactsManager.Application.Common.Interfaces;
 using ContactsManager.Application.Features.Countries.DTOs;
 using ContactsManager.Application.Features.Countries.Mappers;

@@ -20,11 +20,6 @@ public class PersonDto : IEquatable<PersonDto>
     public Guid? CountryId { get; set; }
     public string? Country { get; set; }
 
-    /// <summary>
-    /// Compare current PersonResponse object with parameter
-    /// </summary>
-    /// <param name="other">PersonResponse Object to be compared with</param>
-    /// <returns>True or False , indicating weather they are same response or not </returns>
     public bool Equals(PersonDto? other)
     {
         if (other is null)
@@ -60,20 +55,5 @@ public class PersonDto : IEquatable<PersonDto>
             ReceiveNewsLetters,
             CountryId
         );
-    }
-
-    public override string ToString()
-    {
-        return $"""
-
-            ID: {Id}
-            Name: {Name}
-            Gender: {Gender}
-            DateOfBirth: {DateOfBirth.GetValueOrDefault():dd-MMM-yyyy}
-            Email: {Email}
-            Address: {Address}
-            Country: {Country}
-
-            """;
     }
 }

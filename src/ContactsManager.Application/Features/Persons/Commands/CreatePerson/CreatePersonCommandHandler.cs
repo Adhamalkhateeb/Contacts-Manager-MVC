@@ -1,4 +1,3 @@
-using ContactsManager.Application.Common.Errors;
 using ContactsManager.Application.Common.Interfaces;
 using ContactsManager.Application.Features.Persons.DTOs;
 using ContactsManager.Application.Features.Persons.Mappers;
@@ -12,17 +11,17 @@ namespace ContactsManager.Application.Features.Persons.Commands.CreatePerson;
 public sealed class CreatePersonCommandHandler(
     IAppDbContext context,
     ILogger<CreatePersonCommandHandler> logger
-) : IRequestHandler<CreatePersonCommand, Result<PersonDto>>
+) : IRequestHandler<CreatePersonCommand, Result<Created>>
 {
     private readonly IAppDbContext _context = context;
     private readonly ILogger<CreatePersonCommandHandler> _logger = logger;
 
-    public async Task<Result<PersonDto>> Handle(
+    public async Task<Result<Created>> Handle(
         CreatePersonCommand request,
         CancellationToken cancellationToken
     )
     {
-        var email = request.Email.Trim().ToLower();
+        var email = request.Email.Trim().ToLowerInvariant();
         var exists = await _context.Persons.AnyAsync(
             p => p.Email.ToLower() == email,
             cancellationToken
@@ -30,19 +29,19 @@ public sealed class CreatePersonCommandHandler(
 
         if (exists)
         {
-            _logger.LogWarning("Person creation aborted. Email already exists.");
+            _logger.LogWarning("Person creation aborted. Email {Email} already exists.", email);
             return Error.Conflict(
                 "Application_Person_Email_Duplicate",
                 "A person with this email already exists"
             );
         }
 
-        var country = await _context.Countries.FirstOrDefaultAsync(
+        var countryExists = await _context.Countries.AnyAsync(
             c => c.Id == request.CountryId,
             cancellationToken
         );
 
-        if (country is null)
+        if (!countryExists)
         {
             _logger.LogWarning(
                 "Person creation aborted. Invalid CountryId {CountryId}.",
@@ -60,7 +59,7 @@ public sealed class CreatePersonCommandHandler(
             request.Name.Trim(),
             request.Gender,
             request.DateOfBirth,
-            email.Trim(),
+            email,
             request.Address,
             request.ReceiveNewsLetters,
             request.CountryId
@@ -76,6 +75,6 @@ public sealed class CreatePersonCommandHandler(
         await _context.Persons.AddAsync(person, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
 
-        return person.ToDto();
+        return Result.Created;
     }
 }

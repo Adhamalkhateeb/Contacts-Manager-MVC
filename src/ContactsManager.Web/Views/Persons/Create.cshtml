@@ -80,13 +80,13 @@
 
         <div class="form-grid-2">
             <div class="form-group">
-                <label asp-for="CountryID" class="form-label">
+                <label asp-for="CountryId" class="form-label">
                     Country <span class="required">*</span>
                 </label>
-                <select asp-for="CountryID" class="input" asp-items="@ViewBag.Countries">
+                <select asp-for="CountryId" class="input" asp-items="@ViewBag.Countries">
                     <option value="">Select country…</option>
                 </select>
-                <span asp-validation-for="CountryID" class="validation-error"></span>
+                <span asp-validation-for="CountryId" class="validation-error"></span>
             </div>
 
             <div class="form-group col-span-2">

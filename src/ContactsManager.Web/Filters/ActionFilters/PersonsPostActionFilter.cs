@@ -1,6 +1,7 @@
 using ContactsManager.Application.Features.Countries.Queries.GetCountries;
 using ContactsManager.Web.Controllers;
 using MediatR;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -12,9 +13,6 @@ public class PersonPostFilterFactory : Attribute, IFilterFactory
 
     public IFilterMetadata CreateInstance(IServiceProvider serviceProvider)
     {
-        var mediator = serviceProvider.GetRequiredService<IMediator>();
-        var logger = serviceProvider.GetRequiredService<ILogger<PersonsPostActionFilter>>();
-
         return serviceProvider.GetRequiredService<PersonsPostActionFilter>();
     }
 }
@@ -42,19 +40,7 @@ public class PersonsPostActionFilter(IMediator mediator, ILogger<PersonsPostActi
 
                 logger.LogWarning("Invalid Person POST request. Errors: {@Errors}", errors);
 
-                var countriesResult = await mediator.Send(new GetCountriesQuery());
-
-                controller.ViewBag.Countries = countriesResult.Match(
-                    countries =>
-                        countries
-                            .Select(c => new SelectListItem
-                            {
-                                Text = c.Name,
-                                Value = c.Id.ToString(),
-                            })
-                            .ToList(),
-                    _ => new List<SelectListItem>()
-                );
+                await PopulateCountriesAsync(controller, context.HttpContext.RequestAborted);
 
                 controller.ViewBag.Errors = errors;
 
@@ -65,6 +51,31 @@ public class PersonsPostActionFilter(IMediator mediator, ILogger<PersonsPostActi
             }
         }
 
-        await next();
+        var executedContext = await next();
+        if (
+            controller != null
+            && !controller.ModelState.IsValid
+            && executedContext.Result is ViewResult
+        )
+        {
+            await PopulateCountriesAsync(controller, context.HttpContext.RequestAborted);
+        }
+    }
+
+    private async Task PopulateCountriesAsync(PersonsController controller, CancellationToken cancellationToken)
+    {
+        var countriesResult = await mediator.Send(new GetCountriesQuery(), cancellationToken);
+
+        controller.ViewBag.Countries = countriesResult.Match(
+            countries =>
+                countries
+                    .Select(c => new SelectListItem
+                    {
+                        Text = c.Name,
+                        Value = c.Id.ToString(),
+                    })
+                    .ToList(),
+            _ => new List<SelectListItem>()
+        );
     }
 }

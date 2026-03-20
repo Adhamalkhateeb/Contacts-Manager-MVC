@@ -1,13 +1,12 @@
 using ContactsManager.Application.Features.Countries.Queries.GetCountries;
-using ContactsManager.Application.Features.Persons.Commands.DeletePerson;
+using ContactsManager.Application.Features.Persons.Commands.RemovePerson;
 using ContactsManager.Application.Features.Persons.DTOs;
 using ContactsManager.Application.Features.Persons.Enums;
 using ContactsManager.Application.Features.Persons.GetPersonsCSV;
 using ContactsManager.Application.Features.Persons.Queries;
-using ContactsManager.Application.Features.Persons.Queries.GetFilteredPersons;
+using ContactsManager.Application.Features.Persons.Queries.GetFilteredAndSortedPersons;
 using ContactsManager.Application.Features.Persons.Queries.GetPersonById;
 using ContactsManager.Application.Features.Persons.Queries.GetPersonsAsExcel;
-using ContactsManager.Application.Features.Persons.Queries.GetSortedPersons;
 using ContactsManager.Contracts.Requests.Person;
 using ContactsManager.Contracts.Responses;
 using ContactsManager.Domain.Common.Results;
@@ -44,8 +43,8 @@ public class PersonsController : MvcController
         CancellationToken cancellationToken = default
     )
     {
-        var filterResult = await _mediator.Send(
-            new GetFilteredPersonsQuery(searchBy, searchValue),
+        var result = await _mediator.Send(
+            new GetFilteredAndSortedPersonsQuery(searchBy, searchValue, orderBy, sortOrder),
             cancellationToken
         );
 
@@ -58,50 +57,30 @@ public class PersonsController : MvcController
             SearchFields = GetSearchFields(),
         };
 
-        return await filterResult.Match(
-            async filtered =>
-            {
-                var sortResult = await _mediator.Send(
-                    new GetSortedPersonsQuery(filtered, orderBy, sortOrder),
-                    cancellationToken
-                );
-
-                return sortResult.Match(
-                    sorted =>
-                        View(
-                            nameof(Index),
-                            viewModel with
-                            {
-                                Persons = sorted.ToPersonResponses(),
-                            }
-                        ),
-                    errors =>
-                        HandleError(
-                            errors,
-                            viewModel with
-                            {
-                                Persons = filtered.ToPersonResponses(),
-                            }
-                        )
-                );
-            },
+        return result.Match(
+            persons =>
+                View(nameof(Index), viewModel with { Persons = persons.ToPersonResponses() }),
             errors =>
-                Task.FromResult(
-                    HandleError(errors, viewModel with { Persons = new List<PersonResponse>() })
-                )
+                HandleError(errors, viewModel with { Persons = Enumerable.Empty<PersonResponse>() })
         );
     }
 
     [HttpGet("[action]")]
     public async Task<IActionResult> Create(CancellationToken cancellationToken)
     {
-        var listResult = await GetCountriesSelectListAsync(cancellationToken);
-        ViewBag.Countries = listResult.Match(list => list, _ => new List<SelectListItem>());
+        var countryListResult = await GetCountriesSelectListAsync(cancellationToken);
+
+        countryListResult.Match(
+            countries => ViewBag.Countries = countries,
+            errors => HandleError(errors)
+        );
+
         return View();
     }
 
     [HttpPost("[action]")]
     [PersonPostFilterFactory]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Create(
         CreatePersonRequest request,
         CancellationToken cancellationToken
@@ -129,18 +108,19 @@ public class PersonsController : MvcController
                     countries =>
                     {
                         ViewBag.Countries = countries;
-                        return (IActionResult)View(person.ToUpdatePersonRequest());
+                        return View(person.ToUpdatePersonRequest());
                     },
                     errors => HandleError(errors, person.ToUpdatePersonRequest())
                 );
             },
-            errors => Task.FromResult((IActionResult)RedirectToAction(nameof(Index)))
+            async errors => HandleError(errors)
         );
     }
 
     [HttpPost]
-    [Route("[action]/{id}")]
+    [Route("[action]/{id:guid}")]
     [PersonPostFilterFactory]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Edit(
         UpdatePersonRequest request,
         CancellationToken cancellationToken
@@ -162,12 +142,13 @@ public class PersonsController : MvcController
 
         return result.Match(
             person => View(person.ToPersonResponse()),
-            errors => HandleError(errors, id)
+            errors => HandleError(errors)
         );
     }
 
     [HttpPost]
-    [Route("[action]/{id}")]
+    [Route("[action]/{id:guid}")]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Delete(
         PersonResponse person,
         CancellationToken cancellationToken
@@ -211,14 +192,14 @@ public class PersonsController : MvcController
         var csvResult = await _mediator.Send(new GetPersonsCsvQuery());
         return csvResult.Match(
             csvBytes => File(csvBytes, "text/csv", "persons.csv"),
-            errors => HandleError(errors, new List<PersonResponse>())
+            errors => HandleError(errors)
         );
     }
 
     [Route("PersonsExcel")]
     public async Task<IActionResult> DownloadPersonsExcel()
     {
-        var excelResult = await _mediator.Send(new GetPersonsAsExcelQuery());
+        var excelResult = await _mediator.Send(new GetPersonsExcelQuery());
 
         return excelResult.Match(
             fileBytes =>
@@ -231,7 +212,7 @@ public class PersonsController : MvcController
                     fileName
                 );
             },
-            errors => HandleError(errors, new List<PersonResponse>())
+            errors => HandleError(errors)
         );
     }
 

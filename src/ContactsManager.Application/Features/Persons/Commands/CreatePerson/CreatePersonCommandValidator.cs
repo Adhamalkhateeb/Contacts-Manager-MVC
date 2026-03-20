@@ -1,4 +1,4 @@
-using ContactsManager.Application.Features.Persons.Helpers;
+using ContactsManager.Application.Features.Persons.Common;
 using FluentValidation;
 
 namespace ContactsManager.Application.Features.Persons.Commands.CreatePerson;

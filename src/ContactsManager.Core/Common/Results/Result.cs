@@ -35,6 +35,7 @@ public sealed class Result<TValue> : IResult<TValue>
     private Result(Error error)
     {
         _errors = [error];
+        IsSuccess = false;
     }
 
     [JsonConstructor]

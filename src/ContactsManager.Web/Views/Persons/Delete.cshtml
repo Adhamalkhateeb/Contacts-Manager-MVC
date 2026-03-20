@@ -53,7 +53,7 @@
         <span>All data associated with this person will be permanently removed from the system.</span>
     </div>
 
-    <form asp-controller="Persons" asp-action="Delete" method="post">
+    <form asp-controller="Persons" asp-action="Delete" asp-route-id="@Model.Id" method="post">
         <input type="hidden" asp-for="Id" />
 
         <label class="confirm-check">

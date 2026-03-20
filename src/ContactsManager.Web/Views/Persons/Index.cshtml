@@ -198,7 +198,7 @@
                                     @(person.DateOfBirth.HasValue ? person.DateOfBirth.Value.ToString("dd MMM yyyy") : "—")
                                 </td>
                                 <td>
-                                    <span class="badge badge-neutral">@(person.Age == -0 ? 0 : person.Age ) </span>
+                                    <span class="badge badge-neutral">@(person.Age ?? 0)</span>
                                 </td>
                                 <td>
                                     @{

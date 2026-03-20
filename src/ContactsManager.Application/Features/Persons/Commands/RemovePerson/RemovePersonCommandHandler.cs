@@ -1,6 +1,5 @@
 using System;
 using ContactsManager.Application.Common.Interfaces;
-using ContactsManager.Application.Features.Persons.Commands.DeletePerson;
 using ContactsManager.Domain.Common.Results;
 using MediatR;
 using Microsoft.Extensions.Logging;
@@ -20,14 +19,14 @@ public class RemovePersonCommandHandler(
         CancellationToken cancellationToken
     )
     {
-        var person = await _context.Persons.FindAsync([request.personId], cancellationToken);
+        var person = await _context.Persons.FindAsync([request.PersonId], cancellationToken);
 
         if (person == null)
         {
-            _logger.LogWarning("Person with id {PersonId} was not found", request.personId);
+            _logger.LogWarning("Person with id {PersonId} was not found", request.PersonId);
             return Error.NotFound(
                 code: "Application_RemovePerson_PersonNotFound",
-                description: $"Person with id '{request.personId}' was not found"
+                description: $"Person with id '{request.PersonId}' was not found"
             );
         }
 
@@ -36,7 +35,7 @@ public class RemovePersonCommandHandler(
 
         _logger.LogInformation(
             "Person with id {PersonId} was removed successfully",
-            request.personId
+            request.PersonId
         );
 
         return Result.Deleted;

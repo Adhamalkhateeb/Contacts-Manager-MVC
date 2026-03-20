@@ -8,25 +8,12 @@
     <ProjectReference Include="../ContactsManager.Core/ContactsManager.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="EPPlus" Version="8.5.0" />
     <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.1.1" />
     <PackageReference Include="MediatR" Version="14.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.5" />
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="10.0.5" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common/Behaviors/" />
-    <Folder Include="Common/Errors/" />
-    <Folder Include="Features/Countries/Commands/UploadCountryFromExcel/" />
-    <Folder Include="Features/Countries/Mappers/" />
-    <Folder Include="Features/Countries/Queries/GetCountries/" />
-    <Folder Include="Features/Countries/Queries/GetCountryById/" />
-    <Folder Include="Features/Persons/Commands/RemovePerson/" />
-    <Folder Include="Features/Persons/Mappers/" />
-    <Folder Include="Features/Persons/Queries/GetFilteredPersons/" />
-    <Folder Include="Features/Persons/Queries/GetPersonById/" />
-    <Folder Include="Features/Persons/Queries/GetPersonsAsExcel/" />
-    <Folder Include="Features/Persons/Queries/GetSortedPersons/" />
   </ItemGroup>
 </Project>

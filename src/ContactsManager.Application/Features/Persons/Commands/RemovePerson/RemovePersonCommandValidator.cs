@@ -1,6 +1,4 @@
 using System;
-using System.Data;
-using ContactsManager.Application.Features.Persons.Commands.DeletePerson;
 using FluentValidation;
 
 namespace ContactsManager.Application.Features.Persons.Commands.RemovePerson;
@@ -9,7 +7,7 @@ public sealed class RemovePersonCommandValidator : AbstractValidator<RemovePerso
 {
     public RemovePersonCommandValidator()
     {
-        RuleFor(command => command.personId)
+        RuleFor(command => command.PersonId)
             .NotEmpty()
             .WithMessage("PersonId is required.")
             .Must(id => id != Guid.Empty)
