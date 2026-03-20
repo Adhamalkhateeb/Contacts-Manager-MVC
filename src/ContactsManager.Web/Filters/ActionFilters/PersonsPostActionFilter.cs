@@ -33,16 +33,9 @@ public class PersonsPostActionFilter(IMediator mediator, ILogger<PersonsPostActi
         {
             if (!controller.ModelState.IsValid)
             {
-                var errors = controller
-                    .ModelState.Values.SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
-
-                logger.LogWarning("Invalid Person POST request. Errors: {@Errors}", errors);
+                PopulateErrors(controller);
 
                 await PopulateCountriesAsync(controller, context.HttpContext.RequestAborted);
-
-                controller.ViewBag.Errors = errors;
 
                 if (context.ActionArguments.TryGetValue("request", out var personRequest))
                     context.Result = controller.View(personRequest);
@@ -52,30 +45,43 @@ public class PersonsPostActionFilter(IMediator mediator, ILogger<PersonsPostActi
         }
 
         var executedContext = await next();
+
         if (
             controller != null
             && !controller.ModelState.IsValid
             && executedContext.Result is ViewResult
         )
         {
+            PopulateErrors(controller);
             await PopulateCountriesAsync(controller, context.HttpContext.RequestAborted);
         }
     }
 
-    private async Task PopulateCountriesAsync(PersonsController controller, CancellationToken cancellationToken)
+    private async Task PopulateCountriesAsync(
+        PersonsController controller,
+        CancellationToken cancellationToken
+    )
     {
         var countriesResult = await mediator.Send(new GetCountriesQuery(), cancellationToken);
 
         controller.ViewBag.Countries = countriesResult.Match(
             countries =>
                 countries
-                    .Select(c => new SelectListItem
-                    {
-                        Text = c.Name,
-                        Value = c.Id.ToString(),
-                    })
+                    .Select(c => new SelectListItem { Text = c.Name, Value = c.Id.ToString() })
                     .ToList(),
             _ => new List<SelectListItem>()
         );
+    }
+
+    private void PopulateErrors(PersonsController controller)
+    {
+        var errors = controller
+            .ModelState.Values.SelectMany(v => v.Errors)
+            .Select(e => e.ErrorMessage)
+            .ToList();
+
+        logger.LogWarning("Validation errors occurred: {@Errors}", errors);
+
+        controller.ViewBag.Errors = errors;
     }
 }

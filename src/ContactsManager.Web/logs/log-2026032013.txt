@@ -1,0 +1,157 @@
+2026-03-20 13:01:38.904 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Create - null null
+2026-03-20 13:01:38.916 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:01:38.937 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:01:39.035 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-20 13:01:39.051 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-20 13:02:05.105 +02:00 [INF] Executed ViewResult - view Create executed in 26055.9029ms.
+2026-03-20 13:02:05.105 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 26166.9143ms
+2026-03-20 13:02:05.105 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:02:05.106 +02:00 [INF] HTTP GET /Persons/Create responded 200 in 26193.3046 ms
+2026-03-20 13:02:05.106 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 26202.1865ms
+2026-03-20 13:02:05.162 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-20 13:02:05.162 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 0.5294ms
+2026-03-20 13:02:17.401 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 725
+2026-03-20 13:02:17.409 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:02:17.435 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:02:34.370 +02:00 [INF] Executed DbCommand (13ms) [Parameters=[@email='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Persons] AS [p]
+        WHERE LOWER([p].[Email]) = @email) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-20 13:02:34.372 +02:00 [WRN] Person creation aborted. Email adhamalkhateeb2006@gmail.com already exists.
+2026-03-20 13:04:36.433 +02:00 [WRN] Validation errors occurred: ["A person with this email already exists"]
+2026-03-20 13:04:43.341 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-20 13:05:08.585 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-20 13:05:08.608 +02:00 [INF] Executed ViewResult - view Create executed in 52.1509ms.
+2026-03-20 13:05:08.608 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 171172.5223ms
+2026-03-20 13:05:08.608 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:05:08.608 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 171203.0063 ms
+2026-03-20 13:05:08.608 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 171207.3141ms
+2026-03-20 13:05:08.653 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - null null
+2026-03-20 13:05:08.654 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/_framework/aspnetcore-browser-refresh.js - 200 14879 application/javascript; charset=utf-8 0.6265ms
+2026-03-20 13:05:17.841 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-20 13:05:17.848 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 5.5244 ms
+2026-03-20 13:05:17.848 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 7.4321ms
+2026-03-20 13:05:17.850 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-20 13:18:47.328 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-20 13:18:47.443 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-20 13:18:47.446 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-20 13:18:47.449 +02:00 [INF] Hosting environment: Development
+2026-03-20 13:18:47.450 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-20 13:18:51.635 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-20 13:18:51.667 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-20 13:18:51.722 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-20 13:18:51.813 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:18:51.841 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-20 13:18:54.821 +02:00 [INF] Executed DbCommand (49ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-20 13:18:54.919 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 3
+2026-03-20 13:18:54.925 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-20 13:18:54.986 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-20 13:18:55.360 +02:00 [INF] Executed ViewResult - view Index executed in 376.5432ms.
+2026-03-20 13:18:55.368 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 3549.6359ms
+2026-03-20 13:18:55.375 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-20 13:18:55.388 +02:00 [INF] HTTP GET / responded 200 in 3709.5039 ms
+2026-03-20 13:18:55.420 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 3789.2157ms
+2026-03-20 13:18:57.698 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Create - null null
+2026-03-20 13:18:57.716 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:18:57.757 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:18:57.891 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-20 13:18:57.920 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-20 13:18:58.097 +02:00 [INF] Executed ViewResult - view Create executed in 179.5135ms.
+2026-03-20 13:18:58.110 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 323.4629ms
+2026-03-20 13:18:58.113 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:18:58.117 +02:00 [INF] HTTP GET /Persons/Create responded 200 in 409.0373 ms
+2026-03-20 13:18:58.127 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 432.1114ms
+2026-03-20 13:19:02.632 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 725
+2026-03-20 13:19:02.650 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:19:02.684 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:19:03.139 +02:00 [INF] Executed DbCommand (24ms) [Parameters=[@email='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Persons] AS [p]
+        WHERE LOWER([p].[Email]) = @email) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-20 13:19:03.157 +02:00 [WRN] Person creation aborted. Email adhamalkhateeb2006@gmail.com already exists.
+2026-03-20 13:19:03.179 +02:00 [WRN] Validation errors occurred: ["A person with this email already exists"]
+2026-03-20 13:19:03.197 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-20 13:19:03.207 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-20 13:19:03.227 +02:00 [INF] Executed ViewResult - view Create executed in 20.2592ms.
+2026-03-20 13:19:03.230 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 541.8577ms
+2026-03-20 13:19:03.233 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:19:03.247 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 601.1967 ms
+2026-03-20 13:19:03.259 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 626.2206ms
+2026-03-20 13:19:13.931 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 735
+2026-03-20 13:19:13.940 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:19:13.951 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:19:14.008 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 43.686ms
+2026-03-20 13:19:14.013 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:19:14.018 +02:00 [ERR] HTTP POST /Persons/Create responded 500 in 77.3652 ms
+System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at ContactsManager.Web.Controllers.MvcController.HandleErrorInternal(List`1 errors, Func`1 onValidation) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\Controllers\MvcController.cs:line 29
+   at ContactsManager.Web.Controllers.MvcController.HandleError[TModel](List`1 errors, TModel model) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\Controllers\MvcController.cs:line 9
+   at ContactsManager.Web.Controllers.PersonsController.<>c__DisplayClass5_0.<Create>b__1(List`1 errors) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\Controllers\PersonsController.cs:line 93
+   at ContactsManager.Domain.Common.Results.Result`1.Match[TNextValue](Func`2 onValue, Func`2 onError) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Core\Common\Results\Result.cs:line 91
+   at ContactsManager.Web.Controllers.PersonsController.Create(CreatePersonRequest request, CancellationToken cancellationToken) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\Controllers\PersonsController.cs:line 91
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-03-20 13:19:14.089 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.IndexOutOfRangeException: Index was outside the bounds of the array.
+   at ContactsManager.Web.Controllers.MvcController.HandleErrorInternal(List`1 errors, Func`1 onValidation) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\Controllers\MvcController.cs:line 29
+   at ContactsManager.Web.Controllers.MvcController.HandleError[TModel](List`1 errors, TModel model) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\Controllers\MvcController.cs:line 9
+   at ContactsManager.Web.Controllers.PersonsController.<>c__DisplayClass5_0.<Create>b__1(List`1 errors) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\Controllers\PersonsController.cs:line 93
+   at ContactsManager.Domain.Common.Results.Result`1.Match[TNextValue](Func`2 onValue, Func`2 onError) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Core\Common\Results\Result.cs:line 91
+   at ContactsManager.Web.Controllers.PersonsController.Create(CreatePersonRequest request, CancellationToken cancellationToken) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\Controllers\PersonsController.cs:line 91
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-03-20 13:19:14.163 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 500 null text/html; charset=utf-8 231.826ms
+2026-03-20 13:19:14.227 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.ico - null null
+2026-03-20 13:19:14.242 +02:00 [INF] HTTP GET /favicon.ico responded 404 in 2.4201 ms
+2026-03-20 13:19:14.248 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.ico - 404 0 null 20.6753ms
+2026-03-20 13:19:14.262 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/favicon.ico, Response status code: 404
+2026-03-20 13:21:42.982 +02:00 [INF] Application is shutting down...
