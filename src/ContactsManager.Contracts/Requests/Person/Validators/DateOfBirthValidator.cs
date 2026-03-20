@@ -13,7 +13,7 @@ public sealed class DateOfBirthValidator
         {
             return new ValidationResult(
                 "Date of birth cannot be in the future",
-                new[] { nameof(DateOfBirth) }
+                new[] { "DateOfBirth" }
             );
         }
 
