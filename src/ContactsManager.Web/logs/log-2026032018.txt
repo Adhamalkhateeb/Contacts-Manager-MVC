@@ -1,0 +1,17 @@
+2026-03-20 18:27:32.527 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Register - application/x-www-form-urlencoded 239
+2026-03-20 18:27:32.540 +02:00 [INF] Executing endpoint 'AccountController.Register (ContactsManager.Web)'
+2026-03-20 18:27:32.544 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(RegisterRequest) on controller AccountController (ContactsManager.Web).
+2026-03-20 18:27:32.555 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-20 18:27:32.568 +02:00 [INF] Executed ViewResult - view Register executed in 16.4345ms.
+2026-03-20 18:27:32.572 +02:00 [INF] Executed action AccountController.Register (ContactsManager.Web) in 22.9142ms
+2026-03-20 18:27:32.575 +02:00 [INF] Executed endpoint 'AccountController.Register (ContactsManager.Web)'
+2026-03-20 18:27:32.579 +02:00 [INF] HTTP POST /Account/Register responded 200 in 39.3834 ms
+2026-03-20 18:27:32.585 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 58.5142ms
+2026-03-20 18:27:32.606 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-20 18:27:32.615 +02:00 [INF] The file /css/style.css was not modified
+2026-03-20 18:27:32.618 +02:00 [INF] HTTP GET /css/style.css responded 304 in 3.8428 ms
+2026-03-20 18:27:32.623 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 17.2317ms
+2026-03-20 18:27:32.637 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.png - null null
+2026-03-20 18:27:32.644 +02:00 [INF] The file /favicon.png was not modified
+2026-03-20 18:27:32.647 +02:00 [INF] HTTP GET /favicon.png responded 304 in 3.3425 ms
+2026-03-20 18:27:32.651 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.png - 304 null image/png 13.9631ms

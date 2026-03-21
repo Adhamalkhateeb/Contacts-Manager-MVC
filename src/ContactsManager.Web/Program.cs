@@ -43,7 +43,8 @@ if (!app.Environment.IsEnvironment("Test"))
 
 app.UseStaticFiles();
 app.UseRouting();
-
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllerRoute(name: "default", pattern: "{controller=Persons}/{action=Index}/{id?}");
 app.MapControllers();
 

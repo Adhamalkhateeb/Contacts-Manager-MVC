@@ -1,0 +1,81 @@
+2026-03-21 13:07:30.991 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-03-21 13:07:31.000 +02:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-03-21 13:07:31.002 +02:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-03-21 13:07:31.006 +02:00 [INF] HTTP GET /Persons/Index responded 302 in 6.6096 ms
+2026-03-21 13:07:31.012 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 302 0 null 20.9155ms
+2026-03-21 13:07:31.020 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2FPersons%2FIndex - null null
+2026-03-21 13:07:31.028 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 13:07:31.031 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 13:07:31.040 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 13:07:31.048 +02:00 [INF] Executed ViewResult - view Login executed in 10.256ms.
+2026-03-21 13:07:31.051 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 15.1373ms
+2026-03-21 13:07:31.055 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 13:07:31.059 +02:00 [INF] HTTP GET /Account/Login responded 200 in 30.8894 ms
+2026-03-21 13:07:31.065 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2FPersons%2FIndex - 200 null text/html; charset=utf-8 45.6282ms
+2026-03-21 13:07:31.083 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 13:07:31.093 +02:00 [INF] The file /css/style.css was not modified
+2026-03-21 13:07:31.097 +02:00 [INF] HTTP GET /css/style.css responded 304 in 6.4867 ms
+2026-03-21 13:07:31.101 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 18.3219ms
+2026-03-21 13:07:33.443 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Countries/uploadFromExcel - null null
+2026-03-21 13:07:33.498 +02:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-03-21 13:07:33.511 +02:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-03-21 13:07:33.527 +02:00 [INF] HTTP GET /Countries/uploadFromExcel responded 302 in 32.4646 ms
+2026-03-21 13:07:33.539 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Countries/uploadFromExcel - 302 0 null 95.5824ms
+2026-03-21 13:07:33.548 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2FCountries%2FuploadFromExcel - null null
+2026-03-21 13:07:33.578 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 13:07:33.581 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 13:07:33.594 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 13:07:33.602 +02:00 [INF] Executed ViewResult - view Login executed in 7.6993ms.
+2026-03-21 13:07:33.606 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 12.5474ms
+2026-03-21 13:07:33.612 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 13:07:33.616 +02:00 [INF] HTTP GET /Account/Login responded 200 in 38.2111 ms
+2026-03-21 13:07:33.627 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2FCountries%2FuploadFromExcel - 200 null text/html; charset=utf-8 79.2187ms
+2026-03-21 13:07:34.828 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-03-21 13:07:34.842 +02:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-03-21 13:07:34.847 +02:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-03-21 13:07:34.850 +02:00 [INF] HTTP GET /Persons/Index responded 302 in 13.9366 ms
+2026-03-21 13:07:34.858 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 302 0 null 29.9248ms
+2026-03-21 13:07:34.872 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2FPersons%2FIndex - null null
+2026-03-21 13:07:34.888 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 13:07:34.895 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 13:07:34.911 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 13:07:34.920 +02:00 [INF] Executed ViewResult - view Login executed in 8.5768ms.
+2026-03-21 13:07:34.934 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 23.6414ms
+2026-03-21 13:07:34.945 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 13:07:34.952 +02:00 [INF] HTTP GET /Account/Login responded 200 in 64.6167 ms
+2026-03-21 13:07:34.964 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2FPersons%2FIndex - 200 null text/html; charset=utf-8 92.139ms
+2026-03-21 13:07:38.124 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-03-21 13:07:38.129 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 13:07:38.131 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 13:07:38.146 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 13:07:38.154 +02:00 [INF] Executed ViewResult - view Register executed in 11.0745ms.
+2026-03-21 13:07:38.163 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 23.004ms
+2026-03-21 13:07:38.169 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 13:07:38.173 +02:00 [INF] HTTP GET /Account/Register responded 200 in 44.4158 ms
+2026-03-21 13:07:38.188 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 64.0115ms
+2026-03-21 13:11:02.514 +02:00 [INF] Application is shutting down...
+2026-03-21 13:11:13.037 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 13:11:13.142 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 13:11:13.145 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 13:11:13.146 +02:00 [INF] Hosting environment: Development
+2026-03-21 13:11:13.148 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 13:11:17.618 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 13:11:17.653 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 13:11:17.788 +02:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-03-21 13:11:17.817 +02:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-03-21 13:11:17.938 +02:00 [INF] HTTP GET / responded 302 in 254.3794 ms
+2026-03-21 13:11:18.168 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 302 0 null 553.1099ms
+2026-03-21 13:11:18.176 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - null null
+2026-03-21 13:11:18.277 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 13:11:18.384 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 13:11:19.353 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 13:11:21.132 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 13:11:22.264 +02:00 [INF] Executed ViewResult - view Login executed in 1137.5166ms.
+2026-03-21 13:11:22.272 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 2986.7388ms
+2026-03-21 13:11:22.280 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 13:11:22.289 +02:00 [INF] HTTP GET /Account/Login responded 200 in 4047.7135 ms
+2026-03-21 13:11:22.313 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 4138.3133ms

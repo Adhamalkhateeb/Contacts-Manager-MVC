@@ -1,0 +1,549 @@
+2026-03-21 09:00:09.814 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Register - application/x-www-form-urlencoded 305
+2026-03-21 09:00:09.834 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:00:09.860 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(ContactsManager.Contracts.Requests.Identity.RegisterRequest) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:00:10.084 +02:00 [INF] Executed DbCommand (22ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-03-21 09:00:10.112 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@normalizedUserName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @normalizedUserName
+2026-03-21 09:00:10.138 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 09:00:10.147 +02:00 [INF] Executed ViewResult - view Register executed in 8.8055ms.
+2026-03-21 09:00:10.150 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 280.6759ms
+2026-03-21 09:00:10.153 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:00:10.155 +02:00 [INF] HTTP POST /Account/Register responded 200 in 327.0172 ms
+2026-03-21 09:00:10.160 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 345.6352ms
+2026-03-21 09:00:10.183 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 09:00:10.184 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 09:00:10.184 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-21 09:00:10.185 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-21 09:00:10.190 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-03-21 09:00:10.192 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.1709 ms
+2026-03-21 09:00:10.204 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\all.min.css'
+2026-03-21 09:00:10.207 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\site.js'
+2026-03-21 09:00:10.211 +02:00 [INF] HTTP GET /css/style.css responded 200 in 23.0624 ms
+2026-03-21 09:00:10.215 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 30.8656ms
+2026-03-21 09:00:10.217 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 16.1970 ms
+2026-03-21 09:00:10.220 +02:00 [INF] HTTP GET /js/site.js responded 200 in 13.9007 ms
+2026-03-21 09:00:10.224 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36157 text/css 41.2853ms
+2026-03-21 09:00:10.230 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 09:00:10.233 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74328 text/css 48.6369ms
+2026-03-21 09:00:10.237 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1485 text/javascript 51.3057ms
+2026-03-21 09:00:10.259 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-21 09:00:10.285 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\webfonts\fa-solid-900.woff2'
+2026-03-21 09:00:10.287 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 12.6287 ms
+2026-03-21 09:00:10.292 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 33.0231ms
+2026-03-21 09:00:10.375 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - null null
+2026-03-21 09:00:10.383 +02:00 [INF] Sending file. Request path: '/js/jquery.validate.unobtrusive.min.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\jquery.validate.unobtrusive.min.js'
+2026-03-21 09:00:10.387 +02:00 [INF] HTTP GET /js/jquery.validate.unobtrusive.min.js responded 200 in 5.2148 ms
+2026-03-21 09:00:10.392 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - 200 5831 text/javascript 16.7565ms
+2026-03-21 09:02:14.080 +02:00 [INF] Application is shutting down...
+2026-03-21 09:02:26.277 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 09:02:26.378 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 09:02:26.381 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 09:02:26.382 +02:00 [INF] Hosting environment: Development
+2026-03-21 09:02:26.383 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 09:02:28.344 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 09:02:28.368 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 09:02:28.414 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:02:28.505 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 09:02:28.533 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 09:02:33.949 +02:00 [INF] Executed DbCommand (83ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 09:02:34.131 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 09:02:34.154 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 09:02:34.258 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 09:02:34.918 +02:00 [INF] Executed ViewResult - view Index executed in 646.9604ms.
+2026-03-21 09:02:34.960 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 6445.792ms
+2026-03-21 09:02:34.973 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:02:34.992 +02:00 [INF] HTTP GET / responded 200 in 6613.2066 ms
+2026-03-21 09:02:35.029 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 6685.4849ms
+2026-03-21 09:02:35.796 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Register - application/x-www-form-urlencoded 305
+2026-03-21 09:02:35.830 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:02:36.038 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(ContactsManager.Contracts.Requests.Identity.RegisterRequest) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:02:36.442 +02:00 [INF] Executed DbCommand (67ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-03-21 09:02:36.727 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[@normalizedUserName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @normalizedUserName
+2026-03-21 09:02:38.246 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 09:02:39.314 +02:00 [INF] Executed ViewResult - view Register executed in 1078.5718ms.
+2026-03-21 09:02:39.360 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 09:02:39.382 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-21 09:02:39.383 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 09:02:39.404 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-21 09:02:39.709 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 3661.5221ms
+2026-03-21 09:02:39.938 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 18.0630 ms
+2026-03-21 09:02:40.242 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\all.min.css'
+2026-03-21 09:02:40.246 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-03-21 09:02:40.438 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\site.js'
+2026-03-21 09:02:40.617 +02:00 [INF] HTTP GET /js/site.js responded 200 in 187.6452 ms
+2026-03-21 09:02:40.571 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 1210.5456ms
+2026-03-21 09:02:40.598 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 518.6063 ms
+2026-03-21 09:02:40.609 +02:00 [INF] HTTP GET /css/style.css responded 200 in 422.8399 ms
+2026-03-21 09:02:40.468 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:02:40.626 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1485 text/javascript 1221.308ms
+2026-03-21 09:02:40.656 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 09:02:40.677 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74328 text/css 1295.0931ms
+2026-03-21 09:02:40.693 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36157 text/css 1309.9133ms
+2026-03-21 09:02:40.700 +02:00 [INF] HTTP POST /Account/Register responded 200 in 4881.3595 ms
+2026-03-21 09:02:40.717 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - null null
+2026-03-21 09:02:40.748 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-21 09:02:40.752 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 4958.7467ms
+2026-03-21 09:02:40.765 +02:00 [INF] Sending file. Request path: '/js/jquery.validate.unobtrusive.min.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\jquery.validate.unobtrusive.min.js'
+2026-03-21 09:02:40.793 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\webfonts\fa-solid-900.woff2'
+2026-03-21 09:02:40.817 +02:00 [INF] HTTP GET /js/jquery.validate.unobtrusive.min.js responded 200 in 58.3513 ms
+2026-03-21 09:02:40.837 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 51.5242 ms
+2026-03-21 09:02:40.885 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 137.1142ms
+2026-03-21 09:02:40.881 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - 200 5831 text/javascript 164.558ms
+2026-03-21 09:02:41.302 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.png - null null
+2026-03-21 09:02:41.530 +02:00 [INF] Sending file. Request path: '/favicon.png'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\favicon.png'
+2026-03-21 09:02:41.536 +02:00 [INF] HTTP GET /favicon.png responded 200 in 7.4223 ms
+2026-03-21 09:02:41.552 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.png - 200 480 image/png 248.293ms
+2026-03-21 09:06:27.246 +02:00 [INF] Application is shutting down...
+2026-03-21 09:12:03.164 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 09:12:03.288 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 09:12:03.298 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 09:12:03.309 +02:00 [INF] Hosting environment: Development
+2026-03-21 09:12:03.311 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 09:12:07.606 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 09:12:07.665 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 09:12:07.720 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:12:07.816 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 09:12:07.857 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 09:12:11.736 +02:00 [INF] Executed DbCommand (62ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 09:12:11.878 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 09:12:11.882 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 09:12:11.995 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 09:12:12.869 +02:00 [INF] Executed ViewResult - view Index executed in 898.4828ms.
+2026-03-21 09:12:12.884 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 5058.2031ms
+2026-03-21 09:12:12.901 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:12:12.933 +02:00 [INF] HTTP GET / responded 200 in 5245.2104 ms
+2026-03-21 09:12:13.068 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 5466.2951ms
+2026-03-21 09:12:19.658 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-03-21 09:12:19.696 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:12:19.711 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:12:19.775 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 09:12:20.062 +02:00 [INF] Executed ViewResult - view Register executed in 297.4825ms.
+2026-03-21 09:12:20.066 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 317.343ms
+2026-03-21 09:12:20.075 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:12:20.085 +02:00 [INF] HTTP GET /Account/Register responded 200 in 398.4466 ms
+2026-03-21 09:12:20.100 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 442.7637ms
+2026-03-21 09:15:06.117 +02:00 [INF] Application is shutting down...
+2026-03-21 09:15:22.884 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 09:15:23.060 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 09:15:23.085 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 09:15:23.112 +02:00 [INF] Hosting environment: Development
+2026-03-21 09:15:23.139 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 09:16:55.387 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-03-21 09:16:55.439 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 09:16:55.496 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:16:55.556 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:16:55.618 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 09:16:55.645 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 09:16:56.101 +02:00 [INF] Executed ViewResult - view Register executed in 458.5524ms.
+2026-03-21 09:16:56.107 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 541.8964ms
+2026-03-21 09:16:56.111 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:16:56.118 +02:00 [INF] HTTP GET /Account/Register responded 200 in 669.8184 ms
+2026-03-21 09:16:56.132 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 747.4489ms
+2026-03-21 09:17:24.634 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-03-21 09:17:24.644 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:17:24.647 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:17:24.655 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 09:17:24.671 +02:00 [INF] Executed ViewResult - view Register executed in 16.0622ms.
+2026-03-21 09:17:24.675 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 21.6638ms
+2026-03-21 09:17:24.679 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:17:24.681 +02:00 [INF] HTTP GET /Account/Register responded 200 in 39.4990 ms
+2026-03-21 09:17:24.686 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 53.2704ms
+2026-03-21 09:17:31.087 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 09:17:31.104 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:17:31.150 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 09:17:34.206 +02:00 [INF] Executed DbCommand (65ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 09:17:34.352 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 09:17:34.355 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 09:17:34.398 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 09:17:34.514 +02:00 [INF] Executed ViewResult - view Index executed in 122.2791ms.
+2026-03-21 09:17:34.522 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 3363.9679ms
+2026-03-21 09:17:34.535 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:17:34.539 +02:00 [INF] HTTP GET / responded 200 in 3435.8230 ms
+2026-03-21 09:17:34.596 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 3508.3854ms
+2026-03-21 09:17:36.192 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Create - null null
+2026-03-21 09:17:36.204 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-21 09:17:36.239 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 09:17:36.416 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-21 09:17:36.452 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-21 09:17:36.645 +02:00 [INF] Executed ViewResult - view Create executed in 198.7395ms.
+2026-03-21 09:17:36.649 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 395.5661ms
+2026-03-21 09:17:36.653 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-21 09:17:36.662 +02:00 [INF] HTTP GET /Persons/Create responded 200 in 457.7709 ms
+2026-03-21 09:17:36.675 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 483.0937ms
+2026-03-21 09:17:40.102 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-03-21 09:17:40.106 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:17:40.117 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:17:40.125 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 09:17:40.152 +02:00 [INF] Executed ViewResult - view Register executed in 26.3805ms.
+2026-03-21 09:17:40.162 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 37.0831ms
+2026-03-21 09:17:40.171 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:17:40.183 +02:00 [INF] HTTP GET /Account/Register responded 200 in 76.9277 ms
+2026-03-21 09:17:40.196 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 94.375ms
+2026-03-21 09:18:02.082 +02:00 [INF] Application is shutting down...
+2026-03-21 09:18:12.502 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 09:18:12.615 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 09:18:12.619 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 09:18:12.620 +02:00 [INF] Hosting environment: Development
+2026-03-21 09:18:12.622 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 09:18:15.395 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 09:18:15.455 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 09:18:15.529 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:18:15.654 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 09:18:15.687 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 09:18:19.381 +02:00 [INF] Executed DbCommand (57ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 09:18:19.491 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 09:18:19.495 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 09:18:19.588 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 09:18:20.170 +02:00 [INF] Executed ViewResult - view Index executed in 580.1563ms.
+2026-03-21 09:18:20.217 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 4555.5923ms
+2026-03-21 09:18:20.245 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:18:20.310 +02:00 [INF] HTTP GET / responded 200 in 4810.1216 ms
+2026-03-21 09:18:20.373 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 4982.0138ms
+2026-03-21 09:18:21.725 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-03-21 09:18:21.768 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:18:21.788 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:18:21.807 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 09:18:22.110 +02:00 [INF] Executed ViewResult - view Register executed in 306.4077ms.
+2026-03-21 09:18:22.116 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 316.8315ms
+2026-03-21 09:18:22.121 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:18:22.133 +02:00 [INF] HTTP GET /Account/Register responded 200 in 381.2272 ms
+2026-03-21 09:18:22.147 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 424.0097ms
+2026-03-21 09:18:37.711 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 09:18:37.729 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 4.7932 ms
+2026-03-21 09:18:37.734 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 23.4782ms
+2026-03-21 09:18:37.747 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 09:18:40.569 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-03-21 09:18:40.575 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:18:40.577 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:18:40.592 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 09:18:40.602 +02:00 [INF] Executed ViewResult - view Register executed in 9.9388ms.
+2026-03-21 09:18:40.606 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 25.6551ms
+2026-03-21 09:18:40.609 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:18:40.613 +02:00 [INF] HTTP GET /Account/Register responded 200 in 38.8482 ms
+2026-03-21 09:18:40.616 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 47.015ms
+2026-03-21 09:18:40.641 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 09:18:40.643 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 09:18:40.647 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-21 09:18:40.649 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-21 09:18:40.652 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.9656 ms
+2026-03-21 09:18:40.685 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 43.9504ms
+2026-03-21 09:18:40.687 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\all.min.css'
+2026-03-21 09:18:40.687 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\site.js'
+2026-03-21 09:18:40.688 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-03-21 09:18:40.694 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 09:18:40.700 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 32.7938 ms
+2026-03-21 09:18:40.703 +02:00 [INF] HTTP GET /js/site.js responded 200 in 27.5591 ms
+2026-03-21 09:18:40.706 +02:00 [INF] HTTP GET /css/style.css responded 200 in 49.1376 ms
+2026-03-21 09:18:40.711 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-21 09:18:40.716 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74328 text/css 69.5955ms
+2026-03-21 09:18:40.722 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1485 text/javascript 73.0121ms
+2026-03-21 09:18:40.728 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36157 text/css 85.0412ms
+2026-03-21 09:18:40.736 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\webfonts\fa-solid-900.woff2'
+2026-03-21 09:18:40.762 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 26.7545 ms
+2026-03-21 09:18:40.767 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 56.0518ms
+2026-03-21 09:18:40.857 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - null null
+2026-03-21 09:18:40.870 +02:00 [INF] Sending file. Request path: '/js/jquery.validate.unobtrusive.min.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\jquery.validate.unobtrusive.min.js'
+2026-03-21 09:18:40.876 +02:00 [INF] HTTP GET /js/jquery.validate.unobtrusive.min.js responded 200 in 6.3315 ms
+2026-03-21 09:18:40.884 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - 200 5831 text/javascript 26.4499ms
+2026-03-21 09:18:40.956 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.png - null null
+2026-03-21 09:18:40.964 +02:00 [INF] Sending file. Request path: '/favicon.png'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\favicon.png'
+2026-03-21 09:18:40.968 +02:00 [INF] HTTP GET /favicon.png responded 200 in 4.0167 ms
+2026-03-21 09:18:40.973 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.png - 200 480 image/png 16.5595ms
+2026-03-21 09:20:26.796 +02:00 [INF] Application is shutting down...
+2026-03-21 09:20:38.124 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 09:20:38.227 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 09:20:38.233 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 09:20:38.235 +02:00 [INF] Hosting environment: Development
+2026-03-21 09:20:38.237 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 09:20:39.776 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 09:20:39.798 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 09:20:39.818 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:20:39.871 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 09:20:39.886 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 09:20:43.625 +02:00 [INF] Executed DbCommand (65ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 09:20:43.747 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 09:20:43.750 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 09:20:43.833 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 09:20:44.325 +02:00 [INF] Executed ViewResult - view Index executed in 493.2057ms.
+2026-03-21 09:20:44.344 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 4465.8034ms
+2026-03-21 09:20:44.350 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:20:44.366 +02:00 [INF] HTTP GET / responded 200 in 4558.5807 ms
+2026-03-21 09:20:44.454 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 4678.7003ms
+2026-03-21 09:20:45.931 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-03-21 09:20:45.959 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:20:45.973 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:20:45.997 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 09:20:46.219 +02:00 [INF] Executed ViewResult - view Register executed in 226.6154ms.
+2026-03-21 09:20:46.224 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 235.3656ms
+2026-03-21 09:20:46.248 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:20:46.257 +02:00 [INF] HTTP GET /Account/Register responded 200 in 305.4380 ms
+2026-03-21 09:20:46.263 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 334.1852ms
+2026-03-21 09:21:24.226 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Register - application/x-www-form-urlencoded 315
+2026-03-21 09:21:24.245 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:21:24.291 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(ContactsManager.Contracts.Requests.Identity.RegisterRequest) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:21:24.647 +02:00 [INF] Executed DbCommand (28ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-03-21 09:21:24.688 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@normalizedUserName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @normalizedUserName
+2026-03-21 09:21:24.970 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedUserName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @normalizedUserName
+2026-03-21 09:21:24.983 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-03-21 09:21:25.516 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTimeOffset), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Boolean), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Email], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);
+2026-03-21 09:21:25.586 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-03-21 09:21:25.604 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-03-21 09:21:25.618 +02:00 [ERR] Unhandled Exception for Request RegisterCommand
+System.InvalidOperationException: Role USER does not exist.
+   at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`10.AddToRoleAsync(TUser user, String normalizedRoleName, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.UserManager`1.AddToRoleCoreAsync(TUser user, String role)
+   at Microsoft.AspNetCore.Identity.UserManager`1.AddToRoleAsync(TUser user, String role)
+   at ContactsManager.Infrastructure.Identity.IdentityService.RegisterAsync(String userName, String email, String phoneNumber, String password, CancellationToken cancellationToken) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Infrastructure\Identity\IdentityService.cs:line 46
+   at ContactsManager.Application.Common.Behaviors.UnhandledExceptionBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken ct) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Application\Common\Behaviors\UnhandledExceptionBehavior.cs:line 25
+2026-03-21 09:21:25.698 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 1400.3808ms
+2026-03-21 09:21:25.706 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:21:25.710 +02:00 [ERR] HTTP POST /Account/Register responded 500 in 1467.9963 ms
+System.InvalidOperationException: Role USER does not exist.
+   at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`10.AddToRoleAsync(TUser user, String normalizedRoleName, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.UserManager`1.AddToRoleCoreAsync(TUser user, String role)
+   at Microsoft.AspNetCore.Identity.UserManager`1.AddToRoleAsync(TUser user, String role)
+   at ContactsManager.Infrastructure.Identity.IdentityService.RegisterAsync(String userName, String email, String phoneNumber, String password, CancellationToken cancellationToken) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Infrastructure\Identity\IdentityService.cs:line 46
+   at ContactsManager.Application.Common.Behaviors.UnhandledExceptionBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken ct) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Application\Common\Behaviors\UnhandledExceptionBehavior.cs:line 25
+   at ContactsManager.Application.Common.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Application\Common\Behaviors\ValidationBehavior.cs:line 31
+   at ContactsManager.Web.Controllers.AccountController.Register(RegisterRequest request) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\Controllers\Account.Controller.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-03-21 09:21:25.766 +02:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Role USER does not exist.
+   at Microsoft.AspNetCore.Identity.EntityFrameworkCore.UserStore`10.AddToRoleAsync(TUser user, String normalizedRoleName, CancellationToken cancellationToken)
+   at Microsoft.AspNetCore.Identity.UserManager`1.AddToRoleCoreAsync(TUser user, String role)
+   at Microsoft.AspNetCore.Identity.UserManager`1.AddToRoleAsync(TUser user, String role)
+   at ContactsManager.Infrastructure.Identity.IdentityService.RegisterAsync(String userName, String email, String phoneNumber, String password, CancellationToken cancellationToken) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Infrastructure\Identity\IdentityService.cs:line 46
+   at ContactsManager.Application.Common.Behaviors.UnhandledExceptionBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken ct) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Application\Common\Behaviors\UnhandledExceptionBehavior.cs:line 25
+   at ContactsManager.Application.Common.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Application\Common\Behaviors\ValidationBehavior.cs:line 31
+   at ContactsManager.Web.Controllers.AccountController.Register(RegisterRequest request) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\Controllers\Account.Controller.cs:line 29
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeInnerFilterAsync>g__Awaited|13_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-03-21 09:21:25.843 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Register - 500 null text/html; charset=utf-8 1617.1611ms
+2026-03-21 09:21:25.901 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.ico - null null
+2026-03-21 09:21:25.911 +02:00 [INF] HTTP GET /favicon.ico responded 404 in 2.3785 ms
+2026-03-21 09:21:25.915 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.ico - 404 0 null 14.0278ms
+2026-03-21 09:21:25.925 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/favicon.ico, Response status code: 404
+2026-03-21 09:26:42.457 +02:00 [INF] Application is shutting down...
+2026-03-21 09:30:51.567 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 09:30:51.735 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 09:30:51.740 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 09:30:51.745 +02:00 [INF] Hosting environment: Development
+2026-03-21 09:30:51.749 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 09:31:13.096 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 09:31:13.166 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 09:31:13.221 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:31:13.332 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 09:31:13.373 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 09:31:16.863 +02:00 [INF] Executed DbCommand (72ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 09:31:17.035 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 09:31:17.040 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 09:31:17.116 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 09:31:17.606 +02:00 [INF] Executed ViewResult - view Index executed in 490.3424ms.
+2026-03-21 09:31:17.618 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 4276.6164ms
+2026-03-21 09:31:17.627 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:31:17.655 +02:00 [INF] HTTP GET / responded 200 in 4473.2577 ms
+2026-03-21 09:31:17.729 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 4634.5125ms
+2026-03-21 09:31:21.090 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-03-21 09:31:21.107 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:31:21.114 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:31:21.128 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 09:31:21.271 +02:00 [INF] Executed ViewResult - view Register executed in 145.7412ms.
+2026-03-21 09:31:21.275 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 152.0607ms
+2026-03-21 09:31:21.277 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:31:21.279 +02:00 [INF] HTTP GET /Account/Register responded 200 in 177.7300 ms
+2026-03-21 09:31:21.282 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 193.7976ms
+2026-03-21 09:31:40.062 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Register - application/x-www-form-urlencoded 315
+2026-03-21 09:31:40.079 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:31:40.106 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(ContactsManager.Contracts.Requests.Identity.RegisterRequest) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:31:40.496 +02:00 [INF] Executed DbCommand (34ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-03-21 09:31:40.727 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 09:31:40.743 +02:00 [INF] Executed ViewResult - view Register executed in 16.6728ms.
+2026-03-21 09:31:40.748 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 633.2868ms
+2026-03-21 09:31:40.752 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:31:40.755 +02:00 [INF] HTTP POST /Account/Register responded 200 in 679.0004 ms
+2026-03-21 09:31:40.760 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 698.5489ms
+2026-03-21 09:31:59.736 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Register - application/x-www-form-urlencoded 316
+2026-03-21 09:31:59.745 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:31:59.749 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(ContactsManager.Contracts.Requests.Identity.RegisterRequest) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:32:00.010 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-03-21 09:32:00.060 +02:00 [INF] Executed DbCommand (20ms) [Parameters=[@normalizedUserName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @normalizedUserName
+2026-03-21 09:32:00.073 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 09:32:00.084 +02:00 [INF] Executed ViewResult - view Register executed in 11.5822ms.
+2026-03-21 09:32:00.094 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 336.3926ms
+2026-03-21 09:32:00.101 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:32:00.109 +02:00 [INF] HTTP POST /Account/Register responded 200 in 363.7770 ms
+2026-03-21 09:32:00.122 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 385.8116ms
+2026-03-21 09:32:21.356 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Register - application/x-www-form-urlencoded 321
+2026-03-21 09:32:21.362 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:32:21.366 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(ContactsManager.Contracts.Requests.Identity.RegisterRequest) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:32:21.410 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-03-21 09:32:21.421 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedUserName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @normalizedUserName
+2026-03-21 09:32:21.648 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedUserName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @normalizedUserName
+2026-03-21 09:32:21.662 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-03-21 09:32:21.987 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTimeOffset), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Boolean), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Email], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);
+2026-03-21 09:32:22.023 +02:00 [INF] Executing RedirectResult, redirecting to /Account/Login.
+2026-03-21 09:32:22.027 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 654.6247ms
+2026-03-21 09:32:22.034 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:32:22.039 +02:00 [INF] HTTP POST /Account/Register responded 302 in 677.1728 ms
+2026-03-21 09:32:22.047 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Register - 302 0 null 690.2075ms
+2026-03-21 09:32:22.058 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-03-21 09:32:22.067 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 09:32:22.076 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:32:22.086 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 09:32:22.122 +02:00 [INF] Executed ViewResult - view Login executed in 38.2493ms.
+2026-03-21 09:32:22.127 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 44.8082ms
+2026-03-21 09:32:22.132 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 09:32:22.136 +02:00 [INF] HTTP GET /Account/Login responded 200 in 68.5732 ms
+2026-03-21 09:32:22.142 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 84.7073ms
+2026-03-21 09:55:02.111 +02:00 [INF] Application is shutting down...
+2026-03-21 09:57:26.697 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 09:57:26.799 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 09:57:26.803 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 09:57:26.805 +02:00 [INF] Hosting environment: Development
+2026-03-21 09:57:26.807 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 09:57:30.127 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 09:57:30.180 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 09:57:30.226 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:57:30.308 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 09:57:30.336 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 09:57:32.407 +02:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 09:57:32.436 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 09:57:32.439 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 09:57:32.457 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 09:57:32.635 +02:00 [INF] Executed ViewResult - view Index executed in 176.1401ms.
+2026-03-21 09:57:32.645 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 2327.308ms
+2026-03-21 09:57:32.651 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 09:57:32.660 +02:00 [INF] HTTP GET / responded 200 in 2471.8187 ms
+2026-03-21 09:57:32.679 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 2555.9244ms
+2026-03-21 09:57:43.004 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-03-21 09:57:43.018 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:57:43.026 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:57:43.034 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 09:57:43.162 +02:00 [INF] Executed ViewResult - view Register executed in 129.4478ms.
+2026-03-21 09:57:43.166 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 134.7744ms
+2026-03-21 09:57:43.171 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 09:57:43.175 +02:00 [INF] HTTP GET /Account/Register responded 200 in 160.4606 ms
+2026-03-21 09:57:43.179 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 176.794ms
+2026-03-21 09:57:48.371 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-03-21 09:57:48.385 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 09:57:48.391 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 09:57:48.410 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 09:57:48.443 +02:00 [INF] Executed ViewResult - view Login executed in 34.5389ms.
+2026-03-21 09:57:48.447 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 51.6121ms
+2026-03-21 09:57:48.450 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 09:57:48.452 +02:00 [INF] HTTP GET /Account/Login responded 200 in 69.0447 ms
+2026-03-21 09:57:48.456 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 85.4256ms

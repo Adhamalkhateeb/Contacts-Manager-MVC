@@ -32,7 +32,7 @@ public sealed class CreateCountryCommandHandler(
         {
             _logger.LogWarning("Country creation aborted. country already exists.");
             return Error.Conflict(
-                "Application_CreateCountry_CountryExists",
+                "Name",
                 $"A country with the name '{request.name}' already exists"
             );
         }

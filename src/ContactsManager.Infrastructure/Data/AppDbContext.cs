@@ -1,11 +1,13 @@
 using ContactsManager.Application.Common.Interfaces;
 using ContactsManager.Domain.Countries;
 using ContactsManager.Domain.Persons;
+using ContactsManager.Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ContactsManager.Infrastructure.Data;
 
-public class AppDbContext : DbContext, IAppDbContext
+public class AppDbContext : IdentityDbContext<AppUser, AppRole, Guid>, IAppDbContext
 {
     public virtual DbSet<Person> Persons { get; set; }
     public virtual DbSet<Country> Countries { get; set; }

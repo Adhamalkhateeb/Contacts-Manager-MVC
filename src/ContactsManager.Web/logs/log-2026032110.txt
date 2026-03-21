@@ -1,0 +1,717 @@
+2026-03-21 10:10:16.578 +02:00 [INF] Application is shutting down...
+2026-03-21 10:12:39.509 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 10:12:39.646 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 10:12:39.650 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 10:12:39.652 +02:00 [INF] Hosting environment: Development
+2026-03-21 10:12:39.654 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 10:12:41.744 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 10:12:41.792 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 10:12:41.959 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:12:42.108 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 10:12:42.219 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 10:12:47.546 +02:00 [INF] Executed DbCommand (78ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 10:12:47.666 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 10:12:47.671 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 10:12:47.785 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 10:12:48.543 +02:00 [INF] Executed ViewResult - view Index executed in 767.7704ms.
+2026-03-21 10:12:48.553 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 6405.1501ms
+2026-03-21 10:12:48.569 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:12:48.602 +02:00 [INF] HTTP GET / responded 200 in 6764.3098 ms
+2026-03-21 10:12:48.784 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 7045.6079ms
+2026-03-21 10:12:52.668 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-03-21 10:12:52.686 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:12:52.700 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:12:52.717 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 10:12:52.821 +02:00 [INF] Executed ViewResult - view Login executed in 110.5851ms.
+2026-03-21 10:12:52.828 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 120.2572ms
+2026-03-21 10:12:52.836 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:12:52.843 +02:00 [INF] HTTP GET /Account/Login responded 200 in 165.7498 ms
+2026-03-21 10:12:52.850 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 184.9269ms
+2026-03-21 10:12:59.388 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 10:12:59.413 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 17.4863 ms
+2026-03-21 10:12:59.422 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 33.9563ms
+2026-03-21 10:12:59.438 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 10:13:35.871 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-03-21 10:13:35.881 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:13:35.885 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:13:35.902 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 10:13:35.912 +02:00 [INF] Executed ViewResult - view Login executed in 10.597ms.
+2026-03-21 10:13:35.915 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 25.8194ms
+2026-03-21 10:13:35.920 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:13:35.922 +02:00 [INF] HTTP GET /Account/Login responded 200 in 42.4268 ms
+2026-03-21 10:13:35.928 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 56.6685ms
+2026-03-21 10:13:35.989 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 10:13:35.998 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.7529 ms
+2026-03-21 10:13:36.026 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 36.5293ms
+2026-03-21 10:13:36.059 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 10:13:36.102 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.png - null null
+2026-03-21 10:13:36.138 +02:00 [INF] Sending file. Request path: '/favicon.png'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\favicon.png'
+2026-03-21 10:13:36.142 +02:00 [INF] HTTP GET /favicon.png responded 200 in 29.8847 ms
+2026-03-21 10:13:36.147 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.png - 200 480 image/png 45.1759ms
+2026-03-21 10:13:38.786 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-03-21 10:13:38.794 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:13:38.797 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:13:38.803 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 10:13:38.812 +02:00 [INF] Executed ViewResult - view Login executed in 9.394ms.
+2026-03-21 10:13:38.817 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 14.6264ms
+2026-03-21 10:13:38.825 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:13:38.830 +02:00 [INF] HTTP GET /Account/Login responded 200 in 36.9084 ms
+2026-03-21 10:13:38.842 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 55.1595ms
+2026-03-21 10:13:38.876 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 10:13:38.879 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:13:38.892 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 1.1031 ms
+2026-03-21 10:13:38.894 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-21 10:13:38.895 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-21 10:13:38.913 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 37.6206ms
+2026-03-21 10:13:38.927 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-03-21 10:13:38.929 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\all.min.css'
+2026-03-21 10:13:38.945 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 10:13:38.948 +02:00 [INF] HTTP GET /css/style.css responded 200 in 44.0978 ms
+2026-03-21 10:13:38.952 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 27.6986 ms
+2026-03-21 10:13:38.961 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36363 text/css 81.915ms
+2026-03-21 10:13:38.967 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74328 text/css 72.5309ms
+2026-03-21 10:13:38.969 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\site.js'
+2026-03-21 10:13:38.995 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-21 10:13:39.000 +02:00 [INF] HTTP GET /js/site.js responded 200 in 63.3512 ms
+2026-03-21 10:13:39.022 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\webfonts\fa-solid-900.woff2'
+2026-03-21 10:13:39.047 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 35.5213 ms
+2026-03-21 10:13:39.041 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1485 text/javascript 144.2993ms
+2026-03-21 10:13:39.056 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 60.7614ms
+2026-03-21 10:13:39.330 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.png - null null
+2026-03-21 10:13:39.341 +02:00 [INF] Sending file. Request path: '/favicon.png'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\favicon.png'
+2026-03-21 10:13:39.348 +02:00 [INF] HTTP GET /favicon.png responded 200 in 8.1315 ms
+2026-03-21 10:13:39.359 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.png - 200 480 image/png 29.0036ms
+2026-03-21 10:13:58.221 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Login - application/x-www-form-urlencoded 222
+2026-03-21 10:13:58.232 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:13:58.261 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ContactsManager.Contracts.Requests.Identity.LoginRequest) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:13:58.313 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 10:13:58.323 +02:00 [INF] Executed ViewResult - view Login executed in 10.6825ms.
+2026-03-21 10:13:58.328 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 59.3928ms
+2026-03-21 10:13:58.334 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:13:58.339 +02:00 [INF] HTTP POST /Account/Login responded 200 in 108.1904 ms
+2026-03-21 10:13:58.347 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 125.7504ms
+2026-03-21 10:13:58.375 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:13:58.392 +02:00 [INF] The file /css/style.css was not modified
+2026-03-21 10:13:58.394 +02:00 [INF] HTTP GET /css/style.css responded 304 in 6.0901 ms
+2026-03-21 10:13:58.403 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 28.5222ms
+2026-03-21 10:14:08.891 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Login - application/x-www-form-urlencoded 229
+2026-03-21 10:14:08.899 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:14:08.902 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ContactsManager.Contracts.Requests.Identity.LoginRequest) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:14:08.910 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 10:14:08.915 +02:00 [INF] Executed ViewResult - view Login executed in 5.7268ms.
+2026-03-21 10:14:08.920 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 13.0521ms
+2026-03-21 10:14:08.923 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:14:08.927 +02:00 [INF] HTTP POST /Account/Login responded 200 in 27.4793 ms
+2026-03-21 10:14:08.932 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 39.9082ms
+2026-03-21 10:14:14.249 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Login - application/x-www-form-urlencoded 242
+2026-03-21 10:14:14.256 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:14:14.260 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ContactsManager.Contracts.Requests.Identity.LoginRequest) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:14:14.526 +02:00 [INF] Executed DbCommand (27ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-03-21 10:14:15.014 +02:00 [INF] Executed DbCommand (43ms) [Parameters=[@user_Id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @user_Id
+2026-03-21 10:14:15.085 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-03-21 10:14:15.111 +02:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2026-03-21 10:14:15.128 +02:00 [INF] Executing RedirectResult, redirecting to /Home.
+2026-03-21 10:14:15.133 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 865.5032ms
+2026-03-21 10:14:15.140 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:14:15.144 +02:00 [INF] HTTP POST /Account/Login responded 302 in 888.0164 ms
+2026-03-21 10:14:15.159 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Login - 302 0 null 909.9729ms
+2026-03-21 10:14:15.177 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Home - null null
+2026-03-21 10:14:15.220 +02:00 [INF] HTTP GET /Home responded 404 in 30.5758 ms
+2026-03-21 10:14:15.232 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Home - 404 0 null 54.2449ms
+2026-03-21 10:14:15.245 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/Home, Response status code: 404
+2026-03-21 10:17:56.732 +02:00 [INF] Application is shutting down...
+2026-03-21 10:18:27.717 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 10:18:28.015 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 10:18:28.028 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 10:18:28.048 +02:00 [INF] Hosting environment: Development
+2026-03-21 10:18:28.065 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 10:18:39.778 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 10:18:39.809 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 10:18:40.297 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:18:40.405 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 10:18:40.462 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 10:18:44.923 +02:00 [INF] Executed DbCommand (75ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 10:18:45.152 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 10:18:45.162 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 10:18:45.307 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 10:18:45.999 +02:00 [INF] Executed ViewResult - view Index executed in 696.3321ms.
+2026-03-21 10:18:46.018 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 5605.0852ms
+2026-03-21 10:18:46.036 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:18:46.038 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:18:46.100 +02:00 [INF] The file /css/style.css was not modified
+2026-03-21 10:18:46.115 +02:00 [INF] HTTP GET /css/style.css responded 304 in 63.2019 ms
+2026-03-21 10:18:46.116 +02:00 [INF] HTTP GET / responded 200 in 6282.2430 ms
+2026-03-21 10:18:46.157 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 117.5634ms
+2026-03-21 10:18:46.284 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 6509.696ms
+2026-03-21 10:19:56.529 +02:00 [INF] Application is shutting down...
+2026-03-21 10:21:25.628 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 10:21:25.848 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 10:21:25.880 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 10:21:25.906 +02:00 [INF] Hosting environment: Development
+2026-03-21 10:21:25.916 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 10:21:29.031 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 10:21:29.071 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 10:21:29.654 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:21:29.761 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 10:21:29.809 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 10:21:33.868 +02:00 [INF] Executed DbCommand (53ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 10:21:33.984 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 10:21:33.988 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 10:21:34.086 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 10:21:34.628 +02:00 [INF] Executed ViewResult - view Index executed in 546.4911ms.
+2026-03-21 10:21:34.657 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 4887.2987ms
+2026-03-21 10:21:34.660 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:21:34.693 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:21:34.750 +02:00 [INF] HTTP GET / responded 200 in 5655.1831 ms
+2026-03-21 10:21:34.817 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-03-21 10:21:34.822 +02:00 [INF] HTTP GET /css/style.css responded 200 in 94.6176 ms
+2026-03-21 10:21:34.839 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36363 text/css 180.2348ms
+2026-03-21 10:21:34.845 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 5819.5141ms
+2026-03-21 10:21:45.403 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Logout - null null
+2026-03-21 10:21:45.444 +02:00 [INF] HTTP GET /Account/Logout responded 404 in 29.9714 ms
+2026-03-21 10:21:45.458 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Logout - 404 0 null 54.7584ms
+2026-03-21 10:21:45.473 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/Account/Logout, Response status code: 404
+2026-03-21 10:21:52.028 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Countries/uploadFromExcel - null null
+2026-03-21 10:21:52.107 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-03-21 10:21:52.118 +02:00 [INF] Route matched with {action = "UploadFromExcel", controller = "Countries"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult UploadFromExcel() on controller ContactsManager.Web.Controllers.CountriesController (ContactsManager.Web).
+2026-03-21 10:21:52.134 +02:00 [INF] Executing ViewResult, running view UploadFromExcel.
+2026-03-21 10:21:52.239 +02:00 [INF] Executed ViewResult - view UploadFromExcel executed in 107.9617ms.
+2026-03-21 10:21:52.247 +02:00 [INF] Executed action ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web) in 119.8845ms
+2026-03-21 10:21:52.251 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-03-21 10:21:52.255 +02:00 [INF] HTTP GET /Countries/uploadFromExcel responded 200 in 219.4884 ms
+2026-03-21 10:21:52.264 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Countries/uploadFromExcel - 200 null text/html; charset=utf-8 235.5887ms
+2026-03-21 10:21:52.289 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:21:52.301 +02:00 [INF] The file /css/style.css was not modified
+2026-03-21 10:21:52.305 +02:00 [INF] HTTP GET /css/style.css responded 304 in 6.3351 ms
+2026-03-21 10:21:52.312 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 23.2693ms
+2026-03-21 10:21:53.187 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-03-21 10:21:53.198 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:21:53.223 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 10:21:53.313 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 10:21:53.321 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 10:21:53.328 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 10:21:53.334 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 10:21:53.346 +02:00 [INF] Executed ViewResult - view Index executed in 12.6375ms.
+2026-03-21 10:21:53.353 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 122.2561ms
+2026-03-21 10:21:53.362 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:21:53.365 +02:00 [INF] HTTP GET /Persons/Index responded 200 in 169.9730 ms
+2026-03-21 10:21:53.372 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 185.6665ms
+2026-03-21 10:24:32.707 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:24:32.713 +02:00 [INF] The file /css/style.css was not modified
+2026-03-21 10:24:32.716 +02:00 [INF] HTTP GET /css/style.css responded 304 in 3.2411 ms
+2026-03-21 10:24:32.720 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 13.5333ms
+2026-03-21 10:24:32.730 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 10:24:32.740 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 4.2261 ms
+2026-03-21 10:24:32.743 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 13.2782ms
+2026-03-21 10:24:32.752 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 10:24:55.822 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-03-21 10:24:55.830 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:24:55.833 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 10:24:56.049 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 10:24:56.054 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 10:24:56.056 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 10:24:56.060 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 10:24:56.073 +02:00 [INF] Executed ViewResult - view Index executed in 12.849ms.
+2026-03-21 10:24:56.078 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 239.1563ms
+2026-03-21 10:24:56.082 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:24:56.086 +02:00 [INF] HTTP GET /Persons/Index responded 200 in 258.3017 ms
+2026-03-21 10:24:56.093 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 270.0177ms
+2026-03-21 10:24:56.124 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:24:56.124 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-21 10:24:56.127 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-21 10:24:56.137 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-03-21 10:24:56.149 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\all.min.css'
+2026-03-21 10:24:56.149 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\site.js'
+2026-03-21 10:24:56.152 +02:00 [INF] HTTP GET /css/style.css responded 200 in 17.9920 ms
+2026-03-21 10:24:56.156 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 15.5238 ms
+2026-03-21 10:24:56.161 +02:00 [INF] HTTP GET /js/site.js responded 200 in 12.7377 ms
+2026-03-21 10:24:56.165 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36363 text/css 41.734ms
+2026-03-21 10:24:56.169 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74328 text/css 44.6752ms
+2026-03-21 10:24:56.174 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1485 text/javascript 46.7674ms
+2026-03-21 10:24:56.181 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 10:24:56.201 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-21 10:24:56.206 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.7430 ms
+2026-03-21 10:24:56.216 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\webfonts\fa-solid-900.woff2'
+2026-03-21 10:24:56.218 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 37.7556ms
+2026-03-21 10:24:56.222 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 8.5636 ms
+2026-03-21 10:24:56.231 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 10:24:56.235 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 34.0154ms
+2026-03-21 10:24:56.447 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.png - null null
+2026-03-21 10:24:56.455 +02:00 [INF] Sending file. Request path: '/favicon.png'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\favicon.png'
+2026-03-21 10:24:56.458 +02:00 [INF] HTTP GET /favicon.png responded 200 in 4.5158 ms
+2026-03-21 10:24:56.463 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.png - 200 480 image/png 15.6225ms
+2026-03-21 10:24:57.727 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-03-21 10:24:57.736 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:24:57.744 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:24:57.755 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 10:24:57.878 +02:00 [INF] Executed ViewResult - view Login executed in 124.9293ms.
+2026-03-21 10:24:57.882 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 130.2344ms
+2026-03-21 10:24:57.885 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:24:57.887 +02:00 [INF] HTTP GET /Account/Login responded 200 in 152.5212 ms
+2026-03-21 10:24:57.894 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 165.8761ms
+2026-03-21 10:24:57.948 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:24:57.955 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-21 10:24:57.956 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-21 10:24:57.959 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-03-21 10:24:57.970 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\all.min.css'
+2026-03-21 10:24:57.979 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\site.js'
+2026-03-21 10:24:57.982 +02:00 [INF] HTTP GET /css/style.css responded 200 in 25.3396 ms
+2026-03-21 10:24:57.988 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 21.3025 ms
+2026-03-21 10:24:57.993 +02:00 [INF] HTTP GET /js/site.js responded 200 in 18.3156 ms
+2026-03-21 10:24:58.000 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36363 text/css 51.2162ms
+2026-03-21 10:24:58.006 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74328 text/css 50.6569ms
+2026-03-21 10:24:58.011 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1485 text/javascript 55.3398ms
+2026-03-21 10:24:58.029 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 10:24:58.037 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-21 10:24:58.042 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.7278 ms
+2026-03-21 10:24:58.049 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\webfonts\fa-solid-900.woff2'
+2026-03-21 10:24:58.052 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 23.8659ms
+2026-03-21 10:24:58.058 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 10.9734 ms
+2026-03-21 10:24:58.072 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 10:24:58.079 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 41.8531ms
+2026-03-21 10:25:12.603 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Login - application/x-www-form-urlencoded 242
+2026-03-21 10:25:12.614 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:25:12.644 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ContactsManager.Contracts.Requests.Identity.LoginRequest) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:25:12.898 +02:00 [INF] Executed DbCommand (22ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-03-21 10:25:13.374 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@user_Id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @user_Id
+2026-03-21 10:25:13.424 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-03-21 10:25:13.448 +02:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2026-03-21 10:25:13.458 +02:00 [INF] Executing RedirectResult, redirecting to /Persons/Index.
+2026-03-21 10:25:13.462 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 811.9677ms
+2026-03-21 10:25:13.468 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:25:13.471 +02:00 [INF] HTTP POST /Account/Login responded 302 in 857.2146 ms
+2026-03-21 10:25:13.478 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Login - 302 0 null 874.5873ms
+2026-03-21 10:25:13.493 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-03-21 10:25:13.518 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:25:13.523 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 10:25:13.541 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 10:25:13.555 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 10:25:13.561 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 10:25:13.566 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 10:25:13.576 +02:00 [INF] Executed ViewResult - view Index executed in 10.065ms.
+2026-03-21 10:25:13.582 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 50.2807ms
+2026-03-21 10:25:13.590 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:25:13.596 +02:00 [INF] HTTP GET /Persons/Index responded 200 in 80.6144 ms
+2026-03-21 10:25:13.616 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 118.8032ms
+2026-03-21 10:25:13.677 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-21 10:25:13.677 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-21 10:25:13.692 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:25:13.694 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\site.js'
+2026-03-21 10:25:13.694 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\all.min.css'
+2026-03-21 10:25:13.700 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-03-21 10:25:13.701 +02:00 [INF] HTTP GET /js/site.js responded 200 in 9.0520 ms
+2026-03-21 10:25:13.707 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 15.0572 ms
+2026-03-21 10:25:13.709 +02:00 [INF] HTTP GET /css/style.css responded 200 in 10.0400 ms
+2026-03-21 10:25:13.712 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1485 text/javascript 35.2091ms
+2026-03-21 10:25:13.716 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74328 text/css 39.2358ms
+2026-03-21 10:25:13.720 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36363 text/css 28.077ms
+2026-03-21 10:25:13.731 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 10:25:13.737 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-21 10:25:13.749 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 1.4433 ms
+2026-03-21 10:25:13.756 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\webfonts\fa-solid-900.woff2'
+2026-03-21 10:25:13.760 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 28.7602ms
+2026-03-21 10:25:13.767 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 12.9935 ms
+2026-03-21 10:25:13.778 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 10:25:13.783 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 45.9743ms
+2026-03-21 10:29:09.962 +02:00 [INF] Application is shutting down...
+2026-03-21 10:30:01.964 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 10:30:02.177 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 10:30:02.190 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 10:30:02.206 +02:00 [INF] Hosting environment: Development
+2026-03-21 10:30:02.213 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 10:30:02.264 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-03-21 10:30:02.312 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 10:30:02.384 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:30:02.465 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 10:30:02.492 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 10:30:03.634 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 10:30:03.650 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:30:03.711 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 10:30:05.694 +02:00 [WRN] Request GetFilteredAndSortedPersonsQuery was cancelled
+2026-03-21 10:30:05.744 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 3251.7774ms
+2026-03-21 10:30:05.778 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:30:05.843 +02:00 [ERR] HTTP GET /Persons/Index responded 500 in 3504.4438 ms
+System.Threading.Tasks.TaskCanceledException: A task was canceled.
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.SingleQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at ContactsManager.Application.Features.Persons.Queries.GetFilteredAndSortedPersons.GetFilteredAndSortedPersonsQueryHandler.Handle(GetFilteredAndSortedPersonsQuery query, CancellationToken cancellationToken) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Application\Features\Persons\Queries\GetFilteredAndSortedPersons\GetFilteredAndSortedPersonsQueryHandler.cs:line 35
+   at ContactsManager.Application.Common.Behaviors.UnhandledExceptionBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken ct) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Application\Common\Behaviors\UnhandledExceptionBehavior.cs:line 25
+   at ContactsManager.Application.Common.Behaviors.ValidationBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Application\Common\Behaviors\ValidationBehavior.cs:line 20
+   at ContactsManager.Web.Controllers.PersonsController.Index(String searchBy, String searchValue, String orderBy, SortOrder sortOrder, CancellationToken cancellationToken) in C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\Controllers\PersonsController.cs:line 46
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|25_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-03-21 10:30:05.908 +02:00 [INF] Executed DbCommand (123ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 10:30:06.148 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 499 null null 3884.0274ms
+2026-03-21 10:30:06.249 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 10:30:06.253 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 10:30:06.319 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 10:30:06.847 +02:00 [INF] Executed ViewResult - view Index executed in 546.1462ms.
+2026-03-21 10:30:06.858 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 2881.9507ms
+2026-03-21 10:30:06.883 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:30:06.897 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:30:06.898 +02:00 [INF] HTTP GET / responded 200 in 3253.6391 ms
+2026-03-21 10:30:06.962 +02:00 [INF] The file /css/style.css was not modified
+2026-03-21 10:30:06.969 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 3338.2286ms
+2026-03-21 10:30:06.988 +02:00 [INF] HTTP GET /css/style.css responded 304 in 61.8067 ms
+2026-03-21 10:30:07.028 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 131.4405ms
+2026-03-21 10:30:09.024 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-03-21 10:30:09.060 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:30:09.094 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:30:09.117 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 10:30:09.287 +02:00 [INF] Executed ViewResult - view Login executed in 174.9862ms.
+2026-03-21 10:30:09.292 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 185.5939ms
+2026-03-21 10:30:09.297 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:30:09.305 +02:00 [INF] HTTP GET /Account/Login responded 200 in 264.8965 ms
+2026-03-21 10:30:09.321 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 297.2156ms
+2026-03-21 10:30:50.265 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-03-21 10:30:50.273 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 10:30:50.282 +02:00 [INF] Route matched with {action = "Register", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:30:50.292 +02:00 [INF] Executing ViewResult, running view Register.
+2026-03-21 10:30:50.380 +02:00 [INF] Executed ViewResult - view Register executed in 91.6908ms.
+2026-03-21 10:30:50.392 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 103.6397ms
+2026-03-21 10:30:50.397 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-03-21 10:30:50.401 +02:00 [INF] HTTP GET /Account/Register responded 200 in 130.0117 ms
+2026-03-21 10:30:50.407 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 142.5412ms
+2026-03-21 10:30:52.718 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-03-21 10:30:52.726 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:30:52.730 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:30:52.738 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 10:30:52.748 +02:00 [INF] Executed ViewResult - view Login executed in 10.5224ms.
+2026-03-21 10:30:52.754 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 17.1975ms
+2026-03-21 10:30:52.758 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:30:52.762 +02:00 [INF] HTTP GET /Account/Login responded 200 in 36.2776 ms
+2026-03-21 10:30:52.767 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 48.7781ms
+2026-03-21 10:31:15.160 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Login - application/x-www-form-urlencoded 242
+2026-03-21 10:31:15.166 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:31:15.192 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ContactsManager.Contracts.Requests.Identity.LoginRequest) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:31:15.634 +02:00 [INF] Executed DbCommand (30ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-03-21 10:31:16.101 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@user_Id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @user_Id
+2026-03-21 10:31:16.162 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-03-21 10:31:16.189 +02:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2026-03-21 10:31:16.203 +02:00 [INF] Executing RedirectResult, redirecting to /Persons/Index.
+2026-03-21 10:31:16.209 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 1008.5882ms
+2026-03-21 10:31:16.213 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:31:16.217 +02:00 [INF] HTTP POST /Account/Login responded 302 in 1051.6284 ms
+2026-03-21 10:31:16.224 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Login - 302 0 null 1064.0717ms
+2026-03-21 10:31:16.236 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-03-21 10:31:16.264 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:31:16.266 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 10:31:16.319 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 10:31:16.326 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 10:31:16.329 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 10:31:16.332 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 10:31:16.341 +02:00 [INF] Executed ViewResult - view Index executed in 9.4626ms.
+2026-03-21 10:31:16.349 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 50.4942ms
+2026-03-21 10:31:16.355 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:31:16.361 +02:00 [INF] HTTP GET /Persons/Index responded 200 in 115.8272 ms
+2026-03-21 10:31:16.367 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 130.827ms
+2026-03-21 10:31:16.403 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:31:16.415 +02:00 [INF] The file /css/style.css was not modified
+2026-03-21 10:31:16.418 +02:00 [INF] HTTP GET /css/style.css responded 304 in 4.9071 ms
+2026-03-21 10:31:16.425 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 21.7051ms
+2026-03-21 10:31:53.645 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Logout - null null
+2026-03-21 10:31:53.660 +02:00 [INF] HTTP GET /Account/Logout responded 404 in 10.5062 ms
+2026-03-21 10:31:53.664 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Logout - 404 0 null 18.8623ms
+2026-03-21 10:31:53.676 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/Account/Logout, Response status code: 404
+2026-03-21 10:31:55.258 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Logout - null null
+2026-03-21 10:31:55.336 +02:00 [INF] HTTP GET /Account/Logout responded 404 in 69.2350 ms
+2026-03-21 10:31:55.343 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Logout - 404 0 null 84.626ms
+2026-03-21 10:31:55.357 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/Account/Logout, Response status code: 404
+2026-03-21 10:52:58.925 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-03-21 10:52:58.938 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:52:58.943 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:52:58.957 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 10:52:58.992 +02:00 [INF] Executed ViewResult - view Login executed in 39.9422ms.
+2026-03-21 10:52:59.010 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 58.3456ms
+2026-03-21 10:52:59.020 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:52:59.029 +02:00 [INF] HTTP GET /Account/Login responded 200 in 93.0459 ms
+2026-03-21 10:52:59.036 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 111.7933ms
+2026-03-21 10:56:41.374 +02:00 [INF] Application is shutting down...
+2026-03-21 10:57:14.767 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 10:57:14.904 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 10:57:14.908 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 10:57:14.910 +02:00 [INF] Hosting environment: Development
+2026-03-21 10:57:14.911 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 10:57:17.193 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 10:57:17.230 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 10:57:17.758 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:57:17.843 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 10:57:17.893 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 10:57:20.833 +02:00 [INF] Executed DbCommand (46ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 10:57:20.947 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 10:57:20.950 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 10:57:21.016 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 10:57:21.442 +02:00 [INF] Executed ViewResult - view Index executed in 430.0525ms.
+2026-03-21 10:57:21.452 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 3602.7614ms
+2026-03-21 10:57:21.461 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:57:21.481 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:57:21.489 +02:00 [INF] HTTP GET / responded 200 in 4237.1162 ms
+2026-03-21 10:57:21.569 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 4380.6807ms
+2026-03-21 10:57:21.581 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-03-21 10:57:21.592 +02:00 [INF] HTTP GET /css/style.css responded 200 in 98.4876 ms
+2026-03-21 10:57:21.602 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36481 text/css 122.1639ms
+2026-03-21 10:57:24.911 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 10:57:24.945 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 29.9179 ms
+2026-03-21 10:57:24.951 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 39.2724ms
+2026-03-21 10:57:24.959 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 10:57:38.917 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-21 10:57:38.938 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:57:38.942 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-21 10:57:39.066 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-21 10:57:39.078 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-21 10:57:39.082 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-21 10:57:39.091 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-21 10:57:39.136 +02:00 [INF] Executed ViewResult - view Index executed in 45.1045ms.
+2026-03-21 10:57:39.145 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 196.9452ms
+2026-03-21 10:57:39.155 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:57:39.160 +02:00 [INF] HTTP GET / responded 200 in 236.5554 ms
+2026-03-21 10:57:39.175 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 257.1577ms
+2026-03-21 10:57:39.176 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:57:39.177 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-21 10:57:39.177 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-21 10:57:39.195 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 10:57:39.212 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-03-21 10:57:39.220 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\all.min.css'
+2026-03-21 10:57:39.229 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\site.js'
+2026-03-21 10:57:39.236 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 3.3324 ms
+2026-03-21 10:57:39.241 +02:00 [INF] HTTP GET /css/style.css responded 200 in 37.2053 ms
+2026-03-21 10:57:39.246 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 28.8233 ms
+2026-03-21 10:57:39.248 +02:00 [INF] HTTP GET /js/site.js responded 200 in 23.9769 ms
+2026-03-21 10:57:39.252 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 57.7521ms
+2026-03-21 10:57:39.262 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36481 text/css 86.2296ms
+2026-03-21 10:57:39.266 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74328 text/css 88.6217ms
+2026-03-21 10:57:39.273 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1485 text/javascript 95.0266ms
+2026-03-21 10:57:39.281 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 10:57:39.309 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-21 10:57:39.324 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\webfonts\fa-solid-900.woff2'
+2026-03-21 10:57:39.329 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 9.0202 ms
+2026-03-21 10:57:39.341 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 31.7851ms
+2026-03-21 10:57:39.571 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.png - null null
+2026-03-21 10:57:39.579 +02:00 [INF] Sending file. Request path: '/favicon.png'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\favicon.png'
+2026-03-21 10:57:39.592 +02:00 [INF] HTTP GET /favicon.png responded 200 in 14.9000 ms
+2026-03-21 10:57:39.598 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.png - 200 480 image/png 26.7567ms
+2026-03-21 10:57:40.925 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-03-21 10:57:40.929 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:57:40.941 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:57:40.963 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 10:57:41.092 +02:00 [INF] Executed ViewResult - view Login executed in 132.1955ms.
+2026-03-21 10:57:41.094 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 148.6601ms
+2026-03-21 10:57:41.100 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:57:41.105 +02:00 [INF] HTTP GET /Account/Login responded 200 in 176.4470 ms
+2026-03-21 10:57:41.119 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 192.9292ms
+2026-03-21 10:57:41.147 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:57:41.158 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-21 10:57:41.159 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-21 10:57:41.169 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-03-21 10:57:41.190 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\all.min.css'
+2026-03-21 10:57:41.199 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\site.js'
+2026-03-21 10:57:41.202 +02:00 [INF] HTTP GET /css/style.css responded 200 in 38.8627 ms
+2026-03-21 10:57:41.210 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 24.3441 ms
+2026-03-21 10:57:41.214 +02:00 [INF] HTTP GET /js/site.js responded 200 in 16.9343 ms
+2026-03-21 10:57:41.222 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36481 text/css 75.8537ms
+2026-03-21 10:57:41.228 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74328 text/css 70.2021ms
+2026-03-21 10:57:41.241 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1485 text/javascript 82.4575ms
+2026-03-21 10:57:41.254 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 10:57:41.270 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-21 10:57:41.279 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.8146 ms
+2026-03-21 10:57:41.296 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\webfonts\fa-solid-900.woff2'
+2026-03-21 10:57:41.301 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 47.6606ms
+2026-03-21 10:57:41.309 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 21.8470 ms
+2026-03-21 10:57:41.319 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 10:57:41.324 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 53.9433ms
+2026-03-21 10:57:41.412 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - null null
+2026-03-21 10:57:41.423 +02:00 [INF] Sending file. Request path: '/js/jquery.validate.unobtrusive.min.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\jquery.validate.unobtrusive.min.js'
+2026-03-21 10:57:41.430 +02:00 [INF] HTTP GET /js/jquery.validate.unobtrusive.min.js responded 200 in 8.4053 ms
+2026-03-21 10:57:41.441 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - 200 5831 text/javascript 28.6845ms
+2026-03-21 10:58:10.315 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-03-21 10:58:10.326 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:58:10.329 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:58:10.342 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 10:58:10.358 +02:00 [INF] Executed ViewResult - view Login executed in 15.7581ms.
+2026-03-21 10:58:10.367 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 24.9454ms
+2026-03-21 10:58:10.372 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:58:10.377 +02:00 [INF] HTTP GET /Account/Login responded 200 in 53.5275 ms
+2026-03-21 10:58:10.388 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 73.5827ms
+2026-03-21 10:58:10.422 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:58:10.435 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 10:58:10.437 +02:00 [INF] The file /css/style.css was not modified
+2026-03-21 10:58:10.443 +02:00 [INF] HTTP GET /css/style.css responded 304 in 7.6097 ms
+2026-03-21 10:58:10.449 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 27.1852ms
+2026-03-21 10:58:10.441 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.6882 ms
+2026-03-21 10:58:10.470 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 34.1419ms
+2026-03-21 10:58:10.480 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 10:58:15.962 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-03-21 10:58:15.979 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:58:15.985 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:58:16.043 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 10:58:16.060 +02:00 [INF] Executed ViewResult - view Login executed in 17.5519ms.
+2026-03-21 10:58:16.073 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 30.5407ms
+2026-03-21 10:58:16.117 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:58:16.121 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:58:16.123 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-21 10:58:16.140 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-03-21 10:58:16.146 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-03-21 10:58:16.148 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-03-21 10:58:16.148 +02:00 [INF] HTTP GET /Account/Login responded 200 in 169.5342 ms
+2026-03-21 10:58:16.155 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 0.5156 ms
+2026-03-21 10:58:16.191 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 68.4685ms
+2026-03-21 10:58:16.204 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-21 10:58:16.174 +02:00 [INF] HTTP GET /css/style.css responded 200 in 30.9030 ms
+2026-03-21 10:58:16.185 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 223.1554ms
+2026-03-21 10:58:16.164 +02:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\all.min.css'
+2026-03-21 10:58:16.173 +02:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\site.js'
+2026-03-21 10:58:16.212 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36481 text/css 95.0242ms
+2026-03-21 10:58:16.226 +02:00 [INF] HTTP GET /css/all.min.css responded 200 in 65.0221 ms
+2026-03-21 10:58:16.229 +02:00 [INF] HTTP GET /js/site.js responded 200 in 59.5078 ms
+2026-03-21 10:58:16.258 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1485 text/javascript 112.4404ms
+2026-03-21 10:58:16.252 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74328 text/css 111.248ms
+2026-03-21 10:58:16.265 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-03-21 10:58:16.288 +02:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\webfonts\fa-solid-900.woff2'
+2026-03-21 10:58:16.293 +02:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 11.6278 ms
+2026-03-21 10:58:16.297 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 31.7112ms
+2026-03-21 10:58:16.353 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - null null
+2026-03-21 10:58:16.358 +02:00 [INF] Sending file. Request path: '/js/jquery.validate.unobtrusive.min.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\jquery.validate.unobtrusive.min.js'
+2026-03-21 10:58:16.362 +02:00 [INF] HTTP GET /js/jquery.validate.unobtrusive.min.js responded 200 in 4.6114 ms
+2026-03-21 10:58:16.372 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - 200 5831 text/javascript 18.9716ms
+2026-03-21 10:58:16.447 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.png - null null
+2026-03-21 10:58:16.457 +02:00 [INF] Sending file. Request path: '/favicon.png'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\favicon.png'
+2026-03-21 10:58:16.463 +02:00 [INF] HTTP GET /favicon.png responded 200 in 6.2681 ms
+2026-03-21 10:58:16.472 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.png - 200 480 image/png 24.7527ms
+2026-03-21 10:59:25.172 +02:00 [INF] Application is shutting down...
+2026-03-21 10:59:41.583 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-21 10:59:41.686 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-21 10:59:41.692 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-21 10:59:41.693 +02:00 [INF] Hosting environment: Development
+2026-03-21 10:59:41.709 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-21 10:59:43.150 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-03-21 10:59:43.174 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-21 10:59:43.231 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:59:43.264 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:59:43.283 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-21 10:59:43.299 +02:00 [INF] Executing ViewResult, running view Login.
+2026-03-21 10:59:43.469 +02:00 [INF] Executed ViewResult - view Login executed in 171.9891ms.
+2026-03-21 10:59:43.479 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 206.1968ms
+2026-03-21 10:59:43.494 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:59:43.507 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-03-21 10:59:43.509 +02:00 [INF] HTTP GET /Account/Login responded 200 in 323.8459 ms
+2026-03-21 10:59:43.633 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 485.9248ms
+2026-03-21 10:59:43.627 +02:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-03-21 10:59:43.678 +02:00 [INF] HTTP GET /css/style.css responded 200 in 118.7609 ms
+2026-03-21 10:59:43.691 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36448 text/css 184.7491ms
+2026-03-21 10:59:55.861 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Login - application/x-www-form-urlencoded 275
+2026-03-21 10:59:55.888 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:59:55.948 +02:00 [INF] Route matched with {action = "Login", controller = "Account"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ContactsManager.Contracts.Requests.Identity.LoginRequest) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-03-21 10:59:58.675 +02:00 [INF] Executed DbCommand (53ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-03-21 10:59:59.235 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[@user_Id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @user_Id
+2026-03-21 10:59:59.334 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-03-21 10:59:59.374 +02:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2026-03-21 10:59:59.399 +02:00 [INF] Executing RedirectResult, redirecting to /Persons/Index.
+2026-03-21 10:59:59.409 +02:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 3455.1076ms
+2026-03-21 10:59:59.416 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-03-21 10:59:59.428 +02:00 [INF] HTTP POST /Account/Login responded 302 in 3556.7459 ms
+2026-03-21 10:59:59.471 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Login - 302 0 null 3609.7456ms
+2026-03-21 10:59:59.484 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-03-21 10:59:59.653 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-21 10:59:59.759 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).

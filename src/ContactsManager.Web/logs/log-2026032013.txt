@@ -314,3 +314,239 @@ FROM [Countries] AS [c]
 2026-03-20 13:34:06.240 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 1264.7488 ms
 2026-03-20 13:34:06.246 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 1441.8135ms
 2026-03-20 13:34:53.469 +02:00 [INF] Application is shutting down...
+2026-03-20 13:37:55.452 +02:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-03-20 13:37:55.539 +02:00 [INF] Now listening on: http://localhost:5067
+2026-03-20 13:37:55.543 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-03-20 13:37:55.544 +02:00 [INF] Hosting environment: Development
+2026-03-20 13:37:55.545 +02:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-03-20 13:38:02.064 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-03-20 13:38:02.097 +02:00 [WRN] Failed to determine the https port for redirect.
+2026-03-20 13:38:02.158 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-20 13:38:02.264 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:38:02.292 +02:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-03-20 13:38:04.947 +02:00 [INF] Executed DbCommand (45ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-20 13:38:05.034 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 3
+2026-03-20 13:38:05.036 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-20 13:38:05.097 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-20 13:38:05.487 +02:00 [INF] Executed ViewResult - view Index executed in 402.139ms.
+2026-03-20 13:38:05.495 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 3224.7625ms
+2026-03-20 13:38:05.498 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-20 13:38:05.505 +02:00 [INF] HTTP GET / responded 200 in 3389.1520 ms
+2026-03-20 13:38:05.531 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 3470.4663ms
+2026-03-20 13:38:07.705 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Create - null null
+2026-03-20 13:38:07.732 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:38:07.758 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:38:07.855 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-20 13:38:07.882 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-20 13:38:08.063 +02:00 [INF] Executed ViewResult - view Create executed in 183.3544ms.
+2026-03-20 13:38:08.068 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 303.0557ms
+2026-03-20 13:38:08.075 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:38:08.079 +02:00 [INF] HTTP GET /Persons/Create responded 200 in 350.9672 ms
+2026-03-20 13:38:08.085 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 381.5277ms
+2026-03-20 13:38:16.105 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 735
+2026-03-20 13:38:16.116 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:38:16.151 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:38:16.358 +02:00 [WRN] Validation errors occurred: ["Date of birth can't be in the future."]
+2026-03-20 13:38:16.582 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-20 13:38:16.595 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-20 13:38:16.613 +02:00 [INF] Executed ViewResult - view Create executed in 18.3579ms.
+2026-03-20 13:38:16.616 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 458.4207ms
+2026-03-20 13:38:16.618 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:38:16.621 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 508.2105 ms
+2026-03-20 13:38:16.625 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 519.9656ms
+2026-03-20 13:38:29.963 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 735
+2026-03-20 13:38:29.980 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:38:29.998 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:38:30.210 +02:00 [INF] Executed DbCommand (26ms) [Parameters=[@email='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Persons] AS [p]
+        WHERE LOWER([p].[Email]) = @email) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-20 13:38:30.235 +02:00 [WRN] Person creation aborted. Email adhamalkhateeb2006@gmail.com already exists.
+2026-03-20 13:38:30.244 +02:00 [WRN] Validation errors occurred: ["A person with this email already exists"]
+2026-03-20 13:38:30.253 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-20 13:38:30.262 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-20 13:38:30.286 +02:00 [INF] Executed ViewResult - view Create executed in 23.8293ms.
+2026-03-20 13:38:30.292 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 262.0973ms
+2026-03-20 13:38:30.296 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:38:30.299 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 318.8247 ms
+2026-03-20 13:38:30.303 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 340.0054ms
+2026-03-20 13:38:34.369 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 735
+2026-03-20 13:38:34.380 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:38:34.402 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:38:34.430 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[@email='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Persons] AS [p]
+        WHERE LOWER([p].[Email]) = @email) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-20 13:38:34.436 +02:00 [WRN] Person creation aborted. Email adhamalkhateeb2006@gmail.com already exists.
+2026-03-20 13:38:34.439 +02:00 [WRN] Validation errors occurred: ["A person with this email already exists"]
+2026-03-20 13:38:34.448 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-20 13:38:34.465 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-20 13:38:34.472 +02:00 [INF] Executed ViewResult - view Create executed in 6.7829ms.
+2026-03-20 13:38:34.477 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 66.9891ms
+2026-03-20 13:38:34.480 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:38:34.484 +02:00 [INF] HTTP POST /Persons/Create responded 200 in 103.9506 ms
+2026-03-20 13:38:34.489 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 120.1882ms
+2026-03-20 13:38:38.818 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Create - application/x-www-form-urlencoded 736
+2026-03-20 13:38:38.829 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:38:38.836 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(ContactsManager.Contracts.Requests.Person.CreatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:38:38.851 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@email='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Persons] AS [p]
+        WHERE LOWER([p].[Email]) = @email) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-20 13:38:38.871 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[@request_CountryId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Countries] AS [c]
+        WHERE [c].[Id] = @request_CountryId) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-20 13:38:39.316 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 500), @p2='?' (DbType = Guid), @p3='?' (DbType = DateTimeOffset), @p4='?' (Size = 4000), @p5='?' (DbType = DateTime2), @p6='?' (Size = 255), @p7='?' (DbType = Int32), @p8='?' (Size = 4000), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 100), @p11='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Persons] ([Id], [Address], [CountryId], [CreatedAtUtc], [CreatedBy], [DateOfBirth], [Email], [Gender], [LastModifiedBy], [LastModifiedUtc], [Name], [ReceiveNewsLetters])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2026-03-20 13:38:39.351 +02:00 [INF] Executing RedirectResult, redirecting to /Persons/Index.
+2026-03-20 13:38:39.355 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 513.0564ms
+2026-03-20 13:38:39.359 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:38:39.375 +02:00 [INF] HTTP POST /Persons/Create responded 302 in 546.2453 ms
+2026-03-20 13:38:39.398 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Create - 302 0 null 579.6972ms
+2026-03-20 13:38:39.407 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-03-20 13:38:39.415 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-20 13:38:39.435 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:38:39.449 +02:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-20 13:38:39.456 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-20 13:38:39.459 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-20 13:38:39.466 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-20 13:38:39.473 +02:00 [INF] Executed ViewResult - view Index executed in 6.2849ms.
+2026-03-20 13:38:39.479 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 35.9777ms
+2026-03-20 13:38:39.482 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-20 13:38:39.484 +02:00 [INF] HTTP GET /Persons/Index responded 200 in 69.7956 ms
+2026-03-20 13:38:39.491 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 84.0554ms
+2026-03-20 13:38:48.204 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Edit/cafaddeb-1ee4-4732-bd94-02b53b51b9d2 - null null
+2026-03-20 13:38:48.217 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Edit (ContactsManager.Web)'
+2026-03-20 13:38:48.244 +02:00 [INF] Route matched with {action = "Edit", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(System.Guid, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:38:48.318 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters]
+FROM [Persons] AS [p]
+WHERE [p].[Id] = @p
+2026-03-20 13:38:48.345 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-20 13:38:48.362 +02:00 [INF] Executing ViewResult, running view Edit.
+2026-03-20 13:38:48.477 +02:00 [INF] Executed ViewResult - view Edit executed in 115.9594ms.
+2026-03-20 13:38:48.481 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Edit (ContactsManager.Web) in 229.9526ms
+2026-03-20 13:38:48.485 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Edit (ContactsManager.Web)'
+2026-03-20 13:38:48.488 +02:00 [INF] HTTP GET /Persons/Edit/cafaddeb-1ee4-4732-bd94-02b53b51b9d2 responded 200 in 271.7637 ms
+2026-03-20 13:38:48.495 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Edit/cafaddeb-1ee4-4732-bd94-02b53b51b9d2 - 200 null text/html; charset=utf-8 291.2315ms
+2026-03-20 13:38:51.002 +02:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Edit/cafaddeb-1ee4-4732-bd94-02b53b51b9d2 - application/x-www-form-urlencoded 800
+2026-03-20 13:38:51.012 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Edit (ContactsManager.Web)'
+2026-03-20 13:38:51.033 +02:00 [INF] Route matched with {action = "Edit", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(ContactsManager.Contracts.Requests.Person.UpdatePersonRequest, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:38:51.081 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters]
+FROM [Persons] AS [p]
+WHERE [p].[Id] = @p
+2026-03-20 13:38:51.115 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@request_Email='?' (Size = 255), @request_PersonId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Persons] AS [p]
+        WHERE [p].[Email] = @request_Email AND [p].[Id] <> @request_PersonId) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-20 13:38:51.126 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@request_CountryId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Countries] AS [c]
+        WHERE [c].[Id] = @request_CountryId) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2026-03-20 13:38:51.171 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?' (DbType = DateTimeOffset), @p1='?' (DbType = Boolean)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+UPDATE [Persons] SET [LastModifiedUtc] = @p0, [ReceiveNewsLetters] = @p1
+OUTPUT 1
+WHERE [Id] = @p2;
+2026-03-20 13:38:51.188 +02:00 [INF] Executing RedirectResult, redirecting to /Persons/Index.
+2026-03-20 13:38:51.194 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Edit (ContactsManager.Web) in 145.1661ms
+2026-03-20 13:38:51.197 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Edit (ContactsManager.Web)'
+2026-03-20 13:38:51.201 +02:00 [INF] HTTP POST /Persons/Edit/cafaddeb-1ee4-4732-bd94-02b53b51b9d2 responded 302 in 189.8201 ms
+2026-03-20 13:38:51.206 +02:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Edit/cafaddeb-1ee4-4732-bd94-02b53b51b9d2 - 302 0 null 203.319ms
+2026-03-20 13:38:51.216 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-03-20 13:38:51.221 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-20 13:38:51.226 +02:00 [INF] Route matched with {action = "Index", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:38:51.235 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-03-20 13:38:51.243 +02:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-03-20 13:38:51.245 +02:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-03-20 13:38:51.249 +02:00 [INF] Executing ViewResult, running view Index.
+2026-03-20 13:38:51.256 +02:00 [INF] Executed ViewResult - view Index executed in 6.6761ms.
+2026-03-20 13:38:51.261 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 30.9419ms
+2026-03-20 13:38:51.264 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-03-20 13:38:51.266 +02:00 [INF] HTTP GET /Persons/Index responded 200 in 44.8687 ms
+2026-03-20 13:38:51.270 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 53.9335ms
+2026-03-20 13:38:53.035 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Edit/7e2e2508-9d33-496b-b659-1c1270d59127 - null null
+2026-03-20 13:38:53.046 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Edit (ContactsManager.Web)'
+2026-03-20 13:38:53.049 +02:00 [INF] Route matched with {action = "Edit", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Edit(System.Guid, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:38:53.065 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters]
+FROM [Persons] AS [p]
+WHERE [p].[Id] = @p
+2026-03-20 13:38:53.077 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-20 13:38:53.087 +02:00 [INF] Executing ViewResult, running view Edit.
+2026-03-20 13:38:53.101 +02:00 [INF] Executed ViewResult - view Edit executed in 13.9412ms.
+2026-03-20 13:38:53.108 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Edit (ContactsManager.Web) in 50.6836ms
+2026-03-20 13:38:53.113 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Edit (ContactsManager.Web)'
+2026-03-20 13:38:53.117 +02:00 [INF] HTTP GET /Persons/Edit/7e2e2508-9d33-496b-b659-1c1270d59127 responded 200 in 71.3423 ms
+2026-03-20 13:38:53.131 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Edit/7e2e2508-9d33-496b-b659-1c1270d59127 - 200 null text/html; charset=utf-8 94.9135ms
+2026-03-20 13:38:58.842 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-03-20 13:38:58.852 +02:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 4.1147 ms
+2026-03-20 13:38:58.857 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 15.5044ms
+2026-03-20 13:38:58.866 +02:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-03-20 13:39:18.689 +02:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Create - null null
+2026-03-20 13:39:18.697 +02:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:39:18.703 +02:00 [INF] Route matched with {action = "Create", controller = "Persons"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-03-20 13:39:18.714 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Countries] AS [c]
+2026-03-20 13:39:18.719 +02:00 [INF] Executing ViewResult, running view Create.
+2026-03-20 13:39:18.727 +02:00 [INF] Executed ViewResult - view Create executed in 8.0956ms.
+2026-03-20 13:39:18.731 +02:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web) in 23.3698ms
+2026-03-20 13:39:18.741 +02:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Create (ContactsManager.Web)'
+2026-03-20 13:39:18.746 +02:00 [INF] HTTP GET /Persons/Create responded 200 in 48.9742 ms
+2026-03-20 13:39:18.760 +02:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Create - 200 null text/html; charset=utf-8 71.0449ms
+2026-03-20 13:40:32.931 +02:00 [INF] Application is shutting down...

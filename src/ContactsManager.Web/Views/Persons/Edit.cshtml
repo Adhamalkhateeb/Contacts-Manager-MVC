@@ -103,7 +103,23 @@
         </div>
     </div>
 
-    <div asp-validation-summary="All" class="validation-summary"></div>
+
+    @if (ViewBag.Errors != null)
+    {
+        <div class="alert alert-danger">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <div>
+                <strong>Please fix the following:</strong>
+                <ul style="margin:.5rem 0 0 1rem">
+                    @foreach (string error in ViewBag.Errors)
+                    {
+                        <li>@error</li>
+                    }
+                </ul>
+            </div>
+        </div>
+    }
+
 
     <div class="form-actions">
         <button type="submit" class="btn btn-primary">
@@ -114,10 +130,6 @@
 </form>
 
 @section scripts
- {
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" asp-fallback-test="window.jQuery" asp-fallback-src="~/js/jquery.min.js"></script>
-
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.4/jquery.validate.min.js" asp-fallback-test="window.jQuery.validator" asp-fallback-src="~/js/jquery.validate.min.js"></script>
-
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js" asp-fallback-test="window.jQuery.validator.unobstrusive" asp-fallback-src="~/js/jquery.validate.unobtrusive.min.js"></script>
+{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
