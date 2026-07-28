@@ -8,30 +8,29 @@ using Microsoft.Extensions.Logging;
 
 namespace ContactsManager.Application.Features.Countries.Queries.GetCountryById;
 
-public sealed class GetCountryByIdQueryHandler(
+public class GetCountryByIdQueryHandler(
     ILogger<GetCountryByIdQueryHandler> logger,
-    IAppDbContext context
+    IAppDbContext dbContext
 ) : IRequestHandler<GetCountryByIdQuery, Result<CountryDto>>
 {
-    private readonly IAppDbContext _context = context;
     private readonly ILogger<GetCountryByIdQueryHandler> _logger = logger;
+    private readonly IAppDbContext _dbContext = dbContext;
 
     public async Task<Result<CountryDto>> Handle(
-        GetCountryByIdQuery query,
+        GetCountryByIdQuery request,
         CancellationToken cancellationToken
     )
     {
-        var country = await _context
+        var country = await _dbContext
             .Countries.AsNoTracking()
-            .FirstOrDefaultAsync(c => c.Id == query.countryId, cancellationToken);
+            .FirstOrDefaultAsync(c => c.Id == request.Id, cancellationToken);
 
         if (country is null)
         {
-            _logger.LogWarning("Country with id {CountryId} was not found", query.countryId);
-
+            _logger.LogWarning("Country with Id {CountryId} not found.", request.Id);
             return Error.NotFound(
-                code: "Application_GetCountryById_CountryNotFound",
-                description: $"Country with id '{query.countryId}' was not found"
+                "Application_GetCountryById_CountryNotFound",
+                "Country not found."
             );
         }
 

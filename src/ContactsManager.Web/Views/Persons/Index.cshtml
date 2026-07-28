@@ -1,24 +1,12 @@
-﻿@model PersonsListViewModel
+@model PersonsListViewModel
 @{
     ViewBag.Title = "Persons";
     ViewBag.CurrentUrl = "~/Persons/Index";
-}
 
-@{
     string BuildOrderLink(string orderBy)
     {
-        var sortOrder = Model.OrderBy == orderBy && Model.SortOrder == "ASC"
-            ? "DESC"
-            : "ASC";
-
+        var sortOrder = Model.OrderBy == orderBy && Model.SortOrder == "ASC" ? "DESC" : "ASC";
         return $"/persons/index?searchBy={Model.SearchBy}&searchValue={Uri.EscapeDataString(Model.SearchValue ?? "")}&orderBy={orderBy}&sortOrder={sortOrder}";
-    }
-
-    string GetSortIcon(string columnName)
-    {
-        if (Model.OrderBy == columnName)
-            return Model.SortOrder == "ASC" ? "fa-solid fa-arrow-up" : "fa-solid fa-arrow-down";
-        return "fa-solid fa-arrows-up-down";
     }
 
     var isGenderSearch = Model.SearchBy == nameof(PersonResponse.Gender);
@@ -32,251 +20,124 @@
         else
             dateInputValue = Model.SearchValue;
     }
+
+    var personCount = Model.Persons.Count();
 }
 
-<form asp-controller="Persons" asp-action="@nameof(PersonsController.Index)" method="get" id="searchForm">
-
-
-    <div class="page-header">
-        <div>
-            <h1 class="page-title">Persons</h1>
-            <p class="page-meta">@Model.Persons.Count() contact@(Model.Persons.Count() == 1 ? "" : "s")</p>
-        </div>
-        <div class="page-actions">
-            <a asp-controller="Persons" asp-action="@nameof(PersonsController.PersonsPDF)"
-               class="btn btn-outline" title="Export PDF">
-                <i class="fa-solid fa-file-pdf"></i> <span class="btn-label">PDF</span>
-            </a>
-            <a asp-controller="Persons" asp-action="@nameof(PersonsController.DownloadPersonsCsv)"
-               class="btn btn-outline" title="Export CSV">
-                <i class="fa-solid fa-file-csv"></i> <span class="btn-label">CSV</span>
-            </a>
-            <a asp-controller="Persons" asp-action="@nameof(PersonsController.DownloadPersonsExcel)"
-               class="btn btn-outline" title="Export Excel">
-                <i class="fa-solid fa-file-excel"></i> <span class="btn-label">Excel</span>
-            </a>
-            <a asp-controller="Persons" asp-action="@nameof(PersonsController.Create)" class="btn btn-primary">
-                <i class="fa-solid fa-plus"></i> Add Person
-            </a>
-        </div>
+<div class="d-flex justify-content-between align-items-center mb-4 mt-3">
+    <div>
+        <h1 class="h2 mb-1">Persons</h1>
+        <p class="text-muted mb-0">@personCount contact@(personCount == 1 ? "" : "s")</p>
     </div>
+    <div class="d-flex gap-2 flex-wrap">
+        <a asp-controller="Persons" asp-action="@nameof(PersonsController.PersonsPDF)" class="btn btn-outline-secondary"><i class="bi bi-file-earmark-pdf me-1"></i> PDF</a>
+        <a asp-controller="Persons" asp-action="@nameof(PersonsController.DownloadPersonsCsv)" class="btn btn-outline-secondary"><i class="bi bi-filetype-csv me-1"></i> CSV</a>
+        <a asp-controller="Persons" asp-action="@nameof(PersonsController.DownloadPersonsExcel)" class="btn btn-outline-secondary"><i class="bi bi-file-earmark-excel me-1"></i> Excel</a>
+        <a asp-controller="Persons" asp-action="@nameof(PersonsController.Create)" class="btn btn-primary"><i class="bi bi-plus-lg me-1"></i> Add Person</a>
+    </div>
+</div>
 
-    <!-- Search Panel -->
-    <div class="search-panel">
-        <div class="search-row">
-            <div class="field-group">
-                <label class="field-label" for="searchBy">Filter by</label>
-                <select class="input" id="searchBy" name="searchBy">
+<div class="card shadow-sm border-0 mb-4 bg-light">
+    <div class="card-body">
+        <form asp-controller="Persons" asp-action="@nameof(PersonsController.Index)" method="get" id="searchForm" class="row g-3 align-items-end">
+            <div class="col-md-3">
+                <label for="searchBy" class="form-label fw-semibold">Filter by</label>
+                <select id="searchBy" name="searchBy" class="form-select">
                     @foreach (var field in Model.SearchFields)
                     {
-                        @if (Model.SearchBy == field.Key)
-                        {
-                            <option value="@field.Key" selected>@field.Value</option>
-                        }
-                        else
-                        {
-                            <option value="@field.Key">@field.Value</option>
-                        }
+                        if (Model.SearchBy == field.Key) { <option value="@field.Key" selected>@field.Value</option> }
+                        else { <option value="@field.Key">@field.Value</option> }
                     }
                 </select>
             </div>
-
-            <div class="field-group">
-                <label class="field-label">Search</label>
-
-                @* Text input: shown for most fields *@
+            <div class="col-md-5">
+                <label class="form-label fw-semibold">Search value</label>
+                
                 <input type="search" id="searchValueText"
-                       class="input search-ctrl @(isGenderSearch || isDateSearch ? "sv-hidden" : "")"
-                       placeholder="Type to search…"
-                       autocomplete="off"
+                       class="form-control @(isGenderSearch || isDateSearch ? "d-none" : "")"
+                       placeholder="Type to search…" autocomplete="off"
                        value="@(!isGenderSearch && !isDateSearch ? Model.SearchValue : null)">
 
-                @* Gender dropdown *@
-                <select id="searchValueGender"
-                        class="input search-ctrl @(isGenderSearch ? "" : "sv-hidden")">
+                <select id="searchValueGender" class="form-select @(isGenderSearch ? "" : "d-none")">
                     <option value="">All genders</option>
-                    @if (Model.SearchValue == "Male")
+                    @foreach(var g in new[] { "Male", "Female", "Other" })
                     {
-                        <option value="Male" selected>Male</option>
-                    }
-                    else
-                    {
-                        <option value="Male">Male</option>
-                    }
-                    @if (Model.SearchValue == "Female")
-                    {
-                        <option value="Female" selected>Female</option>
-                    }
-                    else
-                    {
-                        <option value="Female">Female</option>
-                    }
-                    @if (Model.SearchValue == "Other")
-                    {
-                        <option value="Other" selected>Other</option>
-                    }
-                    else
-                    {
-                        <option value="Other">Other</option>
+                        if (Model.SearchValue == g) { <option value="@g" selected>@g</option> }
+                        else { <option value="@g">@g</option> }
                     }
                 </select>
 
-                @* Date picker *@
-                <input type="date" id="searchValueDate"
-                       class="input search-ctrl @(isDateSearch ? "" : "sv-hidden")"
-                       value="@dateInputValue">
-
-                <input type="hidden" id="searchValueHidden" name="searchValue"
-                       value="@Model.SearchValue">
+                <input type="date" id="searchValueDate" class="form-control @(isDateSearch ? "" : "d-none")" value="@dateInputValue">
+                <input type="hidden" id="searchValueHidden" name="searchValue" value="@Model.SearchValue">
             </div>
-
-            <div class="search-btns">
-                <button type="submit" class="btn btn-primary">
-                    <i class="fa-solid fa-magnifying-glass"></i> Search
-                </button>
-                <a asp-action="@nameof(PersonsController.Index)" asp-controller="Persons" class="btn btn-outline">
-                    Clear
-                </a>
+            <div class="col-md-4 d-flex gap-2">
+                <button type="submit" class="btn btn-primary flex-grow-1"><i class="bi bi-search me-1"></i> Search</button>
+                <a asp-action="@nameof(PersonsController.Index)" asp-controller="Persons" class="btn btn-outline-secondary">Clear</a>
             </div>
+        </form>
+    </div>
+</div>
+
+@if (Model.Persons.Any())
+{
+    <div class="card shadow-sm border-0">
+        <div class="table-responsive">
+            <table class="table table-hover table-striped mb-0 align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="ps-3"><a href="@BuildOrderLink(nameof(PersonResponse.Name))" class="text-white text-decoration-none">Name <i class="bi bi-arrow-down-up ms-1 small text-secondary"></i></a></th>
+                        <th><a href="@BuildOrderLink(nameof(PersonResponse.Email))" class="text-white text-decoration-none">Email <i class="bi bi-arrow-down-up ms-1 small text-secondary"></i></a></th>
+                        <th><a href="@BuildOrderLink(nameof(PersonResponse.DateOfBirth))" class="text-white text-decoration-none">Date of Birth <i class="bi bi-arrow-down-up ms-1 small text-secondary"></i></a></th>
+                        <th><a href="@BuildOrderLink(nameof(PersonResponse.Age))" class="text-white text-decoration-none">Age <i class="bi bi-arrow-down-up ms-1 small text-secondary"></i></a></th>
+                        <th><a href="@BuildOrderLink(nameof(PersonResponse.Gender))" class="text-white text-decoration-none">Gender <i class="bi bi-arrow-down-up ms-1 small text-secondary"></i></a></th>
+                        <th>Country</th>
+                        <th>Newsletter</th>
+                        <th class="text-end pe-3">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var person in Model.Persons)
+                    {
+                        <tr>
+                            <td class="ps-3 fw-medium">@person.Name</td>
+                            <td><a href="mailto:@person.Email" class="text-decoration-none">@person.Email</a></td>
+                            <td>@(person.DateOfBirth.HasValue ? person.DateOfBirth.Value.ToString("dd MMM yyyy") : "—")</td>
+                            <td>@(person.Age ?? 0)</td>
+                            <td>
+                                @if(person.Gender == "Male") { <span class="badge bg-primary bg-opacity-10 text-primary border border-primary-subtle">Male</span> }
+                                else if(person.Gender == "Female") { <span class="badge bg-danger bg-opacity-10 text-danger border border-danger-subtle">Female</span> }
+                                else { <span class="badge bg-secondary bg-opacity-10 text-secondary border border-secondary-subtle">@person.Gender</span> }
+                            </td>
+                            <td>@person.Country</td>
+                            <td>
+                                @if(person.ReceiveNewsLetters){ <i class="bi bi-check-circle-fill text-success"></i> }
+                                else { <i class="bi bi-x-circle text-muted"></i> }
+                            </td>
+                            <td class="text-end pe-3">
+                                <a asp-controller="Persons" asp-action="Edit" asp-route-id="@person.Id" class="btn btn-sm btn-outline-primary" title="Edit"><i class="bi bi-pencil"></i></a>
+                                <a asp-controller="Persons" asp-action="Delete" asp-route-id="@person.Id" class="btn btn-sm btn-outline-danger ms-1" title="Delete"><i class="bi bi-trash"></i></a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
-
-    <!-- Table -->
-    @if (Model.Persons.Any())
-    {
-        <div class="table-card">
-            <div class="table-scroll">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>
-                                <a href="@BuildOrderLink(nameof(PersonResponse.Name))" class="sort-link">
-                                    Name <i class="@GetSortIcon(nameof(PersonResponse.Name))"></i>
-                                </a>
-                            </th>
-                            <th>
-                                <a href="@BuildOrderLink(nameof(PersonResponse.Email))" class="sort-link">
-                                    Email <i class="@GetSortIcon(nameof(PersonResponse.Email))"></i>
-                                </a>
-                            </th>
-                            <th>
-                                <a href="@BuildOrderLink(nameof(PersonResponse.DateOfBirth))" class="sort-link">
-                                    Date of Birth <i class="@GetSortIcon(nameof(PersonResponse.DateOfBirth))"></i>
-                                </a>
-                            </th>
-                            <th>
-                                <a href="@BuildOrderLink(nameof(PersonResponse.Age))" class="sort-link">
-                                    Age <i class="@GetSortIcon(nameof(PersonResponse.Age))"></i>
-                                </a>
-                            </th>
-                            <th>
-                                <a href="@BuildOrderLink(nameof(PersonResponse.Gender))" class="sort-link">
-                                    Gender <i class="@GetSortIcon(nameof(PersonResponse.Gender))"></i>
-                                </a>
-                            </th>
-                            <th>Country</th>
-                            <th>Newsletter</th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var person in Model.Persons)
-                        {
-                            <tr>
-                                <td>
-                                    <div class="person-name">
-                                        <div class="avatar">
-                                            <i class="fa-solid fa-user"></i>
-                                        </div>
-                                        @person.Name
-                                    </div>
-                                </td>
-                                <td>
-                                    <a href="mailto:@person.Email" class="email-link">@person.Email</a>
-                                </td>
-                                <td class="text-muted">
-                                    @(person.DateOfBirth.HasValue ? person.DateOfBirth.Value.ToString("dd MMM yyyy") : "—")
-                                </td>
-                                <td>
-                                    <span class="badge badge-neutral">@(person.Age ?? 0)</span>
-                                </td>
-                                <td>
-                                    @{
-                                        var genderClass = person.Gender switch {
-                                            "Male"   => "badge-blue",
-                                            "Female" => "badge-pink",
-                                            _        => "badge-teal"
-                                        };
-                                    }
-                                    <span class="badge @genderClass">@person.Gender</span>
-                                </td>
-                                <td class="text-muted">@person.Country</td>
-                                <td>
-                                    @if (person.ReceiveNewsLetters)
-                                    {
-                                        <span class="badge badge-green">
-                                            <i class="fa-solid fa-check" style="font-size:.65rem"></i> Yes
-                                        </span>
-                                    }
-                                    else
-                                    {
-                                        <span class="badge badge-gray">No</span>
-                                    }
-                                </td>
-                                <td>
-                                    <div class="action-cell">
-                                        <a asp-controller="Persons" asp-action="Edit" asp-route-id="@person.Id"
-                                           class="icon-btn icon-btn-edit" title="Edit">
-                                            <i class="fa-solid fa-pen"></i>
-                                        </a>
-                                        <a asp-controller="Persons" asp-action="Delete" asp-route-id="@person.Id"
-                                           class="icon-btn icon-btn-delete" title="Delete">
-                                            <i class="fa-solid fa-trash"></i>
-                                        </a>
-                                    </div>
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </div>
-            <div class="table-footer">
-                <span>@Model.Persons.Count() result@(Model.Persons.Count() == 1 ? "" : "s")</span>
-                @if (!string.IsNullOrEmpty(Model.SearchValue))
-                {
-                    <span>Filtered by "@Model.SearchValue"</span>
-                }
-            </div>
+}
+else
+{
+    <div class="card shadow-sm border-0 text-center py-5 bg-light mt-4">
+        <div class="card-body py-5">
+            <i class="bi bi-person-x display-1 text-muted mb-3 d-block"></i>
+            <h3 class="fw-bold">No persons found</h3>
+            <p class="text-muted mb-4">Try adjusting your search filters, or add your first contact.</p>
+            <a asp-controller="Persons" asp-action="Create" class="btn btn-primary btn-lg"><i class="bi bi-plus-lg me-2"></i>Add Person</a>
         </div>
-    }
-    else
-    {
-        <div class="table-card">
-            <div class="empty-state">
-                <div class="empty-icon">
-                    <i class="fa-solid fa-users"></i>
-                </div>
-                <h3>No persons found</h3>
-                <p>Try adjusting your search, or add your first contact.</p>
-                <div class="empty-actions">
-                    <a asp-controller="Persons" asp-action="Create" class="btn btn-primary">
-                        <i class="fa-solid fa-plus"></i> Add Person
-                    </a>
-                    <a asp-action="@nameof(PersonsController.Index)" asp-controller="Persons" class="btn btn-outline">
-                        Clear filters
-                    </a>
-                </div>
-            </div>
-        </div>
-    }
-</form>
-
-<style>.sv-hidden { display: none !important; }</style>
+    </div>
+}
 
 <script>
 (function () {
-    'use strict';
-
     var searchBy   = document.getElementById('searchBy');
     var txtCtrl    = document.getElementById('searchValueText');
     var genderCtrl = document.getElementById('searchValueGender');
@@ -285,35 +146,25 @@
 
     function getActive() {
         var v = searchBy.value;
-        if (v === 'Gender')        return genderCtrl;
-        if (v === 'DateOfBirth')   return dateCtrl;
+        if (v === 'Gender') return genderCtrl;
+        if (v === 'DateOfBirth') return dateCtrl;
         return txtCtrl;
     }
-
-    function syncHidden() {
-        hidden.value = getActive().value;
-    }
-
+    function syncHidden() { hidden.value = getActive().value; }
     function showActive() {
-        [txtCtrl, genderCtrl, dateCtrl].forEach(function (el) { el.classList.add('sv-hidden'); });
-        getActive().classList.remove('sv-hidden');
+        [txtCtrl, genderCtrl, dateCtrl].forEach(function (el) { el.classList.add('d-none'); });
+        getActive().classList.remove('d-none');
     }
 
-    txtCtrl.addEventListener('input',     syncHidden);
+    txtCtrl.addEventListener('input', syncHidden);
     genderCtrl.addEventListener('change', syncHidden);
-    dateCtrl.addEventListener('change',   syncHidden);
-
+    dateCtrl.addEventListener('change', syncHidden);
 
     searchBy.addEventListener('change', function () {
-        txtCtrl.value    = '';
-        genderCtrl.value = '';
-        dateCtrl.value   = '';
-        hidden.value     = '';
-        showActive();
-        getActive().focus();
+        txtCtrl.value = ''; genderCtrl.value = ''; dateCtrl.value = ''; hidden.value = '';
+        showActive(); getActive().focus();
     });
 
-    // On page load, prime the hidden field from whichever control is already visible
     syncHidden();
 })();
 </script>

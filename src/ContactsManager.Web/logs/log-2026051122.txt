@@ -1,0 +1,46 @@
+2026-05-11 22:09:43.409 +03:00 [INF] Executed DbCommand (49ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-05-11 22:09:43.562 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-05-11 22:09:43.731 +03:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-05-11 22:09:43.926 +03:00 [INF] Now listening on: http://localhost:5067
+2026-05-11 22:09:43.932 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-05-11 22:09:43.934 +03:00 [INF] Hosting environment: Development
+2026-05-11 22:09:43.937 +03:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-05-11 22:09:51.268 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-05-11 22:09:51.309 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-05-11 22:09:51.520 +03:00 [ERR] HTTP GET / responded 500 in 156.0251 ms
+System.InvalidOperationException: The AuthorizationPolicy named: 'UserOrAdmin' was not found.
+   at Microsoft.AspNetCore.Authorization.AuthorizationPolicy.CombineAsync(IAuthorizationPolicyProvider policyProvider, IEnumerable`1 authorizeData, IEnumerable`1 policies)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+2026-05-11 22:09:51.725 +03:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The AuthorizationPolicy named: 'UserOrAdmin' was not found.
+   at Microsoft.AspNetCore.Authorization.AuthorizationPolicy.CombineAsync(IAuthorizationPolicyProvider policyProvider, IEnumerable`1 authorizeData, IEnumerable`1 policies)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Serilog.AspNetCore.RequestLoggingMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2026-05-11 22:09:52.032 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 500 null text/html; charset=utf-8 769.2868ms
+2026-05-11 22:09:52.541 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.ico - null null
+2026-05-11 22:09:53.142 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-05-11 22:09:53.210 +03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-05-11 22:09:53.246 +03:00 [INF] HTTP GET /favicon.ico responded 302 in 191.5031 ms
+2026-05-11 22:09:53.273 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.ico - 302 0 null 731.7816ms
+2026-05-11 22:09:53.340 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2Ffavicon.ico - null null
+2026-05-11 22:09:53.562 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-05-11 22:09:53.633 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-05-11 22:09:53.768 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-05-11 22:09:53.924 +03:00 [INF] Executing ViewResult, running view Login.
+2026-05-11 22:09:54.707 +03:00 [INF] Executed ViewResult - view Login executed in 786.8833ms.
+2026-05-11 22:09:54.721 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 1042.4928ms
+2026-05-11 22:09:54.805 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-05-11 22:09:55.050 +03:00 [INF] HTTP GET /Account/Login responded 200 in 1513.3028 ms
+2026-05-11 22:09:55.604 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2Ffavicon.ico - 200 null text/html; charset=utf-8 2265.4364ms
+2026-05-11 22:30:22.617 +03:00 [INF] Application is shutting down...

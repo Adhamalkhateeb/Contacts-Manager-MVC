@@ -1,5 +1,3 @@
-using Microsoft.AspNetCore.Http;
-
 namespace ContactsManager.Web.Models;
 
 public sealed record ErrorViewModel
@@ -8,10 +6,8 @@ public sealed record ErrorViewModel
     public string ErrorCode { get; init; } = string.Empty;
     public string Title { get; init; } = string.Empty;
     public string Message { get; init; } = string.Empty;
-    public string? Details { get; init; }
     public string IconClass { get; init; } = "fa-solid fa-triangle-exclamation";
     public string VariantClass { get; init; } = string.Empty;
-    public string? TraceId { get; init; }
 
     public static ErrorViewModel CreateDefault(int statusCode)
     {
@@ -22,7 +18,8 @@ public sealed record ErrorViewModel
                 StatusCode = StatusCodes.Status400BadRequest,
                 ErrorCode = "400 - Bad Request",
                 Title = "Invalid request",
-                Message = "The request could not be processed. Please review your input and try again.",
+                Message =
+                    "The request could not be processed. Please review your input and try again.",
                 IconClass = "fa-solid fa-circle-exclamation",
             },
             StatusCodes.Status401Unauthorized => new ErrorViewModel
@@ -56,7 +53,8 @@ public sealed record ErrorViewModel
                 StatusCode = StatusCodes.Status409Conflict,
                 ErrorCode = "409 - Conflict",
                 Title = "Conflict detected",
-                Message = "The operation could not be completed because it conflicts with existing data.",
+                Message =
+                    "The operation could not be completed because it conflicts with existing data.",
                 IconClass = "fa-solid fa-code-compare",
             },
             _ => new ErrorViewModel

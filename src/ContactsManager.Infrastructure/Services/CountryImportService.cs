@@ -8,31 +8,24 @@ namespace ContactsManager.Infrastructure.Services;
 public sealed class CountryImportService(ILogger<CountryImportService> logger)
     : ICountryImportService
 {
-    private readonly ILogger<CountryImportService> _logger = logger;
+    private const string ExpectedWorksheetName = "Countries";
+    private const string ExpectedHeaderName = "CountryName";
 
     public async Task<Result<IReadOnlyCollection<string>>> GetCountryNamesFromExcelAsync(
         Stream fileStream,
         CancellationToken cancellationToken = default
     )
     {
-        cancellationToken.ThrowIfCancellationRequested();
-
         if (fileStream is null)
         {
-            _logger.LogWarning("Country Excel parsing aborted: file stream is null");
-            return Error.Validation(
-                "Infrastructure_CountryImportService_FileStreamRequired",
-                "File stream is required"
-            );
+            logger.LogWarning("Country Excel parsing aborted: file stream is null");
+            return Error.Validation("FileRequired", "File stream is required");
         }
 
         if (!fileStream.CanRead)
         {
-            _logger.LogWarning("Country Excel parsing aborted: file stream is not readable");
-            return Error.Validation(
-                "Infrastructure_CountryImportService_FileStreamNotReadable",
-                "File stream must be readable"
-            );
+            logger.LogWarning("Country Excel parsing aborted: file stream is not readable");
+            return Error.Validation("FileNotReadable", "File stream must be readable");
         }
 
         if (fileStream.CanSeek && fileStream.Position != 0)
@@ -41,26 +34,54 @@ public sealed class CountryImportService(ILogger<CountryImportService> logger)
         try
         {
             using var excel = new ExcelPackage(fileStream);
-            var worksheet =
-                excel.Workbook.Worksheets["Countries"]
-                ?? excel.Workbook.Worksheets.FirstOrDefault();
 
-            if (worksheet?.Dimension is null)
+            var worksheet = excel.Workbook.Worksheets[ExpectedWorksheetName];
+            if (worksheet is null)
             {
-                _logger.LogInformation("Excel upload contains no worksheet data to parse");
+                logger.LogWarning(
+                    "Excel upload rejected: worksheet '{WorksheetName}' not found. Available: {Available}",
+                    ExpectedWorksheetName,
+                    string.Join(", ", excel.Workbook.Worksheets.Select(w => w.Name))
+                );
+                return Error.Validation(
+                    "WorksheetNotFound",
+                    $"The Excel file must contain a worksheet named '{ExpectedWorksheetName}'."
+                );
+            }
+
+            if (worksheet.Dimension is null)
+            {
+                logger.LogInformation(
+                    "Excel upload contains no data in the '{WorksheetName}' worksheet",
+                    ExpectedWorksheetName
+                );
                 return Array.Empty<string>();
+            }
+
+            var header = worksheet.Cells[1, 1].GetValue<string>()?.Trim();
+            if (!string.Equals(header, ExpectedHeaderName, StringComparison.OrdinalIgnoreCase))
+            {
+                logger.LogWarning(
+                    "Excel upload rejected: expected header '{ExpectedHeader}' in A1, found '{ActualHeader}'",
+                    ExpectedHeaderName,
+                    header
+                );
+
+                return Error.Validation(
+                    "InvalidHeader",
+                    $"Cell A1 must contain the column header '{ExpectedHeaderName}'. Found: '{header ?? "empty"}'."
+                );
             }
 
             var names = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             for (var row = 2; row <= worksheet.Dimension.Rows; row++)
             {
-                cancellationToken.ThrowIfCancellationRequested();
                 var name = worksheet.Cells[row, 1].GetValue<string>()?.Trim();
                 if (!string.IsNullOrWhiteSpace(name))
                     names.Add(name);
             }
 
-            _logger.LogInformation(
+            logger.LogInformation(
                 "Parsed countries from Excel. Worksheet: {WorksheetName}, UniqueNames: {Count}",
                 worksheet.Name,
                 names.Count
@@ -70,18 +91,15 @@ public sealed class CountryImportService(ILogger<CountryImportService> logger)
         }
         catch (OperationCanceledException)
         {
-            _logger.LogWarning("Country Excel parsing was canceled");
-            return Error.Failure(
-                "Infrastructure_CountryImportService_ParsingCanceled",
-                "Excel parsing was canceled"
-            );
+            logger.LogWarning("Country Excel parsing was canceled");
+            return Error.Failure("ParsingCanceled", "Excel parsing was canceled");
         }
         catch (Exception ex)
         {
-            _logger.LogWarning(ex, "Failed to parse uploaded Excel file for countries");
+            logger.LogWarning(ex, "Failed to parse uploaded Excel file for countries");
             return Error.Validation(
-                "Infrastructure_CountryImportService_ExcelParsingFailed",
-                "Failed to parse the Excel file. Ensure it is a valid .xlsx document with a 'Countries' worksheet and country names in the first column."
+                "ExcelParsingFailed",
+                "Failed to parse the Excel file. Ensure it is a valid .xlsx document."
             );
         }
     }

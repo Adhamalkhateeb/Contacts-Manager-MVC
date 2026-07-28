@@ -18,11 +18,8 @@ public class PersonPostFilterFactory : Attribute, IFilterFactory
 }
 
 public class PersonsPostActionFilter(IMediator mediator, ILogger<PersonsPostActionFilter> logger)
-    : IAsyncActionFilter,
-        IOrderedFilter
+    : IAsyncActionFilter
 {
-    public int Order { get; }
-
     public async Task OnActionExecutionAsync(
         ActionExecutingContext context,
         ActionExecutionDelegate next

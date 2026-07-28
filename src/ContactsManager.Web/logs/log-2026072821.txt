@@ -1,0 +1,1102 @@
+2026-07-28 21:25:10.941 +03:00 [INF] Executed DbCommand (44ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:25:11.115 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:25:11.141 +03:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-28 21:25:11.183 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-07-28 21:25:11.289 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-07-28 21:25:11.385 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@p='?' (DbType = Guid), @p1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @p AND [a].[RoleId] = @p1
+2026-07-28 21:25:11.786 +03:00 [INF] Now listening on: http://localhost:5067
+2026-07-28 21:25:11.791 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-28 21:25:11.792 +03:00 [INF] Hosting environment: Development
+2026-07-28 21:25:11.794 +03:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-07-28 21:25:40.319 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-07-28 21:25:40.398 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-07-28 21:25:41.026 +03:00 [INF] Executed DbCommand (57ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @p
+2026-07-28 21:25:41.164 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[@user_Id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @user_Id
+2026-07-28 21:25:41.311 +03:00 [INF] Executed DbCommand (45ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:25:41.373 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:25:41.453 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[@role_Id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @role_Id
+2026-07-28 21:25:41.500 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:25:41.587 +03:00 [INF] Route matched with {action = "Index", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 21:25:41.675 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-28 21:25:42.181 +03:00 [INF] Executed DbCommand (116ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-07-28 21:25:42.220 +03:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-07-28 21:25:42.232 +03:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-07-28 21:25:42.303 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:25:42.865 +03:00 [INF] Executed ViewResult - view Index executed in 561.5516ms.
+2026-07-28 21:25:42.878 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 1247.8525ms
+2026-07-28 21:25:42.888 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:25:42.906 +03:00 [INF] HTTP GET / responded 200 in 2494.4138 ms
+2026-07-28 21:25:42.953 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 2643.9027ms
+2026-07-28 21:25:43.334 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.ico - null null
+2026-07-28 21:25:43.395 +03:00 [INF] HTTP GET /favicon.ico responded 404 in 51.9712 ms
+2026-07-28 21:25:43.426 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.ico - 404 0 null 91.5773ms
+2026-07-28 21:25:43.522 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/favicon.ico, Response status code: 404
+2026-07-28 21:25:52.596 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-07-28 21:25:56.267 +03:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 302.9514 ms
+2026-07-28 21:25:58.337 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 5741.4261ms
+2026-07-28 21:26:00.372 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-07-28 21:26:10.376 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-07-28 21:26:12.124 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:26:12.810 +03:00 [INF] Route matched with {action = "Index", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 21:26:14.143 +03:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-07-28 21:26:16.009 +03:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-07-28 21:26:16.818 +03:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-07-28 21:26:17.590 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:26:18.435 +03:00 [INF] Executed ViewResult - view Index executed in 847.6146ms.
+2026-07-28 21:26:18.704 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-07-28 21:26:19.569 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 5661.6549ms
+2026-07-28 21:26:21.534 +03:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-07-28 21:26:21.853 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:26:23.062 +03:00 [INF] HTTP GET /css/style.css responded 200 in 1807.9854 ms
+2026-07-28 21:26:23.632 +03:00 [INF] HTTP GET / responded 200 in 11525.9040 ms
+2026-07-28 21:26:24.458 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 2822 text/css 5753.1815ms
+2026-07-28 21:26:25.393 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 200 null text/html; charset=utf-8 15016.1739ms
+2026-07-28 21:26:29.850 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-07-28 21:26:31.741 +03:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 404 in 9.9316 ms
+2026-07-28 21:26:33.013 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 404 0 null 3162.6409ms
+2026-07-28 21:26:33.477 +03:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json, Response status code: 404
+2026-07-28 21:27:31.991 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-07-28 21:27:31.996 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:27:32.028 +03:00 [INF] Route matched with {action = "Index", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 21:27:32.091 +03:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-07-28 21:27:32.099 +03:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-07-28 21:27:32.102 +03:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-07-28 21:27:32.106 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:27:32.115 +03:00 [INF] Executed ViewResult - view Index executed in 9.2808ms.
+2026-07-28 21:27:32.130 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 94.5926ms
+2026-07-28 21:27:32.143 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:27:32.148 +03:00 [INF] HTTP GET /Persons/Index responded 200 in 152.9403 ms
+2026-07-28 21:27:32.155 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 163.8597ms
+2026-07-28 21:27:36.546 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-07-28 21:27:36.555 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:27:36.559 +03:00 [INF] Route matched with {action = "Index", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 21:27:36.569 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-07-28 21:27:36.576 +03:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-07-28 21:27:36.579 +03:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-07-28 21:27:36.582 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:27:36.587 +03:00 [INF] Executed ViewResult - view Index executed in 4.7831ms.
+2026-07-28 21:27:36.592 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 28.2272ms
+2026-07-28 21:27:36.594 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:27:36.596 +03:00 [INF] HTTP GET /Persons/Index responded 200 in 44.6358 ms
+2026-07-28 21:27:36.599 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 53.0077ms
+2026-07-28 21:27:47.713 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Logout - application/x-www-form-urlencoded 225
+2026-07-28 21:27:47.719 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Logout (ContactsManager.Web)'
+2026-07-28 21:27:47.737 +03:00 [INF] Route matched with {action = "Logout", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Logout() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:27:47.752 +03:00 [INF] AuthenticationScheme: Identity.Application signed out.
+2026-07-28 21:27:47.756 +03:00 [INF] AuthenticationScheme: Identity.External signed out.
+2026-07-28 21:27:47.758 +03:00 [INF] AuthenticationScheme: Identity.TwoFactorUserId signed out.
+2026-07-28 21:27:47.763 +03:00 [INF] Executing RedirectResult, redirecting to /Account/Login.
+2026-07-28 21:27:47.766 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Logout (ContactsManager.Web) in 25.0582ms
+2026-07-28 21:27:47.769 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Logout (ContactsManager.Web)'
+2026-07-28 21:27:47.771 +03:00 [INF] HTTP POST /Account/Logout responded 302 in 53.4548 ms
+2026-07-28 21:27:47.775 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Logout - 302 0 null 62.17ms
+2026-07-28 21:27:47.786 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-07-28 21:27:47.794 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:27:47.799 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:27:47.807 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:27:47.934 +03:00 [INF] Executed ViewResult - view Login executed in 128.5733ms.
+2026-07-28 21:27:47.937 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 134.0748ms
+2026-07-28 21:27:47.940 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:27:47.945 +03:00 [INF] HTTP GET /Account/Login responded 200 in 154.1945 ms
+2026-07-28 21:27:47.950 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 164.1421ms
+2026-07-28 21:32:41.134 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-07-28 21:32:41.141 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User|Admin)
+2026-07-28 21:32:41.148 +03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-07-28 21:32:41.150 +03:00 [INF] HTTP GET /Persons/Index responded 302 in 10.6260 ms
+2026-07-28 21:32:41.154 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 302 0 null 20.3164ms
+2026-07-28 21:32:41.161 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2FPersons%2FIndex - null null
+2026-07-28 21:32:41.167 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:32:41.170 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:32:41.183 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:32:41.223 +03:00 [INF] Executed ViewResult - view Login executed in 40.3172ms.
+2026-07-28 21:32:41.230 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 54.6177ms
+2026-07-28 21:32:41.235 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:32:41.242 +03:00 [INF] HTTP GET /Account/Login responded 200 in 76.1141 ms
+2026-07-28 21:32:41.259 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2FPersons%2FIndex - 200 null text/html; charset=utf-8 98.1796ms
+2026-07-28 21:39:38.318 +03:00 [INF] Application is shutting down...
+2026-07-28 21:40:02.665 +03:00 [INF] Executed DbCommand (67ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:40:02.901 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:40:02.937 +03:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-28 21:40:02.987 +03:00 [INF] Executed DbCommand (19ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-07-28 21:40:03.084 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-07-28 21:40:03.193 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@p='?' (DbType = Guid), @p1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @p AND [a].[RoleId] = @p1
+2026-07-28 21:40:03.463 +03:00 [INF] Now listening on: http://localhost:5067
+2026-07-28 21:40:03.470 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-28 21:40:03.473 +03:00 [INF] Hosting environment: Development
+2026-07-28 21:40:03.475 +03:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-07-28 21:40:12.983 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-07-28 21:40:13.028 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-07-28 21:40:13.168 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User|Admin)
+2026-07-28 21:40:13.196 +03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-07-28 21:40:13.254 +03:00 [INF] HTTP GET / responded 302 in 206.0084 ms
+2026-07-28 21:40:13.290 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 302 0 null 309.8063ms
+2026-07-28 21:40:13.322 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - null null
+2026-07-28 21:40:13.451 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:40:13.599 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:40:13.677 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-28 21:40:13.750 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:40:14.354 +03:00 [INF] Executed ViewResult - view Login executed in 599.5679ms.
+2026-07-28 21:40:14.510 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 880.8569ms
+2026-07-28 21:40:14.552 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:40:14.576 +03:00 [INF] HTTP GET /Account/Login responded 200 in 1176.7812 ms
+2026-07-28 21:40:14.621 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 1298.2801ms
+2026-07-28 21:40:29.111 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?returnUrl=%2F - null null
+2026-07-28 21:40:29.234 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:40:29.295 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:40:29.519 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:40:29.576 +03:00 [INF] Executed ViewResult - view Login executed in 56.7332ms.
+2026-07-28 21:40:29.760 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 272.731ms
+2026-07-28 21:40:29.921 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:40:30.009 +03:00 [INF] HTTP GET /Account/Login responded 200 in 802.8759 ms
+2026-07-28 21:40:30.366 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?returnUrl=%2F - 200 null text/html; charset=utf-8 1254.5477ms
+2026-07-28 21:40:33.175 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-07-28 21:40:33.407 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-28 21:40:33.435 +03:00 [INF] Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:40:33.547 +03:00 [INF] Executing ViewResult, running view Register.
+2026-07-28 21:40:33.803 +03:00 [INF] Executed ViewResult - view Register executed in 259.6283ms.
+2026-07-28 21:40:33.893 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 435.0231ms
+2026-07-28 21:40:33.953 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-28 21:40:33.995 +03:00 [INF] HTTP GET /Account/Register responded 200 in 588.2396 ms
+2026-07-28 21:40:34.096 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 920.9765ms
+2026-07-28 21:40:35.929 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-07-28 21:40:36.125 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:40:36.140 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:40:36.619 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:40:36.653 +03:00 [INF] Executed ViewResult - view Login executed in 33.4936ms.
+2026-07-28 21:40:36.684 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 66.6119ms
+2026-07-28 21:40:36.855 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:40:36.901 +03:00 [INF] HTTP GET /Account/Login responded 200 in 776.9985 ms
+2026-07-28 21:40:36.930 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 1001.0077ms
+2026-07-28 21:40:38.016 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-07-28 21:40:38.136 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-28 21:40:38.169 +03:00 [INF] Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:40:38.314 +03:00 [INF] Executing ViewResult, running view Register.
+2026-07-28 21:40:38.466 +03:00 [INF] Executed ViewResult - view Register executed in 152.1003ms.
+2026-07-28 21:40:38.500 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 192.1132ms
+2026-07-28 21:40:38.518 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-28 21:40:38.522 +03:00 [INF] HTTP GET /Account/Register responded 200 in 386.7127 ms
+2026-07-28 21:40:38.727 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 710.9387ms
+2026-07-28 21:40:39.669 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-07-28 21:40:39.964 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:40:39.993 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:40:40.101 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:40:40.234 +03:00 [INF] Executed ViewResult - view Login executed in 133.0994ms.
+2026-07-28 21:40:40.269 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 169.7203ms
+2026-07-28 21:40:40.297 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:40:40.307 +03:00 [INF] HTTP GET /Account/Login responded 200 in 343.1419 ms
+2026-07-28 21:40:40.322 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 652.9505ms
+2026-07-28 21:40:41.341 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-07-28 21:40:41.488 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-28 21:40:41.586 +03:00 [INF] Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:40:41.759 +03:00 [INF] Executing ViewResult, running view Register.
+2026-07-28 21:40:41.871 +03:00 [INF] Executed ViewResult - view Register executed in 112.81ms.
+2026-07-28 21:40:42.282 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 525.993ms
+2026-07-28 21:40:42.408 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-28 21:40:42.447 +03:00 [INF] HTTP GET /Account/Register responded 200 in 969.6003 ms
+2026-07-28 21:40:42.604 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 1262.3911ms
+2026-07-28 21:40:44.695 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-07-28 21:40:44.841 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User|Admin)
+2026-07-28 21:40:44.869 +03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-07-28 21:40:44.883 +03:00 [INF] HTTP GET /Persons/Index responded 302 in 44.1478 ms
+2026-07-28 21:40:44.901 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 302 0 null 206.2138ms
+2026-07-28 21:40:44.934 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2FPersons%2FIndex - null null
+2026-07-28 21:40:44.975 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:40:44.987 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:40:45.005 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:40:45.025 +03:00 [INF] Executed ViewResult - view Login executed in 19.7794ms.
+2026-07-28 21:40:45.078 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 74.698ms
+2026-07-28 21:40:45.258 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:40:45.352 +03:00 [INF] HTTP GET /Account/Login responded 200 in 377.9395 ms
+2026-07-28 21:40:45.702 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2FPersons%2FIndex - 200 null text/html; charset=utf-8 767.7686ms
+2026-07-28 21:42:31.895 +03:00 [INF] Application is shutting down...
+2026-07-28 21:42:54.854 +03:00 [INF] Executed DbCommand (64ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:42:55.107 +03:00 [INF] Executed DbCommand (32ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:42:55.210 +03:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-28 21:42:55.323 +03:00 [INF] Executed DbCommand (38ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-07-28 21:42:55.573 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-07-28 21:42:55.873 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@p='?' (DbType = Guid), @p1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @p AND [a].[RoleId] = @p1
+2026-07-28 21:42:56.655 +03:00 [INF] Now listening on: http://localhost:5067
+2026-07-28 21:42:56.833 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-28 21:42:56.898 +03:00 [INF] Hosting environment: Development
+2026-07-28 21:42:56.976 +03:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-07-28 21:43:13.657 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2FPersons%2FIndex - null null
+2026-07-28 21:43:13.874 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-07-28 21:43:14.053 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:14.122 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:43:14.287 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-28 21:43:14.471 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:43:15.293 +03:00 [INF] Executed ViewResult - view Login executed in 825.9197ms.
+2026-07-28 21:43:15.346 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 1155.3733ms
+2026-07-28 21:43:15.363 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:15.383 +03:00 [INF] HTTP GET /Account/Login responded 200 in 1477.5967 ms
+2026-07-28 21:43:15.681 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2FPersons%2FIndex - 200 null text/html; charset=utf-8 2032.611ms
+2026-07-28 21:43:19.759 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-07-28 21:43:20.069 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User|Admin)
+2026-07-28 21:43:20.110 +03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-07-28 21:43:20.127 +03:00 [INF] HTTP GET / responded 302 in 96.8965 ms
+2026-07-28 21:43:20.154 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 302 0 null 395.4151ms
+2026-07-28 21:43:20.371 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - null null
+2026-07-28 21:43:20.519 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:20.531 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:43:20.602 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:43:20.625 +03:00 [INF] Executed ViewResult - view Login executed in 23.4989ms.
+2026-07-28 21:43:20.647 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 80.3159ms
+2026-07-28 21:43:20.694 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:20.757 +03:00 [INF] HTTP GET /Account/Login responded 200 in 253.4050 ms
+2026-07-28 21:43:20.837 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 465.4883ms
+2026-07-28 21:43:23.714 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-07-28 21:43:23.798 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-07-28 21:43:23.898 +03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-07-28 21:43:24.125 +03:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 302 in 333.1141 ms
+2026-07-28 21:43:24.128 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 302 0 null 414.5755ms
+2026-07-28 21:43:24.134 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F.well-known%2Fappspecific%2Fcom.chrome.devtools.json - null null
+2026-07-28 21:43:24.138 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:24.140 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:43:24.178 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:43:24.184 +03:00 [INF] Executed ViewResult - view Login executed in 6.3602ms.
+2026-07-28 21:43:24.187 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 44.1497ms
+2026-07-28 21:43:24.189 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:24.190 +03:00 [INF] HTTP GET /Account/Login responded 200 in 51.9236 ms
+2026-07-28 21:43:24.192 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F.well-known%2Fappspecific%2Fcom.chrome.devtools.json - 200 null text/html; charset=utf-8 58.3487ms
+2026-07-28 21:43:31.483 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - null null
+2026-07-28 21:43:31.669 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:31.942 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:43:32.182 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:43:32.213 +03:00 [INF] Executed ViewResult - view Login executed in 31.996ms.
+2026-07-28 21:43:32.315 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-07-28 21:43:32.429 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 249.5526ms
+2026-07-28 21:43:32.472 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-07-28 21:43:32.481 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:32.498 +03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-07-28 21:43:32.631 +03:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 302 in 167.7549 ms
+2026-07-28 21:43:32.541 +03:00 [INF] HTTP GET /Account/Login responded 200 in 873.2951 ms
+2026-07-28 21:43:33.754 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 302 0 null 1439.4125ms
+2026-07-28 21:43:34.085 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 2601.5422ms
+2026-07-28 21:43:34.157 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F.well-known%2Fappspecific%2Fcom.chrome.devtools.json - null null
+2026-07-28 21:43:34.388 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:34.410 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:43:34.495 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:43:34.579 +03:00 [INF] Executed ViewResult - view Login executed in 85.6307ms.
+2026-07-28 21:43:34.642 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 149.203ms
+2026-07-28 21:43:34.875 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:34.998 +03:00 [INF] HTTP GET /Account/Login responded 200 in 613.8595 ms
+2026-07-28 21:43:35.188 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F.well-known%2Fappspecific%2Fcom.chrome.devtools.json - 200 null text/html; charset=utf-8 1030.9086ms
+2026-07-28 21:43:35.373 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - null null
+2026-07-28 21:43:35.437 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:35.572 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:43:35.625 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:43:35.671 +03:00 [INF] Executed ViewResult - view Login executed in 46.7404ms.
+2026-07-28 21:43:35.712 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 89.4558ms
+2026-07-28 21:43:35.734 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:35.755 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-07-28 21:43:35.762 +03:00 [INF] HTTP GET /Account/Login responded 200 in 326.0031 ms
+2026-07-28 21:43:35.766 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - null null
+2026-07-28 21:43:35.812 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 439.2736ms
+2026-07-28 21:43:35.854 +03:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-07-28 21:43:35.918 +03:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2026-07-28 21:43:36.174 +03:00 [INF] HTTP GET /css/style.css responded 200 in 389.8270 ms
+2026-07-28 21:43:36.231 +03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-07-28 21:43:36.280 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 3498 text/css 524.4141ms
+2026-07-28 21:43:36.362 +03:00 [INF] HTTP GET /.well-known/appspecific/com.chrome.devtools.json responded 302 in 444.6624 ms
+2026-07-28 21:43:36.601 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/.well-known/appspecific/com.chrome.devtools.json - 302 0 null 834.6646ms
+2026-07-28 21:43:36.791 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F.well-known%2Fappspecific%2Fcom.chrome.devtools.json - null null
+2026-07-28 21:43:36.845 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:36.889 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:43:37.086 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:43:37.116 +03:00 [INF] Executed ViewResult - view Login executed in 30.202ms.
+2026-07-28 21:43:37.322 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 239.346ms
+2026-07-28 21:43:37.399 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:43:37.557 +03:00 [INF] HTTP GET /Account/Login responded 200 in 712.3567 ms
+2026-07-28 21:43:37.590 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - null null
+2026-07-28 21:43:37.755 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F.well-known%2Fappspecific%2Fcom.chrome.devtools.json - 200 null text/html; charset=utf-8 964.5849ms
+2026-07-28 21:43:37.903 +03:00 [INF] Sending file. Request path: '/js/jquery.validate.unobtrusive.min.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\jquery.validate.unobtrusive.min.js'
+2026-07-28 21:43:38.032 +03:00 [INF] HTTP GET /js/jquery.validate.unobtrusive.min.js responded 200 in 171.9426 ms
+2026-07-28 21:43:38.057 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - 200 5831 text/javascript 466.2263ms
+2026-07-28 21:45:04.070 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-07-28 21:45:04.076 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-28 21:45:04.083 +03:00 [INF] Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:45:04.089 +03:00 [INF] Executing ViewResult, running view Register.
+2026-07-28 21:45:04.172 +03:00 [INF] Executed ViewResult - view Register executed in 84.1338ms.
+2026-07-28 21:45:04.175 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 88.911ms
+2026-07-28 21:45:04.178 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-28 21:45:04.180 +03:00 [INF] HTTP GET /Account/Register responded 200 in 104.2021 ms
+2026-07-28 21:45:04.183 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 113.8074ms
+2026-07-28 21:45:04.208 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-07-28 21:45:04.217 +03:00 [INF] The file /css/style.css was not modified
+2026-07-28 21:45:04.219 +03:00 [INF] HTTP GET /css/style.css responded 304 in 4.8051 ms
+2026-07-28 21:45:04.222 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 13.9443ms
+2026-07-28 21:45:05.434 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-07-28 21:45:05.438 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:45:05.440 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:45:05.444 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:45:05.448 +03:00 [INF] Executed ViewResult - view Login executed in 4.1114ms.
+2026-07-28 21:45:05.450 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 6.8703ms
+2026-07-28 21:45:05.452 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:45:05.453 +03:00 [INF] HTTP GET /Account/Login responded 200 in 15.7677 ms
+2026-07-28 21:45:05.456 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 21.9489ms
+2026-07-28 21:45:06.307 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-07-28 21:45:06.311 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-28 21:45:06.313 +03:00 [INF] Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:45:06.315 +03:00 [INF] Executing ViewResult, running view Register.
+2026-07-28 21:45:06.320 +03:00 [INF] Executed ViewResult - view Register executed in 5.0655ms.
+2026-07-28 21:45:06.324 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 9.2863ms
+2026-07-28 21:45:06.327 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-28 21:45:06.331 +03:00 [INF] HTTP GET /Account/Register responded 200 in 20.2536 ms
+2026-07-28 21:45:06.335 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 28.6662ms
+2026-07-28 21:45:08.639 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login - null null
+2026-07-28 21:45:08.644 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:45:08.648 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:45:08.655 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-28 21:45:08.661 +03:00 [INF] Executed ViewResult - view Login executed in 5.7155ms.
+2026-07-28 21:45:08.665 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 10.6191ms
+2026-07-28 21:45:08.671 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:45:08.675 +03:00 [INF] HTTP GET /Account/Login responded 200 in 31.0673 ms
+2026-07-28 21:45:08.681 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login - 200 null text/html; charset=utf-8 41.8555ms
+2026-07-28 21:45:16.609 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Login - application/x-www-form-urlencoded 271
+2026-07-28 21:45:16.613 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:45:16.648 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(ContactsManager.Contracts.Requests.Identity.LoginRequest, System.String) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-28 21:45:16.996 +03:00 [INF] Executed DbCommand (15ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-07-28 21:45:17.284 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@user_Id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @user_Id
+2026-07-28 21:45:17.366 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:45:17.380 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:45:17.410 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@role_Id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @role_Id
+2026-07-28 21:45:17.433 +03:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2026-07-28 21:45:17.444 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:45:17.460 +03:00 [INF] Executing RedirectResult, redirecting to /Persons/Index.
+2026-07-28 21:45:17.466 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 814.6073ms
+2026-07-28 21:45:17.471 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-28 21:45:17.476 +03:00 [INF] HTTP POST /Account/Login responded 302 in 863.4919 ms
+2026-07-28 21:45:17.488 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Login - 302 0 null 879.0098ms
+2026-07-28 21:45:17.495 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-07-28 21:45:17.511 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:45:17.546 +03:00 [INF] Route matched with {action = "Index", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 21:45:17.732 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-07-28 21:45:17.749 +03:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-07-28 21:45:17.753 +03:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-07-28 21:45:17.771 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:45:17.848 +03:00 [INF] Executed ViewResult - view Index executed in 79.8364ms.
+2026-07-28 21:45:17.851 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 296.9639ms
+2026-07-28 21:45:17.853 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:45:17.854 +03:00 [INF] HTTP GET /Persons/Index responded 200 in 350.7120 ms
+2026-07-28 21:45:17.860 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 365.0214ms
+2026-07-28 21:45:21.305 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Admin - null null
+2026-07-28 21:45:21.325 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:45:21.358 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Threading.CancellationToken) on controller ContactsManager.Web.Areas.Admin.Controllers.UsersController (ContactsManager.Web).
+2026-07-28 21:45:21.429 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+ORDER BY [a].[UserName]
+2026-07-28 21:45:21.438 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:45:21.451 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:45:21.463 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:45:21.471 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:45:21.481 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:45:21.495 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:45:21.535 +03:00 [INF] Executed ViewResult - view Index executed in 42.1755ms.
+2026-07-28 21:45:21.543 +03:00 [INF] Executed action ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web) in 164.3968ms
+2026-07-28 21:45:21.551 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:45:21.559 +03:00 [INF] HTTP GET /Admin responded 200 in 236.0114 ms
+2026-07-28 21:45:21.569 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Admin - 200 null text/html; charset=utf-8 264.4606ms
+2026-07-28 21:48:31.525 +03:00 [INF] Application is shutting down...
+2026-07-28 21:49:00.944 +03:00 [INF] Executed DbCommand (58ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:49:01.434 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:49:01.520 +03:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-28 21:49:01.605 +03:00 [INF] Executed DbCommand (10ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-07-28 21:49:01.829 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-07-28 21:49:02.088 +03:00 [INF] Executed DbCommand (22ms) [Parameters=[@p='?' (DbType = Guid), @p1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @p AND [a].[RoleId] = @p1
+2026-07-28 21:49:02.747 +03:00 [INF] Now listening on: http://localhost:5067
+2026-07-28 21:49:02.787 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-28 21:49:02.833 +03:00 [INF] Hosting environment: Development
+2026-07-28 21:49:02.868 +03:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-07-28 21:50:18.062 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Admin - null null
+2026-07-28 21:50:18.080 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-07-28 21:50:18.254 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:50:18.311 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Threading.CancellationToken) on controller ContactsManager.Web.Areas.Admin.Controllers.UsersController (ContactsManager.Web).
+2026-07-28 21:50:18.349 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-28 21:50:18.664 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+ORDER BY [a].[UserName]
+2026-07-28 21:50:18.791 +03:00 [INF] Executed DbCommand (40ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:18.808 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:18.816 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:18.825 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:18.833 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:18.879 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:50:19.210 +03:00 [INF] Executed ViewResult - view Index executed in 331.6303ms.
+2026-07-28 21:50:19.217 +03:00 [INF] Executed action ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web) in 899.5273ms
+2026-07-28 21:50:19.221 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:50:19.231 +03:00 [INF] HTTP GET /Admin responded 200 in 1139.5065 ms
+2026-07-28 21:50:19.250 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Admin - 200 null text/html; charset=utf-8 1191.6463ms
+2026-07-28 21:50:19.276 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-07-28 21:50:19.290 +03:00 [INF] The file /css/style.css was not modified
+2026-07-28 21:50:19.292 +03:00 [INF] HTTP GET /css/style.css responded 304 in 11.4348 ms
+2026-07-28 21:50:19.296 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 20.1022ms
+2026-07-28 21:50:27.796 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Admin/Users/PromoteToAdmin - application/x-www-form-urlencoded 269
+2026-07-28 21:50:27.833 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.PromoteToAdmin (ContactsManager.Web)'
+2026-07-28 21:50:27.853 +03:00 [INF] Route matched with {area = "Admin", action = "PromoteToAdmin", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] PromoteToAdmin(System.Guid) on controller ContactsManager.Web.Areas.Admin.Controllers.UsersController (ContactsManager.Web).
+2026-07-28 21:50:28.008 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:50:28.053 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @p
+2026-07-28 21:50:28.067 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-07-28 21:50:28.080 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p='?' (DbType = Guid), @p1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @p AND [a].[RoleId] = @p1
+2026-07-28 21:50:28.093 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-07-28 21:50:28.103 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Guid), @p1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @p AND [a].[RoleId] = @p1
+2026-07-28 21:50:28.117 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-07-28 21:50:28.188 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@normalizedUserName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @normalizedUserName
+2026-07-28 21:50:28.207 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-07-28 21:50:28.614 +03:00 [INF] Executed DbCommand (37ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p16='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p17='?' (Size = 4000), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTimeOffset), @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([RoleId], [UserId])
+VALUES (@p0, @p1);
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p2, [ConcurrencyStamp] = @p3, [Email] = @p4, [EmailConfirmed] = @p5, [LockoutEnabled] = @p6, [LockoutEnd] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+OUTPUT 1
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+2026-07-28 21:50:28.662 +03:00 [INF] Executing RedirectResult, redirecting to /Admin.
+2026-07-28 21:50:28.666 +03:00 [INF] Executed action ContactsManager.Web.Areas.Admin.Controllers.UsersController.PromoteToAdmin (ContactsManager.Web) in 808.0613ms
+2026-07-28 21:50:28.668 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.PromoteToAdmin (ContactsManager.Web)'
+2026-07-28 21:50:28.671 +03:00 [INF] HTTP POST /Admin/Users/PromoteToAdmin responded 302 in 866.8512 ms
+2026-07-28 21:50:28.674 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Admin/Users/PromoteToAdmin - 302 0 null 877.4277ms
+2026-07-28 21:50:28.678 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Admin - null null
+2026-07-28 21:50:28.735 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:50:28.739 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Threading.CancellationToken) on controller ContactsManager.Web.Areas.Admin.Controllers.UsersController (ContactsManager.Web).
+2026-07-28 21:50:28.791 +03:00 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+ORDER BY [a].[UserName]
+2026-07-28 21:50:28.797 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:28.804 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:28.810 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:28.817 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:28.823 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:28.829 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:50:28.841 +03:00 [INF] Executed ViewResult - view Index executed in 12.9513ms.
+2026-07-28 21:50:28.844 +03:00 [INF] Executed action ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web) in 101.5453ms
+2026-07-28 21:50:28.847 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:50:28.849 +03:00 [INF] HTTP GET /Admin responded 200 in 166.4426 ms
+2026-07-28 21:50:28.852 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Admin - 200 null text/html; charset=utf-8 173.5673ms
+2026-07-28 21:50:30.484 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Admin/Users/DemoteFromAdmin - application/x-www-form-urlencoded 269
+2026-07-28 21:50:30.558 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.DemoteFromAdmin (ContactsManager.Web)'
+2026-07-28 21:50:30.625 +03:00 [INF] Route matched with {area = "Admin", action = "DemoteFromAdmin", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DemoteFromAdmin(System.Guid) on controller ContactsManager.Web.Areas.Admin.Controllers.UsersController (ContactsManager.Web).
+2026-07-28 21:50:30.728 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:50:30.778 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @p
+2026-07-28 21:50:30.931 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:31.063 +03:00 [INF] Executing RedirectResult, redirecting to /Admin.
+2026-07-28 21:50:31.088 +03:00 [INF] Executed action ContactsManager.Web.Areas.Admin.Controllers.UsersController.DemoteFromAdmin (ContactsManager.Web) in 417.5196ms
+2026-07-28 21:50:31.092 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.DemoteFromAdmin (ContactsManager.Web)'
+2026-07-28 21:50:31.098 +03:00 [INF] HTTP POST /Admin/Users/DemoteFromAdmin responded 302 in 555.6121 ms
+2026-07-28 21:50:31.106 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Admin/Users/DemoteFromAdmin - 302 0 null 622.2846ms
+2026-07-28 21:50:31.127 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Admin - null null
+2026-07-28 21:50:31.153 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:50:31.174 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Threading.CancellationToken) on controller ContactsManager.Web.Areas.Admin.Controllers.UsersController (ContactsManager.Web).
+2026-07-28 21:50:31.217 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+ORDER BY [a].[UserName]
+2026-07-28 21:50:31.236 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:31.250 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:31.273 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:31.315 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:31.340 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:31.389 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:50:31.412 +03:00 [INF] Executed ViewResult - view Index executed in 23.4251ms.
+2026-07-28 21:50:31.427 +03:00 [INF] Executed action ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web) in 219.0426ms
+2026-07-28 21:50:31.440 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:50:31.448 +03:00 [INF] HTTP GET /Admin responded 200 in 297.7063 ms
+2026-07-28 21:50:31.463 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Admin - 200 null text/html; charset=utf-8 336.4109ms
+2026-07-28 21:50:47.452 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Admin/Users/PromoteToAdmin - application/x-www-form-urlencoded 269
+2026-07-28 21:50:47.459 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.PromoteToAdmin (ContactsManager.Web)'
+2026-07-28 21:50:47.460 +03:00 [INF] Route matched with {area = "Admin", action = "PromoteToAdmin", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] PromoteToAdmin(System.Guid) on controller ContactsManager.Web.Areas.Admin.Controllers.UsersController (ContactsManager.Web).
+2026-07-28 21:50:47.474 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:50:47.479 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @p
+2026-07-28 21:50:47.485 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-07-28 21:50:47.491 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Guid), @p1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @p AND [a].[RoleId] = @p1
+2026-07-28 21:50:47.497 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-07-28 21:50:47.503 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Guid), @p1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @p AND [a].[RoleId] = @p1
+2026-07-28 21:50:47.510 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-07-28 21:50:47.519 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedUserName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @normalizedUserName
+2026-07-28 21:50:47.525 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-07-28 21:50:47.536 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p16='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p17='?' (Size = 4000), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTimeOffset), @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([RoleId], [UserId])
+VALUES (@p0, @p1);
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p2, [ConcurrencyStamp] = @p3, [Email] = @p4, [EmailConfirmed] = @p5, [LockoutEnabled] = @p6, [LockoutEnd] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+OUTPUT 1
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+2026-07-28 21:50:47.573 +03:00 [INF] Executing RedirectResult, redirecting to /Admin.
+2026-07-28 21:50:47.575 +03:00 [INF] Executed action ContactsManager.Web.Areas.Admin.Controllers.UsersController.PromoteToAdmin (ContactsManager.Web) in 111.0852ms
+2026-07-28 21:50:47.579 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.PromoteToAdmin (ContactsManager.Web)'
+2026-07-28 21:50:47.581 +03:00 [INF] HTTP POST /Admin/Users/PromoteToAdmin responded 302 in 123.8063 ms
+2026-07-28 21:50:47.586 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Admin/Users/PromoteToAdmin - 302 0 null 133.9801ms
+2026-07-28 21:50:47.593 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Admin - null null
+2026-07-28 21:50:47.602 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:50:47.604 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Threading.CancellationToken) on controller ContactsManager.Web.Areas.Admin.Controllers.UsersController (ContactsManager.Web).
+2026-07-28 21:50:47.611 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+ORDER BY [a].[UserName]
+2026-07-28 21:50:47.619 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:47.626 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:47.633 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:47.642 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:47.650 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:47.656 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:50:47.663 +03:00 [INF] Executed ViewResult - view Index executed in 7.0459ms.
+2026-07-28 21:50:47.666 +03:00 [INF] Executed action ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web) in 58.262ms
+2026-07-28 21:50:47.672 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:50:47.675 +03:00 [INF] HTTP GET /Admin responded 200 in 74.6743 ms
+2026-07-28 21:50:47.680 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Admin - 200 null text/html; charset=utf-8 86.6503ms
+2026-07-28 21:50:49.324 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Admin/Users/DemoteFromAdmin - application/x-www-form-urlencoded 269
+2026-07-28 21:50:49.330 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.DemoteFromAdmin (ContactsManager.Web)'
+2026-07-28 21:50:49.332 +03:00 [INF] Route matched with {area = "Admin", action = "DemoteFromAdmin", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DemoteFromAdmin(System.Guid) on controller ContactsManager.Web.Areas.Admin.Controllers.UsersController (ContactsManager.Web).
+2026-07-28 21:50:49.340 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:50:49.345 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @p
+2026-07-28 21:50:49.350 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:49.356 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-07-28 21:50:49.361 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Guid), @p1='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[UserId], [a].[RoleId]
+FROM [AspNetUserRoles] AS [a]
+WHERE [a].[UserId] = @p AND [a].[RoleId] = @p1
+2026-07-28 21:50:49.373 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedRoleName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedRoleName
+2026-07-28 21:50:49.389 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedUserName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @normalizedUserName
+2026-07-28 21:50:49.395 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-07-28 21:50:49.426 +03:00 [INF] Executed DbCommand (14ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p16='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (Size = 4000), @p17='?' (Size = 4000), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (DbType = Boolean), @p7='?' (DbType = DateTimeOffset), @p8='?' (Size = 256), @p9='?' (Size = 256), @p10='?' (Size = 4000), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 4000), @p14='?' (DbType = Boolean), @p15='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+DELETE FROM [AspNetUserRoles]
+OUTPUT 1
+WHERE [RoleId] = @p0 AND [UserId] = @p1;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p2, [ConcurrencyStamp] = @p3, [Email] = @p4, [EmailConfirmed] = @p5, [LockoutEnabled] = @p6, [LockoutEnd] = @p7, [NormalizedEmail] = @p8, [NormalizedUserName] = @p9, [PasswordHash] = @p10, [PhoneNumber] = @p11, [PhoneNumberConfirmed] = @p12, [SecurityStamp] = @p13, [TwoFactorEnabled] = @p14, [UserName] = @p15
+OUTPUT 1
+WHERE [Id] = @p16 AND [ConcurrencyStamp] = @p17;
+2026-07-28 21:50:49.441 +03:00 [INF] Executing RedirectResult, redirecting to /Admin.
+2026-07-28 21:50:49.444 +03:00 [INF] Executed action ContactsManager.Web.Areas.Admin.Controllers.UsersController.DemoteFromAdmin (ContactsManager.Web) in 108.4737ms
+2026-07-28 21:50:49.447 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.DemoteFromAdmin (ContactsManager.Web)'
+2026-07-28 21:50:49.451 +03:00 [INF] HTTP POST /Admin/Users/DemoteFromAdmin responded 302 in 121.2489 ms
+2026-07-28 21:50:49.456 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Admin/Users/DemoteFromAdmin - 302 0 null 131.198ms
+2026-07-28 21:50:49.462 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Admin - null null
+2026-07-28 21:50:49.469 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:50:49.473 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Threading.CancellationToken) on controller ContactsManager.Web.Areas.Admin.Controllers.UsersController (ContactsManager.Web).
+2026-07-28 21:50:49.499 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+ORDER BY [a].[UserName]
+2026-07-28 21:50:49.509 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:49.516 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:49.525 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:49.533 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:49.542 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:49.549 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:50:49.555 +03:00 [INF] Executed ViewResult - view Index executed in 6.1088ms.
+2026-07-28 21:50:49.561 +03:00 [INF] Executed action ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web) in 66.4276ms
+2026-07-28 21:50:49.565 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:50:49.568 +03:00 [INF] HTTP GET /Admin responded 200 in 100.0370 ms
+2026-07-28 21:50:49.820 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Admin - 200 null text/html; charset=utf-8 358.0116ms
+2026-07-28 21:50:51.314 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Admin/Users/DemoteFromAdmin - application/x-www-form-urlencoded 269
+2026-07-28 21:50:51.616 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.DemoteFromAdmin (ContactsManager.Web)'
+2026-07-28 21:50:51.675 +03:00 [INF] Route matched with {area = "Admin", action = "DemoteFromAdmin", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DemoteFromAdmin(System.Guid) on controller ContactsManager.Web.Areas.Admin.Controllers.UsersController (ContactsManager.Web).
+2026-07-28 21:50:51.872 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 21:50:52.134 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @p
+2026-07-28 21:50:52.247 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:52.327 +03:00 [INF] Executing RedirectResult, redirecting to /Admin.
+2026-07-28 21:50:52.373 +03:00 [INF] Executed action ContactsManager.Web.Areas.Admin.Controllers.UsersController.DemoteFromAdmin (ContactsManager.Web) in 530.662ms
+2026-07-28 21:50:52.483 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.DemoteFromAdmin (ContactsManager.Web)'
+2026-07-28 21:50:52.509 +03:00 [INF] HTTP POST /Admin/Users/DemoteFromAdmin responded 302 in 896.1585 ms
+2026-07-28 21:50:52.543 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Admin/Users/DemoteFromAdmin - 302 0 null 1229.3947ms
+2026-07-28 21:50:52.969 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Admin - null null
+2026-07-28 21:50:53.148 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:50:53.202 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Threading.CancellationToken) on controller ContactsManager.Web.Areas.Admin.Controllers.UsersController (ContactsManager.Web).
+2026-07-28 21:50:53.247 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+ORDER BY [a].[UserName]
+2026-07-28 21:50:53.272 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:53.351 +03:00 [INF] Executed DbCommand (17ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:53.414 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:53.498 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:53.680 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 21:50:53.704 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:50:53.724 +03:00 [INF] Executed ViewResult - view Index executed in 19.3439ms.
+2026-07-28 21:50:53.772 +03:00 [INF] Executed action ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web) in 532.851ms
+2026-07-28 21:50:53.813 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 21:50:53.840 +03:00 [INF] HTTP GET /Admin responded 200 in 693.6681 ms
+2026-07-28 21:50:53.890 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Admin - 200 null text/html; charset=utf-8 920.9432ms
+2026-07-28 21:51:17.369 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-07-28 21:51:17.375 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:51:17.396 +03:00 [INF] Route matched with {action = "Index", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 21:51:17.488 +03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-07-28 21:51:17.502 +03:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-07-28 21:51:17.504 +03:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-07-28 21:51:17.518 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:51:17.578 +03:00 [INF] Executed ViewResult - view Index executed in 61.3747ms.
+2026-07-28 21:51:17.579 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 180.9458ms
+2026-07-28 21:51:17.582 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:51:17.583 +03:00 [INF] HTTP GET /Persons/Index responded 200 in 209.5747 ms
+2026-07-28 21:51:17.586 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 216.5193ms
+2026-07-28 21:51:17.608 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-07-28 21:51:17.611 +03:00 [INF] The file /css/style.css was not modified
+2026-07-28 21:51:17.613 +03:00 [INF] HTTP GET /css/style.css responded 304 in 2.4637 ms
+2026-07-28 21:51:17.618 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 9.618ms
+2026-07-28 21:51:25.222 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index?searchBy=Gender&searchValue=Male - null null
+2026-07-28 21:51:25.230 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:51:25.232 +03:00 [INF] Route matched with {action = "Index", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 21:51:25.273 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[@gender='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+WHERE [p].[Gender] = @gender
+ORDER BY [p].[Name]
+2026-07-28 21:51:25.278 +03:00 [INF] Filtered persons query executed. SearchBy: Gender, Count: 4
+2026-07-28 21:51:25.279 +03:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-07-28 21:51:25.280 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:51:25.288 +03:00 [INF] Executed ViewResult - view Index executed in 7.4198ms.
+2026-07-28 21:51:25.289 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 54.604ms
+2026-07-28 21:51:25.291 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:51:25.293 +03:00 [INF] HTTP GET /Persons/Index responded 200 in 65.3171 ms
+2026-07-28 21:51:25.296 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index?searchBy=Gender&searchValue=Male - 200 null text/html; charset=utf-8 73.1334ms
+2026-07-28 21:52:57.778 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index?searchBy=Gender&searchValue=Female - null null
+2026-07-28 21:52:57.782 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:52:57.783 +03:00 [INF] Route matched with {action = "Index", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 21:52:57.797 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@gender='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+WHERE [p].[Gender] = @gender
+ORDER BY [p].[Name]
+2026-07-28 21:52:57.800 +03:00 [INF] Filtered persons query executed. SearchBy: Gender, Count: 0
+2026-07-28 21:52:57.802 +03:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-07-28 21:52:57.804 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:52:57.810 +03:00 [INF] Executed ViewResult - view Index executed in 6.1841ms.
+2026-07-28 21:52:57.813 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 27.0377ms
+2026-07-28 21:52:57.815 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:52:57.816 +03:00 [INF] HTTP GET /Persons/Index responded 200 in 35.9057 ms
+2026-07-28 21:52:57.820 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index?searchBy=Gender&searchValue=Female - 200 null text/html; charset=utf-8 41.4836ms
+2026-07-28 21:52:57.843 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-07-28 21:52:57.847 +03:00 [INF] The file /css/style.css was not modified
+2026-07-28 21:52:57.850 +03:00 [INF] HTTP GET /css/style.css responded 304 in 2.6424 ms
+2026-07-28 21:52:57.854 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 10.1108ms
+2026-07-28 21:53:03.318 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-07-28 21:53:03.324 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:53:03.326 +03:00 [INF] Route matched with {action = "Index", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 21:53:03.338 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-07-28 21:53:03.344 +03:00 [INF] Filtered persons query executed. SearchBy: null, Count: 4
+2026-07-28 21:53:03.347 +03:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-07-28 21:53:03.350 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:53:03.353 +03:00 [INF] Executed ViewResult - view Index executed in 2.8359ms.
+2026-07-28 21:53:03.356 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 26.3751ms
+2026-07-28 21:53:03.358 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:53:03.359 +03:00 [INF] HTTP GET /Persons/Index responded 200 in 36.4188 ms
+2026-07-28 21:53:03.363 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 44.9488ms
+2026-07-28 21:53:10.529 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Delete/16f7bae7-80e3-4a0e-b7ad-ef567bf684e8 - null null
+2026-07-28 21:53:10.536 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Delete (ContactsManager.Web)'
+2026-07-28 21:53:10.553 +03:00 [INF] Route matched with {action = "Delete", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Delete(System.Guid, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 21:53:10.585 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters]
+FROM [Persons] AS [p]
+WHERE [p].[Id] = @p
+2026-07-28 21:53:10.728 +03:00 [INF] Executing ViewResult, running view Delete.
+2026-07-28 21:53:10.786 +03:00 [INF] Executed ViewResult - view Delete executed in 59.445ms.
+2026-07-28 21:53:10.790 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Delete (ContactsManager.Web) in 232.7897ms
+2026-07-28 21:53:10.794 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Delete (ContactsManager.Web)'
+2026-07-28 21:53:10.796 +03:00 [INF] HTTP GET /Persons/Delete/16f7bae7-80e3-4a0e-b7ad-ef567bf684e8 responded 200 in 261.7229 ms
+2026-07-28 21:53:10.803 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Delete/16f7bae7-80e3-4a0e-b7ad-ef567bf684e8 - 200 null text/html; charset=utf-8 273.2151ms
+2026-07-28 21:53:15.709 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Persons/Delete/16f7bae7-80e3-4a0e-b7ad-ef567bf684e8 - application/x-www-form-urlencoded 265
+2026-07-28 21:53:15.714 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.DeleteConfirmed (ContactsManager.Web)'
+2026-07-28 21:53:15.731 +03:00 [INF] Route matched with {action = "Delete", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DeleteConfirmed(System.Guid, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 21:53:15.750 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters]
+FROM [Persons] AS [p]
+WHERE [p].[Id] = @p
+2026-07-28 21:53:15.807 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+DELETE FROM [Persons]
+OUTPUT 1
+WHERE [Id] = @p0;
+2026-07-28 21:53:15.812 +03:00 [INF] Person with id "16f7bae7-80e3-4a0e-b7ad-ef567bf684e8" was removed successfully
+2026-07-28 21:53:15.816 +03:00 [INF] Executing RedirectResult, redirecting to /Persons/Index.
+2026-07-28 21:53:15.818 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.DeleteConfirmed (ContactsManager.Web) in 84.2317ms
+2026-07-28 21:53:15.820 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.DeleteConfirmed (ContactsManager.Web)'
+2026-07-28 21:53:15.821 +03:00 [INF] HTTP POST /Persons/Delete/16f7bae7-80e3-4a0e-b7ad-ef567bf684e8 responded 302 in 108.1612 ms
+2026-07-28 21:53:15.824 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Persons/Delete/16f7bae7-80e3-4a0e-b7ad-ef567bf684e8 - 302 0 null 115.4661ms
+2026-07-28 21:53:15.829 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-07-28 21:53:15.836 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:53:15.838 +03:00 [INF] Route matched with {action = "Index", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 21:53:15.844 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-07-28 21:53:15.848 +03:00 [INF] Filtered persons query executed. SearchBy: null, Count: 3
+2026-07-28 21:53:15.850 +03:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-07-28 21:53:15.853 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 21:53:15.856 +03:00 [INF] Executed ViewResult - view Index executed in 3.2209ms.
+2026-07-28 21:53:15.858 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 16.9176ms
+2026-07-28 21:53:15.861 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 21:53:15.862 +03:00 [INF] HTTP GET /Persons/Index responded 200 in 27.0340 ms
+2026-07-28 21:53:15.865 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 35.5082ms

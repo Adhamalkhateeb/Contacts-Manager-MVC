@@ -41,7 +41,10 @@ public class UpdatePersonCommandHandler(
         if (emailExists)
         {
             _logger.LogWarning("Person update aborted. Email already exists.");
-            return Error.Conflict("Email", "A person with this email already exists");
+            return Error.Conflict(
+                "Application_UpdatePerson_EmailExists",
+                "A person with this email already exists"
+            );
         }
 
         var countryExists = await _context.Countries.AnyAsync(
@@ -53,7 +56,7 @@ public class UpdatePersonCommandHandler(
         {
             _logger.LogWarning("Country with id {CountryId} was not found", request.CountryId);
             return Error.NotFound(
-                code: "CountryId",
+                code: "Application_UpdatePerson_CountryNotFound",
                 description: $"Country with id '{request.CountryId}' was not found"
             );
         }

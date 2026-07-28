@@ -1,4 +1,6 @@
 using ContactsManager.Web.Filters.ActionFilters;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using OfficeOpenXml;
 using Rotativa.AspNetCore;
@@ -12,6 +14,13 @@ public static class WebPresentationLayerExtension
 {
     public static IServiceCollection AddWebPresentationLayer(this IServiceCollection services)
     {
+        services.AddControllersWithViews(options =>
+        {
+            var policy = new AuthorizationPolicyBuilder().RequireAuthenticatedUser().Build();
+
+            options.Filters.Add(new AuthorizeFilter(policy));
+        });
+
         services.AddTransient<PersonsPostActionFilter>();
         try
         {

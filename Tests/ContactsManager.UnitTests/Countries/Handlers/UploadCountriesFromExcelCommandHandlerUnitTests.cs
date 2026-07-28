@@ -5,7 +5,6 @@ using ContactsManager.Application.Features.Countries.Commands.UploadCountryFromE
 using ContactsManager.Domain.Common.Results;
 using ContactsManager.Infrastructure.Data;
 using FluentAssertions;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging.Abstractions;
 using Moq;
@@ -46,7 +45,8 @@ public class UploadCountriesFromExcelCommandHandlerUnitTests
             )
             .ReturnsAsync(Error.Validation("Import_InvalidFile", "Invalid excel"));
 
-        var command = new UploadCountriesFromExcelCommand(CreateFakeExcelFile());
+        var (stream, fileName, length) = CreateFakeExcelStream();
+        var command = new UploadCountriesFromExcelCommand(stream, fileName, length);
 
         var result = await _handler.Handle(command, CancellationToken.None);
 
@@ -63,7 +63,8 @@ public class UploadCountriesFromExcelCommandHandlerUnitTests
             )
             .ReturnsAsync(Array.Empty<string>());
 
-        var command = new UploadCountriesFromExcelCommand(CreateFakeExcelFile());
+        var (stream, fileName, length) = CreateFakeExcelStream();
+        var command = new UploadCountriesFromExcelCommand(stream, fileName, length);
 
         var result = await _handler.Handle(command, CancellationToken.None);
 
@@ -88,7 +89,8 @@ public class UploadCountriesFromExcelCommandHandlerUnitTests
             )
             .ReturnsAsync(new[] { "Egypt", "USA", "usa", "France" });
 
-        var command = new UploadCountriesFromExcelCommand(CreateFakeExcelFile());
+        var (stream, fileName, length) = CreateFakeExcelStream();
+        var command = new UploadCountriesFromExcelCommand(stream, fileName, length);
 
         var result = await _handler.Handle(command, CancellationToken.None);
 
@@ -109,7 +111,8 @@ public class UploadCountriesFromExcelCommandHandlerUnitTests
             )
             .ReturnsAsync(new[] { " ", "USA", "  ", "Egypt" });
 
-        var command = new UploadCountriesFromExcelCommand(CreateFakeExcelFile());
+        var (stream, fileName, length) = CreateFakeExcelStream();
+        var command = new UploadCountriesFromExcelCommand(stream, fileName, length);
 
         var result = await _handler.Handle(command, CancellationToken.None);
 
@@ -121,11 +124,11 @@ public class UploadCountriesFromExcelCommandHandlerUnitTests
         (await _dbContext.Countries.CountAsync()).Should().Be(2);
     }
 
-    private static IFormFile CreateFakeExcelFile()
+    private static (Stream stream, string fileName, long length) CreateFakeExcelStream()
     {
         var fixture = new Fixture();
         var content = Encoding.UTF8.GetBytes(fixture.Create<string>());
         var stream = new MemoryStream(content);
-        return new FormFile(stream, 0, content.Length, "excelFile", "countries.xlsx");
+        return (stream, "countries.xlsx", content.Length);
     }
 }

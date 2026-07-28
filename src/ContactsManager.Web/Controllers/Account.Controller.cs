@@ -8,18 +8,17 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ContactsManager.Web.Controllers;
 
-[Route("[controller]/[action]")]
 [AllowAnonymous]
 public class AccountController(IMediator mediator, IIdentityService identityService) : MvcController
 {
     private readonly IMediator _mediator = mediator;
-
     private readonly IIdentityService _identityService = identityService;
 
     [HttpGet]
     public IActionResult Register() => View();
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Register(RegisterRequest request)
     {
         if (!ModelState.IsValid)
@@ -44,6 +43,7 @@ public class AccountController(IMediator mediator, IIdentityService identityServ
     public IActionResult Login() => View();
 
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginRequest request, string? returnUrl = null)
     {
         if (!ModelState.IsValid)

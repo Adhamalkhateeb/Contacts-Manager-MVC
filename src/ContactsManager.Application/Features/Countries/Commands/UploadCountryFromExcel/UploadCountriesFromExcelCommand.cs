@@ -1,9 +1,7 @@
-using System;
 using ContactsManager.Domain.Common.Results;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 
 namespace ContactsManager.Application.Features.Countries.Commands.UploadCountryFromExcel;
 
-public record UploadCountriesFromExcelCommand(IFormFile File)
-    : IRequest<Result<UploadCountriesFromExcelResult>> { }
+public record UploadCountriesFromExcelCommand(Stream FileStream, string FileName, long FileSize)
+    : IRequest<Result<UploadCountriesFromExcelResult>>;

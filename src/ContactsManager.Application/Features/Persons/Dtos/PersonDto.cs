@@ -1,5 +1,3 @@
-using ContactsManager.Application.Features.Persons.Enums;
-using ContactsManager.Domain;
 using ContactsManager.Domain.Persons.Enums;
 
 namespace ContactsManager.Application.Features.Persons.DTOs;

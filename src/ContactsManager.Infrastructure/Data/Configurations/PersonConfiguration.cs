@@ -1,14 +1,12 @@
-using System;
 using ContactsManager.Domain.Persons;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ContactsManager.Infrastructure.Data.Configurations;
 
 public class PersonConfiguration : IEntityTypeConfiguration<Person>
 {
-    public void Configure(
-        Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Person> p
-    )
+    public void Configure(EntityTypeBuilder<Person> p)
     {
         p.ToTable("Persons");
 

@@ -1,0 +1,134 @@
+2026-07-27 18:07:30.379 +03:00 [INF] Application is shutting down...
+2026-07-27 18:07:50.695 +03:00 [INF] Executed DbCommand (41ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-27 18:07:50.850 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-27 18:07:50.941 +03:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-27 18:07:50.994 +03:00 [INF] Now listening on: http://localhost:5067
+2026-07-27 18:07:50.997 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-27 18:07:50.999 +03:00 [INF] Hosting environment: Development
+2026-07-27 18:07:51.000 +03:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-07-27 18:20:06.506 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-07-27 18:20:06.522 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-07-27 18:20:06.623 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-27 18:20:06.648 +03:00 [INF] Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-27 18:20:06.686 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-27 18:20:06.731 +03:00 [INF] Executing ViewResult, running view Register.
+2026-07-27 18:20:07.304 +03:00 [INF] Executed ViewResult - view Register executed in 576.5753ms.
+2026-07-27 18:20:07.312 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 657.8983ms
+2026-07-27 18:20:07.315 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-27 18:20:07.323 +03:00 [INF] HTTP GET /Account/Register responded 200 in 791.9361 ms
+2026-07-27 18:20:07.335 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 832.9897ms
+2026-07-27 18:24:23.541 +03:00 [INF] Application is shutting down...
+2026-07-27 18:24:34.682 +03:00 [INF] Executed DbCommand (42ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-27 18:24:34.824 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-27 18:24:34.907 +03:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-27 18:24:34.961 +03:00 [INF] Now listening on: http://localhost:5067
+2026-07-27 18:24:34.964 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-27 18:24:34.965 +03:00 [INF] Hosting environment: Development
+2026-07-27 18:24:34.966 +03:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-07-27 18:28:52.551 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/IsEmailAvailable?Email=adhamalkhateeeb2006%40gmail.com - null null
+2026-07-27 18:28:52.595 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-07-27 18:28:52.708 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.IsEmailAvailable (ContactsManager.Web)'
+2026-07-27 18:28:52.751 +03:00 [INF] Route matched with {action = "IsEmailAvailable", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] IsEmailAvailable(System.String) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-27 18:28:52.783 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-27 18:28:53.074 +03:00 [INF] Executed DbCommand (7ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-07-27 18:28:53.194 +03:00 [INF] Executing JsonResult, writing value of type 'System.String'.
+2026-07-27 18:28:53.248 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.IsEmailAvailable (ContactsManager.Web) in 483.1388ms
+2026-07-27 18:28:53.260 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.IsEmailAvailable (ContactsManager.Web)'
+2026-07-27 18:28:53.280 +03:00 [INF] HTTP GET /Account/IsEmailAvailable responded 200 in 665.5260 ms
+2026-07-27 18:28:53.313 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/IsEmailAvailable?Email=adhamalkhateeeb2006%40gmail.com - 200 null application/json; charset=utf-8 764.8945ms
+2026-07-27 18:28:59.726 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/IsUserNameAvailable?UserName=adham_2006 - null null
+2026-07-27 18:28:59.769 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.IsUserNameAvailable (ContactsManager.Web)'
+2026-07-27 18:28:59.799 +03:00 [INF] Route matched with {action = "IsUserNameAvailable", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] IsUserNameAvailable(System.String) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-27 18:28:59.900 +03:00 [INF] Executed DbCommand (4ms) [Parameters=[@normalizedUserName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @normalizedUserName
+2026-07-27 18:28:59.913 +03:00 [INF] Executing JsonResult, writing value of type 'System.String'.
+2026-07-27 18:28:59.917 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.IsUserNameAvailable (ContactsManager.Web) in 107.8918ms
+2026-07-27 18:28:59.956 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.IsUserNameAvailable (ContactsManager.Web)'
+2026-07-27 18:28:59.966 +03:00 [INF] HTTP GET /Account/IsUserNameAvailable responded 200 in 212.4555 ms
+2026-07-27 18:28:59.982 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/IsUserNameAvailable?UserName=adham_2006 - 200 null application/json; charset=utf-8 256.0784ms
+2026-07-27 18:29:02.589 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/IsUserNameAvailable?UserName=adham_200 - null null
+2026-07-27 18:29:02.640 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.IsUserNameAvailable (ContactsManager.Web)'
+2026-07-27 18:29:02.656 +03:00 [INF] Route matched with {action = "IsUserNameAvailable", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] IsUserNameAvailable(System.String) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-27 18:29:02.727 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedUserName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @normalizedUserName
+2026-07-27 18:29:02.737 +03:00 [INF] Executing JsonResult, writing value of type 'System.Boolean'.
+2026-07-27 18:29:02.744 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.IsUserNameAvailable (ContactsManager.Web) in 78.8341ms
+2026-07-27 18:29:02.750 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.IsUserNameAvailable (ContactsManager.Web)'
+2026-07-27 18:29:02.753 +03:00 [INF] HTTP GET /Account/IsUserNameAvailable responded 200 in 120.7315 ms
+2026-07-27 18:29:02.760 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/IsUserNameAvailable?UserName=adham_200 - 200 null application/json; charset=utf-8 171.1073ms
+2026-07-27 18:29:06.091 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/IsEmailAvailable?Email=adhamalkhateeb2006%40gmail.com - null null
+2026-07-27 18:29:06.110 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.IsEmailAvailable (ContactsManager.Web)'
+2026-07-27 18:29:06.115 +03:00 [INF] Route matched with {action = "IsEmailAvailable", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] IsEmailAvailable(System.String) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-27 18:29:06.129 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-07-27 18:29:06.144 +03:00 [INF] Executing JsonResult, writing value of type 'System.String'.
+2026-07-27 18:29:06.148 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.IsEmailAvailable (ContactsManager.Web) in 24.4757ms
+2026-07-27 18:29:06.154 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.IsEmailAvailable (ContactsManager.Web)'
+2026-07-27 18:29:06.160 +03:00 [INF] HTTP GET /Account/IsEmailAvailable responded 200 in 49.9920 ms
+2026-07-27 18:29:06.171 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/IsEmailAvailable?Email=adhamalkhateeb2006%40gmail.com - 200 null application/json; charset=utf-8 80.0119ms
+2026-07-27 18:29:07.816 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/IsEmailAvailable?Email=adhamalkhateb2006%40gmail.com - null null
+2026-07-27 18:29:07.849 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.IsEmailAvailable (ContactsManager.Web)'
+2026-07-27 18:29:07.858 +03:00 [INF] Route matched with {action = "IsEmailAvailable", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] IsEmailAvailable(System.String) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-27 18:29:07.888 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-07-27 18:29:07.895 +03:00 [INF] Executing JsonResult, writing value of type 'System.Boolean'.
+2026-07-27 18:29:07.899 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.IsEmailAvailable (ContactsManager.Web) in 34.1496ms
+2026-07-27 18:29:07.905 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.IsEmailAvailable (ContactsManager.Web)'
+2026-07-27 18:29:07.908 +03:00 [INF] HTTP GET /Account/IsEmailAvailable responded 200 in 59.7518 ms
+2026-07-27 18:29:07.912 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/IsEmailAvailable?Email=adhamalkhateb2006%40gmail.com - 200 null application/json; charset=utf-8 95.5944ms
+2026-07-27 18:29:16.427 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Account/Register - application/x-www-form-urlencoded 314
+2026-07-27 18:29:16.436 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-27 18:29:16.478 +03:00 [INF] Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Register(ContactsManager.Contracts.Requests.Identity.RegisterRequest) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-27 18:29:16.740 +03:00 [INF] Executing ViewResult, running view Register.
+2026-07-27 18:29:17.111 +03:00 [INF] Executed ViewResult - view Register executed in 379.2903ms.
+2026-07-27 18:29:17.116 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 619.6877ms
+2026-07-27 18:29:17.127 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-27 18:29:17.131 +03:00 [INF] HTTP POST /Account/Register responded 200 in 694.4294 ms
+2026-07-27 18:29:17.141 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 714.2546ms
+2026-07-27 18:29:24.874 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/IsUserNameAvailable?UserName=adham_200 - null null
+2026-07-27 18:29:24.875 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/IsEmailAvailable?Email=adhamalkhateb2006%40gmail.com - null null
+2026-07-27 18:29:24.933 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.IsUserNameAvailable (ContactsManager.Web)'
+2026-07-27 18:29:24.962 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.IsEmailAvailable (ContactsManager.Web)'
+2026-07-27 18:29:24.973 +03:00 [INF] Route matched with {action = "IsUserNameAvailable", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] IsUserNameAvailable(System.String) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-27 18:29:24.984 +03:00 [INF] Route matched with {action = "IsEmailAvailable", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] IsEmailAvailable(System.String) on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-27 18:29:25.000 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedUserName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @normalizedUserName
+2026-07-27 18:29:25.017 +03:00 [INF] Executing JsonResult, writing value of type 'System.Boolean'.
+2026-07-27 18:29:25.019 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@normalizedEmail='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedEmail] = @normalizedEmail
+2026-07-27 18:29:25.021 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.IsUserNameAvailable (ContactsManager.Web) in 25.3773ms
+2026-07-27 18:29:25.024 +03:00 [INF] Executing JsonResult, writing value of type 'System.Boolean'.
+2026-07-27 18:29:25.034 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.IsEmailAvailable (ContactsManager.Web) in 26.6188ms
+2026-07-27 18:29:25.028 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.IsUserNameAvailable (ContactsManager.Web)'
+2026-07-27 18:29:25.039 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.IsEmailAvailable (ContactsManager.Web)'
+2026-07-27 18:29:25.043 +03:00 [INF] HTTP GET /Account/IsUserNameAvailable responded 200 in 110.6494 ms
+2026-07-27 18:29:25.047 +03:00 [INF] HTTP GET /Account/IsEmailAvailable responded 200 in 85.0880 ms
+2026-07-27 18:29:25.058 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/IsUserNameAvailable?UserName=adham_200 - 200 null application/json; charset=utf-8 183.1856ms
+2026-07-27 18:29:25.068 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/IsEmailAvailable?Email=adhamalkhateb2006%40gmail.com - 200 null application/json; charset=utf-8 192.9714ms

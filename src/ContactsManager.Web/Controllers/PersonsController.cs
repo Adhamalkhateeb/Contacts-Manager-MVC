@@ -14,6 +14,7 @@ using ContactsManager.Web.Filters.ActionFilters;
 using ContactsManager.Web.Models;
 using ContactsManager.Web.Models.Mappers;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Rotativa.AspNetCore;
@@ -22,6 +23,7 @@ using Rotativa.AspNetCore.Options;
 namespace ContactsManager.Web.Controllers;
 
 [Route("[controller]")]
+[Authorize(Policy = "UserOrAdmin")]
 public class PersonsController : MvcController
 {
     private readonly IMediator _mediator;
@@ -70,12 +72,14 @@ public class PersonsController : MvcController
     {
         var countryListResult = await GetCountriesSelectListAsync(cancellationToken);
 
-        countryListResult.Match(
-            countries => ViewBag.Countries = countries,
+        return countryListResult.Match(
+            countries =>
+            {
+                ViewBag.Countries = countries;
+                return View();
+            },
             errors => HandleError(errors)
         );
-
-        return View();
     }
 
     [HttpPost("[action]")]
@@ -149,19 +153,20 @@ public class PersonsController : MvcController
     [HttpPost]
     [Route("[action]/{id:guid}")]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Delete(
-        PersonResponse person,
+    [ActionName("Delete")]
+    public async Task<IActionResult> DeleteConfirmed(
+        Guid id,
         CancellationToken cancellationToken
     )
     {
         var removeResult = await _mediator.Send(
-            new RemovePersonCommand(person.Id),
+            new RemovePersonCommand(id),
             cancellationToken
         );
 
         return removeResult.Match(
             _ => RedirectToAction(nameof(Index)),
-            errors => HandleError(errors, person)
+            errors => HandleError(errors)
         );
     }
 

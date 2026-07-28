@@ -4,10 +4,6 @@ using Microsoft.Extensions.Logging;
 
 namespace ContactsManager.Application.Common.Behaviors;
 
-/// <summary>
-/// Logs unhandled exceptions but allows them to propagate
-/// Note: Handlers should use Result pattern to return errors instead of throwing exceptions
-/// </summary>
 public class UnhandledExceptionBehavior<TRequest, TResponse>(ILogger<TRequest> logger)
     : IPipelineBehavior<TRequest, TResponse>
     where TRequest : notnull

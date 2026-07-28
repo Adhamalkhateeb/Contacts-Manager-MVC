@@ -30,7 +30,10 @@ public sealed class CreatePersonCommandHandler(
         if (exists)
         {
             _logger.LogWarning("Person creation aborted. Email {Email} already exists.", email);
-            return Error.Conflict("Email", "A person with this email already exists");
+            return Error.Conflict(
+                "Application_CreatePerson_EmailExists",
+                "A person with this email already exists"
+            );
         }
 
         var countryExists = await _context.Countries.AnyAsync(
@@ -45,7 +48,10 @@ public sealed class CreatePersonCommandHandler(
                 request.CountryId
             );
 
-            return Error.NotFound("CountryId", $"Country with Id {request.CountryId} not found");
+            return Error.NotFound(
+                "Application_CreatePerson_Country_NotFound",
+                $"Country with Id {request.CountryId} not found"
+            );
         }
 
         var createPersonResult = Domain.Persons.Person.Create(

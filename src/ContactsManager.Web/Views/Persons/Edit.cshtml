@@ -1,135 +1,108 @@
-﻿@model UpdatePersonRequest
+@model UpdatePersonRequest
 
 @{
     ViewBag.Title = "Edit Person";
     ViewBag.CurrentUrl = "~/Persons/Edit";
 }
 
-<div class="page-header">
-    <div>
-        <h1 class="page-title">Edit Person</h1>
-        <p class="page-meta">Updating details for <strong>@Model.Name</strong></p>
-    </div>
-    <div class="page-actions">
-        <a asp-controller="Persons" asp-action="Index" class="btn btn-outline">
-            <i class="fa-solid fa-arrow-left"></i> Back
-        </a>
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+        <div class="card shadow-sm border-0 mt-4">
+            <div class="card-header bg-primary text-white py-3">
+                <h4 class="mb-0"><i class="bi bi-pencil-square me-2"></i>Edit Person</h4>
+            </div>
+            <div class="card-body p-4 p-md-5">
+                <p class="text-muted mb-4">Updating details for <strong class="text-dark">@Model.Name</strong></p>
+
+                <form asp-controller="Persons" asp-action="Edit" asp-route-id="@Model.Id" method="post">
+                    <input type="hidden" asp-for="Id" />
+
+                    <h5 class="fw-bold mb-3 border-bottom pb-2">Basic Information</h5>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label asp-for="Name" class="form-label fw-semibold">Full Name <span class="text-danger">*</span></label>
+                            <input asp-for="Name" class="form-control" placeholder="Full name" autofocus required />
+                            <span asp-validation-for="Name" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="Email" class="form-label fw-semibold">Email Address <span class="text-danger">*</span></label>
+                            <input asp-for="Email" class="form-control" type="email" placeholder="email@example.com" required />
+                            <span asp-validation-for="Email" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="DateOfBirth" class="form-label fw-semibold">Date of Birth</label>
+                            <input asp-for="DateOfBirth" class="form-control" type="date" value="@(Model.DateOfBirth.HasValue ? Model.DateOfBirth.Value.ToString("yyyy-MM-dd") : "")" />
+                            <span asp-validation-for="DateOfBirth" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label fw-semibold">Gender <span class="text-danger">*</span></label>
+                            <div class="mt-2">
+                                @foreach (string gender in Enum.GetNames<Gender>())
+                                {
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" asp-for="Gender" value="@gender" id="gender_@gender" required />
+                                        <label class="form-check-label" for="gender_@gender">@gender</label>
+                                    </div>
+                                }
+                            </div>
+                            <span asp-validation-for="Gender" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <h5 class="fw-bold mb-3 border-bottom pb-2 mt-4">Location & Preferences</h5>
+
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label asp-for="CountryId" class="form-label fw-semibold">Country <span class="text-danger">*</span></label>
+                            <select asp-for="CountryId" class="form-select" asp-items="@ViewBag.Countries" required>
+                                <option value="">Select country…</option>
+                            </select>
+                            <span asp-validation-for="CountryId" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label asp-for="Address" class="form-label fw-semibold">Address</label>
+                            <textarea asp-for="Address" class="form-control" rows="3" placeholder="Street, city, postal code…"></textarea>
+                            <span asp-validation-for="Address" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-check mt-2">
+                                <input asp-for="ReceiveNewsLetters" class="form-check-input" type="checkbox" id="newsletterCheck" />
+                                <label class="form-check-label" for="newsletterCheck">
+                                    Receive newsletter updates
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (ViewBag.Errors != null)
+                    {
+                        <div class="alert alert-danger mb-4">
+                            <strong>Please fix the following:</strong>
+                            <ul class="mb-0 mt-2">
+                                @foreach (string error in ViewBag.Errors)
+                                {
+                                    <li>@error</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+
+                    <div class="d-flex gap-2 mt-4 pt-3 border-top">
+                        <button type="submit" class="btn btn-primary px-4"><i class="bi bi-check-lg me-1"></i> Save Changes</button>
+                        <a asp-controller="Persons" asp-action="Index" class="btn btn-outline-secondary px-4">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
 
-<form asp-controller="Persons" asp-action="Edit" asp-route-id="@Model.Id" method="post" id="editForm">
-    <input type="hidden" asp-for="Id" />
-
-    <div class="form-section">
-        <p class="section-heading">Basic Information</p>
-
-        <div class="form-grid-2">
-            <div class="form-group col-span-2">
-                <label asp-for="Name" class="form-label">
-                    Full Name <span class="required">*</span>
-                </label>
-                <input asp-for="Name" class="input" placeholder="Full name" autofocus required />
-                <span asp-validation-for="Name" class="validation-error"></span>
-            </div>
-
-            <div class="form-group col-span-2">
-                <label asp-for="Email" class="form-label">
-                    Email Address <span class="required">*</span>
-                </label>
-                <input asp-for="Email" class="input" type="email" placeholder="email@example.com" required />
-                <span asp-validation-for="Email" class="validation-error"></span>
-            </div>
-
-            <div class="form-group">
-                <label asp-for="DateOfBirth" class="form-label">Date of Birth</label>
-                <input asp-for="DateOfBirth"
-                       class="input"
-                       type="date"
-                       value="@(Model.DateOfBirth.HasValue ? Model.DateOfBirth.Value.ToString("yyyy-MM-dd") : "")" />
-                <span asp-validation-for="DateOfBirth" class="validation-error"></span>
-            </div>
-
-            <div class="form-group">
-                <label class="form-label">Gender <span class="required">*</span></label>
-                <div class="gender-group">
-                    @{
-                        var genders = Enum.GetNames<Gender>();
-                    }
-                    @foreach (string gender in genders)
-                    {
-                        <label class="gender-card">
-                            <input type="radio" asp-for="Gender" value="@gender" required />
-                            <span class="gender-label">
-                                <i class="fa-solid @(gender == "Male" ? "fa-mars" : gender == "Female" ? "fa-venus" : "fa-genderless")"></i>
-                                @gender
-                            </span>
-                        </label>
-                    }
-                </div>
-                <span asp-validation-for="Gender" class="validation-error"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-section">
-        <p class="section-heading">Location</p>
-
-        <div class="form-grid-2">
-            <div class="form-group">
-                <label asp-for="CountryId" class="form-label">Country</label>
-                <select asp-for="CountryId" class="input" asp-items="@ViewBag.Countries">
-                    <option value="">Select country…</option>
-                </select>
-                <span asp-validation-for="CountryId" class="validation-error"></span>
-            </div>
-
-            <div class="form-group col-span-2">
-                <label asp-for="Address" class="form-label">Address</label>
-                <textarea asp-for="Address" class="input" placeholder="Street, city, postal code…"></textarea>
-                <span asp-validation-for="Address" class="validation-error"></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="form-section">
-        <p class="section-heading">Preferences</p>
-
-        <div class="toggle-row">
-            <label class="toggle-wrap">
-                <input asp-for="ReceiveNewsLetters" type="checkbox" />
-                <span class="toggle-track"></span>
-            </label>
-            <span class="toggle-text">Receive newsletter updates</span>
-        </div>
-    </div>
-
-
-    @if (ViewBag.Errors != null)
-    {
-        <div class="alert alert-danger">
-            <i class="fa-solid fa-circle-exclamation"></i>
-            <div>
-                <strong>Please fix the following:</strong>
-                <ul style="margin:.5rem 0 0 1rem">
-                    @foreach (string error in ViewBag.Errors)
-                    {
-                        <li>@error</li>
-                    }
-                </ul>
-            </div>
-        </div>
-    }
-
-
-    <div class="form-actions">
-        <button type="submit" class="btn btn-primary">
-            <i class="fa-solid fa-floppy-disk"></i> Save Changes
-        </button>
-        <a asp-controller="Persons" asp-action="Index" class="btn btn-outline">Cancel</a>
-    </div>
-</form>
-
-@section scripts
-{
+@section scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }

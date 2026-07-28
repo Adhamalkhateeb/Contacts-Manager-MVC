@@ -13,32 +13,27 @@ public class UploadCountriesFromExcelCommandHandler(
     ICountryImportService countryImportService
 ) : IRequestHandler<UploadCountriesFromExcelCommand, Result<UploadCountriesFromExcelResult>>
 {
-    private readonly IAppDbContext _context = context;
-    private readonly ILogger<UploadCountriesFromExcelCommandHandler> _logger = logger;
-    private readonly ICountryImportService _countryImportService = countryImportService;
-
     public async Task<Result<UploadCountriesFromExcelResult>> Handle(
         UploadCountriesFromExcelCommand request,
         CancellationToken cancellationToken
     )
     {
-        _logger.LogInformation(
+        logger.LogInformation(
             "Starting countries Excel upload. FileName: {FileName}, Size: {FileSize}",
-            request.File.FileName,
-            request.File.Length
+            request.FileName,
+            request.FileSize
         );
 
-        await using var fileStream = request.File.OpenReadStream();
-        var namesFromExcelResult = await _countryImportService.GetCountryNamesFromExcelAsync(
-            fileStream,
+        var namesFromExcelResult = await countryImportService.GetCountryNamesFromExcelAsync(
+            request.FileStream,
             cancellationToken
         );
 
         if (namesFromExcelResult.IsError)
         {
-            _logger.LogWarning(
+            logger.LogWarning(
                 "Country upload failed during Excel parsing. Errors: {Errors}",
-                namesFromExcelResult.Errors.Select(e => e.Description).ToArray()
+                string.Join(", ", namesFromExcelResult.Errors.Select(e => e.Description))
             );
             return namesFromExcelResult.TopError;
         }
@@ -48,16 +43,16 @@ public class UploadCountriesFromExcelCommandHandler(
 
         if (parsedCount == 0)
         {
-            _logger.LogInformation(
+            logger.LogInformation(
                 "Country upload completed with no rows to process. FileName: {FileName}",
-                request.File.FileName
+                request.FileName
             );
             return new UploadCountriesFromExcelResult(0, 0, 0, 0);
         }
 
-        var existingNames = await _context
+        var existingNames = await context
             .Countries.AsNoTracking()
-            .Select(country => country.Name)
+            .Select(c => c.Name)
             .ToListAsync(cancellationToken);
 
         var existingLookup = existingNames.ToHashSet(StringComparer.OrdinalIgnoreCase);
@@ -73,18 +68,15 @@ public class UploadCountriesFromExcelCommandHandler(
                 continue;
             }
 
-            var createCountryResult = Country.Create(Guid.NewGuid(), name);
-            if (createCountryResult.IsError)
+            var createResult = Country.Create(Guid.NewGuid(), name);
+            if (createResult.IsError)
             {
                 invalidCount++;
-                _logger.LogWarning(
-                    "Skipping invalid country name during upload: {CountryName}",
-                    name
-                );
+                logger.LogWarning("Skipping invalid country name: {CountryName}", name);
                 continue;
             }
 
-            _context.Countries.Add(createCountryResult.Value);
+            context.Countries.Add(createResult.Value);
             existingLookup.Add(name);
             insertedCount++;
         }
@@ -93,11 +85,11 @@ public class UploadCountriesFromExcelCommandHandler(
         {
             try
             {
-                await _context.SaveChangesAsync(cancellationToken);
+                await context.SaveChangesAsync(cancellationToken);
             }
             catch (DbUpdateException ex)
             {
-                _logger.LogError(ex, "Country upload failed while saving changes");
+                logger.LogError(ex, "Country upload failed while saving changes");
                 return Error.Failure(
                     "Application_UploadCountriesFromExcel_SaveFailed",
                     "Failed to save uploaded countries"
@@ -105,8 +97,8 @@ public class UploadCountriesFromExcelCommandHandler(
             }
         }
 
-        _logger.LogInformation(
-            "Countries upload completed. ParsedRows: {ParsedRows}, Inserted: {InsertedCount}, Duplicates: {DuplicateCount}, Invalid: {InvalidCount}",
+        logger.LogInformation(
+            "Countries upload completed. Parsed: {Parsed}, Inserted: {Inserted}, Duplicates: {Duplicates}, Invalid: {Invalid}",
             parsedCount,
             insertedCount,
             duplicateCount,

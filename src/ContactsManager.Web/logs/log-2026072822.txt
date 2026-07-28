@@ -1,0 +1,200 @@
+2026-07-28 22:01:11.752 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Countries/uploadFromExcel - null null
+2026-07-28 22:01:11.765 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-07-28 22:01:11.773 +03:00 [INF] Route matched with {action = "UploadFromExcel", controller = "Countries", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult UploadFromExcel() on controller ContactsManager.Web.Controllers.CountriesController (ContactsManager.Web).
+2026-07-28 22:01:11.785 +03:00 [INF] Executing ViewResult, running view UploadFromExcel.
+2026-07-28 22:01:11.845 +03:00 [INF] Executed ViewResult - view UploadFromExcel executed in 62.1788ms.
+2026-07-28 22:01:11.848 +03:00 [INF] Executed action ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web) in 67.3683ms
+2026-07-28 22:01:11.861 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-07-28 22:01:11.868 +03:00 [INF] HTTP GET /Countries/uploadFromExcel responded 200 in 105.0422 ms
+2026-07-28 22:01:11.879 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Countries/uploadFromExcel - 200 null text/html; charset=utf-8 127.2345ms
+2026-07-28 22:01:11.912 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-07-28 22:01:11.919 +03:00 [INF] The file /css/style.css was not modified
+2026-07-28 22:01:11.922 +03:00 [INF] HTTP GET /css/style.css responded 304 in 3.6772 ms
+2026-07-28 22:01:11.928 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 16.5734ms
+2026-07-28 22:01:19.031 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-07-28 22:01:19.036 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 22:01:19.038 +03:00 [INF] Route matched with {action = "Index", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 22:01:19.149 +03:00 [INF] Executed DbCommand (23ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-07-28 22:01:19.153 +03:00 [INF] Filtered persons query executed. SearchBy: null, Count: 3
+2026-07-28 22:01:19.155 +03:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-07-28 22:01:19.158 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 22:01:19.162 +03:00 [INF] Executed ViewResult - view Index executed in 3.8719ms.
+2026-07-28 22:01:19.164 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 123.9775ms
+2026-07-28 22:01:19.167 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 22:01:19.169 +03:00 [INF] HTTP GET /Persons/Index responded 200 in 133.1543 ms
+2026-07-28 22:01:19.171 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 140.2002ms
+2026-07-28 22:01:19.849 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-07-28 22:01:19.910 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 22:01:19.931 +03:00 [INF] Route matched with {action = "Index", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 22:01:19.976 +03:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-07-28 22:01:20.127 +03:00 [INF] Filtered persons query executed. SearchBy: null, Count: 3
+2026-07-28 22:01:20.146 +03:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-07-28 22:01:20.167 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 22:01:20.189 +03:00 [INF] Executed ViewResult - view Index executed in 21.6941ms.
+2026-07-28 22:01:20.237 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 272.9185ms
+2026-07-28 22:01:20.275 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 22:01:20.330 +03:00 [INF] HTTP GET /Persons/Index responded 200 in 421.6331 ms
+2026-07-28 22:01:20.361 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 511.9965ms
+2026-07-28 22:01:23.131 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/PersonsExcel - null null
+2026-07-28 22:01:23.151 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.DownloadPersonsExcel (ContactsManager.Web)'
+2026-07-28 22:01:23.565 +03:00 [INF] Route matched with {action = "DownloadPersonsExcel", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DownloadPersonsExcel() on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 22:01:23.631 +03:00 [INF] Generating Excel export for persons
+2026-07-28 22:01:23.725 +03:00 [INF] Executed DbCommand (13ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+2026-07-28 22:01:25.646 +03:00 [INF] Excel export generated successfully with 3 rows
+2026-07-28 22:01:25.681 +03:00 [INF] Executing FileContentResult, sending file with download name 'Persons_20260728220125.xlsx' ...
+2026-07-28 22:01:25.786 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.DownloadPersonsExcel (ContactsManager.Web) in 2171.6255ms
+2026-07-28 22:01:25.817 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.DownloadPersonsExcel (ContactsManager.Web)'
+2026-07-28 22:01:25.873 +03:00 [INF] HTTP GET /Persons/PersonsExcel responded 200 in 2725.5736 ms
+2026-07-28 22:01:25.911 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/PersonsExcel - 200 4848 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet 2775.0544ms
+2026-07-28 22:02:20.566 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Admin - null null
+2026-07-28 22:02:20.741 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 22:02:20.768 +03:00 [INF] Route matched with {area = "Admin", action = "Index", controller = "Users"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Threading.CancellationToken) on controller ContactsManager.Web.Areas.Admin.Controllers.UsersController (ContactsManager.Web).
+2026-07-28 22:02:20.864 +03:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+ORDER BY [a].[UserName]
+2026-07-28 22:02:20.946 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 22:02:20.959 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 22:02:21.006 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 22:02:21.047 +03:00 [INF] Executed DbCommand (1ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 22:02:21.089 +03:00 [INF] Executed DbCommand (2ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 22:02:21.441 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 22:02:21.457 +03:00 [INF] Executed ViewResult - view Index executed in 16.0308ms.
+2026-07-28 22:02:21.479 +03:00 [INF] Executed action ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web) in 660.38ms
+2026-07-28 22:02:21.504 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Areas.Admin.Controllers.UsersController.Index (ContactsManager.Web)'
+2026-07-28 22:02:21.517 +03:00 [INF] HTTP GET /Admin responded 200 in 779.0929 ms
+2026-07-28 22:02:21.542 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Admin - 200 null text/html; charset=utf-8 975.7601ms
+2026-07-28 22:02:24.646 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Persons/Index - null null
+2026-07-28 22:02:24.651 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 22:02:24.653 +03:00 [INF] Route matched with {action = "Index", controller = "Persons", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.String, System.String, System.String, ContactsManager.Application.Features.Persons.Enums.SortOrder, System.Threading.CancellationToken) on controller ContactsManager.Web.Controllers.PersonsController (ContactsManager.Web).
+2026-07-28 22:02:24.667 +03:00 [INF] Executed DbCommand (9ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[Address], [p].[CountryId], [p].[CreatedAtUtc], [p].[CreatedBy], [p].[DateOfBirth], [p].[Email], [p].[Gender], [p].[LastModifiedBy], [p].[LastModifiedUtc], [p].[Name], [p].[ReceiveNewsLetters], [c].[Id], [c].[CreatedAtUtc], [c].[CreatedBy], [c].[LastModifiedBy], [c].[LastModifiedUtc], [c].[Name]
+FROM [Persons] AS [p]
+INNER JOIN [Countries] AS [c] ON [p].[CountryId] = [c].[Id]
+ORDER BY [p].[Name]
+2026-07-28 22:02:24.671 +03:00 [INF] Filtered persons query executed. SearchBy: null, Count: 3
+2026-07-28 22:02:24.674 +03:00 [INF] Sorting completed. OrderBy: Name, SortOrder: "ASC"
+2026-07-28 22:02:24.676 +03:00 [INF] Executing ViewResult, running view Index.
+2026-07-28 22:02:24.680 +03:00 [INF] Executed ViewResult - view Index executed in 4.3078ms.
+2026-07-28 22:02:24.682 +03:00 [INF] Executed action ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web) in 26.2198ms
+2026-07-28 22:02:24.684 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.PersonsController.Index (ContactsManager.Web)'
+2026-07-28 22:02:24.685 +03:00 [INF] HTTP GET /Persons/Index responded 200 in 34.9205 ms
+2026-07-28 22:02:24.688 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Persons/Index - 200 null text/html; charset=utf-8 41.6742ms
+2026-07-28 22:23:54.429 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Countries/uploadFromExcel - null null
+2026-07-28 22:23:56.237 +03:00 [INF] Executed DbCommand (16ms) [Parameters=[@p='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Email], [a].[EmailConfirmed], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[SecurityStamp], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[Id] = @p
+2026-07-28 22:23:56.315 +03:00 [INF] Executed DbCommand (6ms) [Parameters=[@user_Id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @user_Id
+2026-07-28 22:23:56.343 +03:00 [INF] Executed DbCommand (11ms) [Parameters=[@userId='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @userId
+2026-07-28 22:23:56.358 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-28 22:23:56.393 +03:00 [INF] Executed DbCommand (5ms) [Parameters=[@role_Id='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[ClaimType], [a].[ClaimValue]
+FROM [AspNetRoleClaims] AS [a]
+WHERE [a].[RoleId] = @role_Id
+2026-07-28 22:23:56.413 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-07-28 22:23:56.417 +03:00 [INF] Route matched with {action = "UploadFromExcel", controller = "Countries", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult UploadFromExcel() on controller ContactsManager.Web.Controllers.CountriesController (ContactsManager.Web).
+2026-07-28 22:23:56.427 +03:00 [INF] Executing ViewResult, running view UploadFromExcel.
+2026-07-28 22:23:56.441 +03:00 [INF] Executed ViewResult - view UploadFromExcel executed in 16.0451ms.
+2026-07-28 22:23:56.446 +03:00 [INF] Executed action ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web) in 22.2422ms
+2026-07-28 22:23:56.457 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-07-28 22:23:56.465 +03:00 [INF] HTTP GET /Countries/uploadFromExcel responded 200 in 2029.3705 ms
+2026-07-28 22:23:56.476 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Countries/uploadFromExcel - 200 null text/html; charset=utf-8 2047.0072ms
+2026-07-28 22:23:56.528 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-07-28 22:23:56.542 +03:00 [INF] The file /css/style.css was not modified
+2026-07-28 22:23:56.550 +03:00 [INF] HTTP GET /css/style.css responded 304 in 7.9627 ms
+2026-07-28 22:23:56.561 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 32.7105ms
+2026-07-28 22:24:04.086 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Countries/uploadFromExcel - multipart/form-data; boundary=----WebKitFormBoundarywWTWNR1e6pgSkL5b 5420
+2026-07-28 22:24:04.093 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-07-28 22:24:04.119 +03:00 [INF] Route matched with {action = "UploadFromExcel", controller = "Countries", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFromExcel(Microsoft.AspNetCore.Http.IFormFile) on controller ContactsManager.Web.Controllers.CountriesController (ContactsManager.Web).
+2026-07-28 22:24:04.226 +03:00 [INF] Starting countries Excel upload. FileName: Persons_20260728220125.xlsx, Size: 4848
+2026-07-28 22:24:04.287 +03:00 [WRN] Excel upload rejected: worksheet 'Countries' not found. Available: Persons
+2026-07-28 22:24:04.342 +03:00 [WRN] Country upload failed during Excel parsing. Errors: The Excel file must contain a worksheet named 'Countries'.
+2026-07-28 22:24:04.351 +03:00 [INF] Executing ViewResult, running view UploadFromExcel.
+2026-07-28 22:24:04.368 +03:00 [INF] Executed ViewResult - view UploadFromExcel executed in 16.8528ms.
+2026-07-28 22:24:04.372 +03:00 [INF] Executed action ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web) in 247.3178ms
+2026-07-28 22:24:04.375 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-07-28 22:24:04.379 +03:00 [INF] HTTP POST /Countries/uploadFromExcel responded 200 in 287.8338 ms
+2026-07-28 22:24:04.384 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Countries/uploadFromExcel - 200 null text/html; charset=utf-8 297.7474ms
+2026-07-28 22:25:33.622 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Countries/uploadFromExcel - multipart/form-data; boundary=----WebKitFormBoundaryMputlTHKWdfukEGi 5420
+2026-07-28 22:25:33.676 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-07-28 22:25:33.697 +03:00 [INF] Route matched with {action = "UploadFromExcel", controller = "Countries", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFromExcel(Microsoft.AspNetCore.Http.IFormFile) on controller ContactsManager.Web.Controllers.CountriesController (ContactsManager.Web).
+2026-07-28 22:25:33.767 +03:00 [INF] Starting countries Excel upload. FileName: Persons_20260728220125.xlsx, Size: 4848
+2026-07-28 22:25:33.806 +03:00 [WRN] Excel upload rejected: worksheet 'Countries' not found. Available: Persons
+2026-07-28 22:25:33.845 +03:00 [WRN] Country upload failed during Excel parsing. Errors: The Excel file must contain a worksheet named 'Countries'.
+2026-07-28 22:25:33.861 +03:00 [INF] Executing ViewResult, running view UploadFromExcel.
+2026-07-28 22:25:33.884 +03:00 [INF] Executed ViewResult - view UploadFromExcel executed in 22.2037ms.
+2026-07-28 22:25:33.907 +03:00 [INF] Executed action ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web) in 150.5003ms
+2026-07-28 22:25:33.940 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-07-28 22:25:33.947 +03:00 [INF] HTTP POST /Countries/uploadFromExcel responded 200 in 271.7419 ms
+2026-07-28 22:25:34.222 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Countries/uploadFromExcel - 200 null text/html; charset=utf-8 599.9961ms
+2026-07-28 22:26:12.101 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Countries/uploadFromExcel - multipart/form-data; boundary=----WebKitFormBoundaryNloYAZHmGgj1VyhQ 5420
+2026-07-28 22:26:12.170 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-07-28 22:26:12.205 +03:00 [INF] Route matched with {action = "UploadFromExcel", controller = "Countries", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFromExcel(Microsoft.AspNetCore.Http.IFormFile) on controller ContactsManager.Web.Controllers.CountriesController (ContactsManager.Web).
+2026-07-28 22:26:12.242 +03:00 [INF] Starting countries Excel upload. FileName: Persons_20260728220125.xlsx, Size: 4848
+2026-07-28 22:26:12.253 +03:00 [WRN] Excel upload rejected: worksheet 'Countries' not found. Available: Persons
+2026-07-28 22:26:12.292 +03:00 [WRN] Country upload failed during Excel parsing. Errors: The Excel file must contain a worksheet named 'Countries'.
+2026-07-28 22:26:12.295 +03:00 [INF] Executing ViewResult, running view UploadFromExcel.
+2026-07-28 22:26:12.298 +03:00 [INF] Executed ViewResult - view UploadFromExcel executed in 3.2796ms.
+2026-07-28 22:26:12.301 +03:00 [INF] Executed action ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web) in 69.2363ms
+2026-07-28 22:26:12.304 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-07-28 22:26:12.306 +03:00 [INF] HTTP POST /Countries/uploadFromExcel responded 200 in 140.6715 ms
+2026-07-28 22:26:12.310 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Countries/uploadFromExcel - 200 null text/html; charset=utf-8 208.8ms
+2026-07-28 22:28:16.578 +03:00 [INF] Request starting HTTP/1.1 POST http://localhost:5067/Countries/uploadFromExcel - multipart/form-data; boundary=----WebKitFormBoundaryZvvW6SOEFDaGX9IF 9721
+2026-07-28 22:28:16.583 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-07-28 22:28:16.587 +03:00 [INF] Route matched with {action = "UploadFromExcel", controller = "Countries", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UploadFromExcel(Microsoft.AspNetCore.Http.IFormFile) on controller ContactsManager.Web.Controllers.CountriesController (ContactsManager.Web).
+2026-07-28 22:28:16.595 +03:00 [INF] Starting countries Excel upload. FileName: Persons_20260728220125.xlsx, Size: 9149
+2026-07-28 22:28:16.615 +03:00 [WRN] Excel upload rejected: expected header 'CountryName' in A1, found 'Name'
+2026-07-28 22:28:16.654 +03:00 [WRN] Country upload failed during Excel parsing. Errors: Cell A1 must contain the column header 'CountryName'. Found: 'Name'.
+2026-07-28 22:28:16.656 +03:00 [INF] Executing ViewResult, running view UploadFromExcel.
+2026-07-28 22:28:16.659 +03:00 [INF] Executed ViewResult - view UploadFromExcel executed in 3.6284ms.
+2026-07-28 22:28:16.663 +03:00 [INF] Executed action ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web) in 71.0745ms
+2026-07-28 22:28:16.667 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.CountriesController.UploadFromExcel (ContactsManager.Web)'
+2026-07-28 22:28:16.670 +03:00 [INF] HTTP POST /Countries/uploadFromExcel responded 200 in 88.4117 ms
+2026-07-28 22:28:16.676 +03:00 [INF] Request finished HTTP/1.1 POST http://localhost:5067/Countries/uploadFromExcel - 200 null text/html; charset=utf-8 98.2963ms
+2026-07-28 22:28:16.723 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-07-28 22:28:16.728 +03:00 [INF] The file /css/style.css was not modified
+2026-07-28 22:28:16.731 +03:00 [INF] HTTP GET /css/style.css responded 304 in 2.8197 ms
+2026-07-28 22:28:16.735 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 12.6803ms
+2026-07-28 22:43:40.407 +03:00 [INF] Application is shutting down...

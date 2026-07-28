@@ -1,0 +1,98 @@
+2026-07-27 17:48:00.465 +03:00 [INF] Executed DbCommand (51ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-27 17:48:00.613 +03:00 [INF] Executed DbCommand (3ms) [Parameters=[@normalizedName='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[ConcurrencyStamp], [a].[Name], [a].[NormalizedName]
+FROM [AspNetRoles] AS [a]
+WHERE [a].[NormalizedName] = @normalizedName
+2026-07-27 17:48:00.754 +03:00 [INF] User profile is available. Using 'C:\Users\adham\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-07-27 17:48:00.819 +03:00 [INF] Now listening on: http://localhost:5067
+2026-07-27 17:48:00.821 +03:00 [INF] Application started. Press Ctrl+C to shut down.
+2026-07-27 17:48:00.823 +03:00 [INF] Hosting environment: Development
+2026-07-27 17:48:00.824 +03:00 [INF] Content root path: C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web
+2026-07-27 17:48:10.999 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-07-27 17:48:11.009 +03:00 [WRN] Failed to determine the https port for redirect.
+2026-07-27 17:48:11.044 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User|Admin)
+2026-07-27 17:48:11.054 +03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-07-27 17:48:11.058 +03:00 [INF] HTTP GET / responded 302 in 44.3792 ms
+2026-07-27 17:48:11.064 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 302 0 null 67.3942ms
+2026-07-27 17:48:11.077 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - null null
+2026-07-27 17:48:11.089 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-27 17:48:11.099 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-27 17:48:11.112 +03:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2026-07-27 17:48:11.131 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-27 17:48:11.331 +03:00 [INF] Executed ViewResult - view Login executed in 200.5079ms.
+2026-07-27 17:48:11.333 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 232.0546ms
+2026-07-27 17:48:11.335 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-27 17:48:11.336 +03:00 [INF] HTTP GET /Account/Login responded 200 in 256.8140 ms
+2026-07-27 17:48:11.342 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 264.9563ms
+2026-07-27 17:48:11.369 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-07-27 17:48:11.372 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-07-27 17:48:11.372 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-07-27 17:48:11.383 +03:00 [INF] The file /css/style.css was not modified
+2026-07-27 17:48:11.384 +03:00 [INF] The file /css/all.min.css was not modified
+2026-07-27 17:48:11.384 +03:00 [INF] The file /js/site.js was not modified
+2026-07-27 17:48:11.386 +03:00 [INF] HTTP GET /css/style.css responded 304 in 13.2639 ms
+2026-07-27 17:48:11.386 +03:00 [INF] HTTP GET /css/all.min.css responded 304 in 9.6864 ms
+2026-07-27 17:48:11.388 +03:00 [INF] HTTP GET /js/site.js responded 304 in 4.0068 ms
+2026-07-27 17:48:11.391 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 304 null text/css 21.1506ms
+2026-07-27 17:48:11.393 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 304 null text/css 20.3588ms
+2026-07-27 17:48:11.395 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 304 null text/javascript 22.5351ms
+2026-07-27 17:48:11.766 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-07-27 17:48:11.769 +03:00 [INF] The file /webfonts/fa-solid-900.woff2 was not modified
+2026-07-27 17:48:11.770 +03:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 304 in 1.4009 ms
+2026-07-27 17:48:11.772 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 304 null font/woff2 5.5986ms
+2026-07-27 17:48:11.785 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - null null
+2026-07-27 17:48:11.787 +03:00 [INF] The file /js/jquery.validate.unobtrusive.min.js was not modified
+2026-07-27 17:48:11.788 +03:00 [INF] HTTP GET /js/jquery.validate.unobtrusive.min.js responded 304 in 1.1300 ms
+2026-07-27 17:48:11.790 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - 304 null text/javascript 5.0593ms
+2026-07-27 17:48:15.543 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Register - null null
+2026-07-27 17:48:15.557 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-27 17:48:15.562 +03:00 [INF] Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Register() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-27 17:48:15.574 +03:00 [INF] Executing ViewResult, running view Register.
+2026-07-27 17:48:15.610 +03:00 [INF] Executed ViewResult - view Register executed in 36.1577ms.
+2026-07-27 17:48:15.611 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web) in 46.9473ms
+2026-07-27 17:48:15.613 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Register (ContactsManager.Web)'
+2026-07-27 17:48:15.614 +03:00 [INF] HTTP GET /Account/Register responded 200 in 66.0679 ms
+2026-07-27 17:48:15.617 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Register - 200 null text/html; charset=utf-8 73.7564ms
+2026-07-27 17:50:03.413 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/ - null null
+2026-07-27 17:50:03.429 +03:00 [INF] Authorization failed. These requirements were not met:
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (User|Admin)
+2026-07-27 17:50:03.438 +03:00 [INF] AuthenticationScheme: Identity.Application was challenged.
+2026-07-27 17:50:03.449 +03:00 [INF] HTTP GET / responded 302 in 21.3263 ms
+2026-07-27 17:50:03.478 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/ - 302 0 null 65.3358ms
+2026-07-27 17:50:03.513 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - null null
+2026-07-27 17:50:03.660 +03:00 [INF] Executing endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-27 17:50:03.750 +03:00 [INF] Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Login() on controller ContactsManager.Web.Controllers.AccountController (ContactsManager.Web).
+2026-07-27 17:50:03.835 +03:00 [INF] Executing ViewResult, running view Login.
+2026-07-27 17:50:03.849 +03:00 [INF] Executed ViewResult - view Login executed in 14.3674ms.
+2026-07-27 17:50:03.852 +03:00 [INF] Executed action ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web) in 77.464ms
+2026-07-27 17:50:03.856 +03:00 [INF] Executed endpoint 'ContactsManager.Web.Controllers.AccountController.Login (ContactsManager.Web)'
+2026-07-27 17:50:03.861 +03:00 [INF] HTTP GET /Account/Login responded 200 in 200.9790 ms
+2026-07-27 17:50:03.865 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/Account/Login?ReturnUrl=%2F - 200 null text/html; charset=utf-8 352.2093ms
+2026-07-27 17:50:03.906 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/style.css - null null
+2026-07-27 17:50:03.907 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/css/all.min.css - null null
+2026-07-27 17:50:03.910 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/site.js - null null
+2026-07-27 17:50:03.967 +03:00 [INF] Sending file. Request path: '/css/style.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\style.css'
+2026-07-27 17:50:03.991 +03:00 [INF] Sending file. Request path: '/css/all.min.css'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\css\all.min.css'
+2026-07-27 17:50:04.013 +03:00 [INF] Sending file. Request path: '/js/site.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\site.js'
+2026-07-27 17:50:04.049 +03:00 [INF] HTTP GET /js/site.js responded 200 in 36.5396 ms
+2026-07-27 17:50:04.035 +03:00 [INF] HTTP GET /css/all.min.css responded 200 in 47.3938 ms
+2026-07-27 17:50:04.024 +03:00 [INF] HTTP GET /css/style.css responded 200 in 92.2734 ms
+2026-07-27 17:50:04.070 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/site.js - 200 1485 text/javascript 159.793ms
+2026-07-27 17:50:04.073 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/all.min.css - 200 74328 text/css 166.8465ms
+2026-07-27 17:50:04.078 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/css/style.css - 200 36448 text/css 171.1204ms
+2026-07-27 17:50:05.485 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - null null
+2026-07-27 17:50:05.498 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - null null
+2026-07-27 17:50:05.501 +03:00 [INF] Sending file. Request path: '/webfonts/fa-solid-900.woff2'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\webfonts\fa-solid-900.woff2'
+2026-07-27 17:50:05.515 +03:00 [INF] Sending file. Request path: '/js/jquery.validate.unobtrusive.min.js'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\js\jquery.validate.unobtrusive.min.js'
+2026-07-27 17:50:05.522 +03:00 [INF] HTTP GET /webfonts/fa-solid-900.woff2 responded 200 in 25.2992 ms
+2026-07-27 17:50:05.529 +03:00 [INF] HTTP GET /js/jquery.validate.unobtrusive.min.js responded 200 in 15.1603 ms
+2026-07-27 17:50:05.535 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/webfonts/fa-solid-900.woff2 - 200 113152 font/woff2 49.9419ms
+2026-07-27 17:50:05.540 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/js/jquery.validate.unobtrusive.min.js - 200 5831 text/javascript 42.3747ms
+2026-07-27 17:50:06.142 +03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5067/favicon.png - null null
+2026-07-27 17:50:06.161 +03:00 [INF] Sending file. Request path: '/favicon.png'. Physical path: 'C:\Adham Web\MVC_Projects\Contacts Manager\src\ContactsManager.Web\wwwroot\favicon.png'
+2026-07-27 17:50:06.179 +03:00 [INF] HTTP GET /favicon.png responded 200 in 19.5283 ms
+2026-07-27 17:50:06.193 +03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5067/favicon.png - 200 480 image/png 51.3442ms

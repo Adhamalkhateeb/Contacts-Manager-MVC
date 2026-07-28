@@ -1,18 +1,16 @@
-using System;
 using ContactsManager.Application.Common.Interfaces;
+using ContactsManager.Domain.Identity;
 using ContactsManager.Infrastructure.Data;
 using ContactsManager.Infrastructure.Data.Interceptors;
 using ContactsManager.Infrastructure.Identity;
 using ContactsManager.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Options;
 
 namespace ContactsManager.Infrastructure;
 
@@ -62,6 +60,12 @@ public static class DependencyInjection
 
         services.AddAuthorization(options =>
         {
+            options.AddPolicy("AdminOnly", policy => policy.RequireRole(nameof(Role.Admin)));
+            options.AddPolicy(
+                "UserOrAdmin",
+                policy => policy.RequireRole(nameof(Role.User), nameof(Role.Admin))
+            );
+
             options.FallbackPolicy = new AuthorizationPolicyBuilder()
                 .RequireAuthenticatedUser()
                 .Build();
@@ -71,6 +75,7 @@ public static class DependencyInjection
         {
             options.LoginPath = "/Account/Login";
             options.LogoutPath = "/Account/Logout";
+            options.AccessDeniedPath = "/Error?statusCode=403";
             options.SlidingExpiration = true;
             options.ExpireTimeSpan = TimeSpan.FromDays(7);
         });

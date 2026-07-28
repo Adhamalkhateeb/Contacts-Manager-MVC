@@ -9,50 +9,50 @@ using Microsoft.Extensions.Logging;
 
 namespace ContactsManager.Application.Features.Countries.Commands.CreateCountry;
 
-public sealed class CreateCountryCommandHandler(
-    IAppDbContext context,
-    ILogger<CreateCountryCommandHandler> Logger
+public class CreateCountryCommandHandler(
+    IAppDbContext dbContext,
+    ILogger<CreateCountryCommandHandler> logger
 ) : IRequestHandler<CreateCountryCommand, Result<CountryDto>>
 {
-    private readonly ILogger<CreateCountryCommandHandler> _logger = Logger;
-    private readonly IAppDbContext _context = context;
+    private readonly IAppDbContext _context = dbContext;
+    private readonly ILogger<CreateCountryCommandHandler> _logger = logger;
 
     public async Task<Result<CountryDto>> Handle(
         CreateCountryCommand request,
         CancellationToken cancellationToken
     )
     {
-        var countryName = request.name.Trim().ToLower();
+        if (string.IsNullOrWhiteSpace(request.Name))
+        {
+            return CountryErrors.NameRequired;
+        }
+
+        var formattedName = request.Name.Trim().ToLowerInvariant();
+
         var exists = await _context.Countries.AnyAsync(
-            c => c.Name.ToLower() == countryName,
+            c => c.Name.ToLower() == formattedName,
             cancellationToken
         );
 
         if (exists)
         {
-            _logger.LogWarning("Country creation aborted. country already exists.");
             return Error.Conflict(
-                "Name",
-                $"A country with the name '{request.name}' already exists"
+                "Application_CreateCountry_CountryExists",
+                "Country already exists."
             );
         }
 
-        var createCountryResult = Country.Create(Guid.NewGuid(), countryName);
-        if (createCountryResult.IsError)
+        var countryResult = Country.Create(Guid.NewGuid(), formattedName);
+        if (countryResult.IsError)
         {
-            return createCountryResult.Errors;
+            return countryResult.Errors;
         }
 
-        _context.Countries.Add(createCountryResult.Value);
+        _context.Countries.Add(countryResult.Value);
         await _context.SaveChangesAsync(cancellationToken);
 
-        var customer = createCountryResult.Value;
+        _logger.LogInformation("Country {CountryName} created successfully.", formattedName);
 
-        _logger.LogInformation(
-            "Country created successfully. Id: {CustomerId}",
-            createCountryResult.Value.Id
-        );
-
-        return customer.ToDto();
+        return countryResult.Value.ToDto();
     }
 }

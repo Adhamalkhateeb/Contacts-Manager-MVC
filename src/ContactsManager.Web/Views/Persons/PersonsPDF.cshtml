@@ -20,324 +20,238 @@
 
 <head>
 
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Persons Report - Contact Manager</title>
+
+    <link rel="stylesheet" href="@($"{baseUrl}/css/style.css")">
+    <link rel="stylesheet" href="@($"{baseUrl}/css/all.min.css")">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
 
-<title>Persons Report - Contact Manager</title>
+            /* =========================
+               PDF PRINT SETTINGS
+            =========================*/
 
-<link rel="stylesheet" href="@($"{baseUrl}/css/style.css")">
-<link rel="stylesheet" href="@($"{baseUrl}/css/all.min.css")">
+            @@media print {
+                body {
+                    size: A4 landscape;
+                }
+            }
 
-<style>
-
-/* =========================
-   PDF PRINT SETTINGS
-=========================*/
-
-@@media print
-{
-    body
-    {
-        size: A4 landscape;
-    }
-}
-
-
-
-/* =========================
-   BASE
-=========================*/
-
-body
-{
-    background: #ffffff !important;
-
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-
-    font-size: 11pt;
-
-    line-height: 1.4;
-
-    color: #1e293b;
-
-    padding: 0;
-
-    margin: 0;
-}
-
-.pdf-container
-{
-    max-width: 100%;
-
-    padding: 20px;
-}
-
-
-
-/* =========================
-   HEADER
-=========================*/
-
-.pdf-header
-{
-    display: table;
-
-    width: 100%;
-
-    margin-bottom: 30px;
-
-    padding-bottom: 15px;
-
-    border-bottom: 2px solid #e2e8f0;
-}
-
-.pdf-title
-{
-    font-size: 24pt;
-
-    font-weight: 700;
-
-    color: #0f172a;
-
-    margin: 0;
-}
-
-.pdf-date
-{
-    text-align: right;
-
-    font-size: 10pt;
-
-    color: #64748b;
-}
-
-
-
-/* =========================
-   STATS (TABLE VERSION)
-=========================*/
-
-.pdf-stats
-{
-    width: 100%;
-
-    margin-bottom: 25px;
-
-    background: #f8fafc;
-
-    border-radius: 8px;
-
-    border-collapse: collapse;
-}
-
-.pdf-stats td
-{
-    text-align: center;
-
-    padding: 15px;
-
-    border-right: 1px solid #e2e8f0;
-}
-
-.pdf-stats td:last-child
-{
-    border-right: none;
-}
-
-.stat-label
-{
-    font-size: 9pt;
-
-    color: #64748b;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.5px;
-}
-
-.stat-value
-{
-    font-size: 16pt;
-
-    font-weight: 700;
-
-    color: #0f172a;
-}
-
-
-
-/* =========================
-   TABLE
-=========================*/
-
-.table-container
-{
-    margin-top: 20px;
-
-    border: 1px solid #e2e8f0;
-
-    border-radius: 8px;
-
-    overflow: hidden;
-}
-
-table
-{
-    width: 100%;
-
-    border-collapse: collapse;
-
-    font-size: 9pt;
-}
-
-th
-{
-    background: #f1f5f9;
-
-    color: #334155;
-
-    font-weight: 600;
-
-    text-transform: uppercase;
-
-    letter-spacing: 0.5px;
-
-    padding: 10px 8px;
-
-    text-align: left;
-
-    border-bottom: 2px solid #cbd5e1;
-}
-
-td
-{
-    padding: 8px;
-
-    border-bottom: 1px solid #e2e8f0;
-
-    color: #1e293b;
-}
-
-tr:last-child td
-{
-    border-bottom: none;
-}
-
-
-
-/* =========================
-   CELLS
-=========================*/
-
-.email-cell
-{
-    color: #4f46e5;
-
-    font-family: monospace;
-}
-
-.age-cell
-{
-    font-weight: 600;
-
-    color: #0d9488;
-}
-
-.gender-cell
-{
-    text-transform: capitalize;
-}
-
-.country-cell
-{
-    font-weight: 500;
-}
-
-.address-cell
-{
-    max-width: 150px;
-
-    white-space: nowrap;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-}
-
-
-
-/* =========================
-   BADGES
-=========================*/
-
-.newsletter-badge
-{
-    display: inline-block;
-
-    padding: 2px 8px;
-
-    background: #dcfce7;
-
-    color: #166534;
-
-    border-radius: 12px;
-
-    font-size: 8pt;
-
-    font-weight: 600;
-}
-
-.newsletter-badge.no
-{
-    background: #fee2e2;
-
-    color: #991b1b;
-}
-
-
-
-/* =========================
-   FOOTER
-=========================*/
-
-.pdf-footer
-{
-    margin-top: 30px;
-
-    padding-top: 15px;
-
-    border-top: 1px solid #e2e8f0;
-
-    font-size: 8pt;
-
-    color: #94a3b8;
-
-    text-align: center;
-}
-
-
-
-/* =========================
-   PRINT HELPERS
-=========================*/
-
-tr
-{
-    page-break-inside: avoid;
-}
-
-thead
-{
-    display: table-header-group;
-}
-
-tfoot
-{
-    display: table-footer-group;
-}
-
-</style>
+
+
+            /* =========================
+               BASE
+            =========================*/
+
+            body {
+                background: #ffffff !important;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                font-size: 11pt;
+                line-height: 1.4;
+                color: #1e293b;
+                padding: 0;
+                margin: 0;
+            }
+
+            .pdf-container {
+                max-width: 100%;
+                padding: 20px;
+            }
+
+
+
+            /* =========================
+               HEADER
+            =========================*/
+
+            .pdf-header {
+                display: table;
+                width: 100%;
+                margin-bottom: 30px;
+                padding-bottom: 15px;
+                border-bottom: 2px solid #e2e8f0;
+            }
+
+            .pdf-title {
+                font-size: 24pt;
+                font-weight: 700;
+                color: #0f172a;
+                margin: 0;
+            }
+
+            .pdf-date {
+                text-align: right;
+                font-size: 10pt;
+                color: #64748b;
+            }
+
+
+
+            /* =========================
+               STATS (TABLE VERSION)
+            =========================*/
+
+            .pdf-stats {
+                width: 100%;
+                margin-bottom: 25px;
+                background: #f8fafc;
+                border-radius: 8px;
+                border-collapse: collapse;
+            }
+
+                .pdf-stats td {
+                    text-align: center;
+                    padding: 15px;
+                    border-right: 1px solid #e2e8f0;
+                }
+
+                    .pdf-stats td:last-child {
+                        border-right: none;
+                    }
+
+            .stat-label {
+                font-size: 9pt;
+                color: #64748b;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            .stat-value {
+                font-size: 16pt;
+                font-weight: 700;
+                color: #0f172a;
+            }
+
+
+
+            /* =========================
+               TABLE
+            =========================*/
+
+            .table-container {
+                margin-top: 20px;
+                border: 1px solid #e2e8f0;
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 9pt;
+            }
+
+            th {
+                background: #f1f5f9;
+                color: #334155;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                padding: 10px 8px;
+                text-align: left;
+                border-bottom: 2px solid #cbd5e1;
+            }
+
+            td {
+                padding: 8px;
+                border-bottom: 1px solid #e2e8f0;
+                color: #1e293b;
+            }
+
+            tr:last-child td {
+                border-bottom: none;
+            }
+
+
+
+            /* =========================
+               CELLS
+            =========================*/
+
+            .email-cell {
+                color: #4f46e5;
+                font-family: monospace;
+            }
+
+            .age-cell {
+                font-weight: 600;
+                color: #0d9488;
+            }
+
+            .gender-cell {
+                text-transform: capitalize;
+            }
+
+            .country-cell {
+                font-weight: 500;
+            }
+
+            .address-cell {
+                max-width: 150px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+
+
+            /* =========================
+               BADGES
+            =========================*/
+
+            .newsletter-badge {
+                display: inline-block;
+                padding: 2px 8px;
+                background: #dcfce7;
+                color: #166534;
+                border-radius: 12px;
+                font-size: 8pt;
+                font-weight: 600;
+            }
+
+                .newsletter-badge.no {
+                    background: #fee2e2;
+                    color: #991b1b;
+                }
+
+
+
+            /* =========================
+               FOOTER
+            =========================*/
+
+            .pdf-footer {
+                margin-top: 30px;
+                padding-top: 15px;
+                border-top: 1px solid #e2e8f0;
+                font-size: 8pt;
+                color: #94a3b8;
+                text-align: center;
+            }
+
+
+
+            /* =========================
+               PRINT HELPERS
+            =========================*/
+
+            tr {
+                page-break-inside: avoid;
+            }
+
+            thead {
+                display: table-header-group;
+            }
+
+            tfoot {
+                display: table-footer-group;
+            }
+
+    </style>
 
 </head>
 
@@ -345,165 +259,165 @@ tfoot
 
 <body>
 
-<div class="pdf-container">
+    <div class="pdf-container">
 
-<!-- HEADER -->
+        <!-- HEADER -->
 
-<table class="pdf-header">
+        <table class="pdf-header">
 
-<tr>
+            <tr>
 
-<td>
-<h1 class="pdf-title">
-Persons Report
-</h1>
-</td>
+                <td>
+                    <h1 class="pdf-title">
+                        Persons Report
+                    </h1>
+                </td>
 
-<td class="pdf-date">
-Generated: @DateTime.Now.ToString("dd MMMM yyyy HH:mm")
-</td>
+                <td class="pdf-date">
+                    Generated: @DateTime.Now.ToString("dd MMMM yyyy HH:mm")
+                </td>
 
-</tr>
+            </tr>
 
-</table>
-
-
-
-<!-- STATISTICS -->
-
-<table class="pdf-stats">
-
-<tr>
-
-<td>
-<div class="stat-label">TOTAL PERSONS</div>
-<div class="stat-value">@totalPersons</div>
-</td>
-
-<td>
-<div class="stat-label">MALE</div>
-<div class="stat-value">@maleCount</div>
-</td>
-
-<td>
-<div class="stat-label">FEMALE</div>
-<div class="stat-value">@femaleCount</div>
-</td>
-
-<td>
-<div class="stat-label">NEWSLETTER</div>
-<div class="stat-value">@newsletterCount</div>
-</td>
-
-<td>
-<div class="stat-label">AVG AGE</div>
-<div class="stat-value">@avgAge</div>
-</td>
-
-</tr>
-
-</table>
+        </table>
 
 
 
-<!-- MAIN TABLE -->
+        <!-- STATISTICS -->
 
-<div class="table-container">
+        <table class="pdf-stats">
 
-<table>
+            <tr>
 
-<thead>
+                <td>
+                    <div class="stat-label">TOTAL PERSONS</div>
+                    <div class="stat-value">@totalPersons</div>
+                </td>
 
-<tr>
-<th>Name</th>
-<th>Email</th>
-<th>Date of Birth</th>
-<th>Age</th>
-<th>Gender</th>
-<th>Country</th>
-<th>Address</th>
-<th>Newsletter</th>
-</tr>
+                <td>
+                    <div class="stat-label">MALE</div>
+                    <div class="stat-value">@maleCount</div>
+                </td>
 
-</thead>
+                <td>
+                    <div class="stat-label">FEMALE</div>
+                    <div class="stat-value">@femaleCount</div>
+                </td>
 
-<tbody>
+                <td>
+                    <div class="stat-label">NEWSLETTER</div>
+                    <div class="stat-value">@newsletterCount</div>
+                </td>
 
-@foreach (var person in persons.OrderBy(p => p.Name))
-{
+                <td>
+                    <div class="stat-label">AVG AGE</div>
+                    <div class="stat-value">@avgAge</div>
+                </td>
 
-<tr>
+            </tr>
 
-<td>
-<strong>@person.Name</strong>
-</td>
-
-<td class="email-cell">
-@person.Email
-</td>
-
-<td>
-@(person.DateOfBirth?.ToString("dd MMM yyyy") ?? "N/A")
-</td>
-
-<td class="age-cell">
-@(person.Age?.ToString() ?? "N/A")
-</td>
-
-<td class="gender-cell">
-@person.Gender
-</td>
-
-<td class="country-cell">
-@person.Country
-</td>
-
-<td class="address-cell" title="@person.Address">
-@(string.IsNullOrEmpty(person.Address) ? "—" : person.Address)
-</td>
-
-<td>
-
-@if (person.ReceiveNewsLetters)
-{
-<span class="newsletter-badge">Yes</span>
-}
-else
-{
-<span class="newsletter-badge no">No</span>
-}
-
-</td>
-
-</tr>
-
-}
-
-</tbody>
-
-</table>
-
-</div>
+        </table>
 
 
 
-<!-- FOOTER -->
+        <!-- MAIN TABLE -->
 
-<div class="pdf-footer">
+        <div class="table-container">
 
-<p>
-© @DateTime.Now.Year Contact Manager. All rights reserved.
-</p>
+            <table>
 
-<p>
-This report contains @totalPersons person records and was generated automatically.
-</p>
+                <thead>
 
-</div>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Date of Birth</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Country</th>
+                        <th>Address</th>
+                        <th>Newsletter</th>
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    @foreach (var person in persons.OrderBy(p => p.Name))
+                    {
+
+                        <tr>
+
+                            <td>
+                                <strong>@person.Name</strong>
+                            </td>
+
+                            <td class="email-cell">
+                                @person.Email
+                            </td>
+
+                            <td>
+                                @(person.DateOfBirth?.ToString("dd MMM yyyy") ?? "N/A")
+                            </td>
+
+                            <td class="age-cell">
+                                @(person.Age?.ToString() ?? "N/A")
+                            </td>
+
+                            <td class="gender-cell">
+                                @person.Gender
+                            </td>
+
+                            <td class="country-cell">
+                                @person.Country
+                            </td>
+
+                            <td class="address-cell" title="@person.Address">
+                                @(string.IsNullOrEmpty(person.Address) ? "—" : person.Address)
+                            </td>
+
+                            <td>
+
+                                @if (person.ReceiveNewsLetters)
+                                {
+                                    <span class="newsletter-badge">Yes</span>
+                                }
+                                else
+                                {
+                                    <span class="newsletter-badge no">No</span>
+                                }
+
+                            </td>
+
+                        </tr>
+
+                    }
+
+                </tbody>
+
+            </table>
+
+        </div>
 
 
 
-</div>
+        <!-- FOOTER -->
+
+        <div class="pdf-footer">
+
+            <p>
+                © @DateTime.Now.Year Contact Manager. All rights reserved.
+            </p>
+
+            <p>
+                This report contains @totalPersons person records and was generated automatically.
+            </p>
+
+        </div>
+
+
+
+    </div>
 
 </body>
 

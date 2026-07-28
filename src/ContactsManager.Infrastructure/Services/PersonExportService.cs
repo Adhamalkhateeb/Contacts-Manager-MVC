@@ -15,8 +15,6 @@ public sealed class PersonExportService : IPersonExportService
         CancellationToken cancellationToken = default
     )
     {
-        cancellationToken.ThrowIfCancellationRequested();
-
         using var memoryStream = new MemoryStream();
         var configuration = new CsvConfiguration(CultureInfo.InvariantCulture);
 

@@ -4,8 +4,10 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace ContactsManager.Infrastructure.Data.Interceptors;
 
-public class AuditableEntityInterceptor : SaveChangesInterceptor
+public class AuditableEntityInterceptor(TimeProvider timeProvider) : SaveChangesInterceptor
 {
+    private readonly TimeProvider _timeProvider = timeProvider;
+
     public override InterceptionResult<int> SavingChanges(
         DbContextEventData eventData,
         InterceptionResult<int> result
@@ -34,7 +36,7 @@ public class AuditableEntityInterceptor : SaveChangesInterceptor
         {
             if (entry.State is EntityState.Added or EntityState.Modified)
             {
-                var utcNow = DateTime.UtcNow;
+                var utcNow = _timeProvider.GetUtcNow().UtcDateTime;
 
                 if (entry.State == EntityState.Added)
                 {

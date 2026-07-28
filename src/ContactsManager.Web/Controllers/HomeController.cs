@@ -9,16 +9,12 @@ namespace ContactsManager.Web.Controllers;
 public class HomeController : Controller
 {
     [Route("Error")]
-    public ActionResult Error(int? statusCode = null)
+    public ActionResult Error(int? statusCode = null, string? returnUrl = null)
     {
         var effectiveStatusCode = statusCode ?? StatusCodes.Status500InternalServerError;
         Response.StatusCode = effectiveStatusCode;
 
-        var model = ErrorViewModel.CreateDefault(effectiveStatusCode) with
-        {
-            TraceId = HttpContext.TraceIdentifier,
-            Details = TempData["ResultErrorDetails"]?.ToString(),
-        };
+        var model = ErrorViewModel.CreateDefault(effectiveStatusCode);
 
         if (TempData["ResultErrorCode"] is string resultErrorCode)
         {
@@ -28,17 +24,6 @@ public class HomeController : Controller
         if (TempData["ResultErrorMessage"] is string resultErrorMessage)
         {
             model = model with { Message = resultErrorMessage };
-        }
-
-        var exceptionHandler = HttpContext.Features.Get<IExceptionHandlerPathFeature>();
-        if (exceptionHandler != null && exceptionHandler.Error != null)
-        {
-            model = model with
-            {
-                Details = string.IsNullOrWhiteSpace(model.Details)
-                    ? exceptionHandler.Error.Message
-                    : $"{model.Details} | {exceptionHandler.Error.Message}",
-            };
         }
 
         return View("~/Views/Shared/Error.cshtml", model);

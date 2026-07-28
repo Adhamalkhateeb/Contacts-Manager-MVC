@@ -148,7 +148,7 @@ public class PersonsControllerTests
     }
 
     [Fact]
-    public async Task Create_Get_WhenCountriesQueryFails_ReturnsView()
+    public async Task Create_Get_WhenCountriesQueryFails_RedirectsToError()
     {
         _mediatorMock
             .Setup(x => x.Send(It.IsAny<GetCountriesQuery>(), It.IsAny<CancellationToken>()))
@@ -156,7 +156,9 @@ public class PersonsControllerTests
 
         var result = await _sut.Create(CancellationToken.None);
 
-        result.Should().BeOfType<ViewResult>();
+        var redirectResult = result.Should().BeOfType<RedirectToActionResult>().Subject;
+        redirectResult.ActionName.Should().Be("Error");
+        redirectResult.ControllerName.Should().Be("Home");
     }
 
     [Fact]
@@ -205,7 +207,7 @@ public class PersonsControllerTests
             .Setup(x => x.Send(It.IsAny<RemovePersonCommand>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(Result.Deleted);
 
-        var result = await _sut.Delete(person, CancellationToken.None);
+        var result = await _sut.DeleteConfirmed(person.Id, CancellationToken.None);
 
         var redirectResult = result.Should().BeOfType<RedirectToActionResult>().Subject;
         redirectResult.ActionName.Should().Be(nameof(PersonsController.Index));
@@ -245,7 +247,7 @@ public class PersonsControllerTests
             .Setup(x => x.Send(It.IsAny<RemovePersonCommand>(), It.IsAny<CancellationToken>()))
             .ReturnsAsync(NotFoundErrors());
 
-        var result = await _sut.Delete(person, CancellationToken.None);
+        var result = await _sut.DeleteConfirmed(person.Id, CancellationToken.None);
 
         var redirectResult = result.Should().BeOfType<RedirectToActionResult>().Subject;
         redirectResult.ActionName.Should().Be("Error");

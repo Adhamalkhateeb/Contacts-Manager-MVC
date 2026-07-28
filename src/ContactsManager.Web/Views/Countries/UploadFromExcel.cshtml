@@ -3,135 +3,88 @@
     ViewBag.CurrentUrl = "~/Countries/UploadFromExcel";
 }
 
-<div class="page-header">
-    <div>
-        <h1 class="page-title">Upload Countries</h1>
-        <p class="page-meta">Import country data from an Excel file.</p>
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm border-0 mt-3">
+            <div class="card-header bg-primary text-white py-3">
+                <h4 class="mb-0"><i class="bi bi-cloud-upload me-2"></i>Upload Countries</h4>
+            </div>
+            <div class="card-body p-4">
+                <p class="text-muted mb-4">Import country data from an Excel file.</p>
+
+                @if (ViewBag.ErrorMessage != null)
+                {
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i><strong>Error:</strong> @ViewBag.ErrorMessage
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @if (ViewBag.ErrorDetails != null)
+                    {
+                        <div class="alert alert-danger mt-2">
+                            @ViewBag.ErrorDetails
+                        </div>
+                    }
+                }
+
+                @if (ViewBag.WarningMessage != null)
+                {
+                    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                        <i class="bi bi-exclamation-circle-fill me-2"></i><strong>Warning:</strong> @ViewBag.WarningMessage
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                @if (ViewBag.Message != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <i class="bi bi-check-circle-fill me-2"></i><strong>Success:</strong> @ViewBag.Message
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                <form asp-controller="Countries" asp-action="UploadFromExcel" method="post" enctype="multipart/form-data">
+                    <div class="mb-4">
+                        <label for="excelFile" class="form-label fw-semibold">Choose a .xlsx file (max 10 MB)</label>
+                        <input class="form-control" type="file" id="excelFile" name="excelFile" accept=".xlsx" required />
+                    </div>
+
+                    <div class="alert alert-light border py-3 px-4 mb-4 rounded-3 bg-light">
+                        <h6 class="alert-heading fw-bold mb-2">Upload Requirements:</h6>
+                        <ul class="mb-0 text-muted small ps-3">
+                            <li>First row must be headers</li>
+                            <li>Column must be named: <code>CountryName</code></li>
+                            <li>Worksheet must be named: <code>Countries</code></li>
+                        </ul>
+                    </div>
+
+                    <div class="d-flex gap-2">
+                        <button type="submit" class="btn btn-primary px-4" id="uploadBtn" disabled>
+                            <i class="bi bi-upload me-1"></i> Upload File
+                        </button>
+                        <a asp-controller="Persons" asp-action="Index" class="btn btn-outline-secondary px-4">
+                            Cancel
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <div class="page-actions">
-        <a asp-controller="Persons" asp-action="Index" class="btn btn-outline">
-            <i class="fa-solid fa-arrow-left"></i> Back
-        </a>
-    </div>
-</div>
-
-<div class="upload-card">
-    <h2>Select Excel File</h2>
-    <p>Upload an .xlsx file with country data to import into the system.</p>
-
-    @if (ViewBag.ErrorMessage != null)
-    {
-        <div class="alert alert-danger" data-auto-dismiss>
-            <i class="fa-solid fa-circle-exclamation"></i>
-            <span>@ViewBag.ErrorMessage</span>
-        </div>
-
-        @if (ViewBag.ErrorDetails != null)
-        {
-            <div class="alert alert-danger" style="opacity:.9; margin-top:8px;">
-                <i class="fa-solid fa-circle-info"></i>
-                <span>@ViewBag.ErrorDetails</span>
-            </div>
-        }
-    }
-
-    @if (ViewBag.WarningMessage != null)
-    {
-        <div class="alert alert-warning" data-auto-dismiss>
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            <span>@ViewBag.WarningMessage</span>
-        </div>
-    }
-
-    @* Controller sets ViewBag.Message on success *@
-    @if (ViewBag.Message != null)
-    {
-        <div class="alert alert-success" data-auto-dismiss>
-            <i class="fa-solid fa-circle-check"></i>
-            <span>@ViewBag.Message</span>
-        </div>
-    }
-
-    <form asp-controller="Countries" asp-action="UploadFromExcel"
-          method="post" enctype="multipart/form-data" id="uploadForm">
-
-        <label class="file-drop" id="dropZone" for="excelFile">
-            <input type="file" id="excelFile" name="excelFile" accept=".xlsx" required />
-            <i class="fa-solid fa-file-arrow-up"></i>
-            <span class="drop-text">Click to choose file, or drag and drop</span>
-            <span class="drop-hint">.xlsx — max 10 MB</span>
-        </label>
-
-        <div class="file-chosen" id="fileChosen">
-            <i class="fa-solid fa-circle-check"></i>
-            <span id="fileName"></span>
-        </div>
-
-        <div class="upload-requirements">
-            <div class="req-item">
-                <i class="fa-solid fa-check"></i>
-                First row must be headers
-            </div>
-            <div class="req-item">
-                <i class="fa-solid fa-check"></i>
-                Column: CountryName
-            </div>
-            <div class="req-item">
-                <i class="fa-solid fa-check"></i>
-                Worksheet must be Countries
-            </div>
-            <div class="req-item">
-                <i class="fa-solid fa-check"></i>
-                Max 10 MB file size
-            </div>
-        </div>
-
-        <button type="submit" class="btn btn-primary" id="uploadBtn" disabled
-                style="width:100%;justify-content:center;margin-top:4px">
-            <i class="fa-solid fa-upload"></i> Upload File
-        </button>
-    </form>
 </div>
 
 <script>
-(function () {
-    'use strict';
-
-    var input    = document.getElementById('excelFile');
-    var dropZone = document.getElementById('dropZone');
-    var chosen   = document.getElementById('fileChosen');
-    var fileName = document.getElementById('fileName');
-    var btn      = document.getElementById('uploadBtn');
-
-    function handleFile(file) {
-        if (!file) return;
-        // Basic client-side extension check
-        var ext = file.name.split('.').pop().toLowerCase();
-        if (ext !== 'xlsx') {
-            alert('Please select an .xlsx file.');
-            input.value = '';
-            return;
-        }
-        fileName.textContent = file.name + ' (' + (file.size / 1024).toFixed(1) + ' KB)';
-        chosen.classList.add('show');
-        btn.disabled = false;
-    }
-
-    input.addEventListener('change', function () { handleFile(input.files[0]); });
-
-    dropZone.addEventListener('dragover',  function (e) { e.preventDefault(); dropZone.classList.add('drag-over'); });
-    dropZone.addEventListener('dragleave', function ()  { dropZone.classList.remove('drag-over'); });
-    dropZone.addEventListener('drop', function (e) {
-        e.preventDefault();
-        dropZone.classList.remove('drag-over');
-        var file = e.dataTransfer.files[0];
+    document.getElementById('excelFile').addEventListener('change', function () {
+        var file = this.files[0];
         if (file) {
-            // Assign to the file input via DataTransfer
-            var dt = new DataTransfer();
-            dt.items.add(file);
-            input.files = dt.files;
-            handleFile(file);
+            var ext = file.name.split('.').pop().toLowerCase();
+            if (ext !== 'xlsx') {
+                alert('Please select an .xlsx file.');
+                this.value = '';
+                document.getElementById('uploadBtn').disabled = true;
+                return;
+            }
+            document.getElementById('uploadBtn').disabled = false;
+        } else {
+            document.getElementById('uploadBtn').disabled = true;
         }
     });
-})();
 </script>

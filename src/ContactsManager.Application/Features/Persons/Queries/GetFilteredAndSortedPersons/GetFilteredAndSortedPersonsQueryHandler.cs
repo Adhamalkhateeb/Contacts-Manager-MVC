@@ -121,8 +121,8 @@ public sealed class GetFilteredAndSortedPersonsQueryHandler(
                 : query.OrderBy(p => p.DateOfBirth),
 
             nameof(PersonDto.Age) => sortOrder == SortOrder.DESC
-                ? query.OrderBy(p => p.DateOfBirth)
-                : query.OrderByDescending(p => p.DateOfBirth),
+                ? query.OrderByDescending(p => p.DateOfBirth)
+                : query.OrderBy(p => p.DateOfBirth),
 
             nameof(PersonDto.Gender) => sortOrder == SortOrder.DESC
                 ? query.OrderByDescending(p => p.Gender)

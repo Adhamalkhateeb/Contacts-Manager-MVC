@@ -60,9 +60,5 @@ public class MvcController : Controller
 
         TempData["ResultErrorCode"] = primaryError.Code;
         TempData["ResultErrorMessage"] = primaryError.Description;
-        TempData["ResultErrorDetails"] = string.Join(
-            " | ",
-            errors.Select(e => $"{e.Code}: {e.Description}").Distinct()
-        );
     }
 }
